@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="it"><head>
+<html class="dark" lang="it">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cristian Lecca | Hypno Mental Coach</title>
@@ -121,27 +121,72 @@
             background: radial-gradient(circle at 70% 30%, rgba(105, 227, 192, 0.08), transparent 50%),
                         radial-gradient(circle at 20% 80%, rgba(184, 195, 255, 0.05), transparent 50%);
         }
+
+        /* Menu mobile */
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            background: #101416;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 16px 24px 24px;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
+        #mobile-menu a {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: #e0e3e6;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+        #mobile-menu a:last-child {
+            border-bottom: none;
+            margin-top: 12px;
+            background: #69e3c0;
+            color: #004f3e;
+            text-align: center;
+            border-radius: 12px;
+            padding: 14px 0;
+        }
+        #mobile-menu a:hover { color: #69e3c0; }
+        #mobile-menu a:last-child:hover { color: #004f3e; }
     </style>
 </head>
 <body class="font-body-md text-body-md">
 <!-- Top Navigation Bar -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-surface-variant/20 shadow-sm">
-<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-<a class="font-headline-md text-headline-md font-bold text-on-background dark:text-on-background tracking-tight" href="/">Cristian Lecca</a>
-<div class="hidden md:flex gap-8 items-center">
-<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
-<a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
-                    Fai il Quiz del Coraggio
-                </a>
-</div>
-<button class="md:hidden text-on-background">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
+  <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="font-headline-md text-headline-md font-bold text-on-background dark:text-on-background tracking-tight" href="/">Cristian Lecca</a>
+    <!-- Nav desktop -->
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/">Home</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
+        Fai il Quiz del Coraggio
+      </a>
+    </div>
+    <!-- Bottone hamburger mobile -->
+    <button id="hamburger-btn" class="md:hidden text-on-background" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
+    </button>
+  </div>
+  <!-- Menu mobile a scomparsa -->
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="/">Home</a>
+    <a href="/metodo/">Metodo</a>
+    <a href="/contenuti/">Contenuti</a>
+    <a href="/chi-sono/">Chi sono</a>
+    <a href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a href="/quiz/">Fai il Quiz del Coraggio</a>
+  </div>
 </nav>
 <main class="mt-20">
 <!-- Hero Section -->
@@ -204,7 +249,6 @@
 <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg max-w-3xl mx-auto mb-4">Dal blocco alla mappa.<br/>Dalla mappa alla trasformazione.</h2>
 </div>
 <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Step 1 -->
 <div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
 <span class="material-symbols-outlined text-primary text-5xl mb-6">psychology</span>
 <h3 class="font-headline-md text-headline-md mb-4">Riconosci</h3>
@@ -212,7 +256,6 @@
                         Identifichiamo insieme gli automatismi inconsci che stanno frenando la tua evoluzione, portandoli alla luce della consapevolezza.
                     </p>
 </div>
-<!-- Step 2 -->
 <div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
 <span class="material-symbols-outlined text-secondary text-5xl mb-6">map</span>
 <h3 class="font-headline-md text-headline-md mb-4">Rileggi</h3>
@@ -220,7 +263,6 @@
                         Attribuiamo un nuovo significato ai tuoi schemi mentali, riscrivendo la narrativa interna per allinearla ai tuoi obiettivi reali.
                     </p>
 </div>
-<!-- Step 3 -->
 <div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
 <span class="material-symbols-outlined text-tertiary text-5xl mb-6">bolt</span>
 <h3 class="font-headline-md text-headline-md mb-4">Agisci</h3>
@@ -344,10 +386,32 @@
 </div>
 </div>
 <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
-            © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+            © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA 03328450923
         </div>
 </footer>
 <script>
+        // Menu mobile toggle
+        const btn = document.getElementById('hamburger-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('hamburger-icon');
+
+        btn.addEventListener('click', () => {
+            const isOpen = menu.classList.contains('open');
+            menu.classList.toggle('open');
+            icon.textContent = isOpen ? 'menu' : 'close';
+            btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        // Chiudi menu al click su un link
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('open');
+                icon.textContent = 'menu';
+                btn.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Mouse parallax hero
         document.addEventListener('mousemove', (e) => {
             const mouseX = e.clientX / window.innerWidth;
             const mouseY = e.clientY / window.innerHeight;
@@ -357,6 +421,7 @@
             }
         });
 
+        // Scroll reveal
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -372,4 +437,5 @@
             observer.observe(section);
         });
     </script>
-</body></html>
+</body>
+</html>
