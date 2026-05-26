@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#101416",
+                    "on-background": "#F5F7FA",
+                    "surface": "#101416",
+                    "on-surface": "#F5F7FA",
+                    "primary": "#49C7A5",
+                    "on-primary": "#101416",
+                    "primary-container": "#49C7A5",
+                    "on-primary-container": "#101416",
+                    "secondary": "#3A63FF",
+                    "on-secondary": "#FFFFFF",
+                    "secondary-container": "#3A63FF",
+                    "on-secondary-container": "#FFFFFF",
+                    "tertiary": "#C9A45C",
+                    "on-tertiary": "#101416",
+                    "outline": "#86948e",
+                    "outline-variant": "#3d4944",
+                    "surface-container": "#1d2022",
+                    "surface-container-low": "#191c1e",
+                    "surface-container-high": "#272a2d",
+                    "surface-container-highest": "#323538",
+                    "surface-container-lowest": "#0b0f11",
+                    "surface-variant": "#323538",
+                    "on-surface-variant": "#bccac3",
+                    "error": "#ffb4ab",
+                    "surface-bright": "#363a3c",
+                    "surface-slate": "#1A202C",
+                    "ethereal-gold": "#C9A45C",
+                    "midnight-void": "#101416"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "section-padding-desktop": "120px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "section-padding-mobile": "64px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "headline-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(29, 32, 34, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 247, 250, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .glass-card:hover {
+            border-color: rgba(73, 199, 165, 0.3);
+            background: rgba(73, 199, 165, 0.05);
+        }
+        .ambient-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(73, 199, 165, 0.05) 0%, rgba(73, 199, 165, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-lg border-b border-outline-variant/20 shadow-sm">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md tracking-tighter text-on-surface font-extrabold uppercase">
+            CRISTIAN LECCA
+        </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Metodo</a>
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors" href="#">Podcast</a>
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors" href="#">Chi Sono</a>
+<a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors" href="#">Contatti</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-caps text-label-caps hover:brightness-110 transition-all duration-300">
+            Quiz del Coraggio
+        </button>
+</div>
+</nav>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center px-gutter max-w-container-max mx-auto py-section-padding-mobile md:py-section-padding-desktop">
+<div class="ambient-glow -top-20 -left-20"></div>
+<div class="max-w-4xl">
+<span class="font-label-caps text-label-caps text-ethereal-gold tracking-[0.2em] mb-6 block">METODO IPNOSIAPPLICATA</span>
+<h1 class="font-display-lg text-display-lg md:text-[80px] leading-tight mb-8">
+                Il blocco non è il tuo nemico. È il punto da cui può iniziare il <span class="text-primary italic">cambiamento.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                Il Metodo IpnosiApplicata nasce per aiutarti a riconoscere il blocco che oggi guida più di quanto credi le tue scelte, rileggerlo con più lucidità e trasformarlo in un percorso concreto, sostenibile e reale.
+            </p>
+<div class="flex flex-wrap gap-6 mb-8">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-caps text-label-caps font-bold hover:scale-105 transition-transform">
+                    INIZIA DAL QUIZ DEL CORAGGIO
+                </button>
+<button class="border border-outline-variant/50 text-on-surface px-8 py-4 rounded-xl font-label-caps text-label-caps hover:bg-surface-container transition-colors">
+                    SCOPRI IL RESET NOTTURNO
+                </button>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant/70">
+<span class="material-symbols-outlined text-sm">info</span>
+<span class="font-label-caps text-[10px]">UN METODO PER LEGGERE IL BLOCCO, NON PER COMBATTERLO ALLA CIECA.</span>
+</div>
+</div>
+</section>
+<!-- Cos'è davvero il Metodo -->
+<section class="px-gutter max-w-container-max mx-auto py-section-padding-mobile md:py-section-padding-desktop">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<h2 class="font-headline-xl text-headline-xl">Cos'è davvero il Metodo</h2>
+<div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+<p>Immagina il tuo blocco non come un muro insormontabile, ma come una mappa criptata. Il Metodo IpnosiApplicata non cerca di abbattere quel muro con la forza bruta della volontà, ma di insegnarti a decodificare le coordinate che contiene.</p>
+<p>Ogni resistenza che provi è un'informazione preziosa. È la voce del tuo sistema che cerca di proteggerti, usando schemi che un tempo erano utili ma che oggi sono diventati catene. Cambiare significa onorare quel messaggio per poterne scrivere uno nuovo.</p>
+<p>Qui l'esperienza clinica incontra la pratica quotidiana. Non troverai teorie astratte, ma una struttura solida fatta di ascolto profondo e azioni misurabili, pensata per chi non ha tempo da perdere in palliativi superficiali.</p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/10 blur-[100px] group-hover:bg-primary/20 transition-all"></div>
+<img alt="Abstract mind representation" class="relative z-10 w-full aspect-square object-cover rounded-2xl shadow-2xl border border-outline-variant/20" data-alt="A sophisticated abstract digital artwork depicting the human mind as a complex web of glowing blue and silver neural pathways against a deep midnight black background. The lighting is moody and ethereal, with soft flares illuminating specific nodes of the network. The visual style is premium and minimalist, reflecting a sense of deep psychological clarity and transformative mental structure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4VDiNoQtNUZwxSwoornDvzYrd9jqbRj0IXtWExK4YO4aD8nGaEF-5ymMbI11MNF0ABWDapl0fD9kVZbBERPWfyRW_UKlKr2w_YNncTJD4iSBZrBsx9qUv892y3362vaqr8qEnjwWt-gdCw8x5Chs1ai6Olr1ZrRco6Z4uv3jo-aP1o5pYPNxiH8rF_utvIRdzZtVnOH9SvlVMOo1BVypisZVzmp1UUK9KMgVPqUtn5lOoYZORaF8lEb_yxaTzpYosKDLOrzodn2DX"/>
+</div>
+</div>
+</section>
+<!-- Per chi è -->
+<section class="bg-surface-container-lowest/50 py-section-padding-mobile md:py-section-padding-desktop px-gutter">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-headline-xl text-headline-xl mb-16 text-center">Questo percorso è per te se:</h2>
+<div class="grid md:grid-cols-4 gap-8">
+<div class="glass-card p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl">autorenew</span>
+<p class="font-body-md text-body-md text-on-surface">Ti trovi intrappolato in dinamiche ripetitive che sembrano sabotare ogni tuo nuovo inizio.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl">psychology</span>
+<p class="font-body-md text-body-md text-on-surface">Senti un costante conflitto interiore tra ciò che desideri razionalmente e ciò che riesci a fare.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl">verified</span>
+<p class="font-body-md text-body-md text-on-surface">Cerchi un approccio serio, lontano dalle promesse magiche e basato sulla concretezza.</p>
+</div>
+<div class="glass-card p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl">architecture</span>
+<p class="font-body-md text-body-md text-on-surface">Vuoi strumenti reali per costruire una quotidianità che rispecchi finalmente chi sei davvero.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- I 3 Pilastri -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter max-w-container-max mx-auto">
+<div class="mb-20">
+<h2 class="font-headline-xl text-headline-xl mb-4">I 3 Pilastri del Metodo</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">La trasformazione segue una sequenza precisa. Saltare un passaggio significa costruire sulla sabbia.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="relative pl-12 border-l border-outline-variant">
+<div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-primary rounded-full flex items-center justify-center font-label-caps text-primary">1</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Riconosci</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Identifichiamo insieme la vera radice del blocco, superando le interpretazioni superficiali per arrivare al cuore della resistenza.</p>
+</div>
+<div class="relative pl-12 border-l border-outline-variant">
+<div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-primary rounded-full flex items-center justify-center font-label-caps text-primary">2</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Rileggi</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Trasformiamo il blocco da nemico a mappa. Cambiamo la narrativa interiore per sbloccare nuove possibilità d'azione.</p>
+</div>
+<div class="relative pl-12 border-l border-outline-variant">
+<div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-primary rounded-full flex items-center justify-center font-label-caps text-primary">3</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Agisci</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Creiamo un percorso concreto e sostenibile. Piccoli passi reali che generano un cambiamento strutturale e duraturo.</p>
+</div>
+</div>
+</section>
+<!-- Perché è diverso -->
+<section class="bg-midnight-void py-section-padding-mobile md:py-section-padding-desktop">
+<div class="max-w-4xl mx-auto px-gutter text-center">
+<div class="mb-12 inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-primary text-sm">stars</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">La Differenza</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl mb-8">Non è performance estrema. È allineamento profondo.</h2>
+<div class="glass-card p-12 rounded-3xl text-left border-primary/20 shadow-[0_0_50px_-12px_rgba(73,199,165,0.1)]">
+<p class="font-body-lg text-body-lg text-on-surface mb-8 leading-relaxed">
+                    Mentre molti approcci si focalizzano sul "pensiero positivo" o sul forzare la performance ignorando il dolore, il Metodo IpnosiApplicata lavora <span class="text-primary italic font-semibold">con</span> le tue resistenze, non contro di esse. 
+                </p>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                    Reprimere un blocco significa solo caricarlo di più forza. Accoglierlo e comprenderlo è l'unico modo per farlo sciogliere naturalmente, lasciando spazio a un'efficacia che non richiede sforzo, ma solo presenza.
+                </p>
+</div>
+</div>
+</section>
+<!-- Come funziona in pratica -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter max-w-container-max mx-auto">
+<h2 class="font-headline-xl text-headline-xl mb-16 text-center">Come funziona in pratica</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-2xl flex flex-col h-full">
+<div class="mb-8 w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl">quiz</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Quiz del Coraggio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-auto">Il primo passo per mappare il tuo territorio interiore e identificare il blocco dominante.</p>
+<button class="mt-8 text-primary font-label-caps text-label-caps flex items-center gap-2 hover:translate-x-2 transition-transform">
+                    SCOPRI DI PIÙ <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="glass-card p-10 rounded-2xl flex flex-col h-full border-primary/30">
+<div class="mb-8 w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl">nights_stay</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Reset Notturno</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-auto">Utilizzare il tempo del sonno per riprogrammare le risposte emotive automatiche al blocco.</p>
+<button class="mt-8 text-primary font-label-caps text-label-caps flex items-center gap-2 hover:translate-x-2 transition-transform">
+                    SCOPRI DI PIÙ <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="glass-card p-10 rounded-2xl flex flex-col h-full">
+<div class="mb-8 w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl">center_focus_strong</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-4">Sessione di Svolta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-auto">Un lavoro individuale intensivo per rompere gli schemi più profondi e tracciare la rotta.</p>
+<button class="mt-8 text-primary font-label-caps text-label-caps flex items-center gap-2 hover:translate-x-2 transition-transform">
+                    SCOPRI DI PIÙ <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Da dove nasce -->
+<section class="px-gutter max-w-container-max mx-auto py-section-padding-mobile md:py-section-padding-desktop">
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="w-full md:w-1/2 order-2 md:order-1">
+<img alt="Cristian Lecca portrait" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-xl" data-alt="A professional, high-contrast portrait of Cristian Lecca, a mental coach, set in a minimalist studio with deep charcoal shadows. He is wearing a dark, sophisticated turtleneck, looking directly at the camera with a calm, penetrating gaze that conveys wisdom and psychological depth. The lighting is dramatic and cinematic, using Rembrandt lighting techniques to create a sense of mystery and institutional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9td_CiAB31CJaVyq5qZke19w27cobIXiHe7egJozSPcLUVAPWVUEAdFlp1_ryagZ6rXkWlMbcMzXm61FWkYHMz4VjwEKSucurzmVEgQ-cDOHr-fp92HSS0C0QprcFQJIHHowhcqt5iF9InsomVZdBJLV97L7rlP85hfDiSS9kLoRiP2oZ664nn2WJgL3GJA264n9hTbjNDuu3XYveVc1zLyRU9_BnSDoq0zg84zBK5FA2zhSpMCf0URHZ1elI61c0cApVod-ZIkrM"/>
+</div>
+<div class="w-full md:w-1/2 order-1 md:order-2 space-y-8">
+<h2 class="font-headline-xl text-headline-xl">Da dove nasce</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Il mio metodo non è nato in un'aula universitaria, ma sul campo. È il risultato di anni di ricerca pratica, di migliaia di ore di sessioni e, soprattutto, del mio percorso personale attraverso i miei stessi blocchi.
+                </p>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Ho visto cosa funziona davvero quando la teoria fallisce. Ho distillato solo gli strumenti che hanno dimostrato di poter generare una trasformazione reale, misurabile e soprattutto sostenibile nel lungo periodo.
+                </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-ethereal-gold border-b border-ethereal-gold/30 pb-1 hover:border-ethereal-gold transition-all" href="#">
+                    SCOPRI DI PIÙ SU DI ME <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Cosa non è -->
+<section class="bg-surface-container py-section-padding-mobile md:py-section-padding-desktop px-gutter">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-16">
+<div class="md:w-1/3">
+<h2 class="font-headline-xl text-headline-xl text-error">Cosa NON è</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-4">Per rispetto del tuo tempo e del mio lavoro, è importante chiarire i confini.</p>
+</div>
+<div class="md:w-2/3 grid sm:grid-cols-2 gap-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<h4 class="font-bold mb-2">Una formula rapida</h4>
+<p class="font-body-md text-on-surface-variant">Non esistono "bacchette magiche". Il cambiamento richiede impegno e onestà.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<h4 class="font-bold mb-2">Repressione</h4>
+<p class="font-body-md text-on-surface-variant">Non ti insegnerò a soffocare le tue emozioni, ma a comprenderne la radice.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<h4 class="font-bold mb-2">Perfezione</h4>
+<p class="font-body-md text-on-surface-variant">L'obiettivo non è essere perfetti, ma essere lucidi e funzionali.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-error">close</span>
+<div>
+<h4 class="font-bold mb-2">Terapia medica</h4>
+<p class="font-body-md text-on-surface-variant">Il mental coaching non sostituisce la psicoterapia o cure psichiatriche.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Cosa puoi aspettarti -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter max-w-container-max mx-auto">
+<h2 class="font-headline-xl text-headline-xl mb-16 text-center">Cosa puoi aspettarti</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="p-8 border border-outline-variant/30 rounded-2xl hover:bg-surface-container/20 transition-colors">
+<span class="font-display-lg text-primary/20 block mb-4">01</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-primary">Chiarezza</h3>
+<p class="font-body-md text-on-surface-variant">Capirai finalmente perché fai quello che fai, eliminando la nebbia della confusione.</p>
+</div>
+<div class="p-8 border border-outline-variant/30 rounded-2xl hover:bg-surface-container/20 transition-colors">
+<span class="font-display-lg text-primary/20 block mb-4">02</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-primary">Comprensione</h3>
+<p class="font-body-md text-on-surface-variant">Un nuovo modo di relazionarti con te stesso, fatto di lucidità e non di giudizio.</p>
+</div>
+<div class="p-8 border border-outline-variant/30 rounded-2xl hover:bg-surface-container/20 transition-colors">
+<span class="font-display-lg text-primary/20 block mb-4">03</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-primary">Orientamento</h3>
+<p class="font-body-md text-on-surface-variant">Una direzione precisa da seguire ogni giorno, eliminando l'incertezza cronica.</p>
+</div>
+<div class="p-8 border border-outline-variant/30 rounded-2xl hover:bg-surface-container/20 transition-colors">
+<span class="font-display-lg text-primary/20 block mb-4">04</span>
+<h3 class="font-headline-lg text-headline-lg mb-4 text-primary">Cambiamento</h3>
+<p class="font-body-md text-on-surface-variant">Risultati tangibili nella tua capacità di agire e decidere con libertà.</p>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 -z-10"></div>
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-display-lg text-[48px] md:text-[64px] mb-8 leading-tight">Ogni cambiamento reale inizia quando inizi a leggere il blocco nel modo giusto.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">
+                Non aspettare che il blocco scompaia da solo. Inizia oggi a decodificarlo con il Quiz del Coraggio.
+            </p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-label-caps text-label-caps font-bold hover:scale-105 transition-transform">
+                    INIZIA DAL QUIZ DEL CORAGGIO
+                </button>
+<button class="border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-label-caps text-label-caps hover:bg-surface-container transition-colors">
+                    SCOPRI IL RESET NOTTURNO
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full py-12 border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-8">
+<div class="font-headline-md text-headline-md text-primary font-extrabold tracking-tighter uppercase">
+            CRISTIAN LECCA
+        </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-ethereal-gold transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-ethereal-gold transition-colors" href="#">Termini e Condizioni</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-ethereal-gold transition-colors" href="#">Cookie Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-ethereal-gold transition-colors" href="#">Reset Notturno</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant opacity-80 text-center md:text-right">
+            © 2024 Cristian Lecca - Hypno Mental Coach. Tutti i diritti riservati.
+        </div>
+</div>
+</footer>
+<script>
+    // Smooth scroll implementation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Simple parallax effect for glow elements
+    window.addEventListener('mousemove', (e) => {
+        const glows = document.querySelectorAll('.ambient-glow');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        glows.forEach(glow => {
+            const moveX = (mouseX - 0.5) * 40;
+            const moveY = (mouseY - 0.5) * 40;
+            glow.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    });
+</script>
+</body></html>
