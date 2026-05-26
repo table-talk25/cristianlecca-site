@@ -1,466 +1,151 @@
-<!DOCTYPE html><html class="dark" lang="it"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Reset Notturno | Trasforma il tuo Blocco</title>
+<!DOCTYPE html>
+<html class="dark" lang="it"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset Notturno | Cristian Lecca</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<style>
-        .glass-card {
-            background: rgba(245, 247, 250, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(245, 247, 250, 0.1);
-        }
-        .glow-hover:hover {
-            box-shadow: 0 0 20px rgba(73, 199, 165, 0.3);
-        }
-        .night-gradient {
-            background: radial-gradient(circle at top right, #18263F 0%, #0B1220 100%);
-        }
-        .inner-glow {
-            box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-container-lowest": "#0b0f11",
-                        "surface-container": "#1d2022",
-                        "on-surface-variant": "#bccac3",
-                        "inverse-primary": "#006b55",
-                        "surface-container-low": "#191c1e",
-                        "on-tertiary-fixed": "#261900",
-                        "on-secondary-container": "#c1cbff",
-                        "tertiary-fixed": "#ffdea4",
-                        "primary-container": "#49c7a5",
-                        "on-background": "#e0e3e6",
-                        "secondary-fixed": "#dde1ff",
-                        "surface-container-highest": "#323538",
-                        "tertiary-container": "#d4ae65",
-                        "surface": "#101416",
-                        "secondary": "#b8c3ff",
-                        "on-error-container": "#ffdad6",
-                        "surface-dim": "#101416",
-                        "on-tertiary-container": "#5b4100",
-                        "on-secondary": "#002387",
-                        "on-primary-container": "#004f3e",
-                        "on-primary-fixed": "#002018",
-                        "primary-fixed": "#7ef8d3",
-                        "on-tertiary-fixed-variant": "#5d4200",
-                        "on-primary-fixed-variant": "#005140",
-                        "error-container": "#93000a",
-                        "on-error": "#690005",
-                        "surface-bright": "#363a3c",
-                        "primary": "#69e3c0",
-                        "on-secondary-fixed-variant": "#0035bd",
-                        "on-tertiary": "#412d00",
-                        "tertiary": "#f1c97d",
-                        "on-surface": "#e0e3e6",
-                        "surface-container-high": "#272a2d",
-                        "inverse-on-surface": "#2d3133",
-                        "tertiary-fixed-dim": "#e8c176",
-                        "error": "#ffb4ab",
-                        "outline": "#86948e",
-                        "on-primary": "#00382b",
-                        "outline-variant": "#3d4944",
-                        "secondary-container": "#0543e3",
-                        "on-secondary-fixed": "#001355",
-                        "secondary-fixed-dim": "#b8c3ff",
-                        "inverse-surface": "#e0e3e6",
-                        "background": "#101416",
-                        "surface-variant": "#323538",
-                        "primary-fixed-dim": "#60dbb8",
-                        "surface-tint": "#60dbb8"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack-md": "16px",
-                        "stack-lg": "32px",
-                        "container-max": "1280px",
-                        "stack-sm": "8px",
-                        "section-v-desktop": "104px",
-                        "gutter": "24px",
-                        "section-v-mobile": "64px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Manrope"],
-                        "body-lg": ["Inter"],
-                        "headline-lg": ["Manrope"],
-                        "display-lg-mobile": ["Manrope"],
-                        "display-lg": ["Manrope"],
-                        "label-md": ["Inter"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#101416", "on-background": "#F5F7FA", "surface": "#101416", "on-surface": "#F5F7FA",
+                    "primary": "#49C7A5", "on-primary": "#101416", "secondary": "#3A63FF", "on-secondary": "#FFFFFF",
+                    "tertiary": "#C9A45C", "on-tertiary": "#101416", "outline": "#86948e", "outline-variant": "#3d4944",
+                    "surface-container": "#1d2022", "surface-container-low": "#191c1e", "surface-container-high": "#272a2d",
+                    "surface-container-lowest": "#0b0f11", "surface-variant": "#323538", "on-surface-variant": "#bccac3"
             },
-        }
+            "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+            "spacing": { "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px", "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px" },
+            "fontFamily": { "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"], "display-lg-mobile": ["Manrope"] },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
     </script>
+<style>
+        body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
+        .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s; }
+        .glass-card:hover { border-color: rgba(73,199,165,0.3); background: rgba(73,199,165,0.05); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    </style>
 </head>
-<body class="bg-background text-on-surface font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-surface-container-highest/20 shadow-sm">
+<body class="font-body-md text-body-md">
+
+<!-- HEADER GLOBALE -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
 <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-<div class="font-headline-md text-headline-md font-bold text-on-surface">Reset Notturno</div>
-<div class="hidden md:flex gap-8">
-<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Home</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" href="#">Metodo</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" href="#">Chi sono</a>
-<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" href="#">Contatti</a>
-</div>
-<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md active:scale-95 transition-transform hover:shadow-lg hover:shadow-primary/20">
-                Fai il Quiz del Coraggio
-            </button>
+  <a class="font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">Cristian Lecca</a>
+  <div class="hidden md:flex gap-8 items-center">
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Home</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
+  </div>
+  <button class="md:hidden text-on-background"><span class="material-symbols-outlined">menu</span></button>
 </div>
 </nav>
-<main class="pt-24">
-<!-- Hero Section (rn-hero) -->
-<section class="max-w-container-max mx-auto px-gutter py-section-v-desktop grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-<div class="space-y-6">
-<span class="inline-block px-4 py-1 rounded-full bg-secondary-container/20 text-secondary font-label-md">
-                    Primo passo guidato dopo il Quiz del Coraggio
-                </span>
-<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-tight">
-                    Il cambiamento non inizia quando capisci tutto. Inizia quando fai il <span class="text-primary">primo passo giusto.</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                    Sintonizzati sul tuo subconscio con un percorso audio guidato studiato per la sera, il momento in cui la tua mente è più ricettiva al cambiamento profondo.
-                </p>
-<div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
-<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-label-md glow-hover transition-all flex items-center gap-2">Inizia il Reset Notturno <span class="\&quot;opacity-70\&quot;">— 37€</span></button>
-<div class="space-y-1"><div class="\&quot;flex" items-center="" gap-2="" text-on-surface-variant="" text-sm\"=""><span class="\&quot;material-symbols-outlined" text-primary="" text-sm\"="" data-icon="\&quot;check_circle\&quot;">check_circle</span>Accesso immediato · Percorso guidato · Ascolti da qualsiasi dispositivo</div></div>
-</div>
-</div>
-<div class="relative flex justify-center">
-<div class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full"></div>
-<div class="relative w-full max-w-[340px] aspect-[9/19] bg-surface-container-highest rounded-[3rem] border-8 border-surface-container p-4 shadow-2xl overflow-hidden inner-glow">
-<img class="w-full h-full object-cover rounded-[2rem] opacity-40 brightness-50" data-alt="A premium high-resolution smartphone mockup displaying a specialized hypnotherapy app interface. The screen shows a player with a waveform animation in teal and electric blue against a deep night-navy background. The surrounding lighting is cinematic and dark, emphasizing the focus on the digital transformation tool. Soft atmospheric glows in teal reflect off the glass surface of the device." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnJY2LIiInA0x07-GYfP3vEOmvgITVJ18g5k24zlDyB03eSsufAl9yOJ_w3RSnSi2QQ-c0OMazfMN5jC1ggFUOlh8x_UCw6rfTLy3IuDJd_lzm6K3RE0eyZcKB3Yj8OFTzCPEwinyQSasVbJwjRtxAQhqznMQvEObgQI2tNBTnOKZmo-kVYmnLKMhbakZFNCA4RV40XiNQd90itBOnafFLCAo7tbSKxGrc1B2JAMOgGvVRsQu1Om-BjTNo_aXTSQUxH6Yy_RQkFyf6">
-<div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-surface-container-lowest to-transparent">
-<div class="space-y-4">
-<div class="w-12 h-1 h-1 bg-surface-variant rounded-full mx-auto mb-4"></div>
-<h3 class="font-headline-md text-body-lg text-center">Sessione #01: Rilascio</h3>
-<div class="flex justify-between items-center px-4">
-<span class="material-symbols-outlined">skip_previous</span>
-<div class="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined" data-weight="fill">play_arrow</span>
-</div>
-<span class="material-symbols-outlined">skip_next</span>
-</div>
-<div class="h-1 bg-surface-variant rounded-full w-full overflow-hidden">
-<div class="h-full bg-primary w-1/3"></div>
-</div>
-</div>
-</div>
-</div>
+
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero -->
+<section class="relative min-h-[80vh] flex items-center px-gutter max-w-container-max mx-auto py-section-v-mobile md:py-section-v-desktop">
+<div class="max-w-4xl">
+  <span class="font-label-md text-label-md text-secondary tracking-[0.2em] mb-6 block uppercase">Offerta Intermedia</span>
+  <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-8 leading-tight">
+    Il cambiamento non inizia quando capisci tutto. Inizia quando fai il <span class="text-primary italic">primo passo giusto.</span>
+  </h1>
+  <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+    Il Reset Notturno è il programma audio per riprogrammare le risposte emotive automatiche mentre dormi. Utilizza il tempo del sonno per lavorare sugli schemi più profondi.
+  </p>
+  <div class="flex flex-col sm:flex-row gap-6">
+    <a href="#acquista" class="bg-primary text-on-primary px-10 py-5 rounded-xl font-label-md text-label-md font-bold hover:scale-105 transition-transform inline-block">Inizia il Reset Notturno</a>
+    <a href="/quiz/" class="border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors inline-block">Prima fai il Quiz del Coraggio</a>
+  </div>
 </div>
 </section>
-<!-- Why Now (rn-why-now) -->
-<section class="bg-surface-container-low py-section-v-desktop px-gutter">
-<div class="max-w-container-max mx-auto text-center space-y-6">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">
-                    Sai qual è il tuo blocco. Adesso ti serve un modo <span class="text-secondary">semplice</span> per iniziare a trasformarlo.
-                </h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto">
-                    La consapevolezza è solo metà della battaglia. Senza un'azione concreta che coinvolga il tuo sistema nervoso e la tua mente inconscia, il cambiamento rimane solo un'idea astratta. Il Reset Notturno getta il ponte tra capire e sentire.
-                </p>
-</div>
-</section>
-<!-- What Is (rn-what-is) -->
-<section class="max-w-container-max mx-auto px-gutter py-section-v-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-<div class="space-y-8">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Che cos'è, in pratica, il <span class="text-primary">Reset Notturno</span></h2>
-<div class="space-y-6 text-on-surface-variant font-body-md">
-<p class="">Non è un corso teorico, né un semplice podcast. È un protocollo di attivazione mentale che sfrutta lo stato ipnagogico (quello tra veglia e sonno) per riscrivere le risposte automatiche della tua mente.</p>
-<p class="">Attraverso frequenze studiate e una guida vocale precisa, ti accompagniamo a disinnescare la tensione accumulata durante il giorno, focalizzandoti specificamente sul tipo di blocco emerso dal tuo quiz.</p>
-</div>
-</div>
-<div class="grid grid-cols-1 gap-4">
-<div class="bg-[#24364A] p-8 rounded-[20px] border-t border-white/10 space-y-6 shadow-xl">
-<div class="flex items-start gap-4">
-<div class="bg-primary/20 p-3 rounded-lg text-primary">
-<span class="material-symbols-outlined">audio_file</span>
-</div>
-<div>
-<h4 class="font-headline-md text-body-md text-on-surface">Formato</h4>
-<p class="text-on-surface-variant text-sm">Audio guidati HQ + Guida operativa in PDF</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="bg-secondary/20 p-3 rounded-lg text-secondary">
-<span class="material-symbols-outlined">calendar_today</span>
-</div>
-<div>
-<h4 class="font-headline-md text-body-md text-on-surface">Durata</h4>
-<p class="text-on-surface-variant text-sm">Percorso suggerito di 7 giorni consecutivi</p>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<div class="bg-tertiary/20 p-3 rounded-lg text-tertiary">
-<span class="material-symbols-outlined">timer</span>
-</div>
-<div>
-<h4 class="font-headline-md text-body-md text-on-surface">Impegno</h4>
-<p class="text-on-surface-variant text-sm">Circa 15 minuti ogni sera prima di dormire</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Benefits (rn-benefits) -->
-<section class="bg-surface-container-lowest py-section-v-desktop px-gutter">
+
+<!-- Cosa è -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
 <div class="max-w-container-max mx-auto">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-16">Cosa può cambiare per te</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-<!-- Benefit 1 -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="volume_off">volume_off</span>
-<h3 class="font-headline-md text-body-md">Meno rumore mentale</h3>
-</div>
-<!-- Benefit 2 -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="space_dashboard">space_dashboard</span>
-<h3 class="font-headline-md text-body-md">Più spazio decisionale</h3>
-</div>
-<!-- Benefit 3 -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="bedtime">bedtime</span>
-<h3 class="font-headline-md text-body-md">Calma profonda pre-sonno</h3>
-</div>
-<!-- Benefit 4 -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="psychology">psychology</span>
-<h3 class="font-headline-md text-body-md">Focus inconscio</h3>
-</div>
-<!-- Benefit 5 -->
-<div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
-<span class="material-symbols-outlined text-primary text-4xl" data-icon="bolt">bolt</span>
-<h3 class="font-headline-md text-body-md">Reattività ridotta</h3>
-</div>
-</div>
+  <h2 class="font-headline-lg text-headline-lg mb-12">Come funziona il Reset Notturno</h2>
+  <div class="grid md:grid-cols-3 gap-8">
+    <div class="glass-card p-8 rounded-2xl">
+      <span class="material-symbols-outlined text-secondary text-4xl mb-4">bedtime</span>
+      <h3 class="font-headline-md text-headline-md mb-4">Ascolto notturno</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant">Tracce audio guidate da ascoltare prima di dormire, progettate per lavorare con la mente inconscia nel momento in cui è più ricettiva.</p>
+    </div>
+    <div class="glass-card p-8 rounded-2xl">
+      <span class="material-symbols-outlined text-primary text-4xl mb-4">psychology</span>
+      <h3 class="font-headline-md text-headline-md mb-4">Riprogrammazione</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant">Il sonno è il momento in cui il cervello consolida le memorie e rielabora le emozioni. Il Reset usa questo processo naturale a tuo vantaggio.</p>
+    </div>
+    <div class="glass-card p-8 rounded-2xl">
+      <span class="material-symbols-outlined text-tertiary text-4xl mb-4">trending_up</span>
+      <h3 class="font-headline-md text-headline-md mb-4">Risultati progressivi</h3>
+      <p class="font-body-md text-body-md text-on-surface-variant">In 21 giorni di ascolto costante, inizi a notare un cambiamento nelle tue reazioni automatiche e nella qualità del tuo riposo.</p>
+    </div>
+  </div>
 </div>
 </section>
-<!-- Includes (rn-includes) -->
-<section class="max-w-container-max mx-auto px-gutter py-section-v-desktop">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-16">Cosa include</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-<div class="bg-surface-container p-8 rounded-2xl space-y-4 hover:border-primary/50 border border-transparent transition-all">
-<span class="material-symbols-outlined text-primary" data-icon="headphones">headphones</span>
-<h3 class="font-headline-md text-body-lg">Audio Sessioni</h3>
-<p class="text-on-surface-variant text-sm">7 tracce audio immersive con frequenze binaurali.</p>
-</div>
-<div class="bg-surface-container p-8 rounded-2xl space-y-4 hover:border-primary/50 border border-transparent transition-all">
-<span class="material-symbols-outlined text-secondary" data-icon="route">route</span>
-<h3 class="font-headline-md text-body-lg">Percorso Suggerito</h3>
-<p class="text-on-surface-variant text-sm">Cronogramma giornaliero per massimizzare l'efficacia.</p>
-</div>
-<div class="bg-surface-container p-8 rounded-2xl space-y-4 hover:border-primary/50 border border-transparent transition-all">
-<span class="material-symbols-outlined text-tertiary" data-icon="description">description</span>
-<h3 class="font-headline-md text-body-lg">PDF Guida</h3>
-<p class="text-on-surface-variant text-sm">Manuale d'uso con esercizi di ancoraggio quotidiano.</p>
-</div>
-<div class="bg-surface-container p-8 rounded-2xl space-y-4 hover:border-primary/50 border border-transparent transition-all">
-<span class="material-symbols-outlined text-primary" data-icon="target">target</span>
-<h3 class="font-headline-md text-body-lg">Istruzioni Specifiche</h3>
-<p class="text-on-surface-variant text-sm">Moduli personalizzati in base al tuo blocco dominante.</p>
-</div>
-</div>
-<div class="text-center">
-<button class="bg-primary text-on-primary px-12 py-5 rounded-xl font-headline-md text-label-md glow-hover transition-all">Voglio il Reset Notturno — 37€</button>
-</div>
-</section>
-<!-- Who For (rn-who-for) -->
-<section class="bg-surface-container-low py-section-v-desktop px-gutter">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="bg-[#18263F] p-10 rounded-3xl border border-primary/10">
-<h3 class="font-headline-md text-headline-md text-primary mb-6">È per te se...</h3>
-<ul class="space-y-4">
-<li class="flex gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-primary">add_circle</span>
-                            Senti che la tua mente non si ferma mai la sera.
-                        </li>
-<li class="flex gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-primary">add_circle</span>
-                            Vuoi uno strumento pratico e non solo teorico.
-                        </li>
-<li class="flex gap-3 text-on-surface-variant">
-<span class="material-symbols-outlined text-primary">add_circle</span>
-                            Ti senti bloccato negli stessi pattern ogni giorno.
-                        </li>
-</ul>
-</div>
-<div class="bg-surface-container-highest/30 p-10 rounded-3xl border border-white/5">
-<h3 class="font-headline-md text-headline-md text-on-surface-variant mb-6">Non è per te se...</h3>
-<ul class="space-y-4">
-<li class="flex gap-3 text-on-surface-variant/50">
-<span class="material-symbols-outlined">do_not_disturb_on</span>
-                            Cerchi una bacchetta magica senza 15 minuti di impegno.
-                        </li>
-<li class="flex gap-3 text-on-surface-variant/50">
-<span class="material-symbols-outlined">do_not_disturb_on</span>
-                            Non sei disposto ad ascoltare gli audio con costanza.
-                        </li>
-<li class="flex gap-3 text-on-surface-variant/50">
-<span class="material-symbols-outlined">do_not_disturb_on</span>
-                            Preferisci solo leggere senza fare esperienza diretta.
-                        </li>
-</ul>
-</div>
-</div>
-</section>
-<!-- Why Night (rn-why-night) -->
-<section class="max-w-container-max mx-auto px-gutter py-section-v-desktop text-center">
-<div class="max-w-3xl mx-auto space-y-8">
-<span class="material-symbols-outlined text-6xl text-primary" data-icon="dark_mode">dark_mode</span>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Perché la sera?</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-                    Nelle ore serali, il cervello abbassa le sue barriere critiche. Entrando in uno stato di rilassamento profondo, possiamo "parlare" direttamente alla parte del tuo cervello che gestisce le abitudini e le risposte emotive. È il momento perfetto per resettare le tensioni e seminare nuove prospettive per il giorno successivo.
-                </p>
-</div>
-</section>
-<!-- About (rn-about) -->
-<section class="bg-surface-container-lowest py-section-v-desktop px-gutter">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-<div class="relative group">
-<div class="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-<img class="relative rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition-all duration-500 w-full object-cover aspect-[4/5]" data-alt="A professional and empathetic portrait of Christian, a male high-performance mindset coach in his late 30s. He is dressed in a smart-casual dark navy knit sweater, standing against a minimalist, softly lit modern architectural background. The lighting is low-key with a gentle blue-teal backlight that creates a sophisticated 'magnetic' halo effect around his silhouette. The mood is calm, authoritative, and deeply focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuXTsRKPAccnK5xqmyH93Y1jfJtLICwiyENwnxF25tWkQ4J34uulDvGSadxO5CJeWkGVl3A7EBBkPYJjnQ6-6XHU797OvRQIN_ZooPZSnsmsVr7buJFS1_JrT1Gbm8Bvzxfn5zSzaQLoYx5K_PuvO1J0R1laKKuxQigx7lbpN26K5vjOm1EeHrZdRzh-P9ct-GqDRiDDHDcCPe-Fh0pijIAulO_-22BY8LMSItPF0SHJWAHl0V_tqWGjwrtF4BbyJGr_E9qD8h43M2">
-</div>
-<div class="space-y-6">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">Sono Christian</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-                        Accompagno professionisti e individui ad alto potenziale a sbloccare i nodi emotivi che rallentano la loro evoluzione. Con Reset Notturno ho sintetizzato anni di esperienza in clinica e coaching per offrirti uno strumento accessibile, potente e scientificamente fondato per la tua igiene mentale quotidiana.
-                    </p>
-<p class="text-primary font-label-md">FONDATORE DI RESET NOTTURNO</p>
-</div>
-</div>
-</section>
-<!-- FAQ (rn-faq) -->
-<section class="max-w-container-max mx-auto px-gutter py-section-v-desktop">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-16">Domande frequenti</h2>
-<div class="max-w-3xl mx-auto space-y-4">
-<details class="group bg-surface-container rounded-xl">
-<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
-<span class="font-headline-md text-body-lg">Quanto dura ogni audio?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="px-6 pb-6 text-on-surface-variant">
-                        Ogni sessione dura circa 12-15 minuti, il tempo ideale per indurre uno stato di rilassamento senza richiedere troppo tempo alla tua serata.
-                    </div>
-</details>
-<details class="group bg-surface-container rounded-xl">
-<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
-<span class="font-headline-md text-body-lg">Cosa mi serve per iniziare?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="px-6 pb-6 text-on-surface-variant">
-                        Ti servono solo un paio di cuffie di buona qualità, un posto tranquillo dove non verrai interrotto e 15 minuti prima di addormentarti.
-                    </div>
-</details>
-<details class="group bg-surface-container rounded-xl">
-<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
-<span class="font-headline-md text-body-lg">Sostituisce la terapia?</span>
-<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-</summary>
-<div class="px-6 pb-6 text-on-surface-variant">
-                        No, Reset Notturno è un percorso di coaching e self-help. È uno strumento di supporto eccellente ma non sostituisce il parere di un medico o uno psicoterapeuta.
-                    </div>
-</details>
-</div>
-</section>
-<!-- Final CTA (rn-final-cta) -->
-<section class="px-gutter py-section-v-desktop">
-<div class="max-w-container-max mx-auto night-gradient rounded-[40px] p-12 md:p-24 text-center space-y-8 border border-white/5 relative overflow-hidden">
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl mx-auto">
-                    Il tuo blocco ti ha già mostrato dove fa più male. <br>
-<span class="text-primary">Ora può mostrarti da dove iniziare.</span>
-</h2>
-<div class="pt-8">
-<button class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-lg text-headline-md glow-hover transition-all inline-flex flex-col items-center">
-<span class="">Inizia il Reset Notturno — 37€</span>
-<span class="text-sm opacity-80 font-body-md mt-1">Accesso immediato · Percorso guidato · Ascolti da qualsiasi dispositivo</span>
-</button>
-</div>
+
+<!-- CTA acquisto -->
+<section id="acquista" class="py-section-v-mobile md:py-section-v-desktop px-gutter">
+<div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant">
+  <h2 class="font-headline-lg text-headline-lg mb-6">Inizia stanotte.</h2>
+  <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">Il Reset Notturno è disponibile immediatamente dopo l'acquisto. Accesso istantaneo alle tracce audio e al programma completo.</p>
+  <a href="#" class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:scale-105 transition-all inline-block">Inizia il Reset Notturno</a>
 </div>
 </section>
 </main>
-<!-- Footer -->
-<footer class="bg-surface-container-lowest border-t border-surface-container-highest/30">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-gutter py-section-v-desktop max-w-container-max mx-auto">
-<div class="space-y-4">
-<div class="font-headline-md text-headline-md font-black text-on-surface">Reset Notturno</div>
-<p class="text-on-surface-variant text-sm pr-8">Trasformazione profonda attraverso il potere del subconscio e della calma notturna.</p>
+
+<!-- FOOTER GLOBALE -->
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
+  <div class="space-y-6">
+    <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+    <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
+  </div>
+  <div>
+    <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
+    <ul class="space-y-3 font-body-md text-body-md">
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/">Home</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/metodo/">Metodo</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/contenuti/">Contenuti</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/chi-sono/">Chi sono</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
+    <ul class="space-y-3 font-body-md text-body-md">
+      <li><a class="text-primary font-bold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
+    <ul class="space-y-3 font-body-md text-body-md">
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Cookie</a></li>
+      <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Termini</a></li>
+    </ul>
+  </div>
 </div>
-<div class="space-y-4">
-<h4 class="font-label-md text-on-surface">Navigazione</h4>
-<ul class="space-y-2 text-on-surface-variant font-label-md">
-<li class=""><a class="hover:text-primary transition-colors" href="#">Home</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Metodo</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Podcast</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Chi sono</a></li>
-</ul>
+<div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
+  © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
 </div>
-<div class="space-y-4">
-<h4 class="font-label-md text-on-surface">Journey</h4>
-<ul class="space-y-2 text-on-surface-variant font-label-md">
-<li class=""><a class="hover:text-primary transition-colors" href="#">Primo Passo</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">La Svolta</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Termini e Condizioni</a></li>
-</ul>
-</div>
-<div class="space-y-4">
-<h4 class="font-label-md text-on-surface">Contatti</h4>
-<ul class="space-y-2 text-on-surface-variant font-label-md">
-<li class=""><a class="hover:text-primary transition-colors" href="#">Contatti</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
-<li class=""><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
-</ul>
-</div>
-</div>
-<div class="max-w-container-max mx-auto px-gutter py-8 border-t border-white/5 text-center text-on-surface-variant font-label-md opacity-60">
-            © 2024 Reset Notturno. Tutti i diritti riservati. P.IVA IT01234567890
-        </div>
 </footer>
-<script>
-        // Micro-interactions and simple effects
-        document.querySelectorAll('details').forEach((el) => {
-            el.addEventListener('toggle', (e) => {
-                if (el.open) {
-                    document.querySelectorAll('details').forEach((other) => {
-                        if (other !== el) other.open = false;
-                    });
-                }
-            });
-        });
-
-        // Parallax effect for the hero mockup
-        window.addEventListener('scroll', () => {
-            const phone = document.querySelector('.relative.w-full.max-w-\\[340px\\]');
-            const scrolled = window.pageYOffset;
-            if (phone) {
-                phone.style.transform = `translateY(${scrolled * 0.05}px)`;
-            }
-        });
-    </script>
-
-
 </body></html>
