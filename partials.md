@@ -88,6 +88,8 @@ Sostituire `[TITOLO PAGINA]` con il titolo specifico della pagina.
 
 ## CSS BASE — Identico su tutte le pagine
 
+Include la regola `.nav-logo` per il logo nell'header.
+
 ```html
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
@@ -110,6 +112,14 @@ Sostituire `[TITOLO PAGINA]` con il titolo specifico della pagina.
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
     display: inline-block;
     vertical-align: middle;
+  }
+  /* Logo header: schiarisce per leggibilità su sfondo scuro */
+  .nav-logo {
+    filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25));
+    transition: filter 300ms ease;
+  }
+  .nav-logo:hover {
+    filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
   }
   /* Menu mobile */
   #mobile-menu {
@@ -157,15 +167,9 @@ Sostituire la voce attiva con `text-primary border-b-2 border-primary pb-1` e le
 <!-- HEADER GLOBALE -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <!-- Logo + Brand -->
-    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
-        <rect width="32" height="32" rx="8" fill="#101416"/>
-        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
-        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Cristian Lecca
+    <!-- Logo -->
+    <a class="flex items-center gap-3" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
     </a>
     <!-- Nav desktop -->
     <div class="hidden md:flex gap-8 items-center">
@@ -203,14 +207,8 @@ Sostituire la voce attiva con `text-primary border-b-2 border-primary pb-1` e le
 <!-- HEADER MINIMALE QUIZ -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
-        <rect width="32" height="32" rx="8" fill="#101416"/>
-        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
-        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Cristian Lecca
+    <a class="flex items-center gap-3" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
     </a>
     <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="/">
       <span class="material-symbols-outlined text-sm">arrow_back</span>
@@ -233,13 +231,7 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
     <!-- Colonna 1: Brand -->
     <div class="space-y-4">
       <div class="flex items-center gap-2">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="32" height="32" rx="8" fill="#1d2022"/>
-          <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
-          <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
       </div>
       <p class="font-body-md text-body-md text-on-surface-variant">
         Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
@@ -268,9 +260,10 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Cookie</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Termini</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contatti/">Contatti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
       </ul>
     </div>
   </div>
@@ -293,8 +286,8 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
       © 2026 Cristian Lecca — P.IVA IT12632010018
     </span>
     <div class="flex gap-6 font-label-md text-label-md">
-      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
-      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
@@ -324,19 +317,16 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
     });
   });
 
-  // Scroll reveal
+  // Scroll reveal (.reveal)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-8');
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('section > div').forEach(el => {
-    el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
-    observer.observe(el);
-  });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 ```
 
@@ -362,3 +352,4 @@ Esempio per la pagina **Chi sono**:
 - Non modificare questi blocchi senza aggiornare **tutte** le pagine che li usano.
 - Il file `design.md` definisce le regole di design. Questo file `partials.md` definisce il codice HTML che le implementa.
 - Qualsiasi modifica all'header o al footer va fatta qui prima, poi propagata pagina per pagina.
+- La classe `.nav-logo` va inclusa nel CSS `<style>` di ogni pagina (header + footer logo).
