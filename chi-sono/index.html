@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Chi Sono | Cristian Lecca - Hypno Mental Coach</title>
+<link rel="icon" type="image/png" href="/assets/favicon%201.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -66,8 +67,27 @@
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
   .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
   .glass-card:hover { border-color: rgba(73,199,165,0.3); background: rgba(73,199,165,0.05); }
+  .gradient-text { background: linear-gradient(135deg, #49C7A5, #3A63FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
   .hero-gradient { background: radial-gradient(circle at 70% 30%, rgba(73,199,165,0.10) 0%, transparent 50%); }
+  /* Menu mobile */
+  #mobile-menu {
+    display: none; flex-direction: column; gap: 0;
+    background: #101416; border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 24px 24px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #F5F7FA; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease;
+  }
+  #mobile-menu a:last-child {
+    border-bottom: none; margin-top: 12px; background: #49C7A5;
+    color: #101416; text-align: center; border-radius: 12px; padding: 14px 0;
+  }
+  #mobile-menu a:hover { color: #49C7A5; }
+  #mobile-menu a:last-child:hover { color: #101416; }
 </style>
 </head>
 <body class="font-body-md text-body-md">
@@ -75,27 +95,34 @@
 <!-- HEADER GLOBALE -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <a class="font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">Cristian Lecca</a>
+    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
+        <rect width="32" height="32" rx="8" fill="#101416"/>
+        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Cristian Lecca
+    </a>
     <div class="hidden md:flex gap-8 items-center">
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Home</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
       <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
-      <a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Quiz del Coraggio</a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
     </div>
-    <button id="menu-toggle" class="md:hidden text-on-background p-2">
-      <span class="material-symbols-outlined" id="menu-icon">menu</span>
+    <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
     </button>
   </div>
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-background/95 backdrop-blur-xl border-t border-outline-variant/20 px-gutter py-6 flex flex-col gap-4">
-    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md py-2" href="/">Home</a>
-    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md py-2" href="/metodo/">Metodo</a>
-    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md py-2" href="/contenuti/">Contenuti</a>
-    <a class="text-primary font-label-md text-label-md py-2" href="/chi-sono/">Chi sono</a>
-    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md py-2" href="/sessione-di-svolta/">Sessione di Svolta</a>
-    <a class="bg-primary text-on-primary-container px-6 py-3 rounded-full font-label-md text-label-md text-center mt-2" href="/quiz/">Quiz del Coraggio</a>
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="/">Home</a>
+    <a href="/metodo/">Metodo</a>
+    <a href="/contenuti/">Contenuti</a>
+    <a href="/chi-sono/">Chi sono</a>
+    <a href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a href="/quiz/">Fai il Quiz del Coraggio</a>
   </div>
 </nav>
 
@@ -327,53 +354,69 @@
 </main>
 
 <!-- FOOTER GLOBALE -->
-<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/20">
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
-    <div class="space-y-6">
-      <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
-      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per alte performance e benessere mentale.</p>
+    <div class="space-y-4">
+      <div class="flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#1d2022"/>
+          <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+          <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
+      </p>
     </div>
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/">Home</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/metodo/">Metodo</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/contenuti/">Contenuti</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Home</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Risorse</h4>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-primary font-bold" href="/quiz/">Quiz del Coraggio</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+        <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legal</h4>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/privacy/">Privacy Policy</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/cookie/">Cookie Policy</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/termini/">Termini e Condizioni</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
       </ul>
     </div>
   </div>
-  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant font-label-md text-label-md">
-    <span>© 2026 Cristian Lecca. Hypno Mental Coach. Metodo IpnosiApplicata.</span>
-    <span>P.IVA 03328450923</span>
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
+    © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
   </div>
 </footer>
 
 <script>
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  menuToggle.addEventListener('click', () => {
-    const isOpen = !mobileMenu.classList.contains('hidden');
-    mobileMenu.classList.toggle('hidden', isOpen);
-    menuIcon.textContent = isOpen ? 'menu' : 'close';
+  // Menu mobile toggle
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    icon.textContent = isOpen ? 'close' : 'menu';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = 'menu';
+    });
   });
 
   // Scroll reveal
@@ -385,7 +428,6 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('section').forEach(section => {
     section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
     observer.observe(section);
