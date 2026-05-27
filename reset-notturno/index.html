@@ -4,139 +4,151 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Reset Notturno | Cristian Lecca</title>
+<link rel="icon" type="image/png" href="/assets/favicon%201.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<style>
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .glass-card {
-    background: rgba(36, 54, 74, 0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-  }
-  .glass-card:hover {
-    border-color: rgba(105, 227, 192, 0.25);
-    background: rgba(105, 227, 192, 0.04);
-    transition: all 0.3s;
-  }
-  .glow-hover:hover {
-    box-shadow: 0 0 24px rgba(105, 227, 192, 0.35);
-  }
-  .night-gradient {
-    background: radial-gradient(circle at top right, #18263F 0%, #0B1220 100%);
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, #69e3c0, #b8c3ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height: 0; opacity: 0; overflow: hidden; }
-  #mobile-menu.open { max-height: 400px; opacity: 1; }
-  details > summary { list-style: none; }
-  details > summary::-webkit-details-marker { display: none; }
-</style>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
     theme: {
       extend: {
-        colors: {
-          "on-tertiary": "#412d00",
-          "surface-container-high": "#272a2d",
-          "tertiary": "#f1c97d",
-          "on-surface": "#e0e3e6",
-          "outline-variant": "#3d4944",
-          "secondary-container": "#0543e3",
-          "error": "#ffb4ab",
-          "outline": "#86948e",
-          "on-primary": "#00382b",
+        "colors": {
           "background": "#101416",
-          "inverse-surface": "#e0e3e6",
-          "surface-variant": "#323538",
-          "surface-container-lowest": "#0b0f11",
-          "surface-container": "#1d2022",
-          "on-background": "#e0e3e6",
-          "primary-container": "#49c7a5",
-          "inverse-primary": "#006b55",
-          "on-surface-variant": "#bccac3",
-          "surface-container-low": "#191c1e",
-          "on-secondary-container": "#c1cbff",
-          "secondary": "#b8c3ff",
+          "on-background": "#F5F7FA",
           "surface": "#101416",
-          "on-error": "#690005",
-          "primary": "#69e3c0",
-          "surface-bright": "#363a3c",
-          "on-primary-container": "#004f3e",
-          "primary-fixed": "#7ef8d3",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff",
+          "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "on-tertiary-container": "#5b4100",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
           "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416",
+          "surface-variant": "#323538",
+          "on-surface-variant": "#bccac3"
         },
-        borderRadius: {
-          DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+        "borderRadius": {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
         },
-        spacing: {
-          "section-v-desktop": "104px",
-          "stack-sm": "8px", "container-max": "1280px",
-          "stack-lg": "32px", "stack-md": "16px",
-          "section-v-mobile": "64px", "gutter": "24px"
+        "spacing": {
+          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
+          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
         },
-        fontFamily: {
-          "label-md": ["Inter"], "body-md": ["Inter"],
-          "headline-lg": ["Manrope"], "headline-md": ["Manrope"],
-          "body-lg": ["Inter"], "display-lg": ["Manrope"],
+        "fontFamily": {
+          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
+          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"],
           "display-lg-mobile": ["Manrope"]
         },
-        fontSize: {
-          "label-md": ["14px", { lineHeight: "1.2", letterSpacing: "0.05em", fontWeight: "600" }],
-          "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
-          "headline-lg": ["48px", { lineHeight: "1.2", fontWeight: "600" }],
-          "headline-md": ["32px", { lineHeight: "1.3", fontWeight: "600" }],
-          "body-lg": ["20px", { lineHeight: "1.6", fontWeight: "400" }],
-          "display-lg": ["64px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
-          "display-lg-mobile": ["40px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }]
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
         }
       }
     }
   }
 </script>
+<style>
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
+  .glass-card {
+    background: rgba(29,32,34,0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245,247,250,0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  .glass-card:hover {
+    border-color: rgba(73,199,165,0.3);
+    background: rgba(73,199,165,0.05);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #49C7A5, #3A63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    display: inline-block; vertical-align: middle;
+  }
+  /* Menu mobile */
+  #mobile-menu {
+    display: none; flex-direction: column; gap: 0;
+    background: #101416; border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 24px 24px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #F5F7FA; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease;
+  }
+  #mobile-menu a:last-child {
+    border-bottom: none; margin-top: 12px; background: #49C7A5;
+    color: #101416; text-align: center; border-radius: 12px; padding: 14px 0;
+  }
+  #mobile-menu a:hover { color: #49C7A5; }
+  #mobile-menu a:last-child:hover { color: #101416; }
+  .night-gradient {
+    background: radial-gradient(circle at top right, #18263F 0%, #0B1220 100%);
+  }
+</style>
 </head>
-<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<body class="font-body-md text-body-md">
 
-<!-- ===== NAV ===== -->
-<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-surface-variant/20 shadow-sm">
+<!-- HEADER GLOBALE -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <a class="font-headline-md text-2xl font-bold text-on-background tracking-tight" href="/">Cristian Lecca</a>
+    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
+        <rect width="32" height="32" rx="8" fill="#101416"/>
+        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Cristian Lecca
+    </a>
     <div class="hidden md:flex gap-8 items-center">
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Home</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
-      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Podcast</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
-      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contatti/">Contatti</a>
-      <a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300"
-         href="/quiz/">Fai il Quiz del Coraggio</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
     </div>
-    <button id="hamburger-btn" aria-label="Apri menu" class="md:hidden text-on-background p-1 rounded focus:outline-none">
-      <span id="icon-menu" class="material-symbols-outlined">menu</span>
-      <span id="icon-close" class="material-symbols-outlined hidden">close</span>
+    <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
     </button>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-background border-t border-surface-variant/20">
-    <div class="flex flex-col px-gutter py-4 gap-1">
-      <a class="py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md border-b border-surface-variant/10" href="/">Home</a>
-      <a class="py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md border-b border-surface-variant/10" href="/metodo/">Metodo</a>
-      <a class="py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md border-b border-surface-variant/10" href="/contenuti/">Podcast</a>
-      <a class="py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md border-b border-surface-variant/10" href="/chi-sono/">Chi sono</a>
-      <a class="py-3 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md border-b border-surface-variant/10" href="/contatti/">Contatti</a>
-      <a class="mt-3 bg-primary text-on-primary-container px-6 py-3 rounded-full font-label-md text-label-md text-center transition-all active:scale-95"
-         href="/quiz/">Fai il Quiz del Coraggio</a>
-    </div>
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="/">Home</a>
+    <a href="/metodo/">Metodo</a>
+    <a href="/contenuti/">Contenuti</a>
+    <a href="/chi-sono/">Chi sono</a>
+    <a href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a href="/quiz/">Fai il Quiz del Coraggio</a>
   </div>
 </nav>
 
 <main class="pt-24 overflow-x-hidden">
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <section class="max-w-container-max mx-auto px-gutter py-section-v-mobile md:py-section-v-desktop grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
     <div class="space-y-6">
       <span class="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary font-label-md text-xs tracking-widest uppercase">
@@ -150,16 +162,16 @@
       </p>
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
         <a href="#acquista"
-           class="inline-flex items-center gap-2 bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-label-md glow-hover transition-all active:scale-95">
-          Inizia il Reset Notturno <span class="opacity-70">&mdash; 37&euro;</span>
+           class="inline-flex items-center gap-2 bg-primary text-on-primary px-10 py-5 rounded-xl font-label-md text-label-md">
+          Inizia il Reset Notturno <span class="opacity-70">— 37€</span>
         </a>
         <a href="/quiz/" class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
-          Prima fai il Quiz del Coraggio &rarr;
+          Fai prima il Quiz del Coraggio →
         </a>
       </div>
       <p class="font-label-md text-xs text-on-surface-variant flex flex-wrap items-center gap-3">
         <span class="material-symbols-outlined text-primary text-[16px]">check_circle</span>
-        Accesso immediato &nbsp;&middot;&nbsp; Percorso guidato &nbsp;&middot;&nbsp; Ascolti da qualsiasi dispositivo
+        Accesso immediato · Percorso guidato · Ascolti da qualsiasi dispositivo
       </p>
     </div>
     <div class="relative flex justify-center">
@@ -188,10 +200,10 @@
     </div>
   </section>
 
-  <!-- ===== PERCHÉ ORA ===== -->
+  <!-- PERCHÉ ORA -->
   <section class="bg-surface-container-low py-section-v-mobile md:py-section-v-desktop px-gutter">
     <div class="max-w-container-max mx-auto text-center space-y-6">
-      <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-background">
+      <h2 class="font-headline-lg text-headline-lg text-on-background">
         Sai qual è il tuo blocco. Adesso ti serve un modo <span class="text-secondary">semplice</span> per iniziare a trasformarlo.
       </h2>
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto">
@@ -200,10 +212,10 @@
     </div>
   </section>
 
-  <!-- ===== CHE COS'È ===== -->
+  <!-- CHE COS'È -->
   <section class="max-w-container-max mx-auto px-gutter py-section-v-mobile md:py-section-v-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
     <div class="space-y-8">
-      <h2 class="font-headline-lg text-3xl md:text-headline-lg">Che cos'è, in pratica, il <span class="text-primary">Reset Notturno</span></h2>
+      <h2 class="font-headline-lg text-headline-lg">Che cos'è, in pratica, il <span class="text-primary">Reset Notturno</span></h2>
       <div class="space-y-6 text-on-surface-variant font-body-md">
         <p>Non è un corso teorico, né un semplice podcast. È un protocollo di attivazione mentale che sfrutta lo stato ipnagogico (quello tra veglia e sonno) per riscrivere le risposte automatiche della tua mente.</p>
         <p>Attraverso frequenze studiate e una guida vocale precisa, ti accompagniamo a disinnescare la tensione accumulata durante il giorno, focalizzandoti specificamente sul tipo di blocco emerso dal tuo quiz.</p>
@@ -240,10 +252,10 @@
     </div>
   </section>
 
-  <!-- ===== BENEFICI ===== -->
+  <!-- BENEFICI -->
   <section class="bg-surface-container-lowest py-section-v-mobile md:py-section-v-desktop px-gutter">
     <div class="max-w-container-max mx-auto">
-      <h2 class="font-headline-lg text-3xl md:text-headline-lg text-center mb-16">Cosa può cambiare per te</h2>
+      <h2 class="font-headline-lg text-headline-lg text-center mb-16">Cosa può cambiare per te</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         <div class="glass-card p-6 rounded-xl flex flex-col items-center text-center space-y-4">
           <span class="material-symbols-outlined text-primary text-4xl">volume_off</span>
@@ -269,9 +281,9 @@
     </div>
   </section>
 
-  <!-- ===== COSA INCLUDE ===== -->
+  <!-- COSA INCLUDE / ACQUISTA -->
   <section id="acquista" class="max-w-container-max mx-auto px-gutter py-section-v-mobile md:py-section-v-desktop">
-    <h2 class="font-headline-lg text-3xl md:text-headline-lg text-center mb-16">Cosa include</h2>
+    <h2 class="font-headline-lg text-headline-lg text-center mb-16">Cosa include</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
       <div class="bg-surface-container p-8 rounded-2xl space-y-4 border border-transparent hover:border-primary/50 transition-all">
         <span class="material-symbols-outlined text-primary text-3xl">headphones</span>
@@ -295,13 +307,13 @@
       </div>
     </div>
     <div class="text-center">
-      <a href="#" class="inline-block bg-primary text-on-primary px-12 py-5 rounded-xl font-headline-md text-label-md glow-hover transition-all active:scale-95">
-        Voglio il Reset Notturno &mdash; 37&euro;
+      <a href="#" class="inline-block bg-primary text-on-primary px-12 py-5 rounded-xl font-label-md text-label-md">
+        Inizia il Reset Notturno — 37€
       </a>
     </div>
   </section>
 
-  <!-- ===== PER CHI È ===== -->
+  <!-- PER CHI È / NON È -->
   <section class="bg-surface-container-low py-section-v-mobile md:py-section-v-desktop px-gutter">
     <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="bg-surface-container p-10 rounded-3xl border border-primary/15">
@@ -341,18 +353,18 @@
     </div>
   </section>
 
-  <!-- ===== PERCHÉ LA SERA ===== -->
+  <!-- PERCHÉ LA SERA -->
   <section class="max-w-container-max mx-auto px-gutter py-section-v-mobile md:py-section-v-desktop text-center">
     <div class="max-w-3xl mx-auto space-y-8">
       <span class="material-symbols-outlined text-6xl text-primary">dark_mode</span>
-      <h2 class="font-headline-lg text-3xl md:text-headline-lg">Perché la sera?</h2>
+      <h2 class="font-headline-lg text-headline-lg">Perché la sera?</h2>
       <p class="font-body-lg text-body-lg text-on-surface-variant">
         Nelle ore serali, il cervello abbassa le sue barriere critiche. Entrando in uno stato di rilassamento profondo, possiamo “parlare” direttamente alla parte del tuo cervello che gestisce le abitudini e le risposte emotive. È il momento perfetto per resettare le tensioni e seminare nuove prospettive per il giorno successivo.
       </p>
     </div>
   </section>
 
-  <!-- ===== CHI C'È DIETRO ===== -->
+  <!-- CHI C'È DIETRO -->
   <section class="bg-surface-container-lowest py-section-v-mobile md:py-section-v-desktop px-gutter">
     <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
       <div class="relative group order-2 md:order-1">
@@ -364,11 +376,11 @@
       </div>
       <div class="space-y-6 order-1 md:order-2">
         <span class="text-secondary font-label-md uppercase tracking-widest text-xs">L'esperto</span>
-        <h2 class="font-headline-lg text-3xl md:text-headline-lg">Sono Cristian Lecca</h2>
+        <h2 class="font-headline-lg text-headline-lg">Sono Cristian Lecca</h2>
         <p class="font-body-lg text-body-lg text-on-surface-variant">
           Accompagno professionisti e individui ad alto potenziale a sbloccare i nodi emotivi che rallentano la loro evoluzione. Con Reset Notturno ho sintetizzato anni di esperienza in coaching ipnotico per offrirti uno strumento accessibile, potente e scientificamente fondato per la tua igiene mentale quotidiana.
         </p>
-        <p class="text-primary font-label-md tracking-widest uppercase text-xs">Hypno Mental Coach &mdash; Metodo IpnosiApplicata</p>
+        <p class="text-primary font-label-md tracking-widest uppercase text-xs">Hypno Mental Coach — Metodo IpnosiApplicata</p>
         <a class="text-primary font-label-md flex items-center gap-2 hover:translate-x-1 transition-transform w-fit" href="/chi-sono/">
           Scopri di più su di me <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
@@ -376,9 +388,9 @@
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section class="max-w-container-max mx-auto px-gutter py-section-v-mobile md:py-section-v-desktop">
-    <h2 class="font-headline-lg text-3xl md:text-headline-lg text-center mb-16">Domande frequenti</h2>
+    <h2 class="font-headline-lg text-headline-lg text-center mb-16">Domande frequenti</h2>
     <div class="max-w-3xl mx-auto space-y-4">
       <details class="group glass-card rounded-2xl">
         <summary class="flex justify-between items-center p-6 cursor-pointer">
@@ -419,7 +431,7 @@
     </div>
   </section>
 
-  <!-- ===== FINAL CTA ===== -->
+  <!-- CTA FINALE -->
   <section class="px-gutter py-section-v-mobile md:py-section-v-desktop">
     <div class="max-w-container-max mx-auto night-gradient rounded-[40px] p-12 md:p-24 text-center space-y-8 border border-white/5 relative overflow-hidden">
       <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
@@ -428,9 +440,9 @@
         <span class="gradient-text">Ora può mostrarti da dove iniziare.</span>
       </h2>
       <div class="pt-8">
-        <a href="#" class="inline-flex flex-col items-center bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md glow-hover transition-all active:scale-95">
-          <span class="text-xl font-bold">Inizia il Reset Notturno &mdash; 37&euro;</span>
-          <span class="text-sm opacity-80 font-body-md mt-1">Accesso immediato &nbsp;&middot;&nbsp; Percorso guidato &nbsp;&middot;&nbsp; Qualsiasi dispositivo</span>
+        <a href="#" class="inline-flex flex-col items-center bg-primary text-on-primary px-12 py-6 rounded-2xl font-label-md text-label-md">
+          Inizia il Reset Notturno — 37€
+          <span class="text-sm opacity-80 font-body-md mt-1">Accesso immediato · Percorso guidato · Qualsiasi dispositivo</span>
         </a>
       </div>
     </div>
@@ -438,62 +450,70 @@
 
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant">
+<!-- FOOTER GLOBALE -->
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
-    <div class="space-y-6">
-      <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+    <div class="space-y-4">
+      <div class="flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#1d2022"/>
+          <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+          <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+      </div>
       <p class="font-body-md text-body-md text-on-surface-variant">
-        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per alte performance e benessere mentale.
+        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
       </p>
     </div>
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/">Home</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/metodo/">Metodo</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/contenuti/">Podcast</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Home</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Risorse</h4>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-primary font-bold" href="/quiz/">Inizia dal Quiz del Coraggio</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/contatti/">Contatti</a></li>
+        <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legal</h4>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/privacy/">Privacy</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/cookie/">Cookie</a></li>
-        <li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/termini/">Termini</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
       </ul>
     </div>
   </div>
-  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center space-y-2">
-    <p class="text-on-surface-variant font-label-md text-label-md">
-      &copy; 2026 Cristian Lecca. Hypno Mental Coach. Metodo IpnosiApplicata. &mdash; P.IVA 03328450923
-    </p>
-    <p class="text-[11px] text-on-surface-variant/50 uppercase tracking-tight leading-relaxed max-w-3xl mx-auto">
-      Disclaimer: Le informazioni contenute in questo sito non costituiscono consulenza medica, psicologica o psichiatrica e non sostituiscono il parere di specialisti abilitati.
-    </p>
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
+    © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
   </div>
 </footer>
 
 <script>
-  // Hamburger
+  // Menu mobile toggle
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
+  const icon = document.getElementById('hamburger-icon');
   btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    iconMenu.classList.toggle('hidden', open);
-    iconClose.classList.toggle('hidden', !open);
-    btn.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    icon.textContent = isOpen ? 'close' : 'menu';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = 'menu';
+    });
   });
 
   // FAQ accordion (una aperta alla volta)
