@@ -4,164 +4,143 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cristian Lecca | Hypno Mental Coach</title>
+<!-- Favicon SVG inline -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23101416'/%3E%3Cpath d='M10 22 C10 14 14 10 16 10 C18 10 22 14 22 22' stroke='%2349C7A5' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='10' r='2.5' fill='%2349C7A5'/%3E%3C/svg%3E"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-tertiary": "#412d00",
-                    "on-secondary-fixed-variant": "#0035bd",
-                    "surface-container-high": "#272a2d",
-                    "inverse-on-surface": "#2d3133",
-                    "tertiary-fixed-dim": "#e8c176",
-                    "tertiary": "#f1c97d",
-                    "on-surface": "#e0e3e6",
-                    "outline-variant": "#3d4944",
-                    "secondary-container": "#0543e3",
-                    "on-secondary-fixed": "#001355",
-                    "error": "#ffb4ab",
-                    "outline": "#86948e",
-                    "on-primary": "#00382b",
-                    "primary-fixed-dim": "#60dbb8",
-                    "surface-tint": "#60dbb8",
-                    "background": "#101416",
-                    "secondary-fixed-dim": "#b8c3ff",
-                    "inverse-surface": "#e0e3e6",
-                    "surface-variant": "#323538",
-                    "surface-container-lowest": "#0b0f11",
-                    "surface-container": "#1d2022",
-                    "on-background": "#e0e3e6",
-                    "tertiary-fixed": "#ffdea4",
-                    "primary-container": "#49c7a5",
-                    "secondary-fixed": "#dde1ff",
-                    "inverse-primary": "#006b55",
-                    "on-surface-variant": "#bccac3",
-                    "surface-container-low": "#191c1e",
-                    "on-tertiary-fixed": "#261900",
-                    "on-secondary-container": "#c1cbff",
-                    "secondary": "#b8c3ff",
-                    "on-error-container": "#ffdad6",
-                    "surface-dim": "#101416",
-                    "on-secondary": "#002387",
-                    "on-tertiary-container": "#5b4100",
-                    "surface-container-highest": "#323538",
-                    "tertiary-container": "#d4ae65",
-                    "surface": "#101416",
-                    "error-container": "#93000a",
-                    "on-error": "#690005",
-                    "primary": "#69e3c0",
-                    "surface-bright": "#363a3c",
-                    "on-primary-container": "#004f3e",
-                    "on-primary-fixed": "#002018",
-                    "primary-fixed": "#7ef8d3",
-                    "on-tertiary-fixed-variant": "#5d4200",
-                    "on-primary-fixed-variant": "#005140"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "section-v-desktop": "104px",
-                    "stack-sm": "8px",
-                    "container-max": "1280px",
-                    "stack-lg": "32px",
-                    "stack-md": "16px",
-                    "section-v-mobile": "64px",
-                    "gutter": "24px"
-            },
-            "fontFamily": {
-                    "label-md": ["Inter"],
-                    "body-md": ["Inter"],
-                    "headline-lg": ["Manrope"],
-                    "headline-md": ["Manrope"],
-                    "body-lg": ["Inter"],
-                    "display-lg": ["Manrope"],
-                    "display-lg-mobile": ["Manrope"]
-            },
-            "fontSize": {
-                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
-                    "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-            }
-          },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#101416",
+          "on-background": "#F5F7FA",
+          "surface": "#101416",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff",
+          "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "on-tertiary-container": "#5b4100",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416",
+          "surface-variant": "#323538",
+          "on-surface-variant": "#bccac3"
         },
+        "borderRadius": {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+        },
+        "spacing": {
+          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
+          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
+          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"],
+          "display-lg-mobile": ["Manrope"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+        }
       }
-    </script>
+    }
+  }
+</script>
 <style>
-        body {
-            background-color: #101416;
-            color: #e0e3e6;
-            overflow-x: hidden;
-        }
-        .glass-card {
-            background: rgba(36, 54, 74, 0.4);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(245, 247, 250, 0.1);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #69e3c0, #b8c3ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .hero-gradient {
-            background: radial-gradient(circle at 70% 30%, rgba(105, 227, 192, 0.08), transparent 50%),
-                        radial-gradient(circle at 20% 80%, rgba(184, 195, 255, 0.05), transparent 50%);
-        }
-        /* Menu mobile */
-        #mobile-menu {
-            display: none;
-            flex-direction: column;
-            gap: 0;
-            background: #101416;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 16px 24px 24px;
-        }
-        #mobile-menu.open {
-            display: flex;
-        }
-        #mobile-menu a {
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            color: #e0e3e6;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            text-decoration: none;
-            transition: color 180ms ease;
-        }
-        #mobile-menu a:last-child {
-            border-bottom: none;
-            margin-top: 12px;
-            background: #69e3c0;
-            color: #004f3e;
-            text-align: center;
-            border-radius: 12px;
-            padding: 14px 0;
-        }
-        #mobile-menu a:hover { color: #69e3c0; }
-        #mobile-menu a:last-child:hover { color: #004f3e; }
-    </style>
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
+  .glass-card {
+    background: rgba(29,32,34,0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245,247,250,0.1);
+    transition: all 0.3s ease-in-out;
+  }
+  .glass-card:hover {
+    border-color: rgba(73,199,165,0.3);
+    background: rgba(73,199,165,0.05);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #49C7A5, #3A63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .hero-gradient {
+    background: radial-gradient(circle at 70% 30%, rgba(73,199,165,0.10) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(58,99,255,0.05), transparent 50%);
+  }
+  /* Menu mobile */
+  #mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: #101416;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 24px 24px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #F5F7FA;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  #mobile-menu a:last-child {
+    border-bottom: none;
+    margin-top: 12px;
+    background: #49C7A5;
+    color: #101416;
+    text-align: center;
+    border-radius: 12px;
+    padding: 14px 0;
+  }
+  #mobile-menu a:hover { color: #49C7A5; }
+  #mobile-menu a:last-child:hover { color: #101416; }
+</style>
 </head>
 <body class="font-body-md text-body-md">
 
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-surface-variant/20 shadow-sm">
+<!-- HEADER GLOBALE -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <a class="font-headline-md text-headline-md font-bold text-on-background dark:text-on-background tracking-tight" href="/">Cristian Lecca</a>
+    <!-- Logo + Brand -->
+    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
+        <rect width="32" height="32" rx="8" fill="#101416"/>
+        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Cristian Lecca
+    </a>
     <!-- Nav desktop -->
     <div class="hidden md:flex gap-8 items-center">
       <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/">Home</a>
@@ -169,16 +148,16 @@
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
-      <a class="bg-primary hover:bg-primary/90 text-on-primary-container px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
         Fai il Quiz del Coraggio
       </a>
     </div>
-    <!-- Bottone hamburger mobile -->
-    <button id="hamburger-btn" class="md:hidden text-on-background" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+    <!-- Hamburger mobile -->
+    <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
     </button>
   </div>
-  <!-- Menu mobile a scomparsa -->
+  <!-- Menu mobile -->
   <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
     <a href="/">Home</a>
     <a href="/metodo/">Metodo</a>
@@ -190,263 +169,264 @@
 </nav>
 
 <main class="mt-20">
+
 <!-- Hero Section -->
 <section class="relative min-h-[90vh] flex items-center hero-gradient px-gutter">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center py-section-v-mobile md:py-section-v-desktop">
-<div class="z-10 order-2 md:order-1">
-<p class="font-label-md text-label-md text-primary mb-4 tracking-widest uppercase">Metodo IpnosiApplicata</p>
-<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
-                        Scopri il <span class="gradient-text">blocco invisibile</span> che sta guidando la tua vita.
-                    </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">
-                        Sono Cristian Lecca, Hypno Mental Coach. Con il Metodo IpnosiApplicata ti aiuto a riconoscere lo schema che oggi ti limita e a trasformarlo in un percorso concreto di cambiamento.
-                    </p>
-<div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-<a href="/quiz/" class="bg-primary text-on-primary-container px-8 py-4 rounded-xl font-label-md text-label-md transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20 text-center">
-                            Fai il Quiz del Coraggio
-                        </a>
-<p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
-<span class="material-symbols-outlined text-primary" data-weight="fill">verified</span>
-                            Gratuito. Personalizzato.
-                        </p>
-</div>
-</div>
-<div class="order-1 md:order-2 flex justify-center md:justify-end">
-<div class="relative w-full aspect-[4/5] md:aspect-[3/4] max-w-md rounded-3xl overflow-hidden shadow-2xl">
-<img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"/>
-<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
-</div>
-</div>
-</div>
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center py-section-v-mobile md:py-section-v-desktop">
+    <div class="z-10 order-2 md:order-1">
+      <p class="font-label-md text-label-md text-primary mb-4 tracking-widest uppercase">Metodo IpnosiApplicata</p>
+      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+        Scopri il <span class="gradient-text">blocco invisibile</span> che sta guidando la tua vita.
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">
+        Sono Cristian Lecca, Hypno Mental Coach. Con il Metodo IpnosiApplicata ti aiuto a riconoscere lo schema che oggi ti limita e a trasformarlo in un percorso concreto di cambiamento.
+      </p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20 text-center">
+          Fai il Quiz del Coraggio
+        </a>
+        <p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">verified</span>
+          Gratuito. Personalizzato.
+        </p>
+      </div>
+    </div>
+    <div class="order-1 md:order-2 flex justify-center md:justify-end">
+      <div class="relative w-full aspect-[4/5] md:aspect-[3/4] max-w-md rounded-3xl overflow-hidden shadow-2xl">
+        <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560"
+          src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Chi Sono Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-center">
-<div class="md:col-span-5 relative">
-<div class="aspect-square rounded-3xl overflow-hidden bg-surface-container-high border border-outline-variant">
-<img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL-psyZrIEaGqPEYzB57Yb7-PaTkrcjIcdvNPTQN1-YTmbafjfcUBIUcpR0qqwLoh8_RZuBO4--GLl8GkC5BpfdX1YGRSIyqIH2EXXtI44pXnm_F5ZG4yJdAudi6FIbuQAOR_YlnZ3sDuZgaGgAir_nzbVMQkUkHwkwxZSkxVUYODlKwintNQ0Q8pZU9PrtdQA3C_ynyXqoR4k7cnUm_b5abL-XNGFKDJqx5Ta_vCBQhwV27cjFH8sqqhQqoHhM-LyY8OYT68IiMNB"/>
-</div>
-</div>
-<div class="md:col-span-7">
-<h2 class="font-headline-lg text-headline-lg mb-6">Chi sono</h2>
-<div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
-<p>
-                            Da oltre un decennio dedico la mia vita all'esplorazione del potenziale umano e alla potenza trasformativa dell'ipnosi applicata alla performance mentale.
-                        </p>
-<p>
-                            La mia missione è decodificare i meccanismi invisibili della mente inconscia per trasformarli in strumenti di crescita consapevole. Non si tratta di magia, ma di una neuro-architettura applicata al successo personale e professionale.
-                        </p>
-</div>
-<a class="inline-flex items-center gap-2 mt-8 text-primary font-label-md text-label-md group" href="/quiz/">
-                        Scopri il tuo punto di partenza con il Quiz del Coraggio
-                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</a>
-</div>
-</div>
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-center">
+    <div class="md:col-span-5 relative">
+      <div class="aspect-square rounded-3xl overflow-hidden bg-surface-container-high border border-outline-variant">
+        <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL-psyZrIEaGqPEYzB57Yb7-PaTkrcjIcdvNPTQN1-YTmbafjfcUBIUcpR0qqwLoh8_RZuBO4--GLl8GkC5BpfdX1YGRSIyqIH2EXXtI44pXnm_F5ZG4yJdAudi6FIbuQAOR_YlnZ3sDuZgaGgAir_nzbVMQkUkHwkwxZSkxVUYODlKwintNQ0Q8pZU9PrtdQA3C_ynyXqoR4k7cnUm_b5abL-XNGFKDJqx5Ta_vCBQhwV27cjFH8sqqhQqoHhM-LyY8OYT68IiMNB"/>
+      </div>
+    </div>
+    <div class="md:col-span-7">
+      <h2 class="font-headline-lg text-headline-lg mb-6">Chi sono</h2>
+      <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
+        <p>Da oltre un decennio dedico la mia vita all'esplorazione del potenziale umano e alla potenza trasformativa dell'ipnosi applicata alla performance mentale.</p>
+        <p>La mia missione è decodificare i meccanismi invisibili della mente inconscia per trasformarli in strumenti di crescita consapevole. Non si tratta di magia, ma di una neuro-architettura applicata al successo personale e professionale.</p>
+      </div>
+      <a class="inline-flex items-center gap-2 mt-8 text-primary font-label-md text-label-md group" href="/quiz/">
+        Scopri il tuo punto di partenza con il Quiz del Coraggio
+        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Metodo Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
-<div class="max-w-container-max mx-auto text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg max-w-3xl mx-auto mb-4">Dal blocco alla mappa.<br/>Dalla mappa alla trasformazione.</h2>
-</div>
-<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Step 1 -->
-<div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
-<span class="material-symbols-outlined text-primary text-5xl mb-6">psychology</span>
-<h3 class="font-headline-md text-headline-md mb-4">Riconosci</h3>
-<p class="text-on-surface-variant font-body-md text-body-md">
-                        Identifichiamo insieme gli automatismi inconsci che stanno frenando la tua evoluzione, portandoli alla luce della consapevolezza.
-                    </p>
-</div>
-<!-- Step 2 -->
-<div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
-<span class="material-symbols-outlined text-secondary text-5xl mb-6">map</span>
-<h3 class="font-headline-md text-headline-md mb-4">Rileggi</h3>
-<p class="text-on-surface-variant font-body-md text-body-md">
-                        Attribuiamo un nuovo significato ai tuoi schemi mentali, riscrivendo la narrativa interna per allinearla ai tuoi obiettivi reali.
-                    </p>
-</div>
-<!-- Step 3 -->
-<div class="glass-card p-10 rounded-3xl group hover:bg-secondary-container/10 transition-colors border border-outline-variant">
-<span class="material-symbols-outlined text-tertiary text-5xl mb-6">bolt</span>
-<h3 class="font-headline-md text-headline-md mb-4">Agisci</h3>
-<p class="text-on-surface-variant font-body-md text-body-md">
-                        Implementiamo azioni concrete e ancoraggi ipnotici per rendere il cambiamento un processo automatico e duraturo nel tempo.
-                    </p>
-</div>
-</div>
-<div class="text-center mt-12">
-<a href="/quiz/" class="bg-surface-variant hover:bg-outline-variant text-on-surface px-8 py-3 rounded-full font-label-md text-label-md transition-all inline-block">
-                    Inizia dal Quiz del Coraggio
-                </a>
-</div>
+  <div class="max-w-container-max mx-auto text-center mb-16">
+    <h2 class="font-headline-lg text-headline-lg max-w-3xl mx-auto mb-4">Dal blocco alla mappa.<br/>Dalla mappa alla trasformazione.</h2>
+  </div>
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+      <span class="material-symbols-outlined text-primary text-5xl mb-6">psychology</span>
+      <h3 class="font-headline-md text-headline-md mb-4 text-primary">01. Riconosci</h3>
+      <p class="text-on-surface-variant font-body-md text-body-md">Identifichiamo insieme gli automatismi inconsci che stanno frenando la tua evoluzione, portandoli alla luce della consapevolezza.</p>
+    </div>
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+      <span class="material-symbols-outlined text-secondary text-5xl mb-6">map</span>
+      <h3 class="font-headline-md text-headline-md mb-4 text-secondary">02. Rileggi</h3>
+      <p class="text-on-surface-variant font-body-md text-body-md">Attribuiamo un nuovo significato ai tuoi schemi mentali, riscrivendo la narrativa interna per allinearla ai tuoi obiettivi reali.</p>
+    </div>
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+      <span class="material-symbols-outlined text-tertiary text-5xl mb-6">bolt</span>
+      <h3 class="font-headline-md text-headline-md mb-4 text-tertiary">03. Agisci</h3>
+      <p class="text-on-surface-variant font-body-md text-body-md">Implementiamo azioni concrete e ancoraggi ipnotici per rendere il cambiamento un processo automatico e duraturo nel tempo.</p>
+    </div>
+  </div>
+  <div class="text-center mt-12">
+    <a href="/quiz/" class="bg-surface-variant hover:bg-outline-variant text-on-surface px-8 py-3 rounded-full font-label-md text-label-md transition-all inline-block">
+      Inizia dal Quiz del Coraggio
+    </a>
+  </div>
 </section>
 
 <!-- Quiz Teaser Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter relative overflow-hidden">
-<div class="absolute inset-0 bg-secondary/5 -z-10"></div>
-<div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-stack-lg items-center">
-<div class="flex-1">
-<h2 class="font-headline-lg text-headline-lg mb-8">Il primo passo non è un salto. <br/><span class="text-primary">È una mappa.</span></h2>
-<ul class="space-y-6">
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">target</span>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface">Precisione Analitica</h4>
-<p class="text-on-surface-variant font-body-md">Analizza 5 aree chiave della tua psicologia comportamentale.</p>
-</div>
-</li>
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">insight_spark</span>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface">Insight Immediati</h4>
-<p class="text-on-surface-variant font-body-md">Ricevi subito un feedback sulle tue principali barriere mentali.</p>
-</div>
-</li>
-<li class="flex items-start gap-4">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">route</span>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface">Percorso Guidato</h4>
-<p class="text-on-surface-variant font-body-md">Un piano d'azione personalizzato basato sulle tue risposte.</p>
-</div>
-</li>
-</ul>
-<a href="/quiz/" class="mt-10 bg-primary text-on-primary-container px-10 py-5 rounded-2xl font-label-md text-label-md shadow-xl shadow-primary/10 hover:scale-[1.02] transition-all inline-block">
-                        Fai il Quiz del Coraggio
-                    </a>
-</div>
-<div class="flex-1 relative">
-<div class="bg-surface-container rounded-3xl p-8 border border-outline-variant shadow-2xl max-w-md mx-auto">
-<div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden">
-<div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div>
-</div>
-<div class="space-y-6">
-<div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-<div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-<div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-<div class="h-24 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center">
-<span class="text-primary font-label-md">Analizzando il tuo profilo...</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="absolute inset-0 bg-secondary/5 -z-10"></div>
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-stack-lg items-center">
+    <div class="flex-1">
+      <h2 class="font-headline-lg text-headline-lg mb-8">Il primo passo non è un salto.<br/><span class="text-primary">È una mappa.</span></h2>
+      <ul class="space-y-6">
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">target</span>
+          <div>
+            <h4 class="font-label-md text-label-md text-on-surface">Precisione Analitica</h4>
+            <p class="text-on-surface-variant font-body-md">Analizza 5 aree chiave della tua psicologia comportamentale.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">insight_spark</span>
+          <div>
+            <h4 class="font-label-md text-label-md text-on-surface">Insight Immediati</h4>
+            <p class="text-on-surface-variant font-body-md">Ricevi subito un feedback sulle tue principali barriere mentali.</p>
+          </div>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">route</span>
+          <div>
+            <h4 class="font-label-md text-label-md text-on-surface">Percorso Guidato</h4>
+            <p class="text-on-surface-variant font-body-md">Un piano d'azione personalizzato basato sulle tue risposte.</p>
+          </div>
+        </li>
+      </ul>
+      <a href="/quiz/" class="mt-10 bg-primary text-on-primary px-10 py-5 rounded-2xl font-label-md text-label-md shadow-xl shadow-primary/10 hover:brightness-110 transition-all inline-block">
+        Fai il Quiz del Coraggio
+      </a>
+    </div>
+    <div class="flex-1 relative">
+      <div class="bg-surface-container rounded-3xl p-8 border border-outline-variant shadow-2xl max-w-md mx-auto">
+        <div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div>
+        </div>
+        <div class="space-y-6">
+          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
+          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
+          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
+          <div class="h-24 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center">
+            <span class="text-primary font-label-md">Analizzando il tuo profilo...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Reset Notturno Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
-<div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant shadow-lg">
-<span class="material-symbols-outlined text-secondary text-6xl mb-6">bedtime</span>
-<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-8 leading-tight">
-                    Il cambiamento non inizia quando capisci tutto. Inizia quando fai il primo passo giusto.
-                </h2>
-<a href="/reset-notturno/" class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-xl font-label-md text-label-md hover:bg-secondary-container/90 transition-all active:scale-95 inline-block">
-                    Scopri il Reset Notturno
-                </a>
-</div>
+  <div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant shadow-lg">
+    <span class="material-symbols-outlined text-secondary text-6xl mb-6">bedtime</span>
+    <h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">
+      Il cambiamento non inizia quando capisci tutto.<br/>Inizia quando fai il primo passo giusto.
+    </h2>
+    <a href="/reset-notturno/" class="bg-secondary text-on-secondary px-10 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 transition-all active:scale-95 inline-block">
+      Scopri il Reset Notturno
+    </a>
+  </div>
 </section>
 
 <!-- Final CTA Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest">
-<div class="max-w-container-max mx-auto text-center">
-<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-10">Ogni cambiamento reale inizia dal punto giusto.</h2>
-<a href="/quiz/" class="bg-primary text-on-primary-container px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:scale-105 transition-all inline-block">
-                    Fai il Quiz del Coraggio
-                </a>
-</div>
+  <div class="max-w-container-max mx-auto text-center">
+    <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-10">Ogni cambiamento reale inizia dal punto giusto.</h2>
+    <a href="/quiz/" class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:brightness-110 transition-all inline-block">
+      Fai il Quiz del Coraggio
+    </a>
+  </div>
 </section>
+
 </main>
 
-<!-- Footer -->
-<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
-<div class="space-y-6">
-<h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                    Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per alte performance e benessere mentale.
-                </p>
-</div>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
-<ul class="space-y-3 font-body-md text-body-md">
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/">Home</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/metodo/">Metodo</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/contenuti/">Contenuti</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/chi-sono/">Chi sono</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
-<ul class="space-y-3 font-body-md text-body-md">
-<li><a class="text-primary font-bold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
-<ul class="space-y-3 font-body-md text-body-md">
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Privacy</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Cookie</a></li>
-<li><a class="text-on-surface-variant hover:text-tertiary transition-colors" href="#">Termini</a></li>
-</ul>
-</div>
-</div>
-<div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
-            © 2026 Cristian Lecca — Hypno Mental Coach. Metodo IpnosiApplicata. P.IVA 03328450923
-        </div>
+<!-- FOOTER GLOBALE -->
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
+    <!-- Colonna 1: Brand -->
+    <div class="space-y-4">
+      <div class="flex items-center gap-2">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#1d2022"/>
+          <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
+          <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+      </div>
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
+      </p>
+    </div>
+    <!-- Colonna 2: Navigazione -->
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Home</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+      </ul>
+    </div>
+    <!-- Colonna 3: Percorso -->
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
+      </ul>
+    </div>
+    <!-- Colonna 4: Legale -->
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Termini</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Riga finale -->
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
+    © 2025 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+  </div>
 </footer>
 
 <script>
-        // Menu mobile toggle
-        const btn = document.getElementById('hamburger-btn');
-        const menu = document.getElementById('mobile-menu');
-        const icon = document.getElementById('hamburger-icon');
+  // Menu mobile toggle
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
 
-        btn.addEventListener('click', () => {
-            const isOpen = menu.classList.contains('open');
-            menu.classList.toggle('open');
-            icon.textContent = isOpen ? 'menu' : 'close';
-            btn.setAttribute('aria-expanded', String(!isOpen));
-        });
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.contains('open');
+    menu.classList.toggle('open');
+    icon.textContent = isOpen ? 'menu' : 'close';
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
 
-        // Chiudi menu al click su un link
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.remove('open');
-                icon.textContent = 'menu';
-                btn.setAttribute('aria-expanded', 'false');
-            });
-        });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      icon.textContent = 'menu';
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
 
-        // Mouse parallax hero
-        document.addEventListener('mousemove', (e) => {
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-            const heroGradient = document.querySelector('.hero-gradient');
-            if(heroGradient) {
-                heroGradient.style.backgroundPosition = `${mouseX * 20}% ${mouseY * 20}%`;
-            }
-        });
+  // Mouse parallax hero
+  document.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    const heroGradient = document.querySelector('.hero-gradient');
+    if (heroGradient) {
+      heroGradient.style.backgroundPosition = `${mouseX * 20}% ${mouseY * 20}%`;
+    }
+  });
 
-        // Scroll reveal
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
-                }
-            });
-        }, observerOptions);
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-10');
+      }
+    });
+  }, { threshold: 0.1 });
 
-        document.querySelectorAll('section > div').forEach(section => {
-            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-            observer.observe(section);
-        });
-    </script>
+  document.querySelectorAll('section > div').forEach(el => {
+    el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
