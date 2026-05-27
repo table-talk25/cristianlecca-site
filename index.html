@@ -92,6 +92,14 @@
     background: radial-gradient(circle at 70% 30%, rgba(73,199,165,0.10) 0%, transparent 50%),
                 radial-gradient(circle at 20% 80%, rgba(58,99,255,0.05), transparent 50%);
   }
+  /* Logo header: brightness leggero + glow teal sul contorno del PNG */
+  .nav-logo {
+    filter: brightness(1.15) drop-shadow(0 0 7px rgba(73,199,165,0.30));
+    transition: filter 300ms ease;
+  }
+  .nav-logo:hover {
+    filter: brightness(1.25) drop-shadow(0 0 10px rgba(73,199,165,0.45));
+  }
   /* Reveal: solo elementi .reveal */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -133,9 +141,9 @@
 <!-- HEADER GLOBALE -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <!-- Logo + Brand -->
+    <!-- Logo -->
     <a class="flex items-center gap-3" href="/">
-      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto" loading="lazy"/>
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
     </a>
     <!-- Nav desktop -->
     <div class="hidden md:flex gap-8 items-center">
@@ -328,7 +336,6 @@
 <!-- FOOTER GLOBALE -->
 <footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
-    <!-- Colonna 1: Brand -->
     <div class="space-y-4">
       <div class="flex items-center gap-2">
         <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto" loading="lazy"/>
@@ -337,7 +344,6 @@
         Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
       </p>
     </div>
-    <!-- Colonna 2: Navigazione -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
       <ul class="space-y-3 font-body-md text-body-md">
@@ -348,7 +354,6 @@
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
       </ul>
     </div>
-    <!-- Colonna 3: Percorso -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
       <ul class="space-y-3 font-body-md text-body-md">
@@ -356,7 +361,6 @@
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
       </ul>
     </div>
-    <!-- Colonna 4: Legale -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
@@ -367,14 +371,12 @@
       </ul>
     </div>
   </div>
-  <!-- Riga finale -->
   <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
     © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
   </div>
 </footer>
 
 <script>
-  // Menu mobile toggle
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('hamburger-icon');
@@ -383,7 +385,6 @@
     btn.setAttribute('aria-expanded', isOpen);
     icon.textContent = isOpen ? 'close' : 'menu';
   });
-  // Chiudi menu al click su un link
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       menu.classList.remove('open');
@@ -392,7 +393,6 @@
     });
   });
 
-  // Scroll reveal: solo .reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
