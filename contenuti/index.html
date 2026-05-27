@@ -430,12 +430,11 @@
     </div>
   </div>
   <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant font-label-caps text-label-caps">
-    <span>© 2026 Cristian Lecca. Hypno Mental Coach. Metodo IpnosiApplicata.</span>
+    <span>© 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018</span>
   </div>
 </footer>
 
 <script>
-  // Mobile menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');
@@ -444,8 +443,6 @@
     mobileMenu.classList.toggle('hidden', isOpen);
     menuIcon.textContent = isOpen ? 'menu' : 'close';
   });
-
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
