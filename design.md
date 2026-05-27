@@ -147,7 +147,7 @@ Il logo / brand text deve restare coerente ovunque.
 - non reinterpretare il logo;
 - non cambiare peso, stile o tono tra pagine;
 - mantenere la stessa posizione nel layout header;
-- il brand deve essere sempre riconoscibile come “Cristian Lecca”.
+- il brand deve essere sempre riconoscibile come "Cristian Lecca".
 
 Se il progetto usa solo wordmark testuale, allora il wordmark deve restare identico in tutte le pagine.
 
@@ -200,7 +200,7 @@ Nella parte più bassa del footer inserire sempre:
 
 Formato richiesto:
 
-`© 2025 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018`
+`© 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018`
 
 ### Regole footer
 
@@ -220,7 +220,7 @@ La pagina **Quiz del Coraggio** usa un footer minimale.
 
 - brand breve;
 - link legali essenziali;
-- link “Torna al sito principale”;
+- link "Torna al sito principale";
 - micro-disclaimer;
 - eventuale P. IVA anche qui, in forma compatta.
 
@@ -283,7 +283,7 @@ Le card devono sembrare parte dello stesso sito.
 - glow troppo forti;
 - gradienti vistosi;
 - stile SaaS generico;
-- icone in cerchi colorati troppo “template AI”.
+- icone in cerchi colorati troppo "template AI".
 
 ## Sezioni hero
 
@@ -385,15 +385,9 @@ Use this project as a refinement task, not a redesign task.
 - refine only;
 - do not reinvent.
 
-## Dato da completare
-
-Sostituire questo placeholder con il dato reale preso da cristianlecca.it:
-
-- `P. IVA IT12632010018`
-
 ## Nota finale
 
-Se una pagina sembra “più creativa” delle altre, non va bene.  
+Se una pagina sembra "più creativa" delle altre, non va bene.  
 Se un header cambia struttura, non va bene.  
 Se un footer cambia struttura, non va bene.  
 Se il builder prova a rifare il sito da zero, non va bene.
