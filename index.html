@@ -378,7 +378,7 @@
   </div>
   <!-- Riga finale -->
   <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
-    © 2025 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+    © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
   </div>
 </footer>
 
@@ -387,30 +387,18 @@
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('hamburger-icon');
-
   btn.addEventListener('click', () => {
-    const isOpen = menu.classList.contains('open');
-    menu.classList.toggle('open');
-    icon.textContent = isOpen ? 'menu' : 'close';
-    btn.setAttribute('aria-expanded', String(!isOpen));
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    icon.textContent = isOpen ? 'close' : 'menu';
   });
-
+  // Chiudi menu al click su un link
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       menu.classList.remove('open');
-      icon.textContent = 'menu';
       btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = 'menu';
     });
-  });
-
-  // Mouse parallax hero
-  document.addEventListener('mousemove', (e) => {
-    const mouseX = e.clientX / window.innerWidth;
-    const mouseY = e.clientY / window.innerHeight;
-    const heroGradient = document.querySelector('.hero-gradient');
-    if (heroGradient) {
-      heroGradient.style.backgroundPosition = `${mouseX * 20}% ${mouseY * 20}%`;
-    }
   });
 
   // Scroll reveal
@@ -418,13 +406,12 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-10');
+        entry.target.classList.remove('opacity-0', 'translate-y-8');
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('section > div').forEach(el => {
-    el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+    el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
     observer.observe(el);
   });
 </script>
