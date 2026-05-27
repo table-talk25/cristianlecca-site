@@ -92,13 +92,13 @@
     background: radial-gradient(circle at 70% 30%, rgba(73,199,165,0.10) 0%, transparent 50%),
                 radial-gradient(circle at 20% 80%, rgba(58,99,255,0.05), transparent 50%);
   }
-  /* Logo header: brightness leggero + glow teal sul contorno del PNG */
+  /* Logo header: schiarisce per leggibilità su sfondo scuro */
   .nav-logo {
-    filter: brightness(1.15) drop-shadow(0 0 7px rgba(73,199,165,0.30));
+    filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25));
     transition: filter 300ms ease;
   }
   .nav-logo:hover {
-    filter: brightness(1.25) drop-shadow(0 0 10px rgba(73,199,165,0.45));
+    filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
   }
   /* Reveal: solo elementi .reveal */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
@@ -141,27 +141,21 @@
 <!-- HEADER GLOBALE -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
-    <!-- Logo -->
     <a class="flex items-center gap-3" href="/">
       <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
     </a>
-    <!-- Nav desktop -->
     <div class="hidden md:flex gap-8 items-center">
       <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/">Home</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
-      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
-        Fai il Quiz del Coraggio
-      </a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
     </div>
-    <!-- Hamburger mobile -->
     <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
     </button>
   </div>
-  <!-- Menu mobile -->
   <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
     <a href="/">Home</a>
     <a href="/metodo/">Metodo</a>
@@ -179,26 +173,16 @@
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center py-section-v-mobile md:py-section-v-desktop">
     <div class="z-10 order-2 md:order-1">
       <p class="font-label-md text-label-md text-primary mb-4 tracking-widest uppercase reveal">Metodo IpnosiApplicata</p>
-      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight reveal">
-        Scopri il <span class="gradient-text">blocco invisibile</span> che sta guidando la tua vita.
-      </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl reveal">
-        Sono Cristian Lecca, Hypno Mental Coach. Con il Metodo IpnosiApplicata ti aiuto a riconoscere lo schema che oggi ti limita e a trasformarlo in un percorso concreto di cambiamento.
-      </p>
+      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight reveal">Scopri il <span class="gradient-text">blocco invisibile</span> che sta guidando la tua vita.</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl reveal">Sono Cristian Lecca, Hypno Mental Coach. Con il Metodo IpnosiApplicata ti aiuto a riconoscere lo schema che oggi ti limita e a trasformarlo in un percorso concreto di cambiamento.</p>
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center reveal">
-        <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20 text-center">
-          Fai il Quiz del Coraggio
-        </a>
-        <p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">verified</span>
-          Gratuito. Personalizzato.
-        </p>
+        <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20 text-center">Fai il Quiz del Coraggio</a>
+        <p class="text-on-surface-variant font-label-md text-label-md flex items-center gap-2"><span class="material-symbols-outlined text-primary">verified</span>Gratuito. Personalizzato.</p>
       </div>
     </div>
     <div class="order-1 md:order-2 flex justify-center md:justify-end reveal">
       <div class="relative w-full aspect-[4/5] md:aspect-[3/4] max-w-md rounded-3xl overflow-hidden shadow-2xl">
-        <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560"
-          src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"/>
+        <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560" src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"/>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
       </div>
     </div>
@@ -210,8 +194,7 @@
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-center">
     <div class="md:col-span-5 relative reveal">
       <div class="aspect-square rounded-3xl overflow-hidden bg-surface-container-high border border-outline-variant">
-        <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL-psyZrIEaGqPEYzB57Yb7-PaTkrcjIcdvNPTQN1-YTmbafjfcUBIUcpR0qqwLoh8_RZuBO4--GLl8GkC5BpfdX1YGRSIyqIH2EXXtI44pXnm_F5ZG4yJdAudi6FIbuQAOR_YlnZ3sDuZgaGgAir_nzbVMQkUkHwkwxZSkxVUYODlKwintNQ0Q8pZU9PrtdQA3C_ynyXqoR4k7cnUm_b5abL-XNGFKDJqx5Ta_vCBQhwV27cjFH8sqqhQqoHhM-LyY8OYT68IiMNB"/>
+        <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL-psyZrIEaGqPEYzB57Yb7-PaTkrcjIcdvNPTQN1-YTmbafjfcUBIUcpR0qqwLoh8_RZuBO4--GLl8GkC5BpfdX1YGRSIyqIH2EXXtI44pXnm_F5ZG4yJdAudi6FIbuQAOR_YlnZ3sDuZgaGgAir_nzbVMQkUkHwkwxZSkxVUYODlKwintNQ0Q8pZU9PrtdQA3C_ynyXqoR4k7cnUm_b5abL-XNGFKDJqx5Ta_vCBQhwV27cjFH8sqqhQqoHhM-LyY8OYT68IiMNB"/>
       </div>
     </div>
     <div class="md:col-span-7 reveal">
@@ -220,10 +203,7 @@
         <p>Da oltre un decennio dedico la mia vita all'esplorazione del potenziale umano e alla potenza trasformativa dell'ipnosi applicata alla performance mentale.</p>
         <p>La mia missione è decodificare i meccanismi invisibili della mente inconscia per trasformarli in strumenti di crescita consapevole. Non si tratta di magia, ma di una neuro-architettura applicata al successo personale e professionale.</p>
       </div>
-      <a class="inline-flex items-center gap-2 mt-8 text-primary font-label-md text-label-md group" href="/quiz/">
-        Scopri il tuo punto di partenza con il Quiz del Coraggio
-        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-      </a>
+      <a class="inline-flex items-center gap-2 mt-8 text-primary font-label-md text-label-md group" href="/quiz/">Scopri il tuo punto di partenza con il Quiz del Coraggio<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
     </div>
   </div>
 </section>
@@ -251,9 +231,7 @@
     </div>
   </div>
   <div class="text-center mt-12 reveal">
-    <a href="/quiz/" class="bg-surface-variant hover:bg-outline-variant text-on-surface px-8 py-3 rounded-full font-label-md text-label-md transition-all inline-block">
-      Inizia dal Quiz del Coraggio
-    </a>
+    <a href="/quiz/" class="bg-surface-variant hover:bg-outline-variant text-on-surface px-8 py-3 rounded-full font-label-md text-label-md transition-all inline-block">Inizia dal Quiz del Coraggio</a>
   </div>
 </section>
 
@@ -264,44 +242,20 @@
     <div class="flex-1 reveal">
       <h2 class="font-headline-lg text-headline-lg mb-8">Il primo passo non è un salto.<br/><span class="text-primary">È una mappa.</span></h2>
       <ul class="space-y-6">
-        <li class="flex items-start gap-4">
-          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">target</span>
-          <div>
-            <h4 class="font-label-md text-label-md text-on-surface">Precisione Analitica</h4>
-            <p class="text-on-surface-variant font-body-md">Analizza 5 aree chiave della tua psicologia comportamentale.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4">
-          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">insight_spark</span>
-          <div>
-            <h4 class="font-label-md text-label-md text-on-surface">Insight Immediati</h4>
-            <p class="text-on-surface-variant font-body-md">Ricevi subito un feedback sulle tue principali barriere mentali.</p>
-          </div>
-        </li>
-        <li class="flex items-start gap-4">
-          <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">route</span>
-          <div>
-            <h4 class="font-label-md text-label-md text-on-surface">Percorso Guidato</h4>
-            <p class="text-on-surface-variant font-body-md">Un piano d'azione personalizzato basato sulle tue risposte.</p>
-          </div>
-        </li>
+        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">target</span><div><h4 class="font-label-md text-label-md text-on-surface">Precisione Analitica</h4><p class="text-on-surface-variant font-body-md">Analizza 5 aree chiave della tua psicologia comportamentale.</p></div></li>
+        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">insight_spark</span><div><h4 class="font-label-md text-label-md text-on-surface">Insight Immediati</h4><p class="text-on-surface-variant font-body-md">Ricevi subito un feedback sulle tue principali barriere mentali.</p></div></li>
+        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">route</span><div><h4 class="font-label-md text-label-md text-on-surface">Percorso Guidato</h4><p class="text-on-surface-variant font-body-md">Un piano d'azione personalizzato basato sulle tue risposte.</p></div></li>
       </ul>
-      <a href="/quiz/" class="mt-10 bg-primary text-on-primary px-10 py-5 rounded-2xl font-label-md text-label-md shadow-xl shadow-primary/10 hover:brightness-110 transition-all inline-block">
-        Fai il Quiz del Coraggio
-      </a>
+      <a href="/quiz/" class="mt-10 bg-primary text-on-primary px-10 py-5 rounded-2xl font-label-md text-label-md shadow-xl shadow-primary/10 hover:brightness-110 transition-all inline-block">Fai il Quiz del Coraggio</a>
     </div>
     <div class="flex-1 relative reveal">
       <div class="bg-surface-container rounded-3xl p-8 border border-outline-variant shadow-2xl max-w-md mx-auto">
-        <div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden">
-          <div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div>
-        </div>
+        <div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden"><div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div></div>
         <div class="space-y-6">
           <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
           <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
           <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-          <div class="h-24 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center">
-            <span class="text-primary font-label-md">Analizzando il tuo profilo...</span>
-          </div>
+          <div class="h-24 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center"><span class="text-primary font-label-md">Analizzando il tuo profilo...</span></div>
         </div>
       </div>
     </div>
@@ -312,12 +266,8 @@
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
   <div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant shadow-lg reveal">
     <span class="material-symbols-outlined text-secondary text-6xl mb-6">bedtime</span>
-    <h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">
-      Il cambiamento non inizia quando capisci tutto.<br/>Inizia quando fai il primo passo giusto.
-    </h2>
-    <a href="/reset-notturno/" class="bg-secondary text-on-secondary px-10 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 transition-all active:scale-95 inline-block">
-      Scopri il Reset Notturno
-    </a>
+    <h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">Il cambiamento non inizia quando capisci tutto.<br/>Inizia quando fai il primo passo giusto.</h2>
+    <a href="/reset-notturno/" class="bg-secondary text-on-secondary px-10 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 transition-all active:scale-95 inline-block">Scopri il Reset Notturno</a>
   </div>
 </section>
 
@@ -325,9 +275,7 @@
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest">
   <div class="max-w-container-max mx-auto text-center reveal">
     <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-10">Ogni cambiamento reale inizia dal punto giusto.</h2>
-    <a href="/quiz/" class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:brightness-110 transition-all inline-block">
-      Fai il Quiz del Coraggio
-    </a>
+    <a href="/quiz/" class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:brightness-110 transition-all inline-block">Fai il Quiz del Coraggio</a>
   </div>
 </section>
 
@@ -340,9 +288,7 @@
       <div class="flex items-center gap-2">
         <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto" loading="lazy"/>
       </div>
-      <p class="font-body-md text-body-md text-on-surface-variant">
-        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
-      </p>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
     </div>
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
@@ -392,7 +338,6 @@
       icon.textContent = 'menu';
     });
   });
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
