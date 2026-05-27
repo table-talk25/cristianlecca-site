@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cristian Lecca | Hypno Mental Coach</title>
-<link rel="icon" type="image/png" href="/assets/favicon%201.png">
+<link rel="icon" type="image/png" href="/assets/favicon%201.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -92,6 +92,9 @@
     background: radial-gradient(circle at 70% 30%, rgba(73,199,165,0.10) 0%, transparent 50%),
                 radial-gradient(circle at 20% 80%, rgba(58,99,255,0.05), transparent 50%);
   }
+  /* Reveal: solo elementi .reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   /* Menu mobile */
   #mobile-menu {
     display: none;
@@ -131,14 +134,8 @@
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
     <!-- Logo + Brand -->
-    <a class="flex items-center gap-3 font-headline-md text-headline-md font-bold text-on-background tracking-tight" href="/">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cristian Lecca logo">
-        <rect width="32" height="32" rx="8" fill="#101416"/>
-        <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
-        <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      Cristian Lecca
+    <a class="flex items-center gap-3" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto" loading="lazy"/>
     </a>
     <!-- Nav desktop -->
     <div class="hidden md:flex gap-8 items-center">
@@ -173,14 +170,14 @@
 <section class="relative min-h-[90vh] flex items-center hero-gradient px-gutter">
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center py-section-v-mobile md:py-section-v-desktop">
     <div class="z-10 order-2 md:order-1">
-      <p class="font-label-md text-label-md text-primary mb-4 tracking-widest uppercase">Metodo IpnosiApplicata</p>
-      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+      <p class="font-label-md text-label-md text-primary mb-4 tracking-widest uppercase reveal">Metodo IpnosiApplicata</p>
+      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight reveal">
         Scopri il <span class="gradient-text">blocco invisibile</span> che sta guidando la tua vita.
       </h1>
-      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl">
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-xl reveal">
         Sono Cristian Lecca, Hypno Mental Coach. Con il Metodo IpnosiApplicata ti aiuto a riconoscere lo schema che oggi ti limita e a trasformarlo in un percorso concreto di cambiamento.
       </p>
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center reveal">
         <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md transition-all hover:brightness-110 active:scale-95 shadow-lg shadow-primary/20 text-center">
           Fai il Quiz del Coraggio
         </a>
@@ -190,7 +187,7 @@
         </p>
       </div>
     </div>
-    <div class="order-1 md:order-2 flex justify-center md:justify-end">
+    <div class="order-1 md:order-2 flex justify-center md:justify-end reveal">
       <div class="relative w-full aspect-[4/5] md:aspect-[3/4] max-w-md rounded-3xl overflow-hidden shadow-2xl">
         <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560"
           src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"/>
@@ -203,13 +200,13 @@
 <!-- Chi Sono Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-center">
-    <div class="md:col-span-5 relative">
+    <div class="md:col-span-5 relative reveal">
       <div class="aspect-square rounded-3xl overflow-hidden bg-surface-container-high border border-outline-variant">
         <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL-psyZrIEaGqPEYzB57Yb7-PaTkrcjIcdvNPTQN1-YTmbafjfcUBIUcpR0qqwLoh8_RZuBO4--GLl8GkC5BpfdX1YGRSIyqIH2EXXtI44pXnm_F5ZG4yJdAudi6FIbuQAOR_YlnZ3sDuZgaGgAir_nzbVMQkUkHwkwxZSkxVUYODlKwintNQ0Q8pZU9PrtdQA3C_ynyXqoR4k7cnUm_b5abL-XNGFKDJqx5Ta_vCBQhwV27cjFH8sqqhQqoHhM-LyY8OYT68IiMNB"/>
       </div>
     </div>
-    <div class="md:col-span-7">
+    <div class="md:col-span-7 reveal">
       <h2 class="font-headline-lg text-headline-lg mb-6">Chi sono</h2>
       <div class="space-y-6 font-body-lg text-body-lg text-on-surface-variant">
         <p>Da oltre un decennio dedico la mia vita all'esplorazione del potenziale umano e alla potenza trasformativa dell'ipnosi applicata alla performance mentale.</p>
@@ -225,27 +222,27 @@
 
 <!-- Metodo Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
-  <div class="max-w-container-max mx-auto text-center mb-16">
+  <div class="max-w-container-max mx-auto text-center mb-16 reveal">
     <h2 class="font-headline-lg text-headline-lg max-w-3xl mx-auto mb-4">Dal blocco alla mappa.<br/>Dalla mappa alla trasformazione.</h2>
   </div>
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant reveal">
       <span class="material-symbols-outlined text-primary text-5xl mb-6">psychology</span>
       <h3 class="font-headline-md text-headline-md mb-4 text-primary">01. Riconosci</h3>
       <p class="text-on-surface-variant font-body-md text-body-md">Identifichiamo insieme gli automatismi inconsci che stanno frenando la tua evoluzione, portandoli alla luce della consapevolezza.</p>
     </div>
-    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant reveal">
       <span class="material-symbols-outlined text-secondary text-5xl mb-6">map</span>
       <h3 class="font-headline-md text-headline-md mb-4 text-secondary">02. Rileggi</h3>
       <p class="text-on-surface-variant font-body-md text-body-md">Attribuiamo un nuovo significato ai tuoi schemi mentali, riscrivendo la narrativa interna per allinearla ai tuoi obiettivi reali.</p>
     </div>
-    <div class="glass-card p-10 rounded-3xl border border-outline-variant">
+    <div class="glass-card p-10 rounded-3xl border border-outline-variant reveal">
       <span class="material-symbols-outlined text-tertiary text-5xl mb-6">bolt</span>
       <h3 class="font-headline-md text-headline-md mb-4 text-tertiary">03. Agisci</h3>
       <p class="text-on-surface-variant font-body-md text-body-md">Implementiamo azioni concrete e ancoraggi ipnotici per rendere il cambiamento un processo automatico e duraturo nel tempo.</p>
     </div>
   </div>
-  <div class="text-center mt-12">
+  <div class="text-center mt-12 reveal">
     <a href="/quiz/" class="bg-surface-variant hover:bg-outline-variant text-on-surface px-8 py-3 rounded-full font-label-md text-label-md transition-all inline-block">
       Inizia dal Quiz del Coraggio
     </a>
@@ -256,7 +253,7 @@
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter relative overflow-hidden">
   <div class="absolute inset-0 bg-secondary/5 -z-10"></div>
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-stack-lg items-center">
-    <div class="flex-1">
+    <div class="flex-1 reveal">
       <h2 class="font-headline-lg text-headline-lg mb-8">Il primo passo non è un salto.<br/><span class="text-primary">È una mappa.</span></h2>
       <ul class="space-y-6">
         <li class="flex items-start gap-4">
@@ -285,7 +282,7 @@
         Fai il Quiz del Coraggio
       </a>
     </div>
-    <div class="flex-1 relative">
+    <div class="flex-1 relative reveal">
       <div class="bg-surface-container rounded-3xl p-8 border border-outline-variant shadow-2xl max-w-md mx-auto">
         <div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden">
           <div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div>
@@ -305,7 +302,7 @@
 
 <!-- Reset Notturno Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
-  <div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant shadow-lg">
+  <div class="max-w-4xl mx-auto text-center glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant shadow-lg reveal">
     <span class="material-symbols-outlined text-secondary text-6xl mb-6">bedtime</span>
     <h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">
       Il cambiamento non inizia quando capisci tutto.<br/>Inizia quando fai il primo passo giusto.
@@ -318,7 +315,7 @@
 
 <!-- Final CTA Section -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest">
-  <div class="max-w-container-max mx-auto text-center">
+  <div class="max-w-container-max mx-auto text-center reveal">
     <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-10">Ogni cambiamento reale inizia dal punto giusto.</h2>
     <a href="/quiz/" class="bg-primary text-on-primary px-12 py-6 rounded-2xl font-headline-md text-headline-md shadow-2xl shadow-primary/20 hover:brightness-110 transition-all inline-block">
       Fai il Quiz del Coraggio
@@ -334,13 +331,7 @@
     <!-- Colonna 1: Brand -->
     <div class="space-y-4">
       <div class="flex items-center gap-2">
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="32" height="32" rx="8" fill="#1d2022"/>
-          <path d="M9 23 C9 13.5 13 9 16 9 C19 9 23 13.5 23 23" stroke="#49C7A5" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <circle cx="16" cy="9" r="2.5" fill="#49C7A5"/>
-          <path d="M13 23 L19 23" stroke="#C9A45C" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <h3 class="font-headline-md text-headline-md text-on-surface">Cristian Lecca</h3>
+        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto" loading="lazy"/>
       </div>
       <p class="font-body-md text-body-md text-on-surface-variant">
         Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
@@ -401,19 +392,16 @@
     });
   });
 
-  // Scroll reveal
+  // Scroll reveal: solo .reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('opacity-100', 'translate-y-0');
-        entry.target.classList.remove('opacity-0', 'translate-y-8');
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('section > div').forEach(el => {
-    el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
-    observer.observe(el);
-  });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
