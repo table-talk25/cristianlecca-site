@@ -14,17 +14,36 @@
     theme: {
       extend: {
         "colors": {
-          "background": "#101416", "on-background": "#F5F7FA",
-          "surface": "#101416", "on-surface": "#F5F7FA",
-          "primary": "#49C7A5", "on-primary": "#101416",
-          "secondary": "#3A63FF", "on-secondary": "#FFFFFF",
-          "tertiary": "#C9A45C", "on-tertiary": "#101416",
-          "outline": "#86948e", "outline-variant": "#3d4944",
-          "surface-container": "#1d2022", "surface-container-low": "#191c1e",
-          "surface-container-lowest": "#0b0f11", "surface-variant": "#323538",
+          "background": "#101416",
+          "on-background": "#F5F7FA",
+          "surface": "#101416",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff",
+          "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "on-tertiary-container": "#5b4100",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416",
+          "surface-variant": "#323538",
           "on-surface-variant": "#bccac3"
         },
-        "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        "borderRadius": {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+        },
         "spacing": {
           "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
           "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
@@ -49,11 +68,58 @@
 </script>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-  .glass-card { background: rgba(29,32,34,0.5); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.08); border-radius: 20px; }
-  .gradient-text { background: linear-gradient(135deg, #49C7A5, #3A63FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
-  .nav-logo { filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; }
-  .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
+  .glass-card {
+    background: rgba(29,32,34,0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245,247,250,0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  .glass-card:hover {
+    border-color: rgba(73,199,165,0.3);
+    background: rgba(73,199,165,0.05);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #49C7A5, #3A63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .nav-logo {
+    filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25));
+    transition: filter 300ms ease;
+  }
+  .nav-logo:hover {
+    filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
+  }
+  .audio-player {
+    background: rgba(16,20,22,0.8);
+    border: 1px solid rgba(73,199,165,0.2);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  audio {
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    accent-color: #49C7A5;
+  }
+  audio::-webkit-media-controls-panel {
+    background-color: #1d2022;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body class="font-body-md text-body-md">
@@ -84,85 +150,150 @@
         Il <span class="gradient-text">Perfezionista</span> Bloccato
       </h1>
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
-        Il tuo blocco principale non è la mancanza di capacità. È il bisogno che tutto sia perfetto prima di agire — e quella perfezione non arriva mai.
+        Grazie per aver trovato il tempo per te. Quello che stai per scoprire non è una semplice etichetta — è uno specchio preciso del meccanismo che finora ti ha tenuto fermo.
       </p>
     </div>
   </section>
 
-  <!-- COSA SIGNIFICA -->
-  <section class="px-gutter py-section-v-mobile md:py-section-v-desktop">
+  <!-- SLOT 1: AUDIO DESCRIZIONE PROFILO -->
+  <section class="px-gutter pb-section-v-mobile md:pb-16 reveal">
     <div class="max-w-3xl mx-auto">
-      <div class="glass-card p-8 md:p-12 mb-8">
-        <h2 class="font-headline-md text-headline-md text-on-background mb-6">Come si manifesta in te</h2>
-        <div class="flex flex-col gap-4 font-body-md text-body-md text-on-surface-variant">
-          <p>Pianifichi con cura maniacale. Rivedi ogni dettaglio. Aspetti il momento giusto. Ma il momento giusto non arriva mai, perché il tuo sistema interno ha alzato il livello di "abbastanza buono" così in alto da renderlo irraggiungibile.</p>
-          <p>Non è pigrizia — è il contrario. È un motore sempre acceso che non riesce a trovare la marcia giusta. Il perfezionismo non è uno standard alto: è un meccanismo di protezione travestito da ambizione.</p>
-          <p>Ogni errore diventa conferma che "non sei pronto". Ogni risultato raggiunto è già superato da ciò che avresti dovuto fare meglio. Il traguardo si sposta sempre un metro più avanti.</p>
+      <div class="glass-card p-8 md:p-10">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/15 text-primary">
+            <span class="material-symbols-outlined" style="font-size:1.25rem;">headphones</span>
+          </span>
+          <div>
+            <span class="font-label-md text-label-md text-primary uppercase tracking-widest block">Ascolta ora</span>
+            <h2 class="font-headline-md text-xl text-on-background">La descrizione del tuo profilo</h2>
+          </div>
         </div>
-      </div>
-
-      <!-- 3 insight -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div class="glass-card p-6">
-          <span class="material-symbols-outlined text-primary mb-3" style="font-size:1.75rem;">psychology</span>
-          <h3 class="font-headline-md text-lg text-on-background mb-2">La radice</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Una credenza profonda che il tuo valore dipenda dalle tue prestazioni. Se sbagli, non vale l'azione — vali meno tu.</p>
-        </div>
-        <div class="glass-card p-6">
-          <span class="material-symbols-outlined text-tertiary mb-3" style="font-size:1.75rem;">loop</span>
-          <h3 class="font-headline-md text-lg text-on-background mb-2">Il loop</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Più pianifichi, più crescono le aspettative. Più crescono le aspettative, più hai paura di non soddisfarle. Più hai paura, meno agisci.</p>
-        </div>
-        <div class="glass-card p-6">
-          <span class="material-symbols-outlined text-secondary mb-3" style="font-size:1.75rem;">key</span>
-          <h3 class="font-headline-md text-lg text-on-background mb-2">La chiave</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Non si tratta di abbassare gli standard. Si tratta di rompere il legame tra il tuo valore come persona e il risultato di ogni azione.</p>
-        </div>
-      </div>
-
-      <!-- Citazione -->
-      <div class="glass-card p-8 border-l-2 border-primary mb-8">
-        <p class="font-body-lg text-body-lg text-on-surface-variant italic">
-          "Il perfezionismo non è ricerca dell'eccellenza. È paura del giudizio travestita da standard elevati."
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          In questo audio Cristian ti descrive con precisione il meccanismo del Perfezionista Bloccato — come si forma, come agisce, e perché nessuna quantità di disciplina riesce a scioglierlo dall'esterno.
         </p>
-        <span class="font-label-md text-label-md text-primary mt-4 block">— Cristian Lecca</span>
-      </div>
-
-      <!-- Cosa puoi fare -->
-      <div class="glass-card p-8 md:p-12">
-        <h2 class="font-headline-md text-headline-md text-on-background mb-6">Il passo successivo per te</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-4">
-          Il blocco del Perfezionista non si scioglie con più disciplina o più pianificazione. Si scioglie lavorando sulla credenza che lo genera — a livello subconscio, dove risiede davvero.
-        </p>
-        <p class="font-body-md text-body-md text-on-surface-variant">
-          Il Metodo IpnosiApplicata agisce esattamente su quel livello: non ti chiede di "pensare diversamente" in modo conscio, ma di ridefinire il pattern automatico che parte prima ancora che tu possa accorgertene.
-        </p>
+        <div class="audio-player">
+          <audio controls preload="none">
+            <source src="http://cristianlecca.it/wp-content/uploads/2025/11/Audio-Profilo-22Il-Perfezionista-Bloccato22.mp3" type="audio/mpeg">
+            Il tuo browser non supporta l'audio HTML5.
+          </audio>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA DOPPIA -->
-  <section class="px-gutter py-section-v-mobile md:py-section-v-desktop">
+  <!-- TESTO CORPO -->
+  <section class="px-gutter py-10 md:py-16 reveal">
     <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-12">
+      <div class="glass-card p-8 md:p-12">
+        <h2 class="font-headline-md text-headline-md text-on-background mb-6">Come si manifesta in te</h2>
+        <div class="flex flex-col gap-5 font-body-md text-body-md text-on-surface-variant">
+          <p>Pianifichi con cura maniacale. Rivedi ogni dettaglio. Aspetti il momento giusto. Ma il momento giusto non arriva mai, perché il tuo sistema interno ha alzato il livello di "abbastanza buono" così in alto da renderlo irraggiungibile.</p>
+          <p>Non è pigrizia — è il contrario. È un motore sempre acceso che non riesce a trovare la marcia giusta. Il perfezionismo non è uno standard alto: è un meccanismo di protezione travestito da ambizione.</p>
+          <p>Ogni errore diventa conferma che "non sei pronto". Ogni risultato raggiunto è già superato da ciò che avresti dovuto fare meglio. Il traguardo si sposta sempre un metro più avanti.</p>
+          <p>La buona notizia: questo schema non è chi sei. È un pattern appreso, installato in un momento preciso della tua storia — e ogni pattern può essere riscritto. Non con la forza di volontà, ma lavorando dove risiede davvero: nel subconscio.</p>
+        </div>
+        <div class="mt-8 pl-6 border-l-2 border-primary">
+          <p class="font-body-lg text-body-lg text-on-surface-variant italic">
+            "Il perfezionismo non è ricerca dell'eccellenza. È paura del giudizio travestita da standard elevati."
+          </p>
+          <span class="font-label-md text-label-md text-primary mt-3 block">— Cristian Lecca</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLOT 2: AUDIO IPNOTICO 15 MIN -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10" style="border-color: rgba(58,99,255,0.25); background: rgba(58,99,255,0.04);">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary/15 text-secondary">
+            <span class="material-symbols-outlined" style="font-size:1.25rem;">self_improvement</span>
+          </span>
+          <span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Percorso audio · 15 minuti</span>
+        </div>
+        <h2 class="font-headline-md text-xl md:text-2xl text-on-background mt-4 mb-3">
+          L'induzione ipnotica: <span class="gradient-text">Dal Perfezionismo alla Potenza</span>
+        </h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-2">
+          Questo audio lavora direttamente sul pattern subconscio che alimenta il tuo blocco. Non è meditazione, non è motivazione: è un'induzione ipnotica guidata, progettata per interrompere il loop automatico del Perfezionista Bloccato.
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          <strong class="text-on-background">Come usarlo:</strong> ascoltalo per i prossimi 5 giorni consecutivi, preferibilmente la sera prima di dormire, in un ambiente tranquillo con le cuffie.
+        </p>
+        <div class="audio-player" style="border-color: rgba(58,99,255,0.2);">
+          <audio controls preload="none">
+            <source src="http://cristianlecca.it/wp-content/uploads/2025/11/IPNOTICOAudio-22Il-Perfezionista-Bloccato22.mp3" type="audio/mpeg">
+            Il tuo browser non supporta l'audio HTML5.
+          </audio>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLOT 3: GUIDA PDF -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10" style="border-color: rgba(201,164,92,0.25); background: rgba(201,164,92,0.04);">
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+          <div class="flex-shrink-0 flex items-center justify-center w-24 h-32 rounded-xl" style="background: rgba(201,164,92,0.1); border: 1px solid rgba(201,164,92,0.2);">
+            <span class="material-symbols-outlined text-tertiary" style="font-size:3rem;">picture_as_pdf</span>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest block mb-3">Guida PDF · Scarica gratis</span>
+            <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">
+              Dalla Mappa alla Strada
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+              La guida del Perfezionista Bloccato: un documento di lavoro pratico per iniziare a riconoscere i trigger del tuo pattern e i primi passi concreti per uscire dal loop. Da leggere e tenere vicino nei prossimi giorni.
+            </p>
+            <a
+              href="http://cristianlecca.it/wp-content/uploads/2025/11/PDF-IL-PERFEZIONISTA-BLOCCATO-QUIZ-CORAGGIO.pdf"
+              download
+              class="inline-flex items-center gap-2 bg-tertiary text-on-tertiary font-label-md text-label-md px-7 py-3.5 rounded-full hover:brightness-110 active:scale-95 transition-all"
+            >
+              <span class="material-symbols-outlined" style="font-size:1.1rem;">download</span>
+              Scarica la guida PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIUSURA + CTA DOPPIA -->
+  <section class="px-gutter py-section-v-mobile md:py-section-v-desktop reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-4">
+          Hai in mano la descrizione precisa del tuo blocco, un audio per iniziare a scioglierlo e una guida per lavorarci ogni giorno. Il prossimo passo sei tu a sceglierlo.
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Con stima,<br>
+          <span class="mt-2 block text-primary" style="font-family: Georgia, serif; font-style: italic; font-size: 1.25rem; font-weight: 400;">Cristian Lecca</span>
+        </p>
+      </div>
+      <div class="text-center mb-10">
         <h2 class="font-headline-lg text-2xl md:text-3xl text-on-background mb-3">Da dove vuoi partire?</h2>
         <p class="font-body-md text-body-md text-on-surface-variant">Scegli il passo più adatto a te in questo momento.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Reset Notturno -->
         <div class="glass-card p-8 flex flex-col gap-4">
           <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest">Primo passo</span>
           <h3 class="font-headline-md text-xl text-on-background">Reset Notturno</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant flex-1">Un percorso audio guidato che lavora sul subconscio mentre dormi. Il punto di partenza ideale per iniziare a sciogliere il blocco del perfezionismo.</p>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-1">
+            Un percorso audio guidato che lavora sul subconscio mentre dormi. Il punto di partenza ideale per approfondire il lavoro iniziato oggi.
+          </p>
           <a href="/reset-notturno/" class="inline-block text-center bg-surface-variant hover:bg-surface-variant/80 text-on-surface font-label-md text-label-md px-6 py-3 rounded-full transition-all border border-outline-variant/40 hover:border-primary/40">
             Scopri Reset Notturno
           </a>
         </div>
-        <!-- Sessione di Svolta -->
-        <div class="glass-card p-8 flex flex-col gap-4 border-primary/20">
+        <div class="glass-card p-8 flex flex-col gap-4" style="border-color: rgba(73,199,165,0.2);">
           <span class="font-label-md text-label-md text-primary uppercase tracking-widest">Percorso diretto</span>
           <h3 class="font-headline-md text-xl text-on-background">Sessione di Svolta</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant flex-1">Un lavoro 1:1 con Cristian per intervenire sul tuo pattern specifico con precisione e profondità. La via più rapida per un cambiamento reale e duraturo.</p>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-1">
+            Un lavoro 1:1 con Cristian per intervenire sul tuo pattern specifico con precisione e profondità. La via più rapida per un cambiamento reale e duraturo.
+          </p>
           <a href="/sessione-di-svolta/" class="inline-block text-center bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all">
             Prenota la Sessione di Svolta
           </a>
@@ -177,7 +308,7 @@
 <footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <span class="font-label-md text-label-md text-on-surface-variant">
-      &copy; 2026 Cristian Lecca &mdash; P.IVA IT12632010018
+      © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
     </span>
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
@@ -186,6 +317,18 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
