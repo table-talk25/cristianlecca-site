@@ -97,10 +97,16 @@
     filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
   }
   .audio-player {
-    background: rgba(16,20,22,0.8);
-    border: 1px solid rgba(73,199,165,0.2);
+    background: rgba(40,45,48,0.9);
+    border: 1px solid rgba(73,199,165,0.45);
     border-radius: 16px;
-    padding: 24px;
+    padding: 20px 24px;
+  }
+  .audio-player-blue {
+    background: rgba(40,45,48,0.9);
+    border: 1px solid rgba(58,99,255,0.45);
+    border-radius: 16px;
+    padding: 20px 24px;
   }
   audio {
     width: 100%;
@@ -109,7 +115,7 @@
     accent-color: #49C7A5;
   }
   audio::-webkit-media-controls-panel {
-    background-color: #1d2022;
+    background-color: #272a2d;
   }
   .reveal {
     opacity: 0;
@@ -221,7 +227,7 @@
         <p class="font-body-md text-body-md text-on-surface-variant mb-6">
           <strong class="text-on-background">Come usarlo:</strong> ascoltalo per i prossimi 5 giorni consecutivi, preferibilmente la sera prima di dormire, in un ambiente tranquillo con le cuffie.
         </p>
-        <div class="audio-player" style="border-color: rgba(58,99,255,0.2);">
+        <div class="audio-player-blue">
           <audio controls preload="none">
             <source src="http://cristianlecca.it/wp-content/uploads/2025/11/IPNOTICOAudio-22Il-Perfezionista-Bloccato22.mp3" type="audio/mpeg">
             Il tuo browser non supporta l'audio HTML5.
