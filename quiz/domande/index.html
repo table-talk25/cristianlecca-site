@@ -398,7 +398,6 @@ document.addEventListener('DOMContentLoaded', function () {
       const q = this.dataset.q;
       const v = this.dataset.v;
 
-      // Evidenzia selezionato
       this.closest('.flex').querySelectorAll('.option-btn').forEach(function (b) {
         b.classList.remove('selected');
       });
@@ -413,7 +412,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (current < TOTAL) {
           slides[current].classList.add('active');
-          // Scroll al top della card su mobile
           document.getElementById('quizCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           calculateResult();
@@ -484,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
             A: '/il-perfezionista-bloccato',
             B: '/il-guardiano-del-consenso',
             C: '/il-critico-instancabile',
-            D: '/lesploratore-esitante'
+            D: '/l-esploratore-esitante'
           };
           window.location.href = urlMap[calculatedWinner] || '/il-perfezionista-bloccato';
         } else {
