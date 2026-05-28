@@ -121,6 +121,9 @@ Include la regola `.nav-logo` per il logo nell'header.
   .nav-logo:hover {
     filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
   }
+  /* Reveal: solo elementi .reveal */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   /* Menu mobile */
   #mobile-menu {
     display: none;
@@ -260,16 +263,14 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contatti/">Contatti</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
       </ul>
     </div>
   </div>
   <!-- Riga finale -->
   <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
-    © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+    &copy; 2026 Cristian Lecca &mdash; IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
   </div>
 </footer>
 ```
@@ -283,7 +284,7 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
 <footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <span class="font-label-md text-label-md text-on-surface-variant">
-      © 2026 Cristian Lecca — P.IVA IT12632010018
+      &copy; 2026 Cristian Lecca &mdash; P.IVA IT12632010018
     </span>
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
@@ -296,11 +297,10 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
 
 ---
 
-## SCRIPT JS — Menu mobile (inserire prima di </body>)
+## SCRIPT JS — Menu mobile + Scroll reveal (inserire prima di </body>)
 
 ```html
 <script>
-  // Menu mobile toggle
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('hamburger-icon');
@@ -316,8 +316,6 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
       icon.textContent = 'menu';
     });
   });
-
-  // Scroll reveal (.reveal)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
