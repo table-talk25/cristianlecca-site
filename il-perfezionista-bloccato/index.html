@@ -96,36 +96,80 @@
   .nav-logo:hover {
     filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
   }
-  .audio-player {
-    background: rgba(40,45,48,0.9);
-    border: 1px solid rgba(73,199,165,0.45);
-    border-radius: 16px;
-    padding: 20px 24px;
+
+  /* CUSTOM AUDIO PLAYER */
+  .custom-player {
+    background: #1d2022;
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
   }
-  .audio-player-blue {
-    background: rgba(40,45,48,0.9);
-    border: 1px solid rgba(58,99,255,0.45);
-    border-radius: 16px;
-    padding: 20px 24px;
-  }
-  audio {
-    width: 100%;
+  .custom-player .play-btn {
+    flex-shrink: 0;
+    width: 44px;
     height: 44px;
-    border-radius: 8px;
-    accent-color: #49C7A5;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, filter 0.15s ease;
   }
-  audio::-webkit-media-controls-panel {
-    background-color: #272a2d;
+  .custom-player .play-btn:hover { filter: brightness(1.15); transform: scale(1.05); }
+  .custom-player .play-btn:active { transform: scale(0.96); }
+  .custom-player .play-btn .material-symbols-outlined {
+    font-size: 1.5rem;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
+  .player-teal .play-btn { background: #49C7A5; color: #101416; }
+  .player-blue  .play-btn { background: #3A63FF; color: #ffffff; }
+
+  .custom-player .progress-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .custom-player .progress-bar {
+    position: relative;
+    height: 6px;
+    background: rgba(245,247,250,0.12);
+    border-radius: 99px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .custom-player .progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .player-teal .progress-fill { background: #49C7A5; }
+  .player-blue  .progress-fill { background: #3A63FF; }
+
+  .custom-player .time-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #F5F7FA;
+    letter-spacing: 0.03em;
+  }
+  .player-teal .time-row .accent { color: #49C7A5; }
+  .player-blue  .time-row .accent { color: #3A63FF; }
+
   .reveal {
     opacity: 0;
     transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body class="font-body-md text-body-md">
@@ -177,11 +221,20 @@
         <p class="font-body-md text-body-md text-on-surface-variant mb-6">
           In questo audio Cristian ti descrive con precisione il meccanismo del Perfezionista Bloccato — come si forma, come agisce, e perché nessuna quantità di disciplina riesce a scioglierlo dall'esterno.
         </p>
-        <div class="audio-player">
-          <audio controls preload="none">
-            <source src="http://cristianlecca.it/wp-content/uploads/2025/11/Audio-Profilo-22Il-Perfezionista-Bloccato22.mp3" type="audio/mpeg">
-            Il tuo browser non supporta l'audio HTML5.
-          </audio>
+        <!-- Player custom teal -->
+        <div class="custom-player player-teal" data-src="http://cristianlecca.it/wp-content/uploads/2025/11/Audio-Profilo-22Il-Perfezionista-Bloccato22.mp3">
+          <button class="play-btn" aria-label="Play / Pausa">
+            <span class="material-symbols-outlined play-icon">play_arrow</span>
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="time-row">
+              <span class="current-time accent">0:00</span>
+              <span class="duration">--:--</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -227,11 +280,20 @@
         <p class="font-body-md text-body-md text-on-surface-variant mb-6">
           <strong class="text-on-background">Come usarlo:</strong> ascoltalo per i prossimi 5 giorni consecutivi, preferibilmente la sera prima di dormire, in un ambiente tranquillo con le cuffie.
         </p>
-        <div class="audio-player-blue">
-          <audio controls preload="none">
-            <source src="http://cristianlecca.it/wp-content/uploads/2025/11/IPNOTICOAudio-22Il-Perfezionista-Bloccato22.mp3" type="audio/mpeg">
-            Il tuo browser non supporta l'audio HTML5.
-          </audio>
+        <!-- Player custom blu -->
+        <div class="custom-player player-blue" data-src="http://cristianlecca.it/wp-content/uploads/2025/11/IPNOTICOAudio-22Il-Perfezionista-Bloccato22.mp3">
+          <button class="play-btn" aria-label="Play / Pausa">
+            <span class="material-symbols-outlined play-icon">play_arrow</span>
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <div class="time-row">
+              <span class="current-time accent">0:00</span>
+              <span class="duration">--:--</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -247,9 +309,7 @@
           </div>
           <div class="flex-1 text-center md:text-left">
             <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest block mb-3">Guida PDF · Scarica gratis</span>
-            <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">
-              Dalla Mappa alla Strada
-            </h2>
+            <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">Dalla Mappa alla Strada</h2>
             <p class="font-body-md text-body-md text-on-surface-variant mb-6">
               La guida del Perfezionista Bloccato: un documento di lavoro pratico per iniziare a riconoscere i trigger del tuo pattern e i primi passi concreti per uscire dal loop. Da leggere e tenere vicino nei prossimi giorni.
             </p>
@@ -325,6 +385,7 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -334,6 +395,66 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Custom audio players
+  function formatTime(s) {
+    if (isNaN(s)) return '--:--';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+
+  document.querySelectorAll('.custom-player').forEach(player => {
+    const src = player.dataset.src;
+    const audio = new Audio(src);
+    const playBtn = player.querySelector('.play-btn');
+    const playIcon = player.querySelector('.play-icon');
+    const fill = player.querySelector('.progress-fill');
+    const bar = player.querySelector('.progress-bar');
+    const currentEl = player.querySelector('.current-time');
+    const durationEl = player.querySelector('.duration');
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      fill.style.width = pct + '%';
+      currentEl.textContent = formatTime(audio.currentTime);
+    });
+
+    audio.addEventListener('ended', () => {
+      playIcon.textContent = 'play_arrow';
+      fill.style.width = '0%';
+      currentEl.textContent = '0:00';
+    });
+
+    playBtn.addEventListener('click', () => {
+      // Pausa tutti gli altri player
+      document.querySelectorAll('.custom-player').forEach(other => {
+        if (other !== player) {
+          other._audio && other._audio.pause();
+          other.querySelector('.play-icon').textContent = 'play_arrow';
+        }
+      });
+      if (audio.paused) {
+        audio.play();
+        playIcon.textContent = 'pause';
+      } else {
+        audio.pause();
+        playIcon.textContent = 'play_arrow';
+      }
+    });
+
+    bar.addEventListener('click', (e) => {
+      const rect = bar.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+
+    player._audio = audio;
+  });
 </script>
 
 </body>
