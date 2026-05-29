@@ -151,13 +151,11 @@
     opacity: 1;
     transform: translateY(0);
   }
-  /* Spotify embed wrapper */
   .spotify-embed {
     border-radius: 16px;
     overflow: hidden;
     border: 1px solid rgba(61, 73, 68, 0.6);
   }
-  /* YouTube embed wrapper */
   .yt-embed-wrapper {
     position: relative;
     width: 100%;
@@ -245,9 +243,9 @@
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">
           Ogni settimana scompongo i limiti mentali più comuni attraverso le neuroscienze applicate e il mental coaching. Non è solo teoria, ma una guida pratica per chi vuole governare la propria mente invece di esserne governato.
         </p>
-        <!-- EMBED SPOTIFY — si aggiorna automaticamente ad ogni nuovo episodio -->
+        <!-- EMBED SPOTIFY — aggiornato dinamicamente via RSS all'ultimo episodio -->
         <div class="spotify-embed mb-10">
-          <iframe
+          <iframe id="spotify-iframe"
             src="https://open.spotify.com/embed/show/3sVLJasBELbvl1SAcAoOle?utm_source=generator&theme=0"
             width="100%" height="152"
             frameborder="0"
@@ -256,12 +254,16 @@
           </iframe>
         </div>
         <div class="flex flex-wrap gap-5">
-          <a href="https://open.spotify.com/show/3sVLJasBELbvl1SAcAoOle" target="_blank" rel="noopener"
+          <a id="btn-spotify-episode"
+             href="https://open.spotify.com/show/3sVLJasBELbvl1SAcAoOle"
+             target="_blank" rel="noopener"
              class="px-8 py-4 bg-primary text-on-primary font-label-md text-label-md rounded-xl flex items-center gap-3 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
             <span class="material-symbols-outlined">podcasts</span>
             Ascolta su Spotify
           </a>
-          <a href="https://www.youtube.com/@cristianlecca" target="_blank" rel="noopener"
+          <a id="btn-youtube-episode"
+             href="https://www.youtube.com/@cristianlecca"
+             target="_blank" rel="noopener"
              class="px-8 py-4 border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-label-md text-label-md rounded-xl flex items-center gap-3 transition-all">
             <span class="material-symbols-outlined">video_library</span>
             Guarda su YouTube
@@ -325,18 +327,19 @@
         Iscriviti su YouTube
       </a>
     </div>
-    <!-- EMBED YOUTUBE — mostra automaticamente gli ultimi video del canale -->
+    <!-- EMBED YOUTUBE — carica l'ultimo video pubblicato sul canale -->
     <div class="reveal">
-      <div class="yt-embed-wrapper">
-        <iframe
-          src="https://www.youtube.com/embed?listType=user_uploads&list=cristianlecca&rel=0&modestbranding=1"
-          title="Ultimi video di Cristian Lecca"
+      <div class="yt-embed-wrapper" id="yt-embed-container">
+        <!-- Popolato dinamicamente via RSS -->
+        <iframe id="yt-iframe"
+          src="https://www.youtube.com/embed?listType=user_uploads&list=@cristianlecca&rel=0&modestbranding=1"
+          title="Ultimo video di Cristian Lecca"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
           loading="lazy">
         </iframe>
       </div>
-      <p class="text-on-surface-variant/50 font-label-md text-xs text-center mt-4">I video si aggiornano automaticamente ad ogni nuova pubblicazione sul canale.</p>
+      <p class="text-on-surface-variant/50 font-label-md text-xs text-center mt-4">I contenuti si aggiornano automaticamente ad ogni nuova pubblicazione.</p>
     </div>
   </div>
 </section>
@@ -486,6 +489,7 @@
 </footer>
 
 <script>
+  /* ── Menu mobile ── */
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('hamburger-icon');
@@ -502,12 +506,64 @@
       icon.textContent = 'menu';
     });
   });
+
+  /* ── Scroll reveal ── */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── RSS dinamico: aggiorna bottoni e iframe all'ultimo episodio ── */
+  (async function loadLatestEpisode() {
+    const RSS_URL = 'https://anchor.fm/s/7001e01c/podcast/rss';
+    const PROXY   = 'https://api.allorigins.win/get?url=';
+
+    try {
+      const res  = await fetch(PROXY + encodeURIComponent(RSS_URL));
+      const data = await res.json();
+      const xml  = new DOMParser().parseFromString(data.contents, 'text/xml');
+      const item = xml.querySelector('item');
+      if (!item) return;
+
+      /* Titolo e link Spotify dell'episodio */
+      const title       = item.querySelector('title')?.textContent?.trim() || '';
+      const spotifyLink = item.querySelector('link')?.textContent?.trim()
+                       || item.querySelector('guid')?.textContent?.trim()
+                       || '';
+
+      /* Aggiorna bottone Spotify */
+      const btnSpotify = document.getElementById('btn-spotify-episode');
+      if (spotifyLink && spotifyLink.includes('spotify.com')) {
+        btnSpotify.href = spotifyLink;
+        /* Aggiorna anche l'iframe con l'ID dell'episodio */
+        const epMatch = spotifyLink.match(/episode\/([A-Za-z0-9]+)/);
+        if (epMatch) {
+          document.getElementById('spotify-iframe').src =
+            'https://open.spotify.com/embed/episode/' + epMatch[1] + '?utm_source=generator&theme=0';
+        }
+      }
+
+      /* Aggiorna bottone YouTube: cerca per titolo sul canale */
+      const btnYT = document.getElementById('btn-youtube-episode');
+      if (title) {
+        const ytSearch = 'https://www.youtube.com/@cristianlecca/search?query=' + encodeURIComponent(title);
+        btnYT.href = ytSearch;
+      }
+
+      /* Aggiorna embed YouTube: cerca l'ultimo video con il titolo nell'URL */
+      if (title) {
+        const ytIframe = document.getElementById('yt-iframe');
+        ytIframe.src = 'https://www.youtube.com/embed?listType=search&list=' +
+          encodeURIComponent(title + ' site:youtube.com/@cristianlecca') +
+          '&rel=0&modestbranding=1';
+      }
+
+    } catch (e) {
+      /* Fallback silenzioso: rimangono i link di default */
+    }
+  })();
 </script>
 </body>
 </html>
