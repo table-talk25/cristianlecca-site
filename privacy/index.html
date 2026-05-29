@@ -4,7 +4,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Privacy Policy | Cristian Lecca</title>
-<link rel="icon" type="image/png" href="/assets/favicon%201.png">
+<meta name="description" content="Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) per il sito cristianlecca.it e i servizi offerti da Cristian Lecca."/>
+<link rel="icon" type="image/png" href="/assets/favicon%201.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -14,36 +15,18 @@
     theme: {
       extend: {
         "colors": {
-          "background": "#101416",
-          "on-background": "#F5F7FA",
-          "surface": "#101416",
-          "on-surface": "#F5F7FA",
-          "primary": "#49C7A5",
-          "on-primary": "#101416",
-          "primary-container": "#49C7A5",
-          "on-primary-container": "#101416",
-          "primary-fixed-dim": "#60dbb8",
-          "secondary": "#3A63FF",
-          "on-secondary": "#FFFFFF",
-          "on-secondary-container": "#c1cbff",
-          "secondary-container": "#0543e3",
-          "tertiary": "#C9A45C",
-          "on-tertiary": "#101416",
-          "on-tertiary-container": "#5b4100",
-          "outline": "#86948e",
-          "outline-variant": "#3d4944",
-          "surface-container": "#1d2022",
-          "surface-container-low": "#191c1e",
-          "surface-container-high": "#272a2d",
-          "surface-container-highest": "#323538",
-          "surface-container-lowest": "#0b0f11",
-          "surface-dim": "#101416",
-          "surface-variant": "#323538",
-          "on-surface-variant": "#bccac3"
+          "background": "#101416", "on-background": "#F5F7FA", "surface": "#101416",
+          "on-surface": "#F5F7FA", "primary": "#49C7A5", "on-primary": "#101416",
+          "primary-container": "#49C7A5", "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8", "secondary": "#3A63FF", "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff", "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C", "on-tertiary": "#101416", "on-tertiary-container": "#5b4100",
+          "outline": "#86948e", "outline-variant": "#3d4944", "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e", "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538", "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416", "surface-variant": "#323538", "on-surface-variant": "#bccac3"
         },
-        "borderRadius": {
-          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
-        },
+        "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
         "spacing": {
           "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
           "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
@@ -67,94 +50,35 @@
   }
 </script>
 <style>
-  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-  .glass-card {
-    background: rgba(29,32,34,0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(245,247,250,0.1);
-    border-radius: 16px;
-    transition: all 0.3s ease-in-out;
-  }
-  .gradient-text {
-    background: linear-gradient(135deg, #49C7A5, #3A63FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .nav-logo {
-    filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25));
-    transition: filter 300ms ease;
-  }
-  .nav-logo:hover {
-    filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
-  }
-  #mobile-menu {
-    display: none; flex-direction: column; gap: 0;
-    background: #101416; border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 16px 24px 24px;
-  }
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
+  .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
+  .glass-card:hover { border-color: rgba(73,199,165,0.3); background: rgba(73,199,165,0.05); }
+  .gradient-text { background: linear-gradient(135deg, #49C7A5, #3A63FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .nav-logo { filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; }
+  .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  #mobile-menu { display: none; flex-direction: column; gap: 0; background: #101416; border-top: 1px solid rgba(255,255,255,0.08); padding: 16px 24px 24px; }
   #mobile-menu.open { display: flex; }
-  #mobile-menu a {
-    padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
-    color: #F5F7FA; font-size: 14px; font-weight: 600;
-    letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease;
-  }
-  #mobile-menu a:last-child {
-    border-bottom: none; margin-top: 12px; background: #49C7A5;
-    color: #101416; text-align: center; border-radius: 12px; padding: 14px 0;
-  }
+  #mobile-menu a { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); color: #F5F7FA; font-size: 14px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease; }
+  #mobile-menu a:last-child { border-bottom: none; margin-top: 12px; background: #49C7A5; color: #101416; text-align: center; border-radius: 12px; padding: 14px 0; }
   #mobile-menu a:hover { color: #49C7A5; }
   #mobile-menu a:last-child:hover { color: #101416; }
-  .policy-section h2 {
-    font-family: 'Manrope', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #F5F7FA;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .policy-section p, .policy-section li {
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #bccac3;
-    margin-bottom: 0.75rem;
-  }
-  .policy-section ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .policy-section ul li::before {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #49C7A5;
-    margin-right: 10px;
-    vertical-align: middle;
-    flex-shrink: 0;
-  }
-  .policy-section ul li {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 0;
-  }
-  a.policy-link {
-    color: #49C7A5;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  a.policy-link:hover { color: #60dbb8; }
+  /* Stili specifici pagine legali */
+  .legal-content h2 { font-family: 'Manrope', sans-serif; font-size: 24px; font-weight: 700; color: #F5F7FA; margin-top: 48px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #3d4944; }
+  .legal-content h3 { font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 600; color: #49C7A5; margin-top: 32px; margin-bottom: 12px; }
+  .legal-content p { color: #bccac3; font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+  .legal-content ul { color: #bccac3; font-size: 16px; line-height: 1.8; margin-bottom: 16px; padding-left: 0; list-style: none; }
+  .legal-content ul li { padding: 6px 0 6px 24px; position: relative; }
+  .legal-content ul li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; background: #49C7A5; border-radius: 50%; }
+  .legal-content a { color: #49C7A5; text-decoration: underline; text-underline-offset: 3px; }
+  .legal-content a:hover { color: #60dbb8; }
+  .legal-content strong { color: #F5F7FA; font-weight: 600; }
+  .info-box { background: rgba(73,199,165,0.06); border: 1px solid rgba(73,199,165,0.2); border-radius: 12px; padding: 20px 24px; margin-bottom: 24px; }
+  .info-box p { margin-bottom: 0; }
+  .toc-link { display: block; padding: 8px 0; color: #bccac3; font-size: 14px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; border-bottom: 1px solid rgba(61,73,68,0.4); transition: color 180ms ease; }
+  .toc-link:hover { color: #49C7A5; }
 </style>
 </head>
 <body class="font-body-md text-body-md">
@@ -187,161 +111,174 @@
   </div>
 </nav>
 
-<main class="pt-20">
+<main class="mt-20">
 
-  <!-- HERO -->
-  <section class="relative px-gutter py-16 md:py-24 text-center">
-    <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(circle at 50% 0%, rgba(73,199,165,0.06) 0%, rgba(16,20,22,1) 60%);"></div>
-    <div class="max-w-2xl mx-auto">
-      <span class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-md text-label-md tracking-widest uppercase mb-6">
-        Documento legale
+<!-- Hero legale -->
+<section class="px-gutter pt-16 pb-12 border-b border-outline-variant/20 bg-surface-container-low">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-6 reveal">
+      <a href="/" class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-1">
+        <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back</span> Home
+      </a>
+      <span class="text-outline">/</span>
+      <span class="text-primary font-label-md text-label-md">Privacy Policy</span>
+    </div>
+    <h1 class="font-display-lg-mobile text-display-lg-mobile mb-4 reveal">Privacy Policy</h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant reveal">Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) e del D.Lgs. 196/2003.</p>
+    <div class="flex flex-wrap gap-4 mt-8 reveal">
+      <span class="inline-flex items-center gap-2 text-primary font-label-md text-label-md">
+        <span class="material-symbols-outlined" style="font-size:1rem;">calendar_today</span>
+        Ultimo aggiornamento: 29 maggio 2026
       </span>
-      <h1 class="font-display-lg-mobile md:text-5xl font-extrabold text-on-background mb-4 leading-tight">
-        Privacy <span class="gradient-text">Policy</span>
-      </h1>
-      <p class="font-body-md text-body-md text-on-surface-variant">
-        Ultimo aggiornamento: <strong class="text-on-background">28 maggio 2026</strong>
-      </p>
+      <span class="inline-flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
+        <span class="material-symbols-outlined" style="font-size:1rem;">shield
+</span>
+        GDPR Compliant
+      </span>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTENUTO -->
-  <section class="px-gutter pb-24">
-    <div class="max-w-3xl mx-auto flex flex-col gap-6">
+<!-- Contenuto -->
+<section class="px-gutter py-16">
+  <div class="max-w-3xl mx-auto grid md:grid-cols-4 gap-12">
 
-      <!-- Intro -->
-      <div class="glass-card p-8">
-        <p class="font-body-md text-body-md text-on-surface-variant">
-          La presente Informativa sulla Privacy disciplina il trattamento dei dati personali degli utenti del sito <a href="https://cristianlecca.it" class="policy-link">cristianlecca.it</a> e di tutti i servizi offerti da <strong class="text-on-background">Cristian Lecca</strong>, titolare del brand <strong class="text-on-background">IpnosiApplicata</strong>.
-        </p>
-        <p class="font-body-md text-body-md text-on-surface-variant mt-4">
-          Ci impegniamo a proteggere la tua privacy in piena conformità al <strong class="text-on-background">Regolamento UE 2016/679 (GDPR)</strong> e alle normative italiane applicabili. Questa Policy può essere aggiornata; ti invitiamo a controllare periodicamente questa pagina.
-        </p>
+    <!-- Indice laterale (sticky su desktop) -->
+    <aside class="md:col-span-1 hidden md:block">
+      <div class="sticky top-28">
+        <p class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider">Indice</p>
+        <nav>
+          <a class="toc-link" href="#titolare">Titolare</a>
+          <a class="toc-link" href="#dati-raccolti">Dati raccolti</a>
+          <a class="toc-link" href="#finalita">Finalità</a>
+          <a class="toc-link" href="#base-legale">Base legale</a>
+          <a class="toc-link" href="#conservazione">Conservazione</a>
+          <a class="toc-link" href="#condivisione">Condivisione</a>
+          <a class="toc-link" href="#cookie">Cookie</a>
+          <a class="toc-link" href="#terze-parti">Terze parti</a>
+          <a class="toc-link" href="#diritti">I tuoi diritti</a>
+          <a class="toc-link" href="#minori">Minori</a>
+          <a class="toc-link" href="#modifiche">Modifiche</a>
+          <a class="toc-link" href="#contatti">Contatti</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Testo -->
+    <div class="md:col-span-3 legal-content">
+
+      <div class="info-box reveal">
+        <p>Questa Informativa descrive come <strong>Cristian Lecca</strong>, titolare del sito <strong>cristianlecca.it</strong> e del brand <strong>IpnosiApplicata</strong>, raccoglie, utilizza e protegge i dati personali degli utenti che visitano il Sito o utilizzano i servizi offerti, inclusi quiz online, newsletter, audio ipnotici personalizzati e sessioni di coaching. La presente Policy è redatta in conformità al <strong>Regolamento UE 2016/679 (GDPR)</strong> e al <strong>D.Lgs. 196/2003 (Codice Privacy)</strong> come modificato dal D.Lgs. 101/2018.</p>
       </div>
 
-      <!-- Titolare -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">person</span> Titolare del trattamento</h2>
-        <p>Il Titolare del trattamento dei dati personali è:</p>
-        <ul>
-          <li><span><strong class="text-on-background">Nome:</strong> Cristian Lecca</span></li>
-          <li><span><strong class="text-on-background">Brand:</strong> IpnosiApplicata</span></li>
-          <li><span><strong class="text-on-background">Sede:</strong> Gallio (VI), Italia</span></li>
-          <li><span><strong class="text-on-background">P.IVA:</strong> IT12632010018</span></li>
-          <li><span><strong class="text-on-background">Email:</strong> <a href="mailto:info@cristianlecca.it" class="policy-link">info@cristianlecca.it</a></span></li>
-        </ul>
+      <h2 id="titolare">1. Titolare del trattamento</h2>
+      <p>Il Titolare del trattamento dei dati personali è:</p>
+      <ul>
+        <li><strong>Cristian Lecca</strong></li>
+        <li>Sede: Gallio (VI), Italia</li>
+        <li>Email: <a href="mailto:info@cristianlecca.it">info@cristianlecca.it</a></li>
+        <li>Sito web: <a href="https://cristianlecca.it">cristianlecca.it</a></li>
+      </ul>
+      <p>Per qualsiasi questione relativa al trattamento dei tuoi dati personali puoi contattare il Titolare in qualsiasi momento all'indirizzo email sopra indicato.</p>
+
+      <h2 id="dati-raccolti">2. Dati personali raccolti</h2>
+      <p>Il Sito raccoglie dati personali in modo diretto (forniti volontariamente dall'utente) e indiretto (raccolti automaticamente durante la navigazione).</p>
+
+      <h3>Dati forniti volontariamente</h3>
+      <ul>
+        <li><strong>Dati identificativi:</strong> nome, cognome, indirizzo email.</li>
+        <li><strong>Dati del quiz:</strong> risposte alle domande del Quiz del Coraggio, utili per la profilazione del percorso di crescita personale.</li>
+        <li><strong>Dati di contatto:</strong> informazioni inserite nel form di prenotazione della Sessione di Svolta o di contatto generale.</li>
+        <li><strong>Dati di pagamento:</strong> gestiti direttamente da provider terzi certificati (es. Stripe, Systeme.io) — il Sito non memorizza dati di carte di credito.</li>
+        <li><strong>Dati aggiuntivi:</strong> in alcuni servizi, informazioni opzionali quali età, professione o area di interesse, per personalizzare l'esperienza (es. profili di crescita personale).</li>
+      </ul>
+
+      <h3>Dati raccolti automaticamente</h3>
+      <ul>
+        <li><strong>Dati di navigazione:</strong> indirizzo IP, tipo di browser, dispositivo, sistema operativo, pagine visitate, durata della sessione, URL di provenienza.</li>
+        <li><strong>Cookie e tecnologie di tracciamento:</strong> descritti in dettaglio nella <a href="/cookie/">Cookie Policy</a>.</li>
+      </ul>
+      <p>Gli utenti possono visitare il Sito senza fornire dati personali. Il rifiuto a fornire determinati dati potrà limitare l'accesso a specifici servizi (es. iscrizione alla newsletter, partecipazione al quiz).</p>
+
+      <h2 id="finalita">3. Finalità del trattamento</h2>
+      <p>I dati personali raccolti sono trattati per le seguenti finalità:</p>
+      <ul>
+        <li><strong>Erogazione dei servizi richiesti:</strong> elaborazione del quiz, invio di audio ipnotici personalizzati, gestione delle sessioni di coaching, invio della newsletter.</li>
+        <li><strong>Comunicazioni di servizio:</strong> risposte a richieste di contatto, conferme di prenotazione, aggiornamenti sui servizi acquistati.</li>
+        <li><strong>Analisi e miglioramento del Sito:</strong> analisi aggregata del traffico e del comportamento degli utenti per ottimizzare contenuti e usabilità.</li>
+        <li><strong>Marketing e comunicazioni promozionali:</strong> solo previo consenso esplicito, invio di newsletter, promozioni relative a coaching, corsi o eventi.</li>
+        <li><strong>Adempimenti legali:</strong> rispetto degli obblighi di legge, risposta a richieste delle autorità competenti.</li>
+      </ul>
+
+      <h2 id="base-legale">4. Base legale del trattamento</h2>
+      <ul>
+        <li><strong>Consenso dell'interessato (art. 6, par. 1, lett. a GDPR):</strong> per l'iscrizione alla newsletter, la partecipazione al quiz, la ricezione di comunicazioni marketing e l'utilizzo di cookie non tecnici.</li>
+        <li><strong>Esecuzione di un contratto (art. 6, par. 1, lett. b GDPR):</strong> per l'erogazione dei servizi richiesti (sessioni di coaching, audio personalizzati, corsi).</li>
+        <li><strong>Legittimo interesse del Titolare (art. 6, par. 1, lett. f GDPR):</strong> per l'analisi aggregata e anonima del traffico al fine di migliorare il Sito.</li>
+        <li><strong>Obbligo legale (art. 6, par. 1, lett. c GDPR):</strong> per adempiere a obblighi fiscali, contabili o normativi.</li>
+      </ul>
+
+      <h2 id="conservazione">5. Periodo di conservazione</h2>
+      <ul>
+        <li><strong>Dati della newsletter:</strong> fino alla revoca del consenso (unsubscribe).</li>
+        <li><strong>Dati del quiz:</strong> conservati per il tempo necessario all'erogazione del servizio richiesto e, salvo diverso consenso, per un massimo di 24 mesi.</li>
+        <li><strong>Dati di prenotazione/sessioni:</strong> per tutta la durata del rapporto contrattuale e per i successivi 10 anni per obblighi fiscali e contabili.</li>
+        <li><strong>Dati di navigazione e cookie analitici:</strong> secondo le impostazioni specifiche dei singoli strumenti (v. Cookie Policy); in genere non oltre 26 mesi.</li>
+      </ul>
+      <p>Trascorsi i termini di conservazione, i dati vengono cancellati o anonimizzati in modo irreversibile.</p>
+
+      <h2 id="condivisione">6. Condivisione dei dati</h2>
+      <p>Il Titolare non vende, affitta né cede a terzi i dati personali degli utenti a fini commerciali. I dati possono essere condivisi esclusivamente nelle seguenti circostanze:</p>
+      <ul>
+        <li><strong>Provider tecnici e di servizio:</strong> soggetti che trattano i dati per conto del Titolare come Responsabili del trattamento (es. Systeme.io per form, email e gestione quiz; provider di hosting; strumenti di email marketing). Tutti i provider sono selezionati nel rispetto del GDPR e operano sulla base di appositi accordi contrattuali.</li>
+        <li><strong>Strumenti analitici:</strong> Google Analytics (con anonimizzazione dell'IP attiva) per statistiche aggregate e anonime.</li>
+        <li><strong>Autorità competenti:</strong> in caso di obbligo legale, richiesta dell'autorità giudiziaria o per la tutela di diritti del Titolare.</li>
+      </ul>
+      <p>I dati non vengono trasferiti al di fuori dello Spazio Economico Europeo (SEE), salvo che verso paesi che garantiscono un livello di protezione adeguato o in presenza di garanzie appropriate (es. Clausole Contrattuali Standard).</p>
+
+      <h2 id="cookie">7. Cookie e tecnologie di tracciamento</h2>
+      <p>Il Sito utilizza cookie e tecnologie similari per migliorare l'esperienza di navigazione, analizzare il traffico e integrare servizi di terze parti. Per informazioni dettagliate sui tipi di cookie utilizzati, le finalità e le modalità di gestione del consenso, consulta la <a href="/cookie/">Cookie Policy</a>.</p>
+
+      <h2 id="terze-parti">8. Link e servizi di terze parti</h2>
+      <p>Il Sito può contenere link a siti web e servizi di terze parti (es. piattaforme social, Calendly per prenotazioni, YouTube per contenuti video). Il Titolare non è responsabile delle pratiche privacy di tali soggetti e ti invita a consultare le relative informative prima di fornire dati personali. I principali servizi di terze parti integrati sono:</p>
+      <ul>
+        <li><strong>Systeme.io:</strong> gestione form, email e quiz — <a href="https://systeme.io/privacy-policy" target="_blank" rel="noopener">Privacy Policy Systeme.io</a></li>
+        <li><strong>Google Analytics:</strong> analisi traffico — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy Google</a></li>
+        <li><strong>YouTube:</strong> contenuti video embedded — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy Google/YouTube</a></li>
+      </ul>
+
+      <h2 id="diritti">9. I tuoi diritti</h2>
+      <p>Ai sensi degli articoli 15–22 del GDPR, hai il diritto di:</p>
+      <ul>
+        <li><strong>Accesso (art. 15):</strong> ottenere conferma che sia in corso un trattamento di dati che ti riguardano e riceverne copia.</li>
+        <li><strong>Rettifica (art. 16):</strong> chiedere la correzione di dati inesatti o incompleti.</li>
+        <li><strong>Cancellazione (art. 17):</strong> chiedere la cancellazione dei tuoi dati (diritto all'oblio), nei casi previsti dalla normativa.</li>
+        <li><strong>Limitazione (art. 18):</strong> chiedere la limitazione del trattamento in determinati casi.</li>
+        <li><strong>Portabilità (art. 20):</strong> ricevere i tuoi dati in formato strutturato e leggibile da dispositivo automatico.</li>
+        <li><strong>Opposizione (art. 21):</strong> opporti al trattamento basato sul legittimo interesse o per finalità di marketing diretto.</li>
+        <li><strong>Revoca del consenso:</strong> revocare in qualsiasi momento il consenso prestato, senza pregiudicare la liceità del trattamento precedente alla revoca.</li>
+      </ul>
+      <p>Per esercitare i tuoi diritti, scrivi a <a href="mailto:info@cristianlecca.it">info@cristianlecca.it</a>. Il Titolare risponderà entro 30 giorni dalla ricezione della richiesta. Hai inoltre il diritto di proporre reclamo all'<strong>Autorità Garante per la Protezione dei Dati Personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">www.garanteprivacy.it</a>).</p>
+
+      <h2 id="minori">10. Minori</h2>
+      <p>I servizi offerti tramite il Sito sono destinati a persone maggiorenni (18 anni o più). Il Titolare non raccoglie consapevolmente dati personali di minori. Se ritieni che un minore abbia fornito dati senza il consenso dei genitori, contattaci immediatamente a <a href="mailto:info@cristianlecca.it">info@cristianlecca.it</a> e provvederemo alla cancellazione.</p>
+
+      <h2 id="modifiche">11. Modifiche alla Privacy Policy</h2>
+      <p>Il Titolare si riserva il diritto di aggiornare la presente Policy in qualsiasi momento, in particolare a seguito di modifiche normative o nell'ambito dei servizi offerti. Le modifiche saranno comunicate aggiornando la data in fondo a questa pagina. Ti invitiamo a consultare periodicamente questa sezione. L'uso continuato del Sito dopo la pubblicazione delle modifiche implica l'accettazione delle stesse.</p>
+
+      <h2 id="contatti">12. Contatti</h2>
+      <div class="info-box">
+        <p>Per qualsiasi domanda, richiesta di informazioni o esercizio dei diritti previsti dal GDPR:</p>
+        <p><strong>Email:</strong> <a href="mailto:info@cristianlecca.it">info@cristianlecca.it</a><br/>
+        <strong>Titolare:</strong> Cristian Lecca — Gallio (VI), Italia<br/>
+        <strong>P.IVA:</strong> IT12632010018</p>
       </div>
 
-      <!-- Dati raccolti -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">data_object</span> Dati raccolti</h2>
-        <p>Raccogliamo informazioni personali in diversi contesti:</p>
-        <ul>
-          <li><span><strong class="text-on-background">Quiz del Coraggio:</strong> nome, indirizzo email, risposte al questionario per la generazione del profilo personale.</span></li>
-          <li><span><strong class="text-on-background">Newsletter:</strong> nome e indirizzo email per l'invio di comunicazioni periodiche su ipnosi, coaching e trasformazione personale.</span></li>
-          <li><span><strong class="text-on-background">Reset Notturno:</strong> dati di acquisto e indirizzo email per la consegna dei contenuti audio.</span></li>
-          <li><span><strong class="text-on-background">Sessione di Svolta:</strong> nome, email e informazioni fornite nel form di prenotazione.</span></li>
-          <li><span><strong class="text-on-background">Navigazione:</strong> dati tecnici anonimi (indirizzo IP, browser, dispositivo, pagine visitate, durata della sessione) raccolti tramite strumenti analitici.</span></li>
-        </ul>
-        <p class="mt-4">Puoi visitare il sito in forma anonima. Fornire dati personali è volontario, ma necessario per accedere a determinati servizi.</p>
-      </div>
-
-      <!-- Basi legali -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">gavel</span> Basi legali del trattamento</h2>
-        <ul>
-          <li><span><strong class="text-on-background">Consenso (art. 6.1.a GDPR):</strong> per newsletter, quiz e comunicazioni di marketing, previa raccolta di consenso esplicito.</span></li>
-          <li><span><strong class="text-on-background">Esecuzione di un contratto (art. 6.1.b GDPR):</strong> per la gestione di acquisti (es. Reset Notturno) e prenotazioni (es. Sessione di Svolta).</span></li>
-          <li><span><strong class="text-on-background">Legittimo interesse (art. 6.1.f GDPR):</strong> per l'analisi aggregata e anonima del traffico, al fine di migliorare i contenuti e l'esperienza del sito.</span></li>
-          <li><span><strong class="text-on-background">Obbligo legale (art. 6.1.c GDPR):</strong> per adempiere a obblighi fiscali, contabili o richieste di autorità competenti.</span></li>
-        </ul>
-      </div>
-
-      <!-- Finalità -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">task_alt</span> Come utilizziamo i tuoi dati</h2>
-        <ul>
-          <li><span>Elaborare il tuo profilo dal Quiz del Coraggio e inviarti i contenuti personalizzati (audio ipnotico, guida PDF).</span></li>
-          <li><span>Gestire la tua iscrizione alla newsletter e inviarti aggiornamenti, approfondimenti e offerte riservate.</span></li>
-          <li><span>Processare l'acquisto del Reset Notturno e consegnare i contenuti acquistati.</span></li>
-          <li><span>Gestire la prenotazione e la conferma della Sessione di Svolta.</span></li>
-          <li><span>Rispondere a richieste di contatto o assistenza.</span></li>
-          <li><span>Analizzare il comportamento di navigazione in forma aggregata per migliorare il sito.</span></li>
-          <li><span>Adempiere a obblighi legali e fiscali.</span></li>
-        </ul>
-      </div>
-
-      <!-- Terze parti -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">share</span> Condivisione con terze parti</h2>
-        <p>Non vendiamo, affittiamo né cediamo i tuoi dati personali a terzi a fini commerciali. I dati possono essere condivisi esclusivamente con:</p>
-        <ul>
-          <li><span><strong class="text-on-background">Systeme.io:</strong> piattaforma utilizzata per la gestione di form, quiz, email e funnel di vendita. <a href="https://systeme.io/privacy-policy" class="policy-link" target="_blank" rel="noopener">Privacy Policy Systeme.io</a></span></li>
-          <li><span><strong class="text-on-background">Google Analytics:</strong> strumento di analisi del traffico web, configurato in modalità anonimizzata. <a href="https://policies.google.com/privacy" class="policy-link" target="_blank" rel="noopener">Privacy Policy Google</a></span></li>
-          <li><span><strong class="text-on-background">MailPoet / provider email:</strong> per la gestione delle comunicazioni via newsletter.</span></li>
-          <li><span><strong class="text-on-background">Autorità competenti:</strong> in caso di obbligo legale o richiesta da parte delle autorità giudiziarie o fiscali.</span></li>
-        </ul>
-        <p class="mt-4">Tutti i fornitori sono selezionati con cura e trattano i dati esclusivamente per le finalità indicate, in qualità di Responsabili del trattamento ai sensi dell'art. 28 GDPR.</p>
-      </div>
-
-      <!-- Conservazione -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">schedule</span> Conservazione dei dati</h2>
-        <ul>
-          <li><span><strong class="text-on-background">Dati newsletter:</strong> conservati fino alla revoca del consenso (unsubscribe).</span></li>
-          <li><span><strong class="text-on-background">Dati quiz e profili:</strong> conservati per il tempo necessario all'erogazione del servizio, salvo diverso accordo.</span></li>
-          <li><span><strong class="text-on-background">Dati di acquisto:</strong> conservati per 10 anni in conformità agli obblighi fiscali italiani.</span></li>
-          <li><span><strong class="text-on-background">Dati analitici:</strong> aggregati e anonimi, conservati secondo le policy dei tool di terze parti (es. Google Analytics: 26 mesi).</span></li>
-        </ul>
-      </div>
-
-      <!-- I tuoi diritti -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">shield_person</span> I tuoi diritti</h2>
-        <p>Ai sensi del GDPR (artt. 15-22), hai il diritto di:</p>
-        <ul>
-          <li><span><strong class="text-on-background">Accesso:</strong> ottenere conferma del trattamento e copia dei tuoi dati.</span></li>
-          <li><span><strong class="text-on-background">Rettifica:</strong> correggere dati inesatti o incompleti.</span></li>
-          <li><span><strong class="text-on-background">Cancellazione ("diritto all'oblio"):</strong> richiedere la cancellazione dei tuoi dati, salvo obblighi legali.</span></li>
-          <li><span><strong class="text-on-background">Limitazione:</strong> richiedere la sospensione del trattamento in determinati casi.</span></li>
-          <li><span><strong class="text-on-background">Portabilità:</strong> ricevere i tuoi dati in formato strutturato e leggibile da macchina.</span></li>
-          <li><span><strong class="text-on-background">Opposizione:</strong> opporti al trattamento basato su legittimo interesse.</span></li>
-          <li><span><strong class="text-on-background">Revoca del consenso:</strong> in qualsiasi momento, senza pregiudizio per la liceità del trattamento precedente.</span></li>
-        </ul>
-        <p class="mt-4">Per esercitare i tuoi diritti, scrivi a <a href="mailto:info@cristianlecca.it" class="policy-link">info@cristianlecca.it</a>. Risponderemo entro 30 giorni. Hai inoltre il diritto di presentare reclamo al <strong class="text-on-background">Garante per la Protezione dei Dati Personali</strong>: <a href="https://www.garanteprivacy.it" class="policy-link" target="_blank" rel="noopener">www.garanteprivacy.it</a>.</p>
-      </div>
-
-      <!-- Cookie -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">cookie</span> Cookie e tecnologie di tracciamento</h2>
-        <p>Il sito utilizza cookie e tecnologie simili. Per una descrizione completa dei cookie utilizzati, delle loro finalità e di come gestirli, consulta la nostra <a href="/cookie/" class="policy-link">Cookie Policy</a>.</p>
-      </div>
-
-      <!-- Link esterni -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">open_in_new</span> Siti web di terze parti</h2>
-        <p>Il sito può contenere link a siti esterni (social media, Calendly per prenotazioni, piattaforme di pagamento). Questi siti sono indipendenti e non sono sotto il nostro controllo. Non siamo responsabili delle loro pratiche in materia di privacy. Ti invitiamo a consultare le rispettive informative prima di fornire dati personali.</p>
-      </div>
-
-      <!-- Modifiche -->
-      <div class="glass-card p-8 policy-section">
-        <h2><span class="material-symbols-outlined text-primary" style="font-size:1.25rem;">update</span> Modifiche a questa Policy</h2>
-        <p>Possiamo aggiornare questa Privacy Policy in qualsiasi momento. La data di ultimo aggiornamento è sempre indicata in cima alla pagina. Ti invitiamo a consultarla periodicamente. L'uso continuato del sito dopo la pubblicazione di modifiche implica l'accettazione delle stesse.</p>
-      </div>
-
-      <!-- Contatti -->
-      <div class="glass-card p-8 text-center" style="border-color: rgba(73,199,165,0.2); background: rgba(73,199,165,0.04);">
-        <span class="material-symbols-outlined text-primary mb-4" style="font-size:2rem;">mail</span>
-        <h2 class="font-headline-md text-xl text-on-background mb-2">Hai domande sulla tua privacy?</h2>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-6">Scrivici direttamente. Risponderemo con chiarezza entro 30 giorni.</p>
-        <a href="mailto:info@cristianlecca.it" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md text-label-md px-7 py-3.5 rounded-full hover:brightness-110 active:scale-95 transition-all">
-          <span class="material-symbols-outlined" style="font-size:1rem;">mail</span>
-          info@cristianlecca.it
-        </a>
-      </div>
+      <p class="text-on-surface-variant" style="font-size:13px; margin-top: 48px;">Data ultimo aggiornamento: 29 maggio 2026</p>
 
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
@@ -349,7 +286,9 @@
 <footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
     <div class="space-y-4">
-      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
+      <div class="flex items-center gap-2">
+        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
+      </div>
       <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
     </div>
     <div>
@@ -372,7 +311,7 @@
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
+        <li><a class="text-primary font-semibold" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
       </ul>
     </div>
@@ -398,7 +337,12 @@
       icon.textContent = 'menu';
     });
   });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-
 </body>
 </html>
