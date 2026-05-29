@@ -243,9 +243,9 @@
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">
           Ogni settimana scompongo i limiti mentali più comuni attraverso le neuroscienze applicate e il mental coaching. Non è solo teoria, ma una guida pratica per chi vuole governare la propria mente invece di esserne governato.
         </p>
-        <!-- EMBED SPOTIFY — aggiornato dinamicamente via RSS all'ultimo episodio -->
+        <!-- EMBED SPOTIFY — show stabile, sempre aggiornato all'ultimo episodio -->
         <div class="spotify-embed mb-10">
-          <iframe id="spotify-iframe"
+          <iframe
             src="https://open.spotify.com/embed/show/3sVLJasBELbvl1SAcAoOle?utm_source=generator&theme=0"
             width="100%" height="152"
             frameborder="0"
@@ -254,15 +254,15 @@
           </iframe>
         </div>
         <div class="flex flex-wrap gap-5">
-          <a id="btn-spotify-episode"
+          <a id="btn-spotify"
              href="https://open.spotify.com/show/3sVLJasBELbvl1SAcAoOle"
              target="_blank" rel="noopener"
              class="px-8 py-4 bg-primary text-on-primary font-label-md text-label-md rounded-xl flex items-center gap-3 hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20">
             <span class="material-symbols-outlined">podcasts</span>
             Ascolta su Spotify
           </a>
-          <a id="btn-youtube-episode"
-             href="https://www.youtube.com/@cristianlecca"
+          <a id="btn-youtube"
+             href="https://www.youtube.com/channel/UCBzeXGC4z9nOvYIGUMoX9bQ"
              target="_blank" rel="noopener"
              class="px-8 py-4 border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-label-md text-label-md rounded-xl flex items-center gap-3 transition-all">
             <span class="material-symbols-outlined">video_library</span>
@@ -321,18 +321,17 @@
         <p class="font-label-md text-label-md text-secondary tracking-widest uppercase mb-4">Video &amp; Insight curati</p>
         <h2 class="font-headline-lg text-headline-lg">Contenuti in Evidenza</h2>
       </div>
-      <a href="https://www.youtube.com/@cristianlecca" target="_blank" rel="noopener"
+      <a href="https://www.youtube.com/channel/UCBzeXGC4z9nOvYIGUMoX9bQ" target="_blank" rel="noopener"
          class="px-8 py-3 bg-red-600 text-white font-label-md text-label-md rounded-xl flex items-center gap-2 hover:bg-red-700 hover:scale-105 transition-all shadow-lg shadow-red-600/20">
         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
         Iscriviti su YouTube
       </a>
     </div>
-    <!-- EMBED YOUTUBE — carica l'ultimo video pubblicato sul canale -->
+    <!-- EMBED YOUTUBE — aggiornato dinamicamente con l'ultimo video via RSS -->
     <div class="reveal">
-      <div class="yt-embed-wrapper" id="yt-embed-container">
-        <!-- Popolato dinamicamente via RSS -->
+      <div class="yt-embed-wrapper">
         <iframe id="yt-iframe"
-          src="https://www.youtube.com/embed?listType=user_uploads&list=@cristianlecca&rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/videoseries?list=UUBzeXGC4z9nOvYIGUMoX9bQ&rel=0&modestbranding=1"
           title="Ultimo video di Cristian Lecca"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
@@ -515,53 +514,41 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ── RSS dinamico: aggiorna bottoni e iframe all'ultimo episodio ── */
-  (async function loadLatestEpisode() {
-    const RSS_URL = 'https://anchor.fm/s/7001e01c/podcast/rss';
-    const PROXY   = 'https://api.allorigins.win/get?url=';
+  /* ── RSS YouTube nativo: aggiorna bottone e iframe con l'ultimo video ──
+     Feed pubblico, nessun proxy necessario, nessuna API key richiesta.
+     Formato: youtube.com/feeds/videos.xml?channel_id=UCxxx
+     Nota: richiede un piccolo trick CORS — usiamo fetch in no-cors + fallback,
+     oppure leggiamo via DOMParser dopo fetch con cors:"no-cors" non leggibile.
+     Soluzione affidabile: fetch tramite endpoint rss2json gratuito (no auth required).
+  */
+  (async function loadLatestYouTubeVideo() {
+    const CHANNEL_ID = 'UCBzeXGC4z9nOvYIGUMoX9bQ';
+    const RSS_YT     = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+    const API_URL    = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS_YT);
 
     try {
-      const res  = await fetch(PROXY + encodeURIComponent(RSS_URL));
+      const res  = await fetch(API_URL);
       const data = await res.json();
-      const xml  = new DOMParser().parseFromString(data.contents, 'text/xml');
-      const item = xml.querySelector('item');
-      if (!item) return;
+      if (data.status !== 'ok' || !data.items || !data.items.length) return;
 
-      /* Titolo e link Spotify dell'episodio */
-      const title       = item.querySelector('title')?.textContent?.trim() || '';
-      const spotifyLink = item.querySelector('link')?.textContent?.trim()
-                       || item.querySelector('guid')?.textContent?.trim()
-                       || '';
+      const latest  = data.items[0];
+      /* L'ID del video è nell'ultimo segmento del guid/link */
+      const videoId = latest.guid
+        ? latest.guid.replace('yt:video:', '')
+        : (latest.link.match(/v=([^&]+)/) || [])[1];
 
-      /* Aggiorna bottone Spotify */
-      const btnSpotify = document.getElementById('btn-spotify-episode');
-      if (spotifyLink && spotifyLink.includes('spotify.com')) {
-        btnSpotify.href = spotifyLink;
-        /* Aggiorna anche l'iframe con l'ID dell'episodio */
-        const epMatch = spotifyLink.match(/episode\/([A-Za-z0-9]+)/);
-        if (epMatch) {
-          document.getElementById('spotify-iframe').src =
-            'https://open.spotify.com/embed/episode/' + epMatch[1] + '?utm_source=generator&theme=0';
-        }
-      }
+      if (!videoId) return;
 
-      /* Aggiorna bottone YouTube: cerca per titolo sul canale */
-      const btnYT = document.getElementById('btn-youtube-episode');
-      if (title) {
-        const ytSearch = 'https://www.youtube.com/@cristianlecca/search?query=' + encodeURIComponent(title);
-        btnYT.href = ytSearch;
-      }
+      /* Aggiorna embed YouTube con il video specifico */
+      document.getElementById('yt-iframe').src =
+        'https://www.youtube.com/embed/' + videoId + '?rel=0&modestbranding=1';
 
-      /* Aggiorna embed YouTube: cerca l'ultimo video con il titolo nell'URL */
-      if (title) {
-        const ytIframe = document.getElementById('yt-iframe');
-        ytIframe.src = 'https://www.youtube.com/embed?listType=search&list=' +
-          encodeURIComponent(title + ' site:youtube.com/@cristianlecca') +
-          '&rel=0&modestbranding=1';
-      }
+      /* Aggiorna bottone “Guarda su YouTube” con il link diretto al video */
+      document.getElementById('btn-youtube').href =
+        'https://www.youtube.com/watch?v=' + videoId;
 
     } catch (e) {
-      /* Fallback silenzioso: rimangono i link di default */
+      /* Fallback silenzioso: iframe e bottone restano al canale */
     }
   })();
 </script>
