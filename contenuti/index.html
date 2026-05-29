@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-CONTENUTO_PLACEHOLDER
-=======
-=======
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Podcast &amp; Contenuti | Cristian Lecca — Hypno Mental Coach</title>
-<link rel="icon" type="image/png" href="/assets/favicon%201.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/faviconCL.png"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -94,7 +88,6 @@ CONTENUTO_PLACEHOLDER
   }
   .nav-logo { height: 36px; width: auto; filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; display: block; }
   .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
-  /* Menu mobile canonico */
   #mobile-menu {
     display: none;
     flex-direction: column;
@@ -125,8 +118,6 @@ CONTENUTO_PLACEHOLDER
   }
   #mobile-menu a:hover { color: #49C7A5; }
   #mobile-menu a:last-child:hover { color: #101416; }
-
-  /* Contenuto pagina */
   .mental-module {
     background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%);
     position: relative;
@@ -164,7 +155,7 @@ CONTENUTO_PLACEHOLDER
 </head>
 <body class="font-body-md text-body-md">
 
-<!-- ========== NAV CANONICO ========== -->
+<!-- NAV CANONICO -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
     <a class="flex items-center" href="/">
@@ -176,9 +167,7 @@ CONTENUTO_PLACEHOLDER
       <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/contenuti/">Contenuti</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
-      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">
-        Fai il Quiz del Coraggio
-      </a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
     </div>
     <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
       <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
@@ -196,7 +185,7 @@ CONTENUTO_PLACEHOLDER
 
 <main class="mt-20">
 
-<!-- ========== HERO ========== -->
+<!-- HERO -->
 <section class="relative hero-gradient px-gutter py-section-v-mobile md:py-section-v-desktop">
   <div class="max-w-container-max mx-auto text-center max-w-4xl reveal">
     <span class="font-label-md text-label-md text-primary tracking-widest uppercase mb-6 block">PODCAST &amp; CONTENUTI</span>
@@ -219,7 +208,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== PODCAST ========== -->
+<!-- PODCAST -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
   <div class="max-w-container-max mx-auto">
     <div class="mental-module rounded-3xl p-8 md:p-16 flex flex-col lg:flex-row gap-16 items-center border border-outline-variant shadow-2xl reveal">
@@ -262,7 +251,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== DA DOVE INIZIARE ========== -->
+<!-- DA DOVE INIZIARE -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
   <div class="max-w-container-max mx-auto">
     <div class="text-center mb-16 reveal">
@@ -273,41 +262,26 @@ CONTENUTO_PLACEHOLDER
       <div class="glass-card feature-card p-10 rounded-3xl border border-outline-variant reveal">
         <span class="material-symbols-outlined text-secondary text-5xl mb-6 block">lock_open</span>
         <h3 class="font-headline-md text-headline-md mb-4">Se senti di essere bloccato</h3>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">
-          Identifica i loop mentali e le barriere invisibili che ti impediscono di progredire nella carriera o nella vita privata.
-        </p>
-        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">
-          Vai alla selezione
-          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-        </a>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">Identifica i loop mentali e le barriere invisibili che ti impediscono di progredire nella carriera o nella vita privata.</p>
+        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">Vai alla selezione <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
       </div>
       <div class="glass-card feature-card p-10 rounded-3xl border border-outline-variant reveal">
         <span class="material-symbols-outlined text-primary text-5xl mb-6 block">forum</span>
         <h3 class="font-headline-md text-headline-md mb-4">Se vuoi capire il tuo dialogo interiore</h3>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">
-          Impara ad ascoltare e trasformare quella voce critica in un alleato strategico per il tuo successo quotidiano.
-        </p>
-        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">
-          Esplora i contenuti
-          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-        </a>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">Impara ad ascoltare e trasformare quella voce critica in un alleato strategico per il tuo successo quotidiano.</p>
+        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">Esplora i contenuti <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
       </div>
       <div class="glass-card feature-card p-10 rounded-3xl border border-outline-variant reveal">
         <span class="material-symbols-outlined text-tertiary text-5xl mb-6 block">bolt</span>
         <h3 class="font-headline-md text-headline-md mb-4">Se vuoi iniziare un cambiamento concreto</h3>
-        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">
-          Piccoli passi per riprogrammare le tue abitudini e la tua risposta emotiva allo stress.
-        </p>
-        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">
-          Inizia ora
-          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-        </a>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-1">Piccoli passi per riprogrammare le tue abitudini e la tua risposta emotiva allo stress.</p>
+        <a class="text-primary font-label-md text-label-md flex items-center gap-2 group" href="#">Inizia ora <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== VIDEO / YOUTUBE ========== -->
+<!-- VIDEO / YOUTUBE -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low border-y border-outline-variant/20">
   <div class="max-w-container-max mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-16 reveal">
@@ -374,7 +348,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== SOCIAL ========== -->
+<!-- SOCIAL -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
   <div class="max-w-container-max mx-auto grid md:grid-cols-3 gap-8">
     <div class="glass-card feature-card p-8 rounded-3xl border border-outline-variant reveal">
@@ -404,7 +378,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== PORTE DI INGRESSO ========== -->
+<!-- PORTE DI INGRESSO -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
   <div class="max-w-container-max mx-auto">
     <div class="text-center mb-16 reveal">
@@ -440,7 +414,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== MINI BIO ========== -->
+<!-- MINI BIO -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-12 items-center reveal">
     <div class="w-full md:w-1/2 aspect-square max-w-md rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
@@ -462,7 +436,7 @@ CONTENUTO_PLACEHOLDER
   </div>
 </section>
 
-<!-- ========== CTA FINALE ========== -->
+<!-- CTA FINALE -->
 <section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest">
   <div class="max-w-4xl mx-auto glass-card p-12 md:p-20 rounded-[40px] border border-outline-variant text-center reveal">
     <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-8 leading-tight">
@@ -472,28 +446,20 @@ CONTENUTO_PLACEHOLDER
       Non lasciare che la tua evoluzione sia frutto del caso. Prendi il controllo della tua narrativa interna oggi stesso.
     </p>
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
-      <a href="/quiz/" class="px-12 py-5 bg-primary text-on-primary font-label-md text-label-md rounded-2xl hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-primary/20">
-        Fai il Quiz del Coraggio
-      </a>
-      <a href="/reset-notturno/" class="px-12 py-5 border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-label-md text-label-md rounded-2xl transition-all">
-        Scopri il Reset Notturno
-      </a>
+      <a href="/quiz/" class="px-12 py-5 bg-primary text-on-primary font-label-md text-label-md rounded-2xl hover:brightness-110 active:scale-95 transition-all shadow-xl shadow-primary/20">Fai il Quiz del Coraggio</a>
+      <a href="/reset-notturno/" class="px-12 py-5 border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-label-md text-label-md rounded-2xl transition-all">Scopri il Reset Notturno</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ========== FOOTER CANONICO ========== -->
+<!-- FOOTER CANONICO -->
 <footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
     <div class="space-y-4">
-      <a href="/">
-        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
-      </a>
-      <p class="font-body-md text-body-md text-on-surface-variant">
-        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
-      </p>
+      <a href="/"><img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/></a>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
     </div>
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
@@ -515,24 +481,18 @@ CONTENUTO_PLACEHOLDER
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
       </ul>
     </div>
   </div>
   <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center space-y-2">
-    <p class="text-on-surface-variant font-label-md text-label-md">
-      © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
-    </p>
-    <p class="text-on-surface-variant/50 font-label-md text-xs uppercase tracking-tight leading-relaxed max-w-3xl mx-auto">
-      Disclaimer: Le informazioni contenute in questo sito non costituiscono consulenza medica, psicologica o psichiatrica e non sostituiscono il parere di specialisti abilitati.
-    </p>
+    <p class="text-on-surface-variant font-label-md text-label-md">&copy; 2026 Cristian Lecca &mdash; IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018</p>
+    <p class="text-on-surface-variant/50 font-label-md text-xs uppercase tracking-tight leading-relaxed max-w-3xl mx-auto">Disclaimer: Le informazioni contenute in questo sito non costituiscono consulenza medica, psicologica o psichiatrica e non sostituiscono il parere di specialisti abilitati.</p>
   </div>
 </footer>
 
 <script>
-  // Hamburger canonico
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
   const icon = document.getElementById('hamburger-icon');
@@ -549,8 +509,6 @@ CONTENUTO_PLACEHOLDER
       icon.textContent = 'menu';
     });
   });
-
-  // Scroll reveal
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -560,7 +518,3 @@ CONTENUTO_PLACEHOLDER
 </script>
 </body>
 </html>
-<<<<<<< HEAD
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
-=======
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
