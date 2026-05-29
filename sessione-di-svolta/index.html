@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="dark" lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sessione di Svolta | Cristian Lecca</title>
+<link rel="icon" type="image/png" href="/assets/favicon%201.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#101416",
+          "on-background": "#F5F7FA",
+          "surface": "#101416",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff",
+          "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "on-tertiary-container": "#5b4100",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416",
+          "surface-variant": "#323538",
+          "on-surface-variant": "#bccac3",
+          "error": "#FF5449"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+        },
+        "spacing": {
+          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
+          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
+          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"], "display-lg-mobile": ["Manrope"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
+  .glass-card:hover { border-color: rgba(73,199,165,0.3); background: rgba(73,199,165,0.05); }
+  .gradient-text { background: linear-gradient(135deg, #49C7A5, #3A63FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .nav-logo { height: 36px; width: auto; filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; display: block; }
+  .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
+  /* Menu mobile */
+  #mobile-menu { display: none; flex-direction: column; gap: 0; background: #101416; border-top: 1px solid rgba(255,255,255,0.08); padding: 16px 24px 24px; }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); color: #F5F7FA; font-size: 14px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; transition: color 180ms ease; }
+  #mobile-menu a:last-child { border-bottom: none; margin-top: 12px; background: #49C7A5; color: #101416; text-align: center; border-radius: 12px; padding: 14px 0; }
+  #mobile-menu a:hover { color: #49C7A5; }
+  #mobile-menu a:last-child:hover { color: #101416; }
+</style>
+</head>
+<body class="font-body-md text-body-md">
+
+<!-- HEADER GLOBALE -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+  <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="flex items-center" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="nav-logo" loading="lazy"/>
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Home</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
+      <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
+    </div>
+    <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
+    </button>
+  </div>
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="/">Home</a>
+    <a href="/metodo/">Metodo</a>
+    <a href="/contenuti/">Contenuti</a>
+    <a href="/chi-sono/">Chi sono</a>
+    <a href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a href="/quiz/">Fai il Quiz del Coraggio</a>
+  </div>
+</nav>
+
+<main class="mt-20">
+
+<!-- Hero -->
+<section class="relative pt-40 pb-section-v-desktop px-gutter overflow-hidden">
+  <div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/8 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+  <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/6 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+  <div class="max-w-container-max mx-auto text-center">
+    <span class="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md mb-6 uppercase tracking-widest">Sessione di Svolta</span>
+    <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-8 max-w-4xl mx-auto leading-tight">Prenota la tua <span class="gradient-text">Sessione di Svolta</span></h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">Un incontro pensato per aiutarti a fare chiarezza su ciò che oggi ti sta bloccando, riconoscere il nodo principale e capire quali possono essere i primi passi concreti del tuo percorso.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+      <a class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary/20" href="#booking">Prenota la Sessione di Svolta</a>
+      <a class="border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary px-8 py-4 rounded-xl font-label-md text-label-md transition-all" href="#contact">Preferisci scrivermi?</a>
+    </div>
+    <p class="text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-4 flex-wrap">
+      <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary" style="font-size:18px">schedule</span>45 minuti</span>
+      <span class="w-px h-4 bg-outline-variant hidden sm:block"></span>
+      <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-primary" style="font-size:18px">videocam</span>Online · Zoom</span>
+      <span class="w-px h-4 bg-outline-variant hidden md:block"></span>
+      <span class="hidden md:flex items-center gap-1.5 text-primary/70 italic">Solo per chi è pronto a guardare davvero il proprio blocco.</span>
+    </p>
+  </div>
+</section>
+
+<!-- Cosa succede -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-lg text-headline-lg mb-6">Cosa succede durante la Sessione di Svolta</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto italic">La Sessione di Svolta non è una chiamata generica e non è una vendita mascherata. È uno spazio guidato in cui lavoriamo per leggere con più lucidità la tua situazione attuale e individuare il punto da cui può iniziare un cambiamento reale.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass-card p-10 rounded-3xl relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-6xl text-primary">visibility</span>
+        </div>
+        <span class="material-symbols-outlined text-primary mb-6 block" style="font-size:2.5rem">visibility</span>
+        <h3 class="font-headline-md text-headline-md mb-4 text-primary">Chiarezza</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Mettiamo a fuoco ciò che stai vivendo oggi, cosa senti che si ripete e dove percepisci il blocco con maggiore forza.</p>
+      </div>
+      <div class="glass-card p-10 rounded-3xl relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-6xl text-secondary">hub</span>
+        </div>
+        <span class="material-symbols-outlined text-secondary mb-6 block" style="font-size:2.5rem">hub</span>
+        <h3 class="font-headline-md text-headline-md mb-4 text-secondary">Nodo centrale</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Individuiamo il blocco o lo schema che sta influenzando più da vicino le tue scelte, le tue reazioni e il tuo modo di muoverti nella vita.</p>
+      </div>
+      <div class="glass-card p-10 rounded-3xl relative overflow-hidden group">
+        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <span class="material-symbols-outlined text-6xl text-tertiary">near_me</span>
+        </div>
+        <span class="material-symbols-outlined text-tertiary mb-6 block" style="font-size:2.5rem">near_me</span>
+        <h3 class="font-headline-md text-headline-md mb-4 text-tertiary">Primi passi</h3>
+        <p class="font-body-md text-body-md text-on-surface-variant">Esci dalla sessione con una direzione più chiara e con i primi passi concreti da poter valutare o iniziare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Per chi è / non è -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
+  <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="bg-surface-container p-10 md:p-12 rounded-3xl border-l-4 border-primary">
+      <h2 class="font-headline-md text-headline-md mb-8">Per chi è pensata</h2>
+      <ul class="space-y-6">
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary mt-0.5 shrink-0">check_circle</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Per chi sente di essere in un momento di stallo e non riesce a vedere l'origine del problema.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary mt-0.5 shrink-0">check_circle</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Per chi desidera un approccio professionale e profondo, lontano dalle soluzioni superficiali.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary mt-0.5 shrink-0">check_circle</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Per chi è pronto a mettersi in gioco e ad ascoltare verità a volte scomode ma necessarie.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-primary mt-0.5 shrink-0">check_circle</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Per chi cerca un mentor che sappia unire sensibilità umana e rigore metodologico.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-surface-container p-10 md:p-12 rounded-3xl border-l-4 border-error">
+      <h2 class="font-headline-md text-headline-md mb-8">Quando non è la scelta giusta</h2>
+      <ul class="space-y-6">
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-error mt-0.5 shrink-0">cancel</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Se stai cercando una "pillola magica" che risolva tutto in 45 minuti senza il tuo impegno.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-error mt-0.5 shrink-0">cancel</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Se non sei disposto a guardare onestamente le tue responsabilità nella situazione attuale.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-error mt-0.5 shrink-0">cancel</span>
+          <p class="font-body-md text-body-md text-on-surface-variant">Se cerchi solo una chiacchierata motivazionale o uno sfogo emotivo fine a se stesso.</p>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="material-symbols-outlined text-on-surface-variant/50 mt-0.5 shrink-0">info</span>
+          <p class="font-body-md text-body-md text-on-surface-variant italic">Disclaimer: questo percorso non sostituisce cure psicoterapeutiche o psichiatriche per patologie cliniche.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Come funziona -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="font-headline-lg text-headline-lg mb-4">Come funziona</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+      <div class="hidden md:block absolute top-8 left-[calc(16.66%+2rem)] right-[calc(16.66%+2rem)] h-px bg-outline-variant/30"></div>
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="w-16 h-16 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xl mb-6 shadow-lg shadow-primary/20">1</div>
+        <h4 class="font-headline-md text-headline-md text-lg mb-3">Prenota</h4>
+        <p class="text-on-surface-variant font-body-md text-body-md">Scegli il giorno e l'orario più comodi tramite il calendario dedicato.</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="w-16 h-16 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-xl mb-6 shadow-lg shadow-secondary/20">2</div>
+        <h4 class="font-headline-md text-headline-md text-lg mb-3">Ricevi i dettagli</h4>
+        <p class="text-on-surface-variant font-body-md text-body-md">Ti invierò una mail con il link Zoom e un piccolo questionario preparatorio.</p>
+      </div>
+      <div class="relative z-10 flex flex-col items-center text-center">
+        <div class="w-16 h-16 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center font-bold text-xl mb-6 shadow-lg shadow-tertiary/20">3</div>
+        <h4 class="font-headline-md text-headline-md text-lg mb-3">Ci incontriamo</h4>
+        <p class="text-on-surface-variant font-body-md text-body-md">45 minuti di focus totale dedicato a te e alla tua evoluzione.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cosa puoi aspettarti -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-16">
+    <div class="w-full md:w-1/2">
+      <div class="rounded-3xl overflow-hidden glass-card">
+        <img alt="Cristian Lecca durante una sessione" class="w-full h-[400px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4P96YT49X-CQ1cSrwf5DwEPbDIHOC3rv4_W9ARqLUzn3yEwTusQOxENNKdmA9Rp7s5ZRJvJZTxFmA1aNZBKt9H_JhwijIt5QB7HMp2w8wk5i4kWbOruSB3qvXkzz9zogIS49HcrzMc7TkL4gZp6q4sNFM1mBUs3jRQOrxoosLHpFTgvV0NsYsAKe9ZdcxKLmACAeVQxK6yqLjImnRSQ0ijPwOlKe4jgBb_hVgZQyUbOQZelKyGiJBrAdFHRcijRF418DGf4lBHWO2"
+          loading="lazy" width="600" height="400"/>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <h2 class="font-headline-lg text-headline-lg mb-6">Cosa puoi aspettarti</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Ti prometto uno spazio di ascolto profondo, libero dal giudizio, ma estremamente diretto. La mia priorità è la tua chiarezza, non la tua comodità.</p>
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary shrink-0">verified</span>
+          <span class="font-body-md text-body-md">Analisi del tuo schema comportamentale attuale</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary shrink-0">verified</span>
+          <span class="font-body-md text-body-md">Individuazione delle leve emotive silenziose</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary shrink-0">verified</span>
+          <span class="font-body-md text-body-md">Mappa mentale dei passi necessari per sbloccare la situazione</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary shrink-0">verified</span>
+          <span class="font-body-md text-body-md">Risposta diretta: questa sessione fa al caso tuo o no</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bio breve -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low">
+  <div class="max-w-container-max mx-auto">
+    <div class="flex flex-col md:flex-row items-center gap-10 bg-surface-container p-10 md:p-14 rounded-3xl border border-outline-variant">
+      <div class="w-28 h-28 md:w-40 md:h-40 rounded-full overflow-hidden shrink-0 border-2 border-primary/30">
+        <img alt="Cristian Lecca" class="w-full h-full object-cover"
+          src="https://lh3.googleusercontent.com/aida/ADBb0uiQ1abrLYTKr7jNrtVw9Fc0REnq3ekMQM6pZhWHzwhyj9eDXzn7IlRZB3uoGDnj0Gv0cZbjJ8JOErzkP-47M0Kem3kSg1Ym0TzyqjfAbdp3L32_NEac_gAJj0HWgIS5QaPuvacEU9mFv_IW1tPl4iFgjcBZ92PCrekqFEnj5q0luvkgJh2Npn2m2j-WdfxE7T-HEY2XEr-NtPMvkJ8u4jHeclUXANAfhT_emXGS3MAPfCSfQDxu_Xe6p2Di"
+          loading="lazy" width="160" height="160"/>
+      </div>
+      <div>
+        <p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-3">Chi ti accompagnerà</p>
+        <h2 class="font-headline-md text-headline-md mb-4">Cristian Lecca</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6 max-w-xl">Sono Cristian Lecca, Hypno Mental Coach ed esperto di dinamiche del cambiamento. Aiuto persone ad alto potenziale a superare i blocchi mentali ed emotivi che impediscono loro di vivere una vita allineata e libera.</p>
+        <a class="inline-flex items-center gap-2 text-primary font-label-md text-label-md group" href="/chi-sono/">
+          Scopri di più su di me
+          <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Prenotazione -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter" id="booking">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-lg text-headline-lg mb-4">Prenota la tua Sessione di Svolta</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant">Scegli il giorno e l'orario. Riceverai conferma immediata via email.</p>
+    </div>
+    <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 md:p-12 border border-outline-variant">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+        <div class="md:col-span-5 space-y-6">
+          <div class="bg-primary/5 border border-primary/15 p-5 rounded-xl">
+            <h4 class="font-label-md text-label-md text-primary mb-3 uppercase tracking-wider">Dettagli Sessione</h4>
+            <ul class="space-y-2.5 text-on-surface-variant font-body-md text-body-md">
+              <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-primary shrink-0" style="font-size:18px">timer</span>45 Minuti</li>
+              <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-primary shrink-0" style="font-size:18px">laptop_mac</span>Zoom Meeting</li>
+              <li class="flex items-center gap-2.5"><span class="material-symbols-outlined text-primary shrink-0" style="font-size:18px">event_available</span>Disponibilità limitata ogni settimana</li>
+            </ul>
+          </div>
+          <p class="text-on-surface-variant font-body-md text-body-md text-sm italic">Scegli una data nel calendario. Riceverai conferma immediata via email.</p>
+        </div>
+        <div class="md:col-span-7 bg-surface-container-highest rounded-2xl min-h-[380px] flex flex-col items-center justify-center border border-outline-variant/30 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 pointer-events-none"></div>
+          <div class="text-center p-8 relative z-10">
+            <span class="material-symbols-outlined text-primary/40 mb-4 block" style="font-size:56px">calendar_month</span>
+            <p class="font-headline-md text-body-lg mb-2 text-on-surface">Calendario integrato in arrivo</p>
+            <div class="grid grid-cols-7 gap-2 opacity-40 my-6 justify-center">
+              <div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-primary/40"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div>
+            </div>
+            <p class="text-on-surface-variant font-body-md text-body-md text-sm mb-6 max-w-xs mx-auto">Il sistema di prenotazione sarà attivo a breve. Nel frattempo scrivimi direttamente.</p>
+            <a href="#contact" class="inline-block bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:brightness-110 transition-all active:scale-95">Scrivimi per prenotare</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contatto -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-low" id="contact">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-headline-md text-headline-md mb-3">Preferisci scrivermi prima?</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant">Se hai domande specifiche o vuoi capire se la sessione è adatta a te, mandami un messaggio. Rispondo entro 24 ore.</p>
+    </div>
+    <form class="space-y-6" onsubmit="handleForm(event)">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-2">
+          <label class="font-label-md text-label-md text-primary uppercase tracking-wider text-xs" for="nome">Nome</label>
+          <input id="nome" class="bg-surface border border-outline-variant rounded-lg px-4 py-3.5 focus:border-primary outline-none transition-all font-body-md text-body-md placeholder:text-on-surface-variant/40" placeholder="Il tuo nome" type="text" required/>
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="font-label-md text-label-md text-primary uppercase tracking-wider text-xs" for="email">Email</label>
+          <input id="email" class="bg-surface border border-outline-variant rounded-lg px-4 py-3.5 focus:border-primary outline-none transition-all font-body-md text-body-md placeholder:text-on-surface-variant/40" placeholder="tuaemail@esempio.com" type="email" required/>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="font-label-md text-label-md text-primary uppercase tracking-wider text-xs" for="motivo">Motivo del contatto</label>
+        <div class="relative">
+          <select id="motivo" class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3.5 focus:border-primary outline-none transition-all font-body-md text-body-md appearance-none">
+            <option>Informazioni Sessione di Svolta</option>
+            <option>Domande sul Metodo IpnosiApplicata</option>
+            <option>Collaborazione o media</option>
+            <option>Altro</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" style="font-size:20px">expand_more</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="font-label-md text-label-md text-primary uppercase tracking-wider text-xs" for="messaggio">Messaggio</label>
+        <textarea id="messaggio" class="bg-surface border border-outline-variant rounded-lg px-4 py-3.5 focus:border-primary outline-none transition-all font-body-md text-body-md placeholder:text-on-surface-variant/40 resize-none" placeholder="Cosa vorresti chiedermi o raccontarmi?" rows="5" required></textarea>
+      </div>
+      <button type="submit" class="w-full py-4 bg-primary text-on-primary rounded-xl font-label-md text-label-md uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all">Invia Messaggio</button>
+      <div id="form-feedback" class="hidden text-center py-3 px-4 rounded-lg bg-primary/10 border border-primary/20 text-primary font-label-md text-label-md"></div>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="font-headline-lg text-headline-lg mb-12 text-center">Domande Frequenti</h2>
+    <div class="space-y-4">
+      <details class="group bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/30">
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors gap-4">
+          <span class="font-label-md text-label-md text-on-surface">La sessione è gratuita?</span>
+          <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant shrink-0">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 text-on-surface-variant font-body-md text-body-md border-t border-outline-variant/20 pt-4">La Sessione di Svolta ha un costo d'investimento poiché rappresenta un lavoro professionale mirato e non una semplice call conoscitiva commerciale.</div>
+      </details>
+      <details class="group bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/30">
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors gap-4">
+          <span class="font-label-md text-label-md text-on-surface">Cosa succede se dopo la sessione voglio continuare?</span>
+          <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant shrink-0">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 text-on-surface-variant font-body-md text-body-md border-t border-outline-variant/20 pt-4">A fine sessione, se riterremo entrambi che ci siano i presupposti per un lavoro più profondo, ti illustrerò le modalità dei miei percorsi di affiancamento.</div>
+      </details>
+      <details class="group bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/30">
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors gap-4">
+          <span class="font-label-md text-label-md text-on-surface">È una seduta di psicoterapia?</span>
+          <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant shrink-0">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 text-on-surface-variant font-body-md text-body-md border-t border-outline-variant/20 pt-4">No. È una sessione di coaching strategico e analisi dinamica. Se il tuo problema richiede un intervento clinico, ti suggerirò di rivolgerti a un professionista sanitario.</div>
+      </details>
+      <details class="group bg-surface-container rounded-2xl overflow-hidden border border-outline-variant/30">
+        <summary class="flex justify-between items-center p-6 cursor-pointer list-none hover:bg-surface-container-high transition-colors gap-4">
+          <span class="font-label-md text-label-md text-on-surface">Cosa mi serve per la sessione?</span>
+          <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant shrink-0">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 text-on-surface-variant font-body-md text-body-md border-t border-outline-variant/20 pt-4">Solo Zoom e 45 minuti senza interruzioni in un posto tranquillo. Prima della sessione riceverai un questionario breve per arrivarci già con una buona direzione.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Finale -->
+<section class="py-section-v-mobile md:py-section-v-desktop px-gutter bg-surface-container-lowest relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="max-w-container-max mx-auto text-center relative z-10">
+    <p class="font-label-md text-label-md text-primary uppercase tracking-widest mb-6">Metodo IpnosiApplicata</p>
+    <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 max-w-4xl mx-auto italic">&ldquo;Ogni cambiamento reale inizia quando smetti di girare intorno al problema e inizi a guardarlo davvero.&rdquo;</h2>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+      <a class="bg-primary text-on-primary px-10 py-5 rounded-2xl font-label-md text-label-md shadow-2xl shadow-primary/20 hover:brightness-110 active:scale-95 transition-all" href="#booking">Prenota la Sessione di Svolta</a>
+      <a class="border-2 border-primary text-primary px-10 py-5 rounded-2xl font-label-md text-label-md hover:bg-primary/10 transition-all" href="#contact">Scrivimi un messaggio</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER GLOBALE -->
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
+    <div class="space-y-4">
+      <a href="/">
+        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="nav-logo" loading="lazy"/>
+      </a>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Home</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/termini/">Termini</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
+    © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    icon.textContent = isOpen ? 'close' : 'menu';
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = 'menu';
+    });
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+  function handleForm(e) {
+    e.preventDefault();
+    const feedback = document.getElementById('form-feedback');
+    feedback.textContent = 'Messaggio inviato! Ti risponderò entro 24 ore.';
+    feedback.classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => feedback.classList.add('hidden'), 5000);
+  }
+</script>
+</body>
+</html>

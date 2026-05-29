@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="dark" lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Il Critico Instancabile | Cristian Lecca</title>
+<link rel="icon" type="image/png" href="../assets/favicon%201.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#101416",
+          "on-background": "#F5F7FA",
+          "surface": "#101416",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "primary-fixed-dim": "#60dbb8",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "on-secondary-container": "#c1cbff",
+          "secondary-container": "#0543e3",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "on-tertiary-container": "#5b4100",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-dim": "#101416",
+          "surface-variant": "#323538",
+          "on-surface-variant": "#bccac3"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"
+        },
+        "spacing": {
+          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
+          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
+          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"],
+          "display-lg-mobile": ["Manrope"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  .glass-card {
+    background: rgba(29,32,34,0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245,247,250,0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  .glass-card:hover {
+    border-color: rgba(73,199,165,0.3);
+    background: rgba(73,199,165,0.05);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #49C7A5, #3A63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .nav-logo {
+    filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25));
+    transition: filter 300ms ease;
+  }
+  .nav-logo:hover {
+    filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40));
+  }
+  .custom-player {
+    background: #1d2022;
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+  }
+  .custom-player .play-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .custom-player .play-btn:hover { filter: brightness(1.15); transform: scale(1.05); }
+  .custom-player .play-btn:active { transform: scale(0.96); }
+  .custom-player .play-btn .material-symbols-outlined {
+    font-size: 1.5rem;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .player-teal .play-btn { background: #49C7A5; color: #101416; }
+  .player-blue  .play-btn { background: #3A63FF; color: #ffffff; }
+  .custom-player .progress-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .custom-player .progress-bar {
+    position: relative;
+    height: 6px;
+    background: rgba(245,247,250,0.12);
+    border-radius: 99px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .custom-player .progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .player-teal .progress-fill { background: #49C7A5; }
+  .player-blue  .progress-fill { background: #3A63FF; }
+  .custom-player .time-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #F5F7FA;
+    letter-spacing: 0.03em;
+  }
+  .player-teal .time-row .accent { color: #49C7A5; }
+  .player-blue  .time-row .accent { color: #8ca5ff; }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body class="font-body-md text-body-md">
+
+<!-- HEADER MINIMALE -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+  <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="flex items-center gap-3" href="../">
+      <img src="../assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
+    </a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="../quiz/">
+      <span class="material-symbols-outlined" style="font-size:1rem;">arrow_back</span>
+      Torna al quiz
+    </a>
+  </div>
+</nav>
+
+<main class="pt-20">
+
+  <!-- HERO PROFILO -->
+  <section class="relative px-gutter py-section-v-mobile md:py-section-v-desktop text-center">
+    <div class="pointer-events-none absolute inset-0 -z-10" style="background: radial-gradient(circle at 50% 30%, rgba(73,199,165,0.07) 0%, rgba(16,20,22,1) 65%);"></div>
+    <div class="max-w-2xl mx-auto">
+      <span class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-md text-label-md tracking-widest uppercase mb-6">
+        Il tuo profilo
+      </span>
+      <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">
+        Il <span class="gradient-text">Critico</span> Instancabile
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto">
+        Grazie per aver trovato il tempo per te. Quello che stai per scoprire non è una semplice etichetta — è uno specchio preciso della voce che ti accompagna ogni giorno e che finora ti ha tenuto lontano dal tuo vero potenziale.
+      </p>
+    </div>
+  </section>
+
+  <!-- SLOT 1: AUDIO DESCRIZIONE PROFILO -->
+  <section class="px-gutter pb-section-v-mobile md:pb-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary/15 text-primary">
+            <span class="material-symbols-outlined" style="font-size:1.25rem;">headphones</span>
+          </span>
+          <div>
+            <span class="font-label-md text-label-md text-primary uppercase tracking-widest block">Ascolta ora</span>
+            <h2 class="font-headline-md text-xl text-on-background">La descrizione del tuo profilo</h2>
+          </div>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          In questo audio ti descrivo con precisione il meccanismo del Critico Instancabile — come si forma, come agisce, e perché combatterlo frontalmente non fa che rafforzarlo.
+        </p>
+        <div class="custom-player player-teal" data-src="http://cristianlecca.it/wp-content/uploads/2025/11/Audio-Profilo-22Il-Critico-Instancabile22.mp3">
+          <button class="play-btn" aria-label="Play / Pausa">
+            <span class="material-symbols-outlined play-icon">play_arrow</span>
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <div class="time-row">
+              <span class="current-time accent">0:00</span>
+              <span class="duration">--:--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTO CORPO -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-12">
+        <h2 class="font-headline-md text-headline-md text-on-background mb-6">Come si manifesta in te</h2>
+        <div class="flex flex-col gap-5 font-body-md text-body-md text-on-surface-variant">
+          <p>Dentro di te vive un giudice severo: una voce instancabile che conosce ogni tuo punto debole e non esita mai a sottolinearlo. Questo dialogo interiore ti convince costantemente di non essere abbastanza — non abbastanza capace, intelligente, preparato, meritevole.</p>
+          <p>Vivi in un perenne paragone con gli altri, un confronto dal quale, nella tua mente, esci quasi sempre sconfitto. Non è un difetto caratteriale: è un sofisticato meccanismo di auto-sabotaggio che, paradossalmente, aveva uno scopo preciso. Ti proteggeva dal rischio di fallire davvero, dal rischio di provarci con tutto te stesso e scoprire di non farcela.</p>
+          <p>La tua vera paura non è il giudizio degli altri — è affrontare il tuo reale valore. Quella critica interiore ti "protegge" dalla responsabilità di brillare davvero. Finché sei tu il primo a sminuirti, nessun fallimento esterno può sorprenderti.</p>
+          <p>Il tuo percorso di trasformazione consiste nel trasformare quel critico severo in un coach esigente ma amorevole. Non si tratta di silenziarlo con la forza, ma di togliergli il potere — e far emergere al suo posto la voce della tua autostima più solida e autentica.</p>
+        </div>
+        <div class="mt-8 pl-6 border-l-2 border-primary">
+          <p class="font-body-lg text-body-lg text-on-surface-variant italic">
+            "La voce critica non è la tua voce. È una guardia che ha dimenticato che la guerra è finita."
+          </p>
+          <span class="font-label-md text-label-md text-primary mt-3 block">— Cristian Lecca</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLOT 2: AUDIO IPNOTICO 15 MIN -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10" style="border-color: rgba(58,99,255,0.25); background: rgba(58,99,255,0.04);">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary/15 text-secondary">
+            <span class="material-symbols-outlined" style="font-size:1.25rem;">self_improvement</span>
+          </span>
+          <span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Percorso audio · 15 minuti</span>
+        </div>
+        <h2 class="font-headline-md text-xl md:text-2xl text-on-background mt-4 mb-3">
+          L'induzione ipnotica: <span class="gradient-text">Silenzia il Critico, Risveglia il Gigante</span>
+        </h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-2">
+          Ho creato questo audio su misura per te. Non combatterà quella voce — le toglierà potere. È un'induzione ipnotica guidata progettata per dis-identificarti dal critico interiore e far emergere una nuova voce: quella della tua autostima più profonda e incrollabile.
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+          <strong class="text-on-background">Come usarlo:</strong> ascoltalo per i prossimi 5 giorni consecutivi, preferibilmente la sera prima di dormire, in un ambiente tranquillo con le cuffie.
+        </p>
+        <div class="custom-player player-blue" data-src="http://cristianlecca.it/wp-content/uploads/2025/11/IPNOTICOAudio-per-22Il-Critico-Instancabile22.mp3">
+          <button class="play-btn" aria-label="Play / Pausa">
+            <span class="material-symbols-outlined play-icon">play_arrow</span>
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <div class="time-row">
+              <span class="current-time accent">0:00</span>
+              <span class="duration">--:--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLOT 3: GUIDA PDF -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10" style="border-color: rgba(201,164,92,0.25); background: rgba(201,164,92,0.04);">
+        <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+          <div class="flex-shrink-0 flex items-center justify-center w-24 h-32 rounded-xl" style="background: rgba(201,164,92,0.1); border: 1px solid rgba(201,164,92,0.2);">
+            <span class="material-symbols-outlined text-tertiary" style="font-size:3rem;">picture_as_pdf</span>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest block mb-3">Guida PDF · Scarica gratis</span>
+            <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">Dal Giudizio alla Guida</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+              La tua guida pratica con strategie concrete da applicare fin da subito. Esercizi, riflessioni e strumenti pensati specificamente per il profilo del Critico Instancabile: trasformare l'iper-vigilanza del tuo giudice interiore in un saggio e costruttivo spirito di osservazione.
+            </p>
+            <a
+              href="http://cristianlecca.it/wp-content/uploads/2025/11/PDFCRITICOINSTANCABILE.pdf"
+              download
+              class="inline-flex items-center gap-2 bg-tertiary text-on-tertiary font-label-md text-label-md px-7 py-3.5 rounded-full hover:brightness-110 active:scale-95 transition-all"
+            >
+              <span class="material-symbols-outlined" style="font-size:1.1rem;">download</span>
+              Scarica la guida PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIUSURA + CTA DOPPIA -->
+  <section class="px-gutter py-section-v-mobile md:py-section-v-desktop reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-4">
+          Hai in mano la descrizione precisa del tuo blocco, un audio per iniziare a scioglierlo e una guida per lavorarci ogni giorno. Il prossimo passo sei tu a sceglierlo.
+        </p>
+        <p class="font-body-md text-body-md text-on-surface-variant">
+          Con stima,<br>
+          <span class="mt-2 block text-primary" style="font-family: Georgia, serif; font-style: italic; font-size: 1.25rem; font-weight: 400;">Cristian Lecca</span>
+        </p>
+      </div>
+      <div class="text-center mb-10">
+        <h2 class="font-headline-lg text-2xl md:text-3xl text-on-background mb-3">Da dove vuoi partire?</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Scegli il passo più adatto a te in questo momento.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card p-8 flex flex-col gap-4">
+          <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest">Primo passo</span>
+          <h3 class="font-headline-md text-xl text-on-background">Reset Notturno</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-1">
+            Un percorso audio guidato che lavora sul subconscio mentre dormi. Il punto di partenza ideale per approfondire il lavoro iniziato oggi.
+          </p>
+          <a href="../reset-notturno/" class="inline-block text-center bg-surface-variant hover:bg-surface-variant/80 text-on-surface font-label-md text-label-md px-6 py-3 rounded-full transition-all border border-outline-variant/40 hover:border-primary/40">
+            Scopri Reset Notturno
+          </a>
+        </div>
+        <div class="glass-card p-8 flex flex-col gap-4" style="border-color: rgba(73,199,165,0.2);">
+          <span class="font-label-md text-label-md text-primary uppercase tracking-widest">Percorso diretto</span>
+          <h3 class="font-headline-md text-xl text-on-background">Sessione di Svolta</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-1">
+            Un lavoro 1:1 con me per intervenire sul tuo pattern specifico con precisione e profondità. La via più rapida per un cambiamento reale e duraturo.</p>
+          <a href="../sessione-di-svolta/" class="inline-block text-center bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all">
+            Prenota la Sessione di Svolta
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER MINIMALE -->
+<footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-6">
+    <a href="../" class="flex-shrink-0">
+      <img src="../assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
+    </a>
+    <span class="flex-1 text-center font-label-md text-label-md text-on-surface-variant">
+      © 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+    </span>
+    <div class="flex gap-6 font-label-md text-label-md flex-shrink-0">
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="../privacy/">Privacy</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="../cookie/">Cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="../">Torna al sito</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function formatTime(s) {
+    if (isNaN(s)) return '--:--';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return m + ':' + String(sec).padStart(2, '0');
+  }
+
+  document.querySelectorAll('.custom-player').forEach(player => {
+    const src = player.dataset.src;
+    const audio = new Audio(src);
+    const playBtn = player.querySelector('.play-btn');
+    const playIcon = player.querySelector('.play-icon');
+    const fill = player.querySelector('.progress-fill');
+    const bar = player.querySelector('.progress-bar');
+    const currentEl = player.querySelector('.current-time');
+    const durationEl = player.querySelector('.duration');
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener('timeupdate', () => {
+      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      fill.style.width = pct + '%';
+      currentEl.textContent = formatTime(audio.currentTime);
+    });
+    audio.addEventListener('ended', () => {
+      playIcon.textContent = 'play_arrow';
+      fill.style.width = '0%';
+      currentEl.textContent = '0:00';
+    });
+    playBtn.addEventListener('click', () => {
+      document.querySelectorAll('.custom-player').forEach(other => {
+        if (other !== player) {
+          other._audio && other._audio.pause();
+          other.querySelector('.play-icon').textContent = 'play_arrow';
+        }
+      });
+      if (audio.paused) {
+        audio.play();
+        playIcon.textContent = 'pause';
+      } else {
+        audio.pause();
+        playIcon.textContent = 'play_arrow';
+      }
+    });
+    bar.addEventListener('click', (e) => {
+      const rect = bar.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    });
+    player._audio = audio;
+  });
+</script>
+
+</body>
+</html>
