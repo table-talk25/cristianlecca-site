@@ -1,182 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | Cristian Lecca</title>
-  <link rel="icon" type="image/png" href="/assets/faviconCL.png"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-  <script id="tailwind-config">
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#49C7A5',
-            secondary: '#3A63FF',
-            tertiary: '#C9A45C',
-            'text-light': '#F5F7FA',
-            background: '#101416',
-          },
-          fontFamily: {
-            display: ['Manrope', 'sans-serif'],
-            body: ['Inter', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    body { background-color: #101416; color: #F5F7FA; font-family: 'Inter', sans-serif; }
-    .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; }
-    .gradient-text { background: linear-gradient(135deg, #49C7A5, #3A63FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-style: normal; }
-    #mobile-menu { display: none; }
-    #mobile-menu.open { display: block; }
-  </style>
-</head>
-<body>
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="6" r="3" fill="#49C7A5"/>
-          <line x1="16" y1="9" x2="16" y2="26" stroke="#49C7A5" stroke-width="2"/>
-          <circle cx="16" cy="28" r="3" fill="#C9A45C"/>
-        </svg>
-        <span class="font-display font-bold text-lg text-text-light">Cristian Lecca</span>
-      </a>
-      <div class="hidden md:flex items-center gap-8">
-        <a href="/" class="text-sm text-primary border-b-2 border-primary pb-1">Home</a>
-        <a href="/metodo/" class="text-sm text-text-light/70 hover:text-primary transition-colors">Metodo</a>
-        <a href="/chi-sono/" class="text-sm text-text-light/70 hover:text-primary transition-colors">Chi sono</a>
-        <a href="/contenuti/" class="text-sm text-text-light/70 hover:text-primary transition-colors">Contenuti</a>
-        <a href="/sessione-di-svolta/" class="text-sm text-text-light/70 hover:text-primary transition-colors">Sessione di Svolta</a>
-        <a href="/quiz/" class="bg-primary text-background text-sm font-semibold px-5 py-2 rounded-full hover:bg-primary/90 transition-colors">Fai il Quiz del Coraggio</a>
-      </div>
-      <button id="menu-toggle" class="md:hidden text-text-light">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
-    </div>
-    <div id="mobile-menu" class="md:hidden px-6 pb-4 flex flex-col gap-4 border-t border-white/10 pt-4">
-      <a href="/" class="text-sm text-primary">Home</a>
-      <a href="/metodo/" class="text-sm text-text-light/70">Metodo</a>
-      <a href="/chi-sono/" class="text-sm text-text-light/70">Chi sono</a>
-      <a href="/contenuti/" class="text-sm text-text-light/70">Contenuti</a>
-      <a href="/sessione-di-svolta/" class="text-sm text-text-light/70">Sessione di Svolta</a>
-      <a href="/quiz/" class="bg-primary text-background text-sm font-semibold px-5 py-2 rounded-full text-center">Fai il Quiz del Coraggio</a>
-    </div>
-  </nav>
-
-  <main class="mt-20">
-    <!-- HERO -->
-    <section class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
-      <div class="flex-1">
-        <span class="inline-block text-tertiary text-sm font-semibold uppercase tracking-widest mb-4">Hypno Mental Coach</span>
-        <h1 class="font-display font-extrabold text-5xl md:text-6xl text-text-light leading-tight mb-6">
-          Trasforma la tua mente.<br/>
-          <span class="gradient-text">Cambia la tua vita.</span>
-        </h1>
-        <p class="text-text-light/70 text-lg mb-8 max-w-xl">Con il Metodo IpnosiApplicata, supera i blocchi interiori e costruisci la versione più autentica di te stesso.</p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/quiz/" class="bg-primary text-background font-semibold px-8 py-4 rounded-full text-center hover:bg-primary/90 transition-colors">Fai il Quiz del Coraggio</a>
-          <a href="/sessione-di-svolta/" class="border border-white/20 text-text-light font-semibold px-8 py-4 rounded-full text-center hover:border-primary/50 transition-colors">Prenota la Sessione di Svolta</a>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-center">
-        <img src="/assets/hero.png" alt="Cristian Lecca" class="rounded-2xl w-full max-w-sm object-cover shadow-2xl"/>
-      </div>
-    </section>
-
-    <!-- METODO INTRO -->
-    <section class="bg-white/4 py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="font-display font-bold text-3xl md:text-4xl text-text-light mb-4">Il Metodo IpnosiApplicata</h2>
-        <p class="text-text-light/70 text-lg max-w-2xl mx-auto mb-12">Un approccio scientifico e pratico che combina ipnosi clinica, neuroscienze e coaching per risultati concreti e duraturi.</p>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="glass-card p-8">
-            <span class="material-symbols-outlined text-primary text-4xl mb-4 block">psychology</span>
-            <h3 class="font-display font-bold text-xl text-text-light mb-2">Accesso all'inconscio</h3>
-            <p class="text-text-light/60 text-sm">Lavoriamo direttamente con i programmi mentali che guidano le tue azioni.</p>
-          </div>
-          <div class="glass-card p-8">
-            <span class="material-symbols-outlined text-primary text-4xl mb-4 block">self_improvement</span>
-            <h3 class="font-display font-bold text-xl text-text-light mb-2">Trasformazione profonda</h3>
-            <p class="text-text-light/60 text-sm">Cambiamenti reali che durano nel tempo, non soluzioni superficiali.</p>
-          </div>
-          <div class="glass-card p-8">
-            <span class="material-symbols-outlined text-primary text-4xl mb-4 block">rocket_launch</span>
-            <h3 class="font-display font-bold text-xl text-text-light mb-2">Risultati concreti</h3>
-            <p class="text-text-light/60 text-sm">Obiettivi chiari, percorso strutturato, impatto misurabile sulla tua vita.</p>
-          </div>
-        </div>
-        <a href="/metodo/" class="inline-block mt-12 border border-primary text-primary font-semibold px-8 py-4 rounded-full hover:bg-primary hover:text-background transition-colors">Scopri il Metodo</a>
-      </div>
-    </section>
-
-    <!-- QUIZ CTA -->
-    <section class="max-w-6xl mx-auto px-6 py-24 text-center">
-      <span class="inline-block text-tertiary text-sm font-semibold uppercase tracking-widest mb-4">Inizia da qui</span>
-      <h2 class="font-display font-bold text-3xl md:text-4xl text-text-light mb-4">Scopri il tuo profilo mentale</h2>
-      <p class="text-text-light/70 text-lg max-w-xl mx-auto mb-8">Il Quiz del Coraggio rivela i blocchi invisibili che ti impediscono di avanzare. 5 minuti per una chiarezza che cambia tutto.</p>
-      <a href="/quiz/" class="bg-primary text-background font-semibold px-10 py-4 rounded-full text-lg hover:bg-primary/90 transition-colors">Fai il Quiz del Coraggio</a>
-    </section>
-
-    <!-- SOCIAL PROOF / CONTENUTI -->
-    <section class="bg-white/4 py-20">
-      <div class="max-w-6xl mx-auto px-6 text-center">
-        <h2 class="font-display font-bold text-3xl text-text-light mb-12">Contenuti gratuiti per la tua crescita</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="glass-card p-8 text-left">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">mic</span>
-            <h3 class="font-display font-bold text-xl text-text-light mb-2">Podcast</h3>
-            <p class="text-text-light/60 text-sm mb-4">Episodi settimanali su mente, performance e trasformazione personale.</p>
-            <a href="/contenuti/" class="text-primary text-sm font-semibold hover:underline">Ascolta ora →</a>
-          </div>
-          <div class="glass-card p-8 text-left">
-            <span class="material-symbols-outlined text-primary text-3xl mb-4 block">play_circle</span>
-            <h3 class="font-display font-bold text-xl text-text-light mb-2">YouTube</h3>
-            <p class="text-text-light/60 text-sm mb-4">Video pratici e approfondimenti sul Metodo IpnosiApplicata.</p>
-            <a href="/contenuti/" class="text-primary text-sm font-semibold hover:underline">Guarda ora →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10 py-12 mt-20">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-text-light/40 text-sm text-center md:text-left">© 2026 Cristian Lecca — IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018</p>
-      <div class="flex gap-6">
-        <a href="/privacy/" class="text-text-light/40 text-sm hover:text-primary transition-colors">Privacy Policy</a>
-        <a href="/cookie/" class="text-text-light/40 text-sm hover:text-primary transition-colors">Cookie Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('mobile-menu');
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => menu.classList.toggle('open'));
-    }
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('opacity-100', 'translate-y-0'); e.target.classList.remove('opacity-0', 'translate-y-4'); } });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('section').forEach(s => {
-      s.classList.add('opacity-0', 'translate-y-4', 'transition-all', 'duration-700');
-      observer.observe(s);
-    });
-  </script>
-=======
-=======
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
 <html class="dark" lang="it">
 <head>
 <meta charset="utf-8"/>
@@ -357,7 +179,7 @@
     </div>
     <div class="order-1 md:order-2 flex justify-center md:justify-end reveal">
       <div class="relative w-full aspect-[4/5] md:aspect-[3/4] max-w-md rounded-3xl overflow-hidden shadow-2xl">
-        <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560" src="/assets/ChatGPT%20Image%2028%20mag%202026%2C%2019_48_07.png"/>
+        <img alt="Cristian Lecca" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" width="450" height="560" src="/assets/hero.png"/>
         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
       </div>
     </div>
@@ -369,7 +191,7 @@
   <div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-stack-lg items-center">
     <div class="md:col-span-5 relative reveal">
       <div class="aspect-square rounded-3xl overflow-hidden bg-surface-container-high border border-outline-variant">
-        <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500" src="/assets/ChatGPT%20Image%2028%20mag%202026%2C%2019_54_07.png"/>
+        <img class="w-full h-full object-cover opacity-80" alt="Cristian Lecca portrait" loading="lazy" width="500" height="500" src="/assets/chi-sono.png"/>
       </div>
     </div>
     <div class="md:col-span-7 reveal">
@@ -519,9 +341,5 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
-<<<<<<< HEAD
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
-=======
->>>>>>> parent of d1e98d6 (fix: aggiorna favicon a faviconCL.png su tutte le pagine)
 </body>
 </html>
