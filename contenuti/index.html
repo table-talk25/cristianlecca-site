@@ -243,9 +243,9 @@
         <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 leading-relaxed">
           Ogni settimana scompongo i limiti mentali più comuni attraverso le neuroscienze applicate e il mental coaching. Non è solo teoria, ma una guida pratica per chi vuole governare la propria mente invece di esserne governato.
         </p>
-        <!-- EMBED SPOTIFY — show stabile, sempre aggiornato all'ultimo episodio -->
+        <!-- EMBED SPOTIFY — aggiornato dinamicamente con l'ultimo episodio via JS -->
         <div class="spotify-embed mb-10">
-          <iframe
+          <iframe id="spotify-iframe"
             src="https://open.spotify.com/embed/show/3sVLJasBELbvl1SAcAoOle?utm_source=generator&theme=0"
             width="100%" height="152"
             frameborder="0"
@@ -514,41 +514,80 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ── RSS YouTube nativo: aggiorna bottone e iframe con l'ultimo video ──
-     Feed pubblico, nessun proxy necessario, nessuna API key richiesta.
-     Formato: youtube.com/feeds/videos.xml?channel_id=UCxxx
-     Nota: richiede un piccolo trick CORS — usiamo fetch in no-cors + fallback,
-     oppure leggiamo via DOMParser dopo fetch con cors:"no-cors" non leggibile.
-     Soluzione affidabile: fetch tramite endpoint rss2json gratuito (no auth required).
+  /* ── Aggiornamento dinamico: Spotify (ultimo episodio) + YouTube (ultimo video) ──
+     Entrambi via rss2json — nessun proxy, nessuna API key, nessun CORS.
   */
+  const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+
+  /* ── Spotify / Anchor: ultimo episodio ── */
+  (async function loadLatestSpotifyEpisode() {
+    const ANCHOR_RSS = 'https://anchor.fm/s/7001e01c/podcast/rss';
+    try {
+      const res  = await fetch(RSS2JSON + encodeURIComponent(ANCHOR_RSS));
+      const data = await res.json();
+      if (data.status !== 'ok' || !data.items || !data.items.length) return;
+
+      const latest = data.items[0];
+
+      /* Il link Spotify è nella proprietà enclosure o nel link diretto dell'item.
+         Anchor inserisce il link Spotify in <enclosure url="..."> oppure in <link>.
+         rss2json lo mappa in: data.items[0].enclosure.link oppure data.items[0].link */
+      let spotifyUrl = null;
+
+      /* Prova 1: enclosure (tipicamente MP3 di Anchor, non Spotify) */
+      /* Prova 2: link dell'item — Anchor spesso mette il link Spotify qui */
+      if (latest.link && latest.link.includes('spotify.com')) {
+        spotifyUrl = latest.link;
+      }
+
+      /* Prova 3: cerca nei campi custom il link Spotify (episodeUrl) */
+      if (!spotifyUrl && latest.enclosure && latest.enclosure.link && latest.enclosure.link.includes('spotify')) {
+        spotifyUrl = latest.enclosure.link;
+      }
+
+      /* Estrai l'episode ID Spotify dal link se disponibile */
+      if (spotifyUrl) {
+        const epMatch = spotifyUrl.match(/episode\/([A-Za-z0-9]+)/);
+        if (epMatch) {
+          const epId = epMatch[1];
+          /* Aggiorna embed Spotify con episodio specifico */
+          document.getElementById('spotify-iframe').src =
+            'https://open.spotify.com/embed/episode/' + epId + '?utm_source=generator&theme=0';
+          /* Aggiorna bottone Spotify con link diretto all'episodio */
+          document.getElementById('btn-spotify').href = spotifyUrl;
+        }
+      }
+    } catch (e) {
+      /* Fallback silenzioso: show generico già presente nell'iframe e nel bottone */
+    }
+  })();
+
+  /* ── YouTube: ultimo video ── */
   (async function loadLatestYouTubeVideo() {
     const CHANNEL_ID = 'UCBzeXGC4z9nOvYIGUMoX9bQ';
     const RSS_YT     = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
-    const API_URL    = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS_YT);
-
     try {
-      const res  = await fetch(API_URL);
+      const res  = await fetch(RSS2JSON + encodeURIComponent(RSS_YT));
       const data = await res.json();
       if (data.status !== 'ok' || !data.items || !data.items.length) return;
 
       const latest  = data.items[0];
-      /* L'ID del video è nell'ultimo segmento del guid/link */
       const videoId = latest.guid
         ? latest.guid.replace('yt:video:', '')
         : (latest.link.match(/v=([^&]+)/) || [])[1];
 
       if (!videoId) return;
 
-      /* Aggiorna embed YouTube con il video specifico */
+      /* Aggiorna embed YouTube */
       document.getElementById('yt-iframe').src =
         'https://www.youtube.com/embed/' + videoId + '?rel=0&modestbranding=1';
 
-      /* Aggiorna bottone “Guarda su YouTube” con il link diretto al video */
+      /* Aggiorna bottone "Guarda su YouTube" */
       document.getElementById('btn-youtube').href =
         'https://www.youtube.com/watch?v=' + videoId;
 
     } catch (e) {
-      /* Fallback silenzioso: iframe e bottone restano al canale */
+      /* Fallback silenzioso */
     }
   })();
 </script>
