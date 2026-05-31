@@ -158,18 +158,23 @@
   .lead-input {
     width: 100%;
     padding: 14px 18px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(245,247,250,0.12);
-    border-radius: 12px;
-    color: #F5F7FA;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(245,247,250,0.12) !important;
+    border-radius: 12px !important;
+    color: #F5F7FA !important;
+    -webkit-text-fill-color: #F5F7FA !important;
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     outline: none;
     transition: border-color 0.2s;
     box-sizing: border-box;
+    box-shadow: none !important;
   }
-  .lead-input:focus { border-color: #49C7A5; }
-  .lead-input::placeholder { color: #86948e; }
+  .lead-input:focus {
+    border-color: #49C7A5 !important;
+    box-shadow: none !important;
+  }
+  .lead-input::placeholder { color: #86948e; opacity: 1; }
 
   .checkbox-label {
     display: flex;
@@ -227,12 +232,10 @@
 
 <main class="pt-20 min-h-screen flex flex-col">
   <section class="flex-1 flex items-center justify-center px-gutter py-12 md:py-20 relative">
-    <!-- Ambient glow -->
     <div class="pointer-events-none fixed inset-0 -z-10" style="background: radial-gradient(circle at 50% 30%, rgba(73,199,165,0.06) 0%, rgba(16,20,22,1) 65%);"></div>
 
     <div class="w-full max-w-2xl mx-auto">
 
-      <!-- Header del quiz -->
       <div class="text-center mb-8" id="quizHeader">
         <span class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-md text-label-md tracking-widest uppercase mb-4">
           Quiz del Coraggio
@@ -241,10 +244,8 @@
         <p class="font-body-md text-body-md text-on-surface-variant mt-2">7 domande &middot; 3 minuti &middot; Risultato immediato</p>
       </div>
 
-      <!-- Quiz card -->
       <div class="quiz-card p-8 md:p-10" id="quizCard">
 
-        <!-- Progress -->
         <div class="mb-8" id="progressBox">
           <div class="flex justify-between items-center mb-2">
             <span class="font-label-md text-label-md text-on-surface-variant" id="progressLabel">Domanda 1 di 7</span>
@@ -255,7 +256,6 @@
           </div>
         </div>
 
-        <!-- Domande -->
         <div id="quizQuestions">
 
           <div class="quiz-slide active" data-index="0">
@@ -329,9 +329,7 @@
           </div>
 
         </div>
-        <!-- Fine domande -->
 
-        <!-- Form lead capture (nascosto inizialmente) -->
         <div id="resultArea" style="display:none;">
           <div class="text-center mb-8">
             <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 mb-4">
@@ -348,7 +346,6 @@
             <input type="hidden" id="lead_profile" name="profile_result" value=""/>
             <input type="hidden" id="lead_source" name="source" value="quiz_coraggio_domande"/>
             <input type="hidden" id="lead_answers" name="quiz_answers_json" value=""/>
-            <!-- Honeypot anti-spam -->
             <input type="text" id="lead_website" name="website" value="" style="display:none;" tabindex="-1" autocomplete="off"/>
 
             <label class="checkbox-label">
@@ -375,13 +372,11 @@
         </div>
 
       </div>
-      <!-- Fine quiz card -->
 
     </div>
   </section>
 </main>
 
-<!-- FOOTER MINIMALE QUIZ -->
 <footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <span class="font-label-md text-label-md text-on-surface-variant">
