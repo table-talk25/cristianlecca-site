@@ -126,15 +126,37 @@
     background: rgba(73,199,165,0.04);
   }
   /* RESPONSIVE MOBILE */
-  @media (max-width: 480px) {
-    section { padding-left: 16px; padding-right: 16px; }
-    footer { padding-left: 16px; padding-right: 16px; }
-    nav > div { padding-left: 16px; padding-right: 16px; }
-    .glass-card { padding: 20px 16px; }
-    .discipline-card { padding: 20px 16px; }
+  @media (max-width: 640px) {
+    section { padding-left: 16px !important; padding-right: 16px !important; }
+    footer { padding-left: 16px !important; padding-right: 16px !important; }
+    nav > div { padding-left: 16px !important; padding-right: 16px !important; }
+    .glass-card { padding: 20px 16px !important; }
+    .discipline-card { padding: 20px 16px !important; }
     h1, h2, h3 { word-break: break-word; overflow-wrap: break-word; }
     img { max-width: 100%; height: auto; }
     .px-gutter { padding-left: 16px !important; padding-right: 16px !important; }
+    /* Titoli scala su mobile */
+    .text-headline-lg { font-size: 28px !important; line-height: 1.25 !important; }
+    .text-headline-md { font-size: 22px !important; line-height: 1.3 !important; }
+    .text-display-lg-mobile { font-size: 32px !important; line-height: 1.2 !important; }
+    /* Body lg */
+    .text-body-lg { font-size: 17px !important; line-height: 1.6 !important; }
+    /* Bottoni: larghezza piena su mobile */
+    a.bg-primary, a.bg-secondary, a.border.border-outline-variant {
+      display: block !important;
+      text-align: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+    /* blockquote headline-md */
+    .text-headline-md { font-size: 22px !important; line-height: 1.35 !important; }
+    /* Card con p-10 */
+    .p-10 { padding: 20px 16px !important; }
+    .p-16 { padding: 24px 16px !important; }
+    /* Pilastri: riduci border-left e margin */
+    .pl-12 { padding-left: 32px !important; }
   }
 </style>
 </head>
@@ -182,9 +204,9 @@
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 reveal">
         IpnosiApplicata è una filosofia di lavoro che ho creato e continuo a sviluppare. Unisce ipnosi eriksoniana, PNL, coaching sistemico e posturale, psicologia e neuroscienze in un metodo cucito su ogni singola persona. Non per insegnarti a gestire il blocco — per aiutarti a diventare autonomo dal blocco, e da me.
       </p>
-      <div class="flex flex-wrap gap-4 reveal">
-        <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all inline-block">Fai il Quiz del Coraggio</a>
-        <a href="/reset-notturno/" class="border border-outline-variant/50 text-on-surface px-8 py-4 rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors inline-block">Scopri il Reset Notturno</a>
+      <div class="flex flex-col sm:flex-row gap-4 reveal">
+        <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all inline-block text-center">Fai il Quiz del Coraggio</a>
+        <a href="/reset-notturno/" class="border border-outline-variant/50 text-on-surface px-8 py-4 rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors inline-block text-center">Scopri il Reset Notturno</a>
       </div>
     </div>
   </div>
@@ -203,7 +225,7 @@
     </div>
     <div class="relative reveal">
       <div class="absolute inset-0 bg-primary/8 blur-[80px] pointer-events-none rounded-3xl"></div>
-      <div class="relative glass-card rounded-3xl p-10 border-primary/20 space-y-6">
+      <div class="relative glass-card rounded-3xl p-6 md:p-10 border-primary/20 space-y-6">
         <div class="flex items-start gap-4">
           <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg shrink-0">search</span>
           <div>
@@ -239,7 +261,7 @@
         <p><strong class="text-on-surface">"Applicata" significa che l'ipnosi non è il momento della sessione — è il tessuto di ogni conversazione, ogni esercizio, ogni interazione.</strong> Utilizzo ipnosi conversazionale eriksoniana: il cliente non viene "messo in ipnosi". Sta già lavorando in profondità, senza barriere difensive attive.</p>
         <p>La teoria diventa pratica nel momento in cui la faccio vivere. Sessione dopo sessione, esercizio dopo esercizio — finché il cambiamento non diventa qualcosa che il cliente sperimenta, non qualcosa che gli viene raccontato.</p>
       </div>
-      <div class="glass-card rounded-2xl p-8 border-secondary/20 reveal">
+      <div class="glass-card rounded-2xl p-6 md:p-8 border-secondary/20 reveal">
         <div class="flex items-center gap-3 mb-8">
           <span class="material-symbols-outlined text-secondary">format_quote</span>
           <span class="font-label-md text-label-md text-secondary uppercase tracking-wider">Il principio fondante</span>
@@ -306,17 +328,17 @@
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">La trasformazione segue una direzione precisa. Saltare un passaggio significa costruire sulla sabbia.</p>
     </div>
     <div class="grid md:grid-cols-3 gap-12">
-      <div class="relative pl-12 border-l-2 border-primary/40 reveal">
+      <div class="relative pl-10 md:pl-12 border-l-2 border-primary/40 reveal">
         <div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-primary rounded-full flex items-center justify-center font-label-md text-label-md text-primary">1</div>
         <h3 class="font-headline-md text-headline-md mb-4 text-primary">Riconosci</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">Identifico la vera radice del blocco — non quello che il cliente crede sia il problema. Questo richiede ascolto profondo e la capacità di leggere tra le righe di ciò che viene detto, e di ciò che non viene detto.</p>
       </div>
-      <div class="relative pl-12 border-l-2 border-secondary/40 reveal">
+      <div class="relative pl-10 md:pl-12 border-l-2 border-secondary/40 reveal">
         <div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-secondary rounded-full flex items-center justify-center font-label-md text-label-md text-secondary">2</div>
         <h3 class="font-headline-md text-headline-md mb-4 text-secondary">Rileggi</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">Attraverso ipnosi conversazionale, PNL e coaching, ristrutturiamo il modo in cui il cliente parla a sé stesso. Le credenze alla radice del sintomo vengono scardinate — non soppresse, non aggirate. Dissolte.</p>
       </div>
-      <div class="relative pl-12 border-l-2 border-tertiary/40 reveal">
+      <div class="relative pl-10 md:pl-12 border-l-2 border-tertiary/40 reveal">
         <div class="absolute -left-4 top-0 w-8 h-8 bg-background border-2 border-tertiary rounded-full flex items-center justify-center font-label-md text-label-md text-tertiary">3</div>
         <h3 class="font-headline-md text-headline-md mb-4 text-tertiary">Agisci</h3>
         <p class="font-body-md text-body-md text-on-surface-variant">Il cambiamento non si dichiara — si sperimenta. Il cliente viene messo davanti a situazioni note in cui verifica in prima persona che reagisce diversamente. Il cambiamento diventa misurabile, inconfutabile, suo.</p>
@@ -358,7 +380,7 @@
 <!-- LE COMPETENZE SI MISURANO SUI RISULTATI -->
 <section class="px-gutter py-section-v-mobile md:py-section-v-desktop">
   <div class="max-w-4xl mx-auto">
-    <div class="glass-card rounded-3xl p-10 md:p-16 border-primary/15 reveal">
+    <div class="glass-card rounded-3xl p-6 md:p-16 border-primary/15 reveal">
       <span class="font-label-md text-label-md text-tertiary uppercase tracking-widest mb-6 block">Il metodo si misura sul campo</span>
       <h2 class="font-headline-lg text-headline-lg mb-8">Le competenze si misurano sui risultati.</h2>
       <div class="space-y-5 font-body-lg text-body-lg text-on-surface-variant">
@@ -384,22 +406,22 @@
         </div>
       </div>
       <div class="grid grid-cols-2 gap-6 reveal">
-        <div class="glass-card rounded-2xl p-6 text-center">
+        <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
           <span class="material-symbols-outlined text-primary mb-3" style="font-size:2.5rem;">timer</span>
           <h4 class="font-label-md text-label-md text-on-surface mb-2">Sessione ogni 2 settimane</h4>
           <p class="font-body-md text-body-md text-on-surface-variant">Non ogni settimana. Il tempo tra le sessioni è parte del metodo.</p>
         </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
+        <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
           <span class="material-symbols-outlined text-primary mb-3" style="font-size:2.5rem;">trending_up</span>
           <h4 class="font-label-md text-label-md text-on-surface mb-2">Progressi misurabili</h4>
           <p class="font-body-md text-body-md text-on-surface-variant">Situazioni note, reazioni diverse. Il cambiamento si vede, si sente, si verifica.</p>
         </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
+        <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
           <span class="material-symbols-outlined text-primary mb-3" style="font-size:2.5rem;">person_check</span>
           <h4 class="font-label-md text-label-md text-on-surface mb-2">Autonomia come obiettivo</h4>
           <p class="font-body-md text-body-md text-on-surface-variant">Il traguardo non è il coach — è la persona che non ha più bisogno di lui.</p>
         </div>
-        <div class="glass-card rounded-2xl p-6 text-center">
+        <div class="glass-card rounded-2xl p-4 md:p-6 text-center">
           <span class="material-symbols-outlined text-primary mb-3" style="font-size:2.5rem;">construction</span>
           <h4 class="font-label-md text-label-md text-on-surface mb-2">Strumenti che restano</h4>
           <p class="font-body-md text-body-md text-on-surface-variant">Quello che impari nel percorso non scompare quando il percorso finisce.</p>
@@ -414,7 +436,7 @@
   <div class="max-w-container-max mx-auto">
     <h2 class="font-headline-lg text-headline-lg mb-16 text-center reveal">Il percorso nella pratica</h2>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="glass-card p-10 rounded-2xl flex flex-col reveal">
+      <div class="glass-card p-6 md:p-10 rounded-2xl flex flex-col reveal">
         <div class="mb-6 w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
           <span class="material-symbols-outlined text-secondary" style="font-size:1.75rem;">quiz</span>
         </div>
@@ -422,7 +444,7 @@
         <p class="font-body-md text-body-md text-on-surface-variant mb-auto">Il primo passo: una mappa del tuo territorio interiore. Identifica il blocco dominante e ti orienta verso il percorso giusto per te.</p>
         <a href="/quiz/" class="mt-8 text-primary font-label-md text-label-md flex items-center gap-2 hover:translate-x-1 transition-transform">Inizia qui <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward</span></a>
       </div>
-      <div class="glass-card p-10 rounded-2xl flex flex-col reveal">
+      <div class="glass-card p-6 md:p-10 rounded-2xl flex flex-col reveal">
         <div class="mb-6 w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
           <span class="material-symbols-outlined text-secondary" style="font-size:1.75rem;">nights_stay</span>
         </div>
@@ -430,7 +452,7 @@
         <p class="font-body-md text-body-md text-on-surface-variant mb-auto">Utilizzare il tempo del sonno per riprogrammare le risposte emotive automatiche al blocco. Il lavoro continua anche quando non sei sveglio.</p>
         <a href="/reset-notturno/" class="mt-8 text-primary font-label-md text-label-md flex items-center gap-2 hover:translate-x-1 transition-transform">Scopri di più <span class="material-symbols-outlined" style="font-size:1rem;">arrow_forward</span></a>
       </div>
-      <div class="glass-card p-10 rounded-2xl flex flex-col reveal">
+      <div class="glass-card p-6 md:p-10 rounded-2xl flex flex-col reveal">
         <div class="mb-6 w-14 h-14 bg-secondary/15 rounded-full flex items-center justify-center">
           <span class="material-symbols-outlined text-secondary" style="font-size:1.75rem;">center_focus_strong</span>
         </div>
@@ -451,8 +473,8 @@
     </h2>
     <p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl mx-auto">Il Quiz del Coraggio è il primo passo. Gratuito, personalizzato, concreto.</p>
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
-      <a href="/quiz/" class="bg-primary text-on-primary px-10 py-5 rounded-xl font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all inline-block">Fai il Quiz del Coraggio</a>
-      <a href="/sessione-di-svolta/" class="border border-outline-variant text-on-surface px-10 py-5 rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors inline-block">Prenota la Sessione di Svolta</a>
+      <a href="/quiz/" class="bg-primary text-on-primary px-8 py-4 md:px-10 md:py-5 rounded-xl font-label-md text-label-md hover:brightness-110 active:scale-95 transition-all inline-block text-center">Fai il Quiz del Coraggio</a>
+      <a href="/sessione-di-svolta/" class="border border-outline-variant text-on-surface px-8 py-4 md:px-10 md:py-5 rounded-xl font-label-md text-label-md hover:bg-surface-container transition-colors inline-block text-center">Prenota la Sessione di Svolta</a>
     </div>
   </div>
 </section>
