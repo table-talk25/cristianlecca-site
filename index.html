@@ -131,6 +131,13 @@
   }
   #mobile-menu a:hover { color: #49C7A5; }
   #mobile-menu a:last-child:hover { color: #101416; }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .pulse-dot { animation: pulse-dot 1.4s ease-in-out infinite; }
+  .pulse-dot:nth-child(2) { animation-delay: 0.2s; }
+  .pulse-dot:nth-child(3) { animation-delay: 0.4s; }
   /* RESPONSIVE MOBILE */
   @media (max-width: 640px) {
     section { padding-left: 16px !important; padding-right: 16px !important; }
@@ -274,14 +281,75 @@
       <a href="/quiz/" class="mt-10 bg-primary text-on-primary px-8 py-4 rounded-2xl font-label-md text-label-md shadow-xl shadow-primary/10 hover:brightness-110 transition-all inline-block w-full sm:w-auto text-center">Fai il Quiz del Coraggio</a>
     </div>
     <div class="flex-1 relative reveal">
-      <div class="bg-surface-container rounded-3xl p-8 border border-outline-variant shadow-2xl max-w-md mx-auto">
-        <div class="h-2 w-full bg-surface-variant rounded-full mb-8 overflow-hidden"><div class="h-full bg-gradient-to-r from-secondary to-primary w-2/3"></div></div>
-        <div class="space-y-6">
-          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-          <div class="h-12 bg-surface-variant/40 rounded-xl"></div>
-          <div class="h-24 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center"><span class="text-primary font-label-md">Analizzando il tuo profilo...</span></div>
+      <div class="bg-surface-container rounded-3xl p-6 border border-outline-variant shadow-2xl max-w-md mx-auto">
+
+        <!-- Header card -->
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary" style="font-size:1.1rem;">psychology</span>
+            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-xs">Analisi del profilo</span>
+          </div>
+          <span class="text-xs font-label-md text-primary bg-primary/10 px-2 py-0.5 rounded-full">67%</span>
         </div>
+
+        <!-- Progress bar -->
+        <div class="h-1.5 w-full bg-surface-variant rounded-full mb-6 overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full" style="width:67%"></div>
+        </div>
+
+        <!-- Aree di analisi con barre -->
+        <div class="space-y-4 mb-6">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-label-md text-on-surface-variant">Resistenza al cambiamento</span>
+              <span class="text-xs font-label-md text-secondary">Alta</span>
+            </div>
+            <div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+              <div class="h-full bg-secondary/70 rounded-full" style="width:78%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-label-md text-on-surface-variant">Consapevolezza emotiva</span>
+              <span class="text-xs font-label-md text-tertiary">Media</span>
+            </div>
+            <div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+              <div class="h-full bg-tertiary/70 rounded-full" style="width:48%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-label-md text-on-surface-variant">Chiarezza degli obiettivi</span>
+              <span class="text-xs font-label-md text-primary">In crescita</span>
+            </div>
+            <div class="h-1.5 bg-surface-variant rounded-full overflow-hidden">
+              <div class="h-full bg-primary/70 rounded-full" style="width:55%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-outline-variant/30 mb-5"></div>
+
+        <!-- Insight emerso -->
+        <div class="bg-primary/8 rounded-xl border border-primary/20 p-4 mb-4">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-primary mt-0.5" style="font-size:1rem;">lightbulb</span>
+            <div>
+              <p class="text-xs font-label-md text-primary mb-1">Insight emerso</p>
+              <p class="text-xs text-on-surface-variant leading-relaxed">Il tuo schema dominante è legato alla protezione identitaria. Il blocco non è esterno—è una strategia interna.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="flex items-center gap-2">
+          <span class="pulse-dot w-2 h-2 rounded-full bg-primary inline-block"></span>
+          <span class="pulse-dot w-2 h-2 rounded-full bg-primary inline-block"></span>
+          <span class="pulse-dot w-2 h-2 rounded-full bg-primary inline-block"></span>
+          <span class="text-xs font-label-md text-primary ml-1">Generando il tuo percorso personalizzato…</span>
+        </div>
+
       </div>
     </div>
   </div>
