@@ -324,17 +324,8 @@
           </div>
           <p class="text-on-surface-variant font-body-md text-body-md text-sm italic">Scegli una data nel calendario. Riceverai conferma immediata via email.</p>
         </div>
-        <div class="md:col-span-7 bg-surface-container-highest rounded-2xl min-h-[380px] flex flex-col items-center justify-center border border-outline-variant/30 relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 pointer-events-none"></div>
-          <div class="text-center p-8 relative z-10">
-            <span class="material-symbols-outlined text-primary/40 mb-4 block" style="font-size:56px">calendar_month</span>
-            <p class="font-headline-md text-body-lg mb-2 text-on-surface">Calendario integrato in arrivo</p>
-            <div class="grid grid-cols-7 gap-2 opacity-40 my-6 justify-center">
-              <div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-primary/40"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div><div class="w-8 h-8 rounded bg-outline-variant/20"></div>
-            </div>
-            <p class="text-on-surface-variant font-body-md text-body-md text-sm mb-6 max-w-xs mx-auto">Il sistema di prenotazione sarà attivo a breve. Nel frattempo scrivimi direttamente.</p>
-            <a href="#contact" class="inline-block bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:brightness-110 transition-all active:scale-95">Scrivimi per prenotare</a>
-          </div>
+        <div class="md:col-span-7 bg-surface-container-highest rounded-2xl min-h-[380px] border border-outline-variant/30 relative overflow-hidden">
+          <div id="cal-booking-placeholder" style="width:100%; min-height:480px;"></div>
         </div>
       </div>
     </div>
@@ -494,6 +485,42 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+</script>
+
+<!-- Cal.com embed script -->
+<script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
+    Cal("init", "sessione-di-svolta", { origin: "https://cal.eu" });
+    Cal.ns["sessione-di-svolta"]("inline", {
+      elementOrSelector: "#cal-booking-placeholder",
+      config: { layout: "month_view", theme: "dark" },
+      calLink: "cristianlecca/sessione-di-svolta"
+    });
+    Cal.ns["sessione-di-svolta"]("ui", {
+      theme: "dark",
+      cssVarsPerTheme: {
+        dark: {
+          "cal-brand": "#49C7A5",
+          "cal-brand-emphasis": "#60dbb8",
+          "cal-brand-text": "#101416",
+          "cal-bg": "#101416",
+          "cal-bg-emphasis": "#1d2022",
+          "cal-bg-muted": "#191c1e",
+          "cal-border": "#3d4944",
+          "cal-border-emphasis": "#3d4944",
+          "cal-border-booker": "#3d4944",
+          "cal-text": "#F5F7FA",
+          "cal-text-emphasis": "#F5F7FA",
+          "cal-text-muted": "#bccac3",
+          "cal-radius": "16px"
+        }
+      },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    });
+  </script>
+
+  <script>
   function handleForm(e) {
     e.preventDefault();
     const feedback = document.getElementById('form-feedback');
