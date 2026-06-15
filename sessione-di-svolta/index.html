@@ -521,13 +521,37 @@
   </script>
 
   <script>
-  function handleForm(e) {
+  async function handleForm(e) {
     e.preventDefault();
     const feedback = document.getElementById('form-feedback');
-    feedback.textContent = 'Messaggio inviato! Ti risponderò entro 24 ore.';
-    feedback.classList.remove('hidden');
-    e.target.reset();
-    setTimeout(() => feedback.classList.add('hidden'), 5000);
+    const form = e.target;
+    const payload = {
+      nome: document.getElementById('nome').value,
+      email: document.getElementById('email').value,
+      motivo: document.getElementById('motivo').value,
+      messaggio: document.getElementById('messaggio').value
+    };
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    try {
+      const res = await fetch('https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/sessione-svolta-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('request failed');
+      feedback.textContent = 'Messaggio inviato! Ti risponderò entro 24 ore.';
+      feedback.classList.remove('hidden', 'bg-error/10', 'border-error/20', 'text-error');
+      feedback.classList.add('bg-primary/10', 'border-primary/20', 'text-primary');
+      form.reset();
+    } catch (err) {
+      feedback.textContent = 'Si è verificato un errore. Riprova oppure scrivimi a info@cristianlecca.it.';
+      feedback.classList.remove('hidden', 'bg-primary/10', 'border-primary/20', 'text-primary');
+      feedback.classList.add('bg-error/10', 'border-error/20', 'text-error');
+    } finally {
+      submitBtn.disabled = false;
+      setTimeout(() => feedback.classList.add('hidden'), 6000);
+    }
   }
 </script>
 </body>
