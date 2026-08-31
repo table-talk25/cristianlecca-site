@@ -94,6 +94,31 @@
   /* Mobile: nascondi mockup smartphone su schermi molto piccoli per evitare overflow */
   @media (max-width: 480px) { .hero-phone-mock { display: none; } }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1960582901451670');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>
+  fbq('track', 'ViewContent', {
+    content_name: 'Reset Notturno',
+    content_type: 'product',
+    value: 37,
+    currency: 'EUR'
+  });
+</script>
 </head>
 <body class="font-body-md text-body-md">
 
@@ -492,6 +517,18 @@
       if (el.open) {
         document.querySelectorAll('details').forEach(other => {
           if (other !== el) other.open = false;
+        });
+      }
+    });
+  });
+  document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Reset Notturno',
+          content_type: 'product',
+          value: 37,
+          currency: 'EUR'
         });
       }
     });
