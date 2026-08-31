@@ -186,6 +186,17 @@
   }
   .lead-input::placeholder { color: #86948e; opacity: 1; }
 
+  .lead-input:-webkit-autofill,
+  .lead-input:-webkit-autofill:hover,
+  .lead-input:-webkit-autofill:focus,
+  .lead-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #F5F7FA !important;
+    -webkit-box-shadow: 0 0 0 1000px #1d2022 inset !important;
+    box-shadow: 0 0 0 1000px #1d2022 inset !important;
+    caret-color: #F5F7FA !important;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
   .checkbox-label {
     display: flex;
     align-items: flex-start;
