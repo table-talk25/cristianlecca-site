@@ -501,6 +501,38 @@ document.addEventListener('DOMContentLoaded', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function readCookie(name) {
+    try {
+      var parts = ('; ' + document.cookie).split('; ' + name + '=');
+      return parts.length === 2 ? parts.pop().split(';').shift() : '';
+    } catch (err) {
+      return '';
+    }
+  }
+
+  function getFbc() {
+    var fromCookie = readCookie('_fbc');
+    if (fromCookie) return fromCookie;
+    try {
+      var fbclid = new URLSearchParams(window.location.search).get('fbclid');
+      if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
+    } catch (err) {
+      return '';
+    }
+    return '';
+  }
+
+  function newEventId() {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+      }
+    } catch (err) {
+      // randomUUID non disponibile: si usa il fallback qui sotto
+    }
+    return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2, 12);
+  }
+
   const leadForm = document.getElementById('leadCaptureForm');
   if (leadForm) {
     leadForm.addEventListener('submit', async function (e) {
@@ -513,6 +545,8 @@ document.addEventListener('DOMContentLoaded', function () {
       responseMsg.style.display = 'none';
       responseMsg.className = '';
 
+      const eventId = newEventId();
+
       const payload = {
         first_name: document.getElementById('lead_name').value.trim(),
         email: document.getElementById('lead_email').value.trim().toLowerCase(),
@@ -522,7 +556,11 @@ document.addEventListener('DOMContentLoaded', function () {
         website: document.getElementById('lead_website').value,
         consent_privacy: document.getElementById('consent_privacy').checked,
         consent_marketing: document.getElementById('consent_marketing').checked,
-        submitted_at: new Date().toISOString()
+        submitted_at: new Date().toISOString(),
+        fbp: readCookie('_fbp'),
+        fbc: getFbc(),
+        client_ua: navigator.userAgent,
+        event_id: eventId
       };
 
       try {
@@ -538,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fbq('track', 'Lead', {
               content_name: 'Quiz del Coraggio',
               content_category: payload.profile_result
-            });
+            }, { eventID: eventId });
           }
           const urlMap = {
             A: '/il-perfezionista-bloccato',
