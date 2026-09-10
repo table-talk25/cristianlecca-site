@@ -390,10 +390,6 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
               <input type="checkbox" id="consent_privacy" required/>
               <span>Accetto la <a href="/privacy/" target="_blank">privacy policy</a></span>
             </label>
-            <label class="checkbox-label" style="margin-top:4px; padding:12px 14px; background:rgba(73,199,165,0.06); border:1px solid rgba(73,199,165,0.15); border-radius:10px;">
-              <input type="checkbox" id="consent_marketing"/>
-              <span>Voglio anche ricevere via email il percorso guidato per il mio profilo</span>
-            </label>
 
             <button type="submit" id="submitBtn"
               class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-full hover:brightness-110 active:scale-95 transition-all mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
@@ -555,13 +551,20 @@ document.addEventListener('DOMContentLoaded', function () {
         quiz_answers_json: document.getElementById('lead_answers').value,
         website: document.getElementById('lead_website').value,
         consent_privacy: document.getElementById('consent_privacy').checked,
-        consent_marketing: document.getElementById('consent_marketing').checked,
+        consent_marketing: false,
         submitted_at: new Date().toISOString(),
         fbp: readCookie('_fbp'),
         fbc: getFbc(),
         client_ua: navigator.userAgent,
         event_id: eventId
       };
+
+      // L'email serve alla pagina profilo per raccogliere il consenso marketing.
+      try {
+        sessionStorage.setItem('quiz_lead_email', payload.email);
+      } catch (err) {
+        // Storage non disponibile: la pagina profilo chiedera' l'email a mano.
+      }
 
       try {
         const res = await fetch('https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/quiz-coraggio-lead', {
