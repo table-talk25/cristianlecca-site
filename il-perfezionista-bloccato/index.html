@@ -233,6 +233,25 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- CONSENSO EMAIL: AUDIO IPNOTICO + GUIDA PDF -->
+  <section class="px-gutter py-10 md:py-16 reveal">
+    <div class="max-w-3xl mx-auto">
+      <div class="glass-card p-8 md:p-10">
+        <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">Vuoi il tuo Audio Ipnotico e la Guida PDF via email?</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant">Il tuo audio personalizzato e la guida pratica per il tuo profilo, in un'unica email, subito.</p>
+        <div class="mt-6" data-consent-box>
+          <button type="button" data-consent-btn
+            class="inline-block text-center bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all disabled:opacity-60">
+            S&igrave;, mandameli via email
+          </button>
+        </div>
+        <p class="font-label-md text-on-surface-variant mt-4" style="font-size:12px;">
+          Puoi <a class="text-primary underline" href="/privacy/">disiscriverti</a> quando vuoi.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- SLOT 1: AUDIO DESCRIZIONE PROFILO -->
   <section class="px-gutter pb-section-v-mobile md:pb-16 reveal">
     <div class="max-w-3xl mx-auto">
@@ -292,8 +311,8 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <div class="glass-card p-8 md:p-10">
         <h2 class="font-headline-md text-xl md:text-2xl text-on-background mb-3">Vuoi il tuo Audio Ipnotico e la Guida PDF via email?</h2>
         <p class="font-body-md text-body-md text-on-surface-variant">Il tuo audio personalizzato e la guida pratica per il tuo profilo, in un'unica email, subito.</p>
-        <div class="mt-6" id="emailConsentBox">
-          <button type="button" id="emailConsentBtn"
+        <div class="mt-6" data-consent-box>
+          <button type="button" data-consent-btn
             class="inline-block text-center bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all disabled:opacity-60">
             S&igrave;, mandameli via email
           </button>
@@ -492,8 +511,11 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     player._audio = audio;
   });
 
-  const consentBox = document.getElementById('emailConsentBox');
-  if (consentBox) {
+  // Il blocco compare due volte nella pagina, in alto e in fondo. Le due
+  // istanze condividono lo stato: chi accetta in alto non ritrova il bottone
+  // attivo scorrendo fino in fondo.
+  const consentBoxes = Array.prototype.slice.call(document.querySelectorAll('[data-consent-box]'));
+  if (consentBoxes.length) {
     const CONSENT_ENDPOINT = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/quiz-coraggio-marketing-consent';
 
     function storedEmail() {
@@ -504,39 +526,53 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       }
     }
 
-    function showConfirmation() {
-      const msg = document.createElement('p');
-      msg.className = 'font-body-md text-body-md text-primary';
-      msg.textContent = 'Fatto! Controlla la tua email tra pochi minuti.';
-      consentBox.replaceChildren(msg);
+    function eachButton(fn) {
+      consentBoxes.forEach(function (box) {
+        Array.prototype.forEach.call(box.querySelectorAll('button'), fn);
+      });
+    }
+
+    function confirmAll() {
+      consentBoxes.forEach(function (box) {
+        const msg = document.createElement('p');
+        msg.className = 'font-body-md text-body-md text-primary';
+        msg.textContent = 'Fatto! Controlla la tua email tra pochi minuti.';
+        box.replaceChildren(msg);
+      });
     }
 
     // L'errore si aggiunge sotto senza smontare il bottone o l'input,
     // altrimenti non si potrebbe piu' riprovare.
-    function showError() {
-      let err = consentBox.querySelector('.consent-error');
+    function showError(box) {
+      let err = box.querySelector('.consent-error');
       if (!err) {
         err = document.createElement('p');
         err.className = 'consent-error font-body-md text-body-md text-on-surface-variant mt-3';
-        consentBox.appendChild(err);
+        box.appendChild(err);
       }
       err.textContent = 'Non ha funzionato. Riprova tra poco.';
     }
 
-    function sendConsent(email, onError) {
+    function sendConsent(email, box, originBtn) {
+      // Durante l'invio si bloccano i bottoni di entrambe le istanze.
+      eachButton(function (b) { b.disabled = true; });
+      originBtn.textContent = 'Invio…';
       fetch(CONSENT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, consent_marketing: true, source: 'profile_page' })
       }).then(function () {
-        showConfirmation();
+        confirmAll();
       }).catch(function () {
-        onError();
-        showError();
+        eachButton(function (b) {
+          b.disabled = false;
+          if (b.dataset.label) b.textContent = b.dataset.label;
+        });
+        showError(box);
       });
     }
 
-    function askEmail() {
+    function askEmail(box) {
       const wrap = document.createElement('div');
       wrap.className = 'flex flex-col sm:flex-row gap-3 items-stretch sm:items-center';
 
@@ -550,6 +586,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       send.type = 'button';
       send.className = 'bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all disabled:opacity-60';
       send.textContent = 'Invia';
+      send.dataset.label = 'Invia';
 
       send.addEventListener('click', function () {
         const email = input.value.trim().toLowerCase();
@@ -557,12 +594,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
           input.focus();
           return;
         }
-        send.disabled = true;
-        send.textContent = 'Invio…';
-        sendConsent(email, function () {
-          send.disabled = false;
-          send.textContent = 'Invia';
-        });
+        sendConsent(email, box, send);
       });
 
       input.addEventListener('keydown', function (e) {
@@ -574,22 +606,21 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
 
       wrap.appendChild(input);
       wrap.appendChild(send);
-      consentBox.replaceChildren(wrap);
+      box.replaceChildren(wrap);
       input.focus();
     }
 
-    document.getElementById('emailConsentBtn').addEventListener('click', function () {
-      const btn = this;
-      const email = storedEmail();
-      if (!email) {
-        askEmail();
-        return;
-      }
-      btn.disabled = true;
-      btn.textContent = 'Invio…';
-      sendConsent(email, function () {
-        btn.disabled = false;
-        btn.textContent = 'S\u00ec, mandameli via email';
+    consentBoxes.forEach(function (box) {
+      const btn = box.querySelector('[data-consent-btn]');
+      if (!btn) return;
+      btn.dataset.label = btn.textContent.trim();
+      btn.addEventListener('click', function () {
+        const email = storedEmail();
+        if (!email) {
+          askEmail(box);
+          return;
+        }
+        sendConsent(email, box, btn);
       });
     });
   }
