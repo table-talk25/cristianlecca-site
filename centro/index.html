@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', {
               content_name: 'Torna al Centro'
-            }, { eventID: eventId });
+            }, { eventID: payload.email + '-centro-lead' });
           }
           // Come il quiz (che passa l'email alla pagina profilo via
           // sessionStorage e la raggiunge), qui si passa l'email alla
