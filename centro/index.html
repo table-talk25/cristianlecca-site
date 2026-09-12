@@ -359,14 +359,6 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
               <span>Accetto la <a href="/privacy/" target="_blank">privacy policy</a></span>
             </label>
 
-            <label class="checkbox-label">
-              <input type="checkbox" id="consent_marketing"/>
-              <span>Voglio anche ricevere via email la sequenza guidata e il bonus personalizzato del giorno dopo</span>
-            </label>
-            <p class="font-label-md text-on-surface-variant" style="font-size:11px; margin-top:-8px; margin-left:24px;">
-              Se non spunti questa casella riceverai comunque l'audio qui sopra, ma non la sequenza via email né il bonus del giorno dopo.
-            </p>
-
             <button type="submit" id="submitBtn" disabled
               class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-full hover:brightness-110 active:scale-95 transition-all mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
               Ricevi l'audio gratis
@@ -551,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function () {
         source: document.getElementById('lead_source').value,
         website: document.getElementById('lead_website').value,
         consent_privacy: consentPrivacy.checked,
-        consent_marketing: document.getElementById('consent_marketing').checked,
+        consent_marketing: false,
         submitted_at: new Date().toISOString(),
         fbp: readCookie('_fbp'),
         fbc: getFbc(),
