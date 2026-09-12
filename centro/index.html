@@ -174,68 +174,6 @@
     border: 1px solid rgba(73,199,165,0.25);
   }
 
-  /* Custom player — stesso componente delle pagine profilo */
-  .custom-player {
-    background: #1d2022;
-    border-radius: 14px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    user-select: none;
-  }
-  .custom-player .play-btn {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.15s ease, filter 0.15s ease;
-  }
-  .custom-player .play-btn:hover { filter: brightness(1.15); transform: scale(1.05); }
-  .custom-player .play-btn:active { transform: scale(0.96); }
-  .custom-player .play-btn .material-symbols-outlined {
-    font-size: 1.5rem;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .player-teal .play-btn { background: #49C7A5; color: #101416; }
-  .custom-player .progress-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .custom-player .progress-bar {
-    position: relative;
-    height: 6px;
-    background: rgba(245,247,250,0.12);
-    border-radius: 99px;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .custom-player .progress-fill {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    border-radius: 99px;
-    width: 0%;
-    transition: width 0.1s linear;
-  }
-  .player-teal .progress-fill { background: #49C7A5; }
-  .custom-player .time-row {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #F5F7FA;
-    letter-spacing: 0.03em;
-  }
-  .player-teal .time-row .accent { color: #49C7A5; }
-
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
@@ -340,7 +278,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
               <span class="material-symbols-outlined text-primary" style="font-size:2rem;">self_improvement</span>
             </span>
             <h2 class="font-headline-md text-2xl text-on-background mb-2">Ricevi subito il tuo audio</h2>
-            <p class="font-body-md text-body-md text-on-surface-variant">Inserisci i tuoi dati: l'audio si sblocca qui sotto, non arriva per email.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant">Inserisci i tuoi dati: ti portiamo subito all'audio, non arriva per email.</p>
           </div>
 
           <form id="leadCaptureForm" class="flex flex-col gap-4" novalidate>
@@ -371,29 +309,6 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
             <span class="material-symbols-outlined" style="font-size:0.9rem;">lock</span>
             100% Privacy. Nessuno spam.
           </p>
-        </div>
-
-        <div id="audioRevealSection" style="display:none;">
-          <div class="text-center mb-8">
-            <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 mb-4">
-              <span class="material-symbols-outlined text-primary" style="font-size:2rem;">check_circle</span>
-            </span>
-            <h2 class="font-headline-md text-2xl text-on-background mb-2">Il tuo audio è pronto</h2>
-            <p class="font-body-md text-body-md text-on-surface-variant">Trova un momento tranquillo, indossa le cuffie e lasciati guidare per 7 minuti.</p>
-          </div>
-          <!-- TODO: sostituire con l'audio definitivo appena registrato da Cristian -->
-          <div class="custom-player player-teal" data-src="https://pub-afc8a9299f664f2695584e30f457a84e.r2.dev/quiz-coraggio/AUDIO%20IPNOTICI/IPNOTICOAudio%20per%20%22Il%20Critico%20Instancabile%22.mp3">
-            <button class="play-btn" aria-label="Play / Pausa">
-              <span class="material-symbols-outlined play-icon">play_arrow</span>
-            </button>
-            <div class="progress-wrap">
-              <div class="progress-bar"><div class="progress-fill"></div></div>
-              <div class="time-row">
-                <span class="current-time accent">0:00</span>
-                <span class="duration">--:--</span>
-              </div>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -429,54 +344,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // ---------- custom audio player (stesso componente delle pagine profilo) ----------
-  function formatTime(s) {
-    if (isNaN(s)) return '--:--';
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60);
-    return m + ':' + String(sec).padStart(2, '0');
-  }
-
-  document.querySelectorAll('.custom-player').forEach(player => {
-    const src = player.dataset.src;
-    const audio = new Audio(src);
-    const playBtn = player.querySelector('.play-btn');
-    const playIcon = player.querySelector('.play-icon');
-    const fill = player.querySelector('.progress-fill');
-    const bar = player.querySelector('.progress-bar');
-    const currentEl = player.querySelector('.current-time');
-    const durationEl = player.querySelector('.duration');
-
-    audio.addEventListener('loadedmetadata', () => {
-      durationEl.textContent = formatTime(audio.duration);
-    });
-    audio.addEventListener('timeupdate', () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      fill.style.width = pct + '%';
-      currentEl.textContent = formatTime(audio.currentTime);
-    });
-    audio.addEventListener('ended', () => {
-      playIcon.textContent = 'play_arrow';
-      fill.style.width = '0%';
-      currentEl.textContent = '0:00';
-    });
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playIcon.textContent = 'pause';
-      } else {
-        audio.pause();
-        playIcon.textContent = 'play_arrow';
-      }
-    });
-    bar.addEventListener('click', (e) => {
-      const rect = bar.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      audio.currentTime = pct * audio.duration;
-    });
-    player._audio = audio;
-  });
 
   // ---------- lead form ----------
   function readCookie(name) {
@@ -565,11 +432,15 @@ document.addEventListener('DOMContentLoaded', function () {
               content_name: 'Torna al Centro'
             }, { eventID: eventId });
           }
-          // Reveal in-page dell'audio, niente redirect (a differenza del quiz,
-          // che porta alla pagina profilo): il contenuto compare qui sotto.
-          document.getElementById('leadFormSection').style.display = 'none';
-          document.getElementById('audioRevealSection').style.display = 'block';
-          window.scrollTo({ top: document.getElementById('accedi').offsetTop - 80, behavior: 'smooth' });
+          // Come il quiz (che passa l'email alla pagina profilo via
+          // sessionStorage e la raggiunge), qui si passa l'email alla
+          // pagina 2 e si reindirizza: l'audio e il bivio vivono lì.
+          try {
+            sessionStorage.setItem('centro_lead_email', payload.email);
+          } catch (err) {
+            // Storage non disponibile: /centro/ascolta/ chiedera' l'email a mano.
+          }
+          window.location.href = '/centro/ascolta/';
         } else {
           responseMsg.textContent = data.message || 'Qualcosa non ha funzionato. Riprova.';
           responseMsg.className = 'is-error';
