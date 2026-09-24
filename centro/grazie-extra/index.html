@@ -12,8 +12,8 @@
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fatto | Cristian Lecca</title>
-<meta name="description" content="La tua scelta è stata registrata. Il tuo bonus personalizzato sta arrivando."/>
+<title>Pagamento ricevuto | Cristian Lecca</title>
+<meta name="description" content="Pagamento ricevuto. Il tuo audio arriva via email a breve."/>
 <meta name="robots" content="noindex, nofollow"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/faviconCL.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -113,7 +113,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
 </head>
 <body class="font-body-md text-body-md">
 
-<!-- HEADER MINIMALE (stesso pattern di /quiz/ e /centro/) -->
+<!-- HEADER MINIMALE (stesso pattern di /centro/grazie/) -->
 <nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
   <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
     <a class="flex items-center gap-3" href="/">
@@ -132,15 +132,18 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 mb-4">
         <span class="material-symbols-outlined text-primary" style="font-size:2rem;">check_circle</span>
       </span>
-      <h1 class="font-headline-md text-2xl text-on-background mb-3">Fatto!</h1>
-      <p id="grazieMessage" class="font-body-md text-body-md text-on-surface-variant">
-        La tua scelta è stata registrata: il bonus è in arrivo nella tua casella email.
+      <h1 class="font-headline-md text-2xl text-on-background mb-3">Pagamento ricevuto</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant mb-3">
+        Grazie. Il tuo audio arriva via email entro pochi minuti, appena il pagamento viene confermato.
+      </p>
+      <p class="font-body-md text-body-md text-on-surface-variant">
+        Se non lo vedi, dai un'occhiata anche alle cartelle spam o promozioni.
       </p>
     </div>
   </section>
 </main>
 
-<!-- FOOTER MINIMALE (stesso pattern di /quiz/ e /centro/) -->
+<!-- FOOTER MINIMALE (stesso pattern di /centro/grazie/) -->
 <footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
   <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
     <span class="font-label-md text-label-md text-on-surface-variant">
@@ -153,21 +156,5 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     </div>
   </div>
 </footer>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const MESSAGES = {
-    'non-dormo-bene': 'Perfetto. Il tuo bonus è in arrivo via email: tienilo per stasera, quando ti metti a letto.',
-    'sono-sovraccarico': 'Perfetto. Il tuo bonus è in arrivo via email: tienilo per il prossimo momento in cui la testa si riempie, anche a metà giornata.',
-    'voglio-iniziare-meglio': 'Perfetto. Il tuo bonus è in arrivo via email: ascoltalo domani mattina, appena sveglio.'
-  };
-  const stato = new URLSearchParams(window.location.search).get('stato');
-  const msgEl = document.getElementById('grazieMessage');
-  if (stato && MESSAGES[stato]) {
-    msgEl.textContent = MESSAGES[stato];
-  }
-  // Se stato manca o non e' riconosciuto, resta il messaggio generico gia' nel markup.
-});
-</script>
 </body>
 </html>

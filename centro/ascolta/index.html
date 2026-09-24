@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<script>
+  // Prima di GA4 e Pixel: l'email in ?email= non deve finire nell'URL dei loro hit.
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('email')) return;
+      var email = (params.get('email') || '').trim().toLowerCase();
+      params.delete('email');
+      var qs = params.toString();
+      history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+      if (email.indexOf('@') > 0) window.centroEmailFromUrl = email;
+    } catch (err) {}
+  })();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
 <script>
@@ -209,6 +223,11 @@
     cursor: not-allowed;
     pointer-events: none;
   }
+  .bivio-text { display: flex; flex-direction: column; gap: 2px; }
+  .bivio-note { font-size: 12px; font-weight: 500; color: #bccac3; }
+  .bivio-note:empty { display: none; }
+  .bivio-btn.is-received { border-style: dashed; }
+  .bivio-btn.is-received .bivio-note { color: #49C7A5; }
 
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -301,15 +320,15 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
           <div class="flex flex-col gap-3">
             <a class="bivio-btn link-disabled" data-stato="non-dormo-bene" aria-disabled="true" tabindex="-1">
               <span class="material-symbols-outlined">bedtime</span>
-              Non dormo bene
+              <span class="bivio-text"><span>Non dormo bene</span><span class="bivio-note"></span></span>
             </a>
             <a class="bivio-btn link-disabled" data-stato="sono-sovraccarico" aria-disabled="true" tabindex="-1">
               <span class="material-symbols-outlined">battery_alert</span>
-              Mi sento sovraccarico
+              <span class="bivio-text"><span>Mi sento sovraccarico</span><span class="bivio-note"></span></span>
             </a>
             <a class="bivio-btn link-disabled" data-stato="voglio-iniziare-meglio" aria-disabled="true" tabindex="-1">
               <span class="material-symbols-outlined">wb_sunny</span>
-              Voglio iniziare meglio le giornate
+              <span class="bivio-text"><span>Voglio iniziare meglio le giornate</span><span class="bivio-note"></span></span>
             </a>
           </div>
         </div>
@@ -398,47 +417,89 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ---------- bivio: checkbox marketing + 3 link verso n8n ----------
-  const WEBHOOK_BASE = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/centro-bivio-risposta';
+  const N8N_BASE = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/';
+  const WEBHOOK_BASE = N8N_BASE + 'centro-bivio-risposta';
+  const STATO_ENDPOINT = N8N_BASE + 'centro-bivio-stato';
+  const PREZZO_EXTRA = '€4,90';
   const emailAskBox = document.getElementById('emailAskBox');
   const bivioBox = document.getElementById('bivioBox');
   const checkbox = document.getElementById('consent_marketing');
   const links = Array.prototype.slice.call(document.querySelectorAll('[data-stato]'));
+  const statiValidi = links.map(function (a) { return a.dataset.stato; });
+  let receivedStato = null;
 
-  function setLinksDisabled(disabled) {
+  function applyState() {
     links.forEach(function (a) {
-      if (disabled) {
-        a.classList.add('link-disabled');
-        a.setAttribute('aria-disabled', 'true');
-        a.setAttribute('tabindex', '-1');
-        a.removeAttribute('href');
-      } else {
+      const enabled = checkbox.checked && a.dataset.href && a.dataset.stato !== receivedStato;
+      if (enabled) {
+        a.setAttribute('href', a.dataset.href);
         a.classList.remove('link-disabled');
         a.removeAttribute('aria-disabled');
         a.removeAttribute('tabindex');
+      } else {
+        a.removeAttribute('href');
+        a.classList.add('link-disabled');
+        a.setAttribute('aria-disabled', 'true');
+        a.setAttribute('tabindex', '-1');
       }
     });
+  }
+  checkbox.addEventListener('change', applyState);
+
+  // Chi torna ha gia' un bonus gratuito: quello resta segnato come ricevuto,
+  // gli altri due mostrano il prezzo. Il link non cambia, il redirect a
+  // Stripe lo decide il backend.
+  function markReturning(stato) {
+    receivedStato = stato;
+    links.forEach(function (a) {
+      const note = a.querySelector('.bivio-note');
+      if (a.dataset.stato === stato) {
+        a.classList.add('is-received');
+        note.textContent = 'Già ricevuto ✓';
+      } else {
+        note.textContent = 'Sblocca per ' + PREZZO_EXTRA;
+      }
+    });
+    applyState();
+  }
+
+  // Qualsiasi errore (rete, CORS, timeout, risposta inattesa) lascia la
+  // pagina com'e': il bivio deve restare usabile anche senza questa info.
+  function lookupStato(email) {
+    if (typeof fetch !== 'function') return;
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    const timer = controller ? setTimeout(function () { controller.abort(); }, 5000) : null;
+    fetch(STATO_ENDPOINT + '?email=' + encodeURIComponent(email), controller ? { signal: controller.signal } : {})
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (data && data.has_response === true && statiValidi.indexOf(data.stato_scelto) !== -1) {
+          markReturning(data.stato_scelto);
+        }
+      })
+      .catch(function () {})
+      .then(function () { if (timer) clearTimeout(timer); });
   }
 
   function wireBivio(email) {
     links.forEach(function (a) {
       a.dataset.href = WEBHOOK_BASE + '?email=' + encodeURIComponent(email) + '&stato=' + a.dataset.stato;
     });
-    function applyState() {
-      if (checkbox.checked) {
-        links.forEach(function (a) { a.setAttribute('href', a.dataset.href); });
-        setLinksDisabled(false);
-      } else {
-        setLinksDisabled(true);
-      }
-    }
-    checkbox.addEventListener('change', applyState);
     applyState();
+    lookupStato(email);
   }
 
   // La stessa gestione di fallback usata nelle pagine profilo del quiz:
-  // se l'email non c'e' in sessionStorage, si chiede qui con un piccolo
-  // input inline al posto del blocco, invece di un redirect.
+  // se l'email non c'e' (ne' in ?email= ne' in sessionStorage), si chiede
+  // qui con un piccolo input inline al posto del blocco, invece di un redirect.
   function storedEmail() {
+    if (window.centroEmailFromUrl) {
+      try {
+        sessionStorage.setItem('centro_lead_email', window.centroEmailFromUrl);
+      } catch (err) {
+        // Storage non disponibile: si usa comunque l'email arrivata dall'URL.
+      }
+      return window.centroEmailFromUrl;
+    }
     try {
       return sessionStorage.getItem('centro_lead_email') || '';
     } catch (err) {
