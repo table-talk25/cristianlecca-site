@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /blog/_template/
 
 Sitemap: https://cristianlecca.it/sitemap.xml
+Sitemap: https://cristianlecca.it/blog/sitemap-blog.xml
