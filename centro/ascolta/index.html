@@ -27,15 +27,15 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Torna al Centro | Cristian Lecca</title>
-<meta name="description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 7 minuti, e scegli il bonus più utile per te."/>
+<meta name="description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 17 minuti, e scegli il bonus più utile per te."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://cristianlecca.it/centro/ascolta/"/>
   <meta property="og:title" content="Torna al Centro | Cristian Lecca"/>
-  <meta property="og:description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 7 minuti, e scegli il bonus più utile per te."/>
+  <meta property="og:description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 17 minuti, e scegli il bonus più utile per te."/>
   <meta property="og:image" content="https://cristianlecca.it/assets/hero.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Torna al Centro | Cristian Lecca"/>
-  <meta name="twitter:description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 7 minuti, e scegli il bonus più utile per te."/>
+  <meta name="twitter:description" content="Ascolta subito Torna al Centro, l'induzione ipnotica gratuita di 17 minuti, e scegli il bonus più utile per te."/>
   <meta name="twitter:image" content="https://cristianlecca.it/assets/hero.png"/>
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/faviconCL.png">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -132,67 +132,6 @@
   }
   .checkbox-label a { color: #49C7A5; text-decoration: underline; }
 
-  /* Custom player — stesso componente delle pagine profilo */
-  .custom-player {
-    background: #1d2022;
-    border-radius: 14px;
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    user-select: none;
-  }
-  .custom-player .play-btn {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.15s ease, filter 0.15s ease;
-  }
-  .custom-player .play-btn:hover { filter: brightness(1.15); transform: scale(1.05); }
-  .custom-player .play-btn:active { transform: scale(0.96); }
-  .custom-player .play-btn .material-symbols-outlined {
-    font-size: 1.5rem;
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
-  .player-teal .play-btn { background: #49C7A5; color: #101416; }
-  .custom-player .progress-wrap {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .custom-player .progress-bar {
-    position: relative;
-    height: 6px;
-    background: rgba(245,247,250,0.12);
-    border-radius: 99px;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  .custom-player .progress-fill {
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    border-radius: 99px;
-    width: 0%;
-    transition: width 0.1s linear;
-  }
-  .player-teal .progress-fill { background: #49C7A5; }
-  .custom-player .time-row {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #F5F7FA;
-    letter-spacing: 0.03em;
-  }
-  .player-teal .time-row .accent { color: #49C7A5; }
 
   /* Pulsanti del bivio — stesso idioma delle option-btn del quiz */
   .bivio-btn {
@@ -276,22 +215,10 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
           <span class="material-symbols-outlined text-primary" style="font-size:2rem;">self_improvement</span>
         </span>
         <h1 class="font-headline-md text-2xl text-on-background mb-2">Il tuo audio è pronto</h1>
-        <p class="font-body-md text-body-md text-on-surface-variant">Trova un momento tranquillo, indossa le cuffie e lasciati guidare per 7 minuti.</p>
+        <p class="font-body-md text-body-md text-on-surface-variant">Trova un momento tranquillo, indossa le cuffie e lasciati guidare per 17 minuti.</p>
       </div>
       <div class="glass-card p-6 md:p-8 mb-8 reveal">
-        <!-- TODO: sostituire con l'audio definitivo appena registrato da Cristian -->
-        <div class="custom-player player-teal" data-src="https://pub-afc8a9299f664f2695584e30f457a84e.r2.dev/quiz-coraggio/AUDIO%20IPNOTICI/IPNOTICOAudio%20per%20%22Il%20Critico%20Instancabile%22.mp3">
-          <button class="play-btn" aria-label="Play / Pausa">
-            <span class="material-symbols-outlined play-icon">play_arrow</span>
-          </button>
-          <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-fill"></div></div>
-            <div class="time-row">
-              <span class="current-time accent">0:00</span>
-              <span class="duration">--:--</span>
-            </div>
-          </div>
-        </div>
+        <iframe title="Audio: Torna al Centro" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" style="border:0; border-radius:14px; display:block;" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2406476943%3Fsecret_token%3Ds-8Q3mHwLYZ4x&color=%231ec4b0&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
       </div>
 
       <!-- BIVIO: richiede l'email (da sessionStorage, o chiesta qui se manca) -->
@@ -367,54 +294,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  // ---------- custom audio player (stesso componente delle pagine profilo) ----------
-  function formatTime(s) {
-    if (isNaN(s)) return '--:--';
-    const m = Math.floor(s / 60);
-    const sec = Math.floor(s % 60);
-    return m + ':' + String(sec).padStart(2, '0');
-  }
-
-  document.querySelectorAll('.custom-player').forEach(player => {
-    const src = player.dataset.src;
-    const audio = new Audio(src);
-    const playBtn = player.querySelector('.play-btn');
-    const playIcon = player.querySelector('.play-icon');
-    const fill = player.querySelector('.progress-fill');
-    const bar = player.querySelector('.progress-bar');
-    const currentEl = player.querySelector('.current-time');
-    const durationEl = player.querySelector('.duration');
-
-    audio.addEventListener('loadedmetadata', () => {
-      durationEl.textContent = formatTime(audio.duration);
-    });
-    audio.addEventListener('timeupdate', () => {
-      const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
-      fill.style.width = pct + '%';
-      currentEl.textContent = formatTime(audio.currentTime);
-    });
-    audio.addEventListener('ended', () => {
-      playIcon.textContent = 'play_arrow';
-      fill.style.width = '0%';
-      currentEl.textContent = '0:00';
-    });
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playIcon.textContent = 'pause';
-      } else {
-        audio.pause();
-        playIcon.textContent = 'play_arrow';
-      }
-    });
-    bar.addEventListener('click', (e) => {
-      const rect = bar.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      audio.currentTime = pct * audio.duration;
-    });
-    player._audio = audio;
-  });
 
   // ---------- bivio: checkbox marketing + 3 link verso n8n ----------
   const N8N_BASE = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/';
