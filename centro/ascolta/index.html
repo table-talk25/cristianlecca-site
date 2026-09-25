@@ -228,6 +228,17 @@
   .bivio-note { font-size: 12px; font-weight: 500; color: #bccac3; }
   .bivio-note:empty { display: none; }
   .bivio-btn.is-received { border-style: dashed; }
+  .bivio-price-note {
+    margin: 0 0 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(201,164,92,0.3);
+    background: rgba(201,164,92,0.06);
+    color: #F5F7FA;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+  }
   .bivio-btn.is-received .bivio-note { color: #49C7A5; }
 
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -325,6 +336,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
           </label>
 
           <p class="font-headline-md text-lg text-on-background mb-4">Per darti il bonus giusto, dimmi cosa ti serve di più in questo momento</p>
+          <p id="bivioPriceNote" class="bivio-price-note" hidden></p>
 
           <div class="flex flex-col gap-3">
             <a class="bivio-btn link-disabled" data-stato="non-dormo-bene" aria-disabled="true" tabindex="-1">
@@ -435,11 +447,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const checkbox = document.getElementById('consent_marketing');
   const links = Array.prototype.slice.call(document.querySelectorAll('[data-stato]'));
   const statiValidi = links.map(function (a) { return a.dataset.stato; });
+  const priceNote = document.getElementById('bivioPriceNote');
   let receivedStato = null;
+  // Finche' non si sa se la persona ha gia' un bonus, i link restano bloccati:
+  // un click in quel momento porterebbe a Stripe senza aver visto il prezzo.
+  let lookupDone = true;
 
   function applyState() {
     links.forEach(function (a) {
-      const enabled = checkbox.checked && a.dataset.href && a.dataset.stato !== receivedStato;
+      const enabled = lookupDone && checkbox.checked && a.dataset.href && a.dataset.stato !== receivedStato;
       if (enabled) {
         a.setAttribute('href', a.dataset.href);
         a.classList.remove('link-disabled');
@@ -458,8 +474,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // Chi torna ha gia' un bonus gratuito: quello resta segnato come ricevuto,
   // gli altri due mostrano il prezzo. Il link non cambia, il redirect a
   // Stripe lo decide il backend.
+  function showPriceNote(text) {
+    priceNote.textContent = text;
+    priceNote.hidden = false;
+  }
+
   function markReturning(stato) {
     receivedStato = stato;
+    showPriceNote('Hai già ricevuto il tuo bonus gratuito. Gli altri due si sbloccano a ' + PREZZO_EXTRA + ' ciascuno, con pagamento sicuro su Stripe.');
     links.forEach(function (a) {
       const note = a.querySelector('.bivio-note');
       if (a.dataset.stato === stato) {
@@ -472,21 +494,46 @@ document.addEventListener('DOMContentLoaded', function () {
     applyState();
   }
 
-  // Qualsiasi errore (rete, CORS, timeout, risposta inattesa) lascia la
-  // pagina com'e': il bivio deve restare usabile anche senza questa info.
+  // n8n puo' rispondere con l'oggetto o con una lista che lo contiene, e con
+  // has_response come booleano o come testo.
+  function parseStato(data) {
+    if (Array.isArray(data)) data = data[0];
+    if (!data || typeof data !== 'object') return null;
+    const stato = String(data.stato_scelto || '').trim().toLowerCase();
+    const has = data.has_response === true || String(data.has_response).toLowerCase() === 'true' || stato !== '';
+    return { has: has, stato: statiValidi.indexOf(stato) !== -1 ? stato : null };
+  }
+
+  // Il bivio resta usabile anche se la verifica non riesce (rete, CORS,
+  // timeout, risposta inattesa), ma in quel caso il prezzo va detto comunque:
+  // chi ha gia' un bonus verrebbe mandato a Stripe senza saperlo.
   function lookupStato(email) {
-    if (typeof fetch !== 'function') return;
+    const fallbackNote = 'Il primo bonus è gratuito. Se ne hai già ricevuto uno, gli altri si sbloccano a ' + PREZZO_EXTRA + ' ciascuno.';
+    if (typeof fetch !== 'function') {
+      showPriceNote(fallbackNote);
+      return;
+    }
+    lookupDone = false;
+    applyState();
+    // Chiude la verifica una sola volta: con la risposta o allo scadere del tempo.
+    function finish(data) {
+      if (lookupDone) return;
+      clearTimeout(timer);
+      const result = parseStato(data);
+      if (result && result.has && result.stato) markReturning(result.stato);
+      else if (!result || result.has) showPriceNote(fallbackNote);
+      lookupDone = true;
+      applyState();
+    }
     const controller = typeof AbortController === 'function' ? new AbortController() : null;
-    const timer = controller ? setTimeout(function () { controller.abort(); }, 5000) : null;
+    const timer = setTimeout(function () {
+      if (controller) controller.abort();
+      finish(null);
+    }, 5000);
     fetch(STATO_ENDPOINT + '?email=' + encodeURIComponent(email), controller ? { signal: controller.signal } : {})
       .then(function (res) { return res.ok ? res.json() : null; })
-      .then(function (data) {
-        if (data && data.has_response === true && statiValidi.indexOf(data.stato_scelto) !== -1) {
-          markReturning(data.stato_scelto);
-        }
-      })
-      .catch(function () {})
-      .then(function () { if (timer) clearTimeout(timer); });
+      .then(finish)
+      .catch(function () { finish(null); });
   }
 
   function wireBivio(email) {
