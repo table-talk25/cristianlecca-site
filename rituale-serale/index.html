@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="dark" lang="it">
+<head>
+<!-- Pagina nascosta: non nel menu, non nel sitemap, NON in robots.txt (vedi README-rituale-serale.md) -->
+<meta name="robots" content="noindex, nofollow, noarchive"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7HN92MQPKY');
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Il Rituale Serale | Cristian Lecca</title>
+<meta name="description" content="Un breve sondaggio sul Rituale Serale."/>
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/faviconCL.png">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "background": "#101416",
+          "on-background": "#F5F7FA",
+          "surface": "#101416",
+          "on-surface": "#F5F7FA",
+          "primary": "#49C7A5",
+          "on-primary": "#101416",
+          "primary-container": "#49C7A5",
+          "on-primary-container": "#101416",
+          "secondary": "#3A63FF",
+          "on-secondary": "#FFFFFF",
+          "secondary-container": "#3A63FF",
+          "on-secondary-container": "#FFFFFF",
+          "tertiary": "#C9A45C",
+          "on-tertiary": "#101416",
+          "outline": "#86948e",
+          "outline-variant": "#3d4944",
+          "surface-container": "#1d2022",
+          "surface-container-low": "#191c1e",
+          "surface-container-high": "#272a2d",
+          "surface-container-highest": "#323538",
+          "surface-container-lowest": "#0b0f11",
+          "surface-variant": "#323538",
+          "on-surface-variant": "#bccac3",
+          "error": "#ffb4ab"
+        },
+        "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        "spacing": {
+          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
+          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
+        },
+        "fontFamily": {
+          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
+          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"],
+          "display-lg-mobile": ["Manrope"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .nav-logo { filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; }
+  .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
+  .glass-card { background: rgba(29,32,34,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(245,247,250,0.08); border-radius: 24px; }
+  .q-block { padding: 28px 0; border-top: 1px solid rgba(245,247,250,0.08); }
+  .q-block.has-error { outline: 1px solid rgba(255,180,171,0.35); outline-offset: 8px; border-radius: 12px; }
+  .q-error { display: none; color: #ffb4ab; font-size: 14px; margin-top: 10px; }
+  .has-error > .q-error { display: block; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { padding: 0; }
+  /* Opzioni: radio/checkbox nativi nascosti, l'etichetta e' il bottone (stesso look del quiz) */
+  .opt { position: relative; display: block; }
+  .opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+  .opt span.box {
+    display: flex; align-items: center; gap: 14px; width: 100%; padding: 16px 20px; min-height: 52px;
+    border: 1px solid rgba(245,247,250,0.1); border-radius: 12px; background: rgba(255,255,255,0.02);
+    font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.5; transition: border-color .2s, background .2s;
+  }
+  .opt:hover span.box { border-color: rgba(73,199,165,0.4); background: rgba(73,199,165,0.05); }
+  .opt input:checked + span.box { border-color: #49C7A5; background: rgba(73,199,165,0.1); font-weight: 600; }
+  .opt input:focus-visible + span.box { outline: 2px solid #49C7A5; outline-offset: 2px; }
+  /* Scala 1-5 */
+  .scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .scale .opt span.box { justify-content: center; padding: 14px 0; font-size: 18px; font-weight: 600; }
+  .scale-legend { display: flex; justify-content: space-between; font-size: 13px; color: #bccac3; margin-top: 8px; }
+  .lead-input {
+    width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.04) !important; border: 1px solid rgba(245,247,250,0.12) !important;
+    border-radius: 12px !important; color: #F5F7FA !important; -webkit-text-fill-color: #F5F7FA !important;
+    font-family: 'Inter', sans-serif; font-size: 16px; outline: none; box-sizing: border-box; box-shadow: none !important; transition: border-color .2s;
+  }
+  .lead-input:focus { border-color: #49C7A5 !important; }
+  .lead-input::placeholder { color: #86948e; opacity: 1; }
+  .lead-input:-webkit-autofill { -webkit-text-fill-color: #F5F7FA !important; -webkit-box-shadow: 0 0 0 1000px #1d2022 inset !important; caret-color: #F5F7FA !important; }
+  .checkbox-label { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #bccac3; cursor: pointer; line-height: 1.6; }
+  .checkbox-label input[type="checkbox"] { margin-top: 4px; width: 20px; height: 20px; accent-color: #49C7A5; flex-shrink: 0; }
+  .checkbox-label a, .link-privacy { color: #49C7A5; text-decoration: underline; }
+  .hp-field { position: absolute !important; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+  #formResponseMessage { display: none; text-align: center; font-size: 15px; line-height: 1.6; padding: 14px 18px; border-radius: 12px; margin-top: 16px; }
+  #formResponseMessage.is-error { display: block; color: #ffb4ab; background: rgba(255,180,171,0.08); border: 1px solid rgba(255,180,171,0.25); }
+  #waitlistFields { display: none; }
+  #waitlistFields.open { display: block; }
+  .audio-slot { border: 1px dashed rgba(245,247,250,0.18); border-radius: 16px; padding: 20px; text-align: center; color: #86948e; font-size: 14px; }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1960582901451670');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body class="font-body-md text-body-md">
+
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+  <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="flex items-center gap-3" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo"/>
+    </a>
+  </div>
+</nav>
+
+<main class="pt-20 min-h-screen">
+  <section class="px-gutter py-10 md:py-16 relative">
+    <div class="pointer-events-none fixed inset-0 -z-10" style="background: radial-gradient(circle at 50% 30%, rgba(73,199,165,0.06) 0%, rgba(16,20,22,1) 65%);"></div>
+    <div class="w-full max-w-2xl mx-auto">
+
+      <div class="text-center mb-8">
+        <span class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-md text-label-md tracking-widest uppercase mb-4">Rituale Serale</span>
+        <h1 class="font-headline-md text-headline-md text-on-background" style="font-size:28px;">Un piccolo rito, ogni sera</h1>
+      </div>
+
+      <div class="glass-card p-6 md:p-10">
+        <p class="text-on-surface-variant" style="line-height:1.7;">
+          <strong class="text-on-background">Un piccolo rito, ogni sera.</strong> Stiamo pensando a un appuntamento serale guidato da Cristian: ogni sera scegli come ti senti, ascolti un audio pensato per quel momento e chiudi la giornata con una frase che è la stessa ogni volta. Un modo semplice per tornare a te. Prima di costruirlo vogliamo capire se serve davvero a chi ci segue. Ti chiediamo due minuti per rispondere a poche domande. Se vuoi, puoi anche metterti in lista d'attesa.
+        </p>
+
+        <!-- TODO (Cristian): incolla qui l'embed dell'audio breve di prova e togli il segnaposto.
+             La pagina si pubblica anche senza: il riquadro tratteggiato resta finché non lo sostituisci. -->
+        <div id="audioSlot" class="audio-slot mt-6">Audio di prova in arrivo</div>
+
+        <form id="surveyForm" novalidate autocomplete="off" class="mt-8">
+
+          <!-- Q1 -->
+          <fieldset class="q-block" data-q="interest">
+            <legend class="font-headline-md text-xl text-on-background mb-4">1. Vorresti un rituale serale guidato, ogni sera?</legend>
+            <div class="scale">
+            <label class="opt"><input type="radio" name="interest" value="1"/><span class="box">1</span></label>
+            <label class="opt"><input type="radio" name="interest" value="2"/><span class="box">2</span></label>
+            <label class="opt"><input type="radio" name="interest" value="3"/><span class="box">3</span></label>
+            <label class="opt"><input type="radio" name="interest" value="4"/><span class="box">4</span></label>
+            <label class="opt"><input type="radio" name="interest" value="5"/><span class="box">5</span></label>
+            </div>
+            <div class="scale-legend"><span>1 · per niente</span><span>5 · moltissimo</span></div>
+            <p class="q-error">Scegli un valore da 1 a 5.</p>
+          </fieldset>
+
+          <!-- Q2 -->
+          <fieldset class="q-block" data-q="states">
+            <legend class="font-headline-md text-xl text-on-background mb-1">2. Quale di questi momenti ti somiglia di più?</legend>
+            <p class="text-on-surface-variant mb-4" style="font-size:14px;">Puoi sceglierne più di uno.</p>
+            <div class="flex flex-col gap-3">
+            <label class="opt"><input type="checkbox" name="states" value="rallentare"/><span class="box">Ho bisogno di rallentare</span></label>
+            <label class="opt"><input type="checkbox" name="states" value="lasciare_andare"/><span class="box">Ho bisogno di lasciare andare</span></label>
+            <label class="opt"><input type="checkbox" name="states" value="chiudere"/><span class="box">Voglio chiudere bene la giornata</span></label>
+            <label class="opt"><input type="checkbox" name="states" value="prepararsi"/><span class="box">Voglio prepararmi a domani</span></label>
+            </div>
+            <p class="q-error">Scegli almeno un'opzione.</p>
+          </fieldset>
+
+          <fieldset class="q-block" data-q="duration">
+            <legend class="font-headline-md text-xl text-on-background mb-4">3. Che durata preferiresti per l'audio?</legend>
+            <div class="flex flex-col gap-3">
+            <label class="opt"><input type="radio" name="duration" value="breve"/><span class="box">Breve (3-5 minuti)</span></label>
+            <label class="opt"><input type="radio" name="duration" value="lunga"/><span class="box">Lunga (circa 15 minuti)</span></label>
+            <label class="opt"><input type="radio" name="duration" value="dipende"/><span class="box">Dipende dalla sera</span></label>
+            </div>
+            <p class="q-error">Scegli un'opzione.</p>
+          </fieldset>
+
+          <fieldset class="q-block" data-q="time_slot">
+            <legend class="font-headline-md text-xl text-on-background mb-4">4. A che ora la sera avresti tempo per te?</legend>
+            <div class="flex flex-col gap-3">
+            <label class="opt"><input type="radio" name="time_slot" value="prima_21"/><span class="box">Prima delle 21</span></label>
+            <label class="opt"><input type="radio" name="time_slot" value="21_22"/><span class="box">Tra le 21 e le 22</span></label>
+            <label class="opt"><input type="radio" name="time_slot" value="dopo_22"/><span class="box">Dopo le 22</span></label>
+            <label class="opt"><input type="radio" name="time_slot" value="varia"/><span class="box">Cambia ogni giorno</span></label>
+            </div>
+            <p class="q-error">Scegli un'opzione.</p>
+          </fieldset>
+
+          <fieldset class="q-block" data-q="frequency">
+            <legend class="font-headline-md text-xl text-on-background mb-4">5. Con che frequenza lo useresti?</legend>
+            <div class="flex flex-col gap-3">
+            <label class="opt"><input type="radio" name="frequency" value="ogni_sera"/><span class="box">Ogni sera</span></label>
+            <label class="opt"><input type="radio" name="frequency" value="qualche_sera"/><span class="box">Qualche sera a settimana</span></label>
+            <label class="opt"><input type="radio" name="frequency" value="al_bisogno"/><span class="box">Solo quando ne sento il bisogno</span></label>
+            </div>
+            <p class="q-error">Scegli un'opzione.</p>
+          </fieldset>
+
+          <fieldset class="q-block" data-q="price_reaction">
+            <legend class="font-headline-md text-xl text-on-background mb-4">6. Se costasse 9,90 euro al mese, cosa faresti?</legend>
+            <div class="flex flex-col gap-3">
+            <label class="opt"><input type="radio" name="price_reaction" value="subito"/><span class="box">Lo prenderei subito</span></label>
+            <label class="opt"><input type="radio" name="price_reaction" value="ci_penso"/><span class="box">Ci penserei</span></label>
+            <label class="opt"><input type="radio" name="price_reaction" value="troppo"/><span class="box">Costa troppo per me</span></label>
+            </div>
+            <p class="q-error">Scegli un'opzione.</p>
+          </fieldset>
+          <!-- Q7 -->
+          <fieldset class="q-block" data-q="free_text">
+            <legend class="font-headline-md text-xl text-on-background mb-1"><label for="free_text">7. C'è qualcosa che ti servirebbe per iniziare?</label></legend>
+            <p class="text-on-surface-variant mb-4" style="font-size:14px;">Facoltativa.</p>
+            <textarea id="free_text" name="free_text" rows="4" class="lead-input" maxlength="500" placeholder="Scrivi qui, se vuoi…"></textarea>
+            <p class="text-on-surface-variant mt-2" style="font-size:13px; text-align:right;"><span id="freeTextCount">0</span>/500</p>
+          </fieldset>
+
+          <!-- Q8 -->
+          <fieldset class="q-block" data-q="wants_waitlist">
+            <legend class="font-headline-md text-xl text-on-background mb-4">8. Vuoi entrare in lista d'attesa?</legend>
+            <div class="flex flex-col gap-3">
+              <label class="opt"><input type="radio" name="wants_waitlist" value="si"/><span class="box">Sì</span></label>
+              <label class="opt"><input type="radio" name="wants_waitlist" value="no"/><span class="box">No</span></label>
+            </div>
+            <p class="q-error">Scegli Sì o No.</p>
+
+            <div id="waitlistFields" class="mt-6">
+              <div class="q-sub" data-q="email">
+                <label for="wl_email" class="font-label-md text-label-md text-on-surface-variant block mb-2">La tua email</label>
+                <input type="email" id="wl_email" name="email" class="lead-input" inputmode="email" autocomplete="email" maxlength="254" placeholder="nome@esempio.it"/>
+                <p class="q-error">Inserisci un indirizzo email valido.</p>
+              </div>
+              <div class="q-sub mt-5" data-q="consent">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="wl_consent" name="consent_rituale"/>
+                  <span>Voglio entrare in lista d'attesa per il Rituale Serale. Acconsento a essere contattato/a via email da Cristian Lecca solo per comunicazioni sul lancio di questo prodotto: apertura delle iscrizioni, offerta di ingresso e novità sul rituale. Posso revocare il consenso in qualsiasi momento con il link in ogni email o scrivendo a <!-- TODO: INDIRIZZO PER LA REVOCA DA INSERIRE (non inventato). Aggiorna anche CONSENT_TEXT_VERSION nello script quando lo scrivi. --><strong style="color:#C9A45C;">[INDIRIZZO DA INSERIRE]</strong>.</span>
+                </label>
+                <p class="q-error">Per salvare la tua email serve il consenso.</p>
+                <p class="mt-3" style="font-size:13px;"><!-- TODO: la sezione #rituale-serale in /privacy/ va ancora scritta (l'informativa attuale non la contiene). -->
+                  <a class="link-privacy" href="/privacy/#rituale-serale" target="_blank" rel="noopener">Informativa privacy</a>
+                </p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Campo trappola: i bot lo compilano, le persone no -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Non compilare questo campo</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"/>
+          </div>
+
+          <button type="submit" id="submitBtn"
+            class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-full hover:brightness-110 active:scale-95 transition-all mt-4 disabled:opacity-60 disabled:cursor-not-allowed" style="min-height:52px;">
+            Invia le risposte
+          </button>
+          <div id="formResponseMessage" role="alert"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-surface-container-lowest w-full py-12 px-gutter border-t border-outline-variant/30">
+  <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+    <span class="font-label-md text-label-md text-on-surface-variant">&copy; 2026 Cristian Lecca &mdash; P.IVA IT12632010018</span>
+    <div class="flex gap-6 font-label-md text-label-md">
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// CONFIGURAZIONE — cambia qui, non altrove
+// ============================================================
+// TODO (Cristian): URL base di PocketBase, senza slash finale. Nel repo non c'è: va inserito.
+const PB_URL = 'https://TODO-INDIRIZZO-POCKETBASE';
+const COLLECTION_RESPONSES = 'rituale_survey_responses';
+const COLLECTION_WAITLIST  = 'rituale_waitlist';
+// Da cambiare ogni volta che cambia il testo di consenso (checkbox della domanda 8).
+const CONSENT_TEXT_VERSION = 'rituale-v1-2026-09-29';
+const THANKS_URL = '/rituale-serale-grazie/';
+// Valori ammessi per il campo source (parametro utm_source del link).
+const SOURCES = ['email', 'spotify', 'facebook', 'instagram', 'youtube'];
+// Protezioni lato browser
+const MIN_FILL_MS = 8000;              // compilazione più veloce di così = probabile bot
+const COOLDOWN_MS = 6 * 60 * 60 * 1000; // dopo un invio riuscito, niente nuovo invio per 6 ore
+const MAX_ATTEMPTS = 5;                 // tentativi (anche falliti) per finestra
+const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
+// ============================================================
+
+(function () {
+  const form = document.getElementById('surveyForm');
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('formResponseMessage');
+  const opened = Date.now();
+  let inFlight = false;
+  let responseSaved = false; // le risposte sono già a database: non vanno reinviate se la sola email fallisce
+
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+  function getSource() {
+    try {
+      const s = (new URLSearchParams(location.search).get('utm_source') || '').toLowerCase().trim();
+      return SOURCES.indexOf(s) !== -1 ? s : 'altro';
+    } catch (e) { return 'altro'; }
+  }
+
+  function showError(text) { msg.textContent = text; msg.className = 'is-error'; }
+  function clearError() { msg.textContent = ''; msg.className = ''; }
+
+  // contatore Q7
+  const ft = document.getElementById('free_text');
+  ft.addEventListener('input', function () { document.getElementById('freeTextCount').textContent = ft.value.length; });
+
+  // lista d'attesa: campi visibili solo se Sì
+  const wlBox = document.getElementById('waitlistFields');
+  function wantsWaitlist() { const c = form.querySelector('input[name="wants_waitlist"]:checked'); return c ? c.value === 'si' : null; }
+  form.querySelectorAll('input[name="wants_waitlist"]').forEach(function (r) {
+    r.addEventListener('change', function () { wlBox.classList.toggle('open', wantsWaitlist() === true); });
+  });
+
+  // cooldown dopo invio riuscito
+  const last = parseInt(store('rituale_submitted_at') || '0', 10);
+  if (last && Date.now() - last < COOLDOWN_MS) { location.replace(THANKS_URL); return; }
+
+  function checked(name) { return Array.prototype.map.call(form.querySelectorAll('input[name="' + name + '"]:checked'), function (i) { return i.value; }); }
+  function mark(el, bad) { el.classList.toggle('has-error', !!bad); }
+
+  function validate() {
+    const bad = [];
+    ['interest', 'duration', 'time_slot', 'frequency', 'price_reaction'].forEach(function (n) {
+      const ok = checked(n).length === 1; const el = form.querySelector('[data-q="' + n + '"]'); mark(el, !ok); if (!ok) bad.push(el);
+    });
+    const st = form.querySelector('[data-q="states"]'); const okS = checked('states').length > 0; mark(st, !okS); if (!okS) bad.push(st);
+    const w = form.querySelector('[data-q="wants_waitlist"]'); const okW = wantsWaitlist() !== null; mark(w, !okW); if (!okW) bad.push(w);
+    ['email', 'consent'].forEach(function (k) { mark(form.querySelector('.q-sub[data-q="' + k + '"]'), false); });
+    if (wantsWaitlist() === true) {
+      const em = document.getElementById('wl_email').value.trim();
+      const okE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em) && em.length <= 254;
+      const eEl = form.querySelector('.q-sub[data-q="email"]'); mark(eEl, !okE); if (!okE) bad.push(eEl);
+      const okC = document.getElementById('wl_consent').checked;
+      const cEl = form.querySelector('.q-sub[data-q="consent"]'); mark(cEl, !okC); if (!okC) bad.push(cEl);
+    }
+    return bad;
+  }
+
+  async function pbCreate(collection, data) {
+    const res = await fetch(PB_URL + '/api/collections/' + collection + '/records', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)
+    });
+    let body = null; try { body = await res.json(); } catch (e) {}
+    return { ok: res.ok, status: res.status, body: body };
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (inFlight) return;
+    clearError();
+
+    // Trappola: finta riuscita, nessuna chiamata
+    if (document.getElementById('website').value) { location.href = THANKS_URL; return; }
+    if (Date.now() - opened < MIN_FILL_MS) { showError('Ti stai muovendo molto in fretta: rileggi le domande e riprova tra qualche secondo.'); return; }
+
+    // Limite di tentativi
+    let att = []; try { att = JSON.parse(store('rituale_attempts') || '[]'); } catch (x) {}
+    att = att.filter(function (t) { return Date.now() - t < ATTEMPT_WINDOW_MS; });
+    if (att.length >= MAX_ATTEMPTS) { showError('Troppi tentativi ravvicinati. Aspetta qualche minuto e riprova: le tue risposte restano qui.'); return; }
+    att.push(Date.now()); store('rituale_attempts', JSON.stringify(att));
+
+    const bad = validate();
+    if (bad.length) {
+      showError('Mancano alcune risposte: ho evidenziato i punti da completare.');
+      bad[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    inFlight = true; btn.disabled = true; btn.textContent = 'Invio in corso…';
+    const wl = wantsWaitlist() === true;
+    let waitlistOk = !wl;
+
+    try {
+      // Chiamata 1: risposte anonime (nessun campo le collega all'email)
+      if (!responseSaved) {
+        const r = await pbCreate(COLLECTION_RESPONSES, {
+          interest: parseInt(checked('interest')[0], 10),
+          states: checked('states'),
+          duration: checked('duration')[0],
+          time_slot: checked('time_slot')[0],
+          frequency: checked('frequency')[0],
+          price_reaction: checked('price_reaction')[0],
+          free_text: ft.value.trim().slice(0, 500),
+          source: getSource()
+        });
+        if (!r.ok) throw new Error('responses ' + r.status);
+        responseSaved = true;
+      }
+
+      // Chiamata 2, separata: solo email + consenso
+      if (wl) {
+        const w = await pbCreate(COLLECTION_WAITLIST, {
+          email: document.getElementById('wl_email').value.trim().toLowerCase(),
+          consent_rituale: true,
+          consent_text_version: CONSENT_TEXT_VERSION,
+          consent_at: new Date().toISOString(),
+          source: getSource()
+        });
+        // Email già presente (indice unico): per l'utente è comunque "in lista"
+        const dup = w.status === 400 && w.body && w.body.data && w.body.data.email && w.body.data.email.code === 'validation_not_unique';
+        if (!w.ok && !dup) throw new Error('waitlist ' + w.status);
+        waitlistOk = true;
+      }
+    } catch (err) {
+      inFlight = false; btn.disabled = false; btn.textContent = 'Invia le risposte';
+      showError(responseSaved
+        ? 'Le tue risposte sono state salvate, ma non siamo riusciti a registrare la tua email. Riprova con il pulsante: non serve rifare il sondaggio.'
+        : 'Non siamo riusciti a salvare le tue risposte. Controlla la connessione e riprova: quello che hai scritto è ancora nel modulo.');
+      return;
+    }
+
+    store('rituale_submitted_at', String(Date.now()));
+    try { sessionStorage.setItem('rituale_waitlist', wl ? '1' : '0'); } catch (x) {}
+    location.href = THANKS_URL;
+  });
+})();
+</script>
+</body>
+</html>
