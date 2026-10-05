@@ -308,6 +308,14 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
     } catch (e) { return 'altro'; }
   }
 
+  // utm_campaign: minuscolo; se non rispetta il formato, stringa vuota.
+  function getCampaign() {
+    try {
+      const c = (new URLSearchParams(location.search).get('utm_campaign') || '').toLowerCase();
+      return /^[a-z0-9][a-z0-9_-]{0,39}$/.test(c) ? c : '';
+    } catch (e) { return ''; }
+  }
+
   function showError(text) { msg.textContent = text; msg.className = 'is-error'; }
   function clearError() { msg.textContent = ''; msg.className = ''; }
 
@@ -389,6 +397,7 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
         consent_text_version: CONSENT_TEXT_VERSION
       } : null,
       source: getSource(),
+      campaign: getCampaign(),
       website: document.getElementById('website').value,
       elapsed_ms: Date.now() - opened
     };
@@ -408,6 +417,25 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
     try { sessionStorage.setItem('rituale_waitlist', wl ? '1' : '0'); } catch (x) {}
     location.href = THANKS_URL;
   });
+})();
+</script>
+<script>
+// Contatore visite anonimo: una richiesta per caricamento, solo source e campaign dall'URL.
+// Nessun cookie, nessun storage, nessun referrer; gli errori sono ignorati in silenzio.
+(function () {
+  try {
+    var h = location.hostname;
+    if (h === 'localhost' || h === '127.0.0.1') return;
+    var q = new URLSearchParams(location.search);
+    fetch('https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/rituale-serale-visita', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: q.get('utm_source') || '', campaign: q.get('utm_campaign') || '' }),
+      keepalive: true,
+      referrerPolicy: 'no-referrer',
+      credentials: 'omit'
+    }).catch(function () {});
+  } catch (e) {}
 })();
 </script>
 </body>

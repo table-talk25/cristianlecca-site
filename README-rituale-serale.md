@@ -26,6 +26,9 @@ NON aggiungerle a `robots.txt` né a `sitemap.xml`.
 Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
 
+## Contatore visite
+All'apertura di `/rituale-serale/` parte una sola richiesta POST (`keepalive`) a `…/webhook/rituale-serale-visita` con solo `{ "source": utm_source, "campaign": utm_campaign }` (stringhe dall'URL, vuote se assenti). Niente referrer, user agent o dati del form, nessun cookie o storage, errori ignorati in silenzio; non parte su `localhost` e `127.0.0.1`. Il workflow n8n deve validare i valori ricevuti e accettare il dominio del sito (CORS).
+
 ## Invio dei dati (webhook n8n)
 Un solo `fetch` POST in JSON a `WEBHOOK_URL`, nessuna chiave o token nella pagina:
 
@@ -36,12 +39,13 @@ Un solo `fetch` POST in JSON a `WEBHOOK_URL`, nessuna chiave o token nella pagin
                   "price_range": "fino_10"|"10_15"|"oltre_15"|"no_pay", "free_text": "max 1000 caratteri" },
       "waitlist": null | { "email": "...", "consent_rituale": true, "consent_text_version": "v1" },
       "source": "email"|"spotify"|"facebook"|"instagram"|"youtube"|"altro",
+      "campaign": "",           // utm_campaign in minuscolo; "" se assente o non valido
       "website": "",            // campo trappola: deve restare vuoto
       "elapsed_ms": 12345       // dall'apertura della pagina all'invio
     }
 
 - Stato 200 = salvato: la pagina va a `/rituale-serale-grazie/`. Qualsiasi altro stato, o errore di rete, mostra un messaggio d'errore e le risposte restano nel modulo. Il corpo della risposta non viene letto.
-- `source` viene da `utm_source` (altrimenti `altro`). Data e ora del consenso non sono nel payload: le aggiunge il flusso n8n.
+- `source` viene da `utm_source` (altrimenti `altro`). `campaign` viene da `utm_campaign`: portato in minuscolo e inviato solo se rispetta `^[a-z0-9][a-z0-9_-]{0,39}$` (massimo 40 caratteri), altrimenti stringa vuota. Non viene salvato altro e non c'è nessun tracciamento esterno. Data e ora del consenso non sono nel payload: le aggiunge il flusso n8n.
 - Il webhook deve accettare richieste dal dominio del sito (CORS, header `Content-Type: application/json`).
 - Risposte e email arrivano insieme nella stessa richiesta: per mantenere anonime le risposte, il flusso n8n deve salvarle in due posti separati senza campi che le colleghino.
 - Il flusso n8n dovrebbe scartare le richieste con `website` non vuoto o `elapsed_ms` troppo basso: il controllo nel browser è solo una prima barriera.
