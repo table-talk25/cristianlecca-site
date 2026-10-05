@@ -308,6 +308,14 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
     } catch (e) { return 'altro'; }
   }
 
+  // utm_campaign: minuscolo; se non rispetta il formato, stringa vuota.
+  function getCampaign() {
+    try {
+      const c = (new URLSearchParams(location.search).get('utm_campaign') || '').toLowerCase();
+      return /^[a-z0-9][a-z0-9_-]{0,39}$/.test(c) ? c : '';
+    } catch (e) { return ''; }
+  }
+
   function showError(text) { msg.textContent = text; msg.className = 'is-error'; }
   function clearError() { msg.textContent = ''; msg.className = ''; }
 
@@ -389,6 +397,7 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
         consent_text_version: CONSENT_TEXT_VERSION
       } : null,
       source: getSource(),
+      campaign: getCampaign(),
       website: document.getElementById('website').value,
       elapsed_ms: Date.now() - opened
     };
