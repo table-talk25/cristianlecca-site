@@ -419,5 +419,24 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
   });
 })();
 </script>
+<script>
+// Contatore visite anonimo: una richiesta per caricamento, solo source e campaign dall'URL.
+// Nessun cookie, nessun storage, nessun referrer; gli errori sono ignorati in silenzio.
+(function () {
+  try {
+    var h = location.hostname;
+    if (h === 'localhost' || h === '127.0.0.1') return;
+    var q = new URLSearchParams(location.search);
+    fetch('https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/rituale-serale-visita', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: q.get('utm_source') || '', campaign: q.get('utm_campaign') || '' }),
+      keepalive: true,
+      referrerPolicy: 'no-referrer',
+      credentials: 'omit'
+    }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>

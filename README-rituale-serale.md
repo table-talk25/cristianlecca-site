@@ -26,6 +26,9 @@ NON aggiungerle a `robots.txt` né a `sitemap.xml`.
 Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
 
+## Contatore visite
+All'apertura di `/rituale-serale/` parte una sola richiesta POST (`keepalive`) a `…/webhook/rituale-serale-visita` con solo `{ "source": utm_source, "campaign": utm_campaign }` (stringhe dall'URL, vuote se assenti). Niente referrer, user agent o dati del form, nessun cookie o storage, errori ignorati in silenzio; non parte su `localhost` e `127.0.0.1`. Il workflow n8n deve validare i valori ricevuti e accettare il dominio del sito (CORS).
+
 ## Invio dei dati (webhook n8n)
 Un solo `fetch` POST in JSON a `WEBHOOK_URL`, nessuna chiave o token nella pagina:
 
