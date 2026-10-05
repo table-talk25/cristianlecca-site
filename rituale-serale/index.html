@@ -214,8 +214,8 @@
           <fieldset class="q-block" data-q="free_text">
             <legend class="font-headline-md text-xl text-on-background mb-1"><label for="free_text">7. C'è qualcosa che ti servirebbe per iniziare?</label></legend>
             <p class="text-on-surface-variant mb-4" style="font-size:14px;">Facoltativa.</p>
-            <textarea id="free_text" name="free_text" rows="4" class="lead-input" maxlength="500" placeholder="Scrivi qui, se vuoi…"></textarea>
-            <p class="text-on-surface-variant mt-2" style="font-size:13px; text-align:right;"><span id="freeTextCount">0</span>/500</p>
+            <textarea id="free_text" name="free_text" rows="4" class="lead-input" maxlength="1000" placeholder="Scrivi qui, se vuoi…"></textarea>
+            <p class="text-on-surface-variant mt-2" style="font-size:13px; text-align:right;"><span id="freeTextCount">0</span>/1000</p>
           </fieldset>
 
           <!-- Q8 -->
@@ -277,12 +277,11 @@
 // ============================================================
 // CONFIGURAZIONE — cambia qui, non altrove
 // ============================================================
-// TODO (Cristian): URL base di PocketBase, senza slash finale. Nel repo non c'è: va inserito.
-const PB_URL = 'https://TODO-INDIRIZZO-POCKETBASE';
-const COLLECTION_RESPONSES = 'rituale_survey_responses';
-const COLLECTION_WAITLIST  = 'rituale_waitlist';
+// TODO (Cristian): URL del webhook n8n (POST, JSON). Va inserito al posto del segnaposto.
+const WEBHOOK_URL = 'https://INSERISCI-WEBHOOK';
 // Da cambiare ogni volta che cambia il testo di consenso (checkbox della domanda 8).
-const CONSENT_TEXT_VERSION = 'rituale-v1-2026-09-29';
+const CONSENT_TEXT_VERSION = 'v1';
+const FREE_TEXT_MAX = 1000;
 const THANKS_URL = '/rituale-serale-grazie/';
 // Valori ammessi per il campo source (parametro utm_source del link).
 const SOURCES = ['email', 'spotify', 'facebook', 'instagram', 'youtube'];
@@ -299,7 +298,6 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
   const msg = document.getElementById('formResponseMessage');
   const opened = Date.now();
   let inFlight = false;
-  let responseSaved = false; // le risposte sono già a database: non vanno reinviate se la sola email fallisce
 
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
@@ -349,14 +347,6 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
     return bad;
   }
 
-  async function pbCreate(collection, data) {
-    const res = await fetch(PB_URL + '/api/collections/' + collection + '/records', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)
-    });
-    let body = null; try { body = await res.json(); } catch (e) {}
-    return { ok: res.ok, status: res.status, body: body };
-  }
-
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (inFlight) return;
@@ -381,44 +371,36 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
 
     inFlight = true; btn.disabled = true; btn.textContent = 'Invio in corso…';
     const wl = wantsWaitlist() === true;
-    let waitlistOk = !wl;
+
+    // Un solo invio: risposte + (se richiesto) lista d'attesa. Il webhook risponde 200 se è andato tutto bene.
+    const payload = {
+      survey: {
+        interest: parseInt(checked('interest')[0], 10),
+        states: checked('states'),
+        duration: checked('duration')[0],
+        time_slot: checked('time_slot')[0],
+        frequency: checked('frequency')[0],
+        price_range: checked('price_range')[0],
+        free_text: ft.value.trim().slice(0, FREE_TEXT_MAX)
+      },
+      waitlist: wl ? {
+        email: document.getElementById('wl_email').value.trim().toLowerCase(),
+        consent_rituale: true,
+        consent_text_version: CONSENT_TEXT_VERSION
+      } : null,
+      source: getSource(),
+      website: document.getElementById('website').value,
+      elapsed_ms: Date.now() - opened
+    };
 
     try {
-      // Chiamata 1: risposte anonime (nessun campo le collega all'email)
-      if (!responseSaved) {
-        const r = await pbCreate(COLLECTION_RESPONSES, {
-          interest: parseInt(checked('interest')[0], 10),
-          states: checked('states'),
-          duration: checked('duration')[0],
-          time_slot: checked('time_slot')[0],
-          frequency: checked('frequency')[0],
-          price_range: checked('price_range')[0],
-          free_text: ft.value.trim().slice(0, 500),
-          source: getSource()
-        });
-        if (!r.ok) throw new Error('responses ' + r.status);
-        responseSaved = true;
-      }
-
-      // Chiamata 2, separata: solo email + consenso
-      if (wl) {
-        const w = await pbCreate(COLLECTION_WAITLIST, {
-          email: document.getElementById('wl_email').value.trim().toLowerCase(),
-          consent_rituale: true,
-          consent_text_version: CONSENT_TEXT_VERSION,
-          consent_at: new Date().toISOString(),
-          source: getSource()
-        });
-        // Email già presente (indice unico): per l'utente è comunque "in lista"
-        const dup = w.status === 400 && w.body && w.body.data && w.body.data.email && w.body.data.email.code === 'validation_not_unique';
-        if (!w.ok && !dup) throw new Error('waitlist ' + w.status);
-        waitlistOk = true;
-      }
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      });
+      if (res.status !== 200) throw new Error('webhook ' + res.status);
     } catch (err) {
       inFlight = false; btn.disabled = false; btn.textContent = 'Invia le risposte';
-      showError(responseSaved
-        ? 'Le tue risposte sono state salvate, ma non siamo riusciti a registrare la tua email. Riprova con il pulsante: non serve rifare il sondaggio.'
-        : 'Non siamo riusciti a salvare le tue risposte. Controlla la connessione e riprova: quello che hai scritto è ancora nel modulo.');
+      showError('Non siamo riusciti a salvare le tue risposte. Controlla la connessione e riprova tra poco: quello che hai scritto è ancora nel modulo.');
       return;
     }
 
