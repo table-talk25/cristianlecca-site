@@ -3,7 +3,6 @@
 File: `rituale-serale/index.html`, `rituale-serale-grazie/index.html`.
 
 ## Da fare prima della pubblicazione (cerca `TODO` nei file)
-- `WEBHOOK_URL` (costante in cima allo script del sondaggio): indirizzo del webhook n8n. Oggi è il segnaposto `https://INSERISCI-WEBHOOK`.
 - Indirizzo per la revoca del consenso: `info@cristianlecca.it`, nel testo di consenso e nella privacy (sezione 12). Se cambia l'indirizzo o il testo, cambia anche `CONSENT_TEXT_VERSION` (oggi `v1`, mai usata in produzione).
 - Privacy: la sezione `#rituale-serale` (n. 12) è in `/privacy/`. Va riletta quando è definito l'indirizzo di revoca e se cambiano i tempi di conservazione (oggi 24 mesi, come il quiz).
 - Embed audio di prova: sostituisci il riquadro `#audioSlot`.
@@ -23,7 +22,7 @@ NON aggiungerle a `robots.txt` né a `sitemap.xml`.
 ## Prova in locale
     python3 -m http.server 8000
     # http://localhost:8000/rituale-serale/?utm_source=spotify
-Per provare l'invio senza il webhook reale, imposta `WEBHOOK_URL` su un mock locale che risponda 200. Dopo un invio riuscito la pagina rimanda alla pagina di ringraziamento per 6 ore (cooldown): per riprovare cancella la chiave `rituale_submitted_at` da localStorage.
+`WEBHOOK_URL` punta al webhook di produzione di n8n (`https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/rituale-serale`). Per le prove in locale si usa il Test URL di n8n, che ha `/webhook-test/` al posto di `/webhook/` (funziona solo mentre il workflow è in ascolto nell'editor): cambia temporaneamente la costante e non committare il valore di prova. Dopo un invio riuscito la pagina rimanda alla pagina di ringraziamento per 6 ore (cooldown): per riprovare cancella la chiave `rituale_submitted_at` da localStorage.
 Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
 
