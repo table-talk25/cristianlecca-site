@@ -4,7 +4,7 @@ File: `rituale-serale/index.html`, `rituale-serale-grazie/index.html`.
 
 ## Da fare prima della pubblicazione (cerca `TODO` nei file)
 - `WEBHOOK_URL` (costante in cima allo script del sondaggio): indirizzo del webhook n8n. Oggi è il segnaposto `https://INSERISCI-WEBHOOK`.
-- Indirizzo per la revoca del consenso (segnaposto `[INDIRIZZO DA INSERIRE]`, in giallo). Se cambi il testo di consenso, cambia anche `CONSENT_TEXT_VERSION` (oggi `v1`).
+- Indirizzo per la revoca del consenso: `info@cristianlecca.it`, nel testo di consenso e nella privacy (sezione 12). Se cambia l'indirizzo o il testo, cambia anche `CONSENT_TEXT_VERSION` (oggi `v1`, mai usata in produzione).
 - Privacy: la sezione `#rituale-serale` (n. 12) è in `/privacy/`. Va riletta quando è definito l'indirizzo di revoca e se cambiano i tempi di conservazione (oggi 24 mesi, come il quiz).
 - Embed audio di prova: sostituisci il riquadro `#audioSlot`.
 - Header `X-Robots-Tag: noindex` sul server (vedi sotto).
