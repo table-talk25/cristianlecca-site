@@ -3,14 +3,6 @@
 <head>
 <!-- Pagina nascosta: non nel menu, non nel sitemap, NON in robots.txt (vedi README-rituale-serale.md) -->
 <meta name="robots" content="noindex, nofollow, noarchive"/>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
-
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Il Rituale Serale | Cristian Lecca</title>
@@ -118,23 +110,6 @@
   #waitlistFields.open { display: block; }
   .audio-slot { border: 1px dashed rgba(245,247,250,0.18); border-radius: 16px; padding: 20px; text-align: center; color: #86948e; font-size: 14px; }
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1960582901451670');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body class="font-body-md text-body-md">
 
@@ -225,12 +200,13 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
             <p class="q-error">Scegli un'opzione.</p>
           </fieldset>
 
-          <fieldset class="q-block" data-q="price_reaction">
-            <legend class="font-headline-md text-xl text-on-background mb-4">6. Se costasse 9,90 euro al mese, cosa faresti?</legend>
+          <fieldset class="q-block" data-q="price_range">
+            <legend class="font-headline-md text-xl text-on-background mb-4">6. Quanto saresti disposto/a a investire al mese?</legend>
             <div class="flex flex-col gap-3">
-            <label class="opt"><input type="radio" name="price_reaction" value="subito"/><span class="box">Lo prenderei subito</span></label>
-            <label class="opt"><input type="radio" name="price_reaction" value="ci_penso"/><span class="box">Ci penserei</span></label>
-            <label class="opt"><input type="radio" name="price_reaction" value="troppo"/><span class="box">Costa troppo per me</span></label>
+            <label class="opt"><input type="radio" name="price_range" value="fino_10"/><span class="box">Fino a 10 €</span></label>
+            <label class="opt"><input type="radio" name="price_range" value="10_15"/><span class="box">Tra 10 e 15 €</span></label>
+            <label class="opt"><input type="radio" name="price_range" value="oltre_15"/><span class="box">Più di 15 €</span></label>
+            <label class="opt"><input type="radio" name="price_range" value="no_pay"/><span class="box">Non sarei disposto/a a pagare</span></label>
             </div>
             <p class="q-error">Scegli un'opzione.</p>
           </fieldset>
@@ -357,7 +333,7 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
 
   function validate() {
     const bad = [];
-    ['interest', 'duration', 'time_slot', 'frequency', 'price_reaction'].forEach(function (n) {
+    ['interest', 'duration', 'time_slot', 'frequency', 'price_range'].forEach(function (n) {
       const ok = checked(n).length === 1; const el = form.querySelector('[data-q="' + n + '"]'); mark(el, !ok); if (!ok) bad.push(el);
     });
     const st = form.querySelector('[data-q="states"]'); const okS = checked('states').length > 0; mark(st, !okS); if (!okS) bad.push(st);
@@ -416,7 +392,7 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
           duration: checked('duration')[0],
           time_slot: checked('time_slot')[0],
           frequency: checked('frequency')[0],
-          price_reaction: checked('price_reaction')[0],
+          price_range: checked('price_range')[0],
           free_text: ft.value.trim().slice(0, 500),
           source: getSource()
         });
