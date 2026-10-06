@@ -410,6 +410,11 @@ const ATTEMPT_WINDOW_MS = 10 * 60 * 1000;
 
     store('rituale_submitted_at', String(Date.now()));
     try { sessionStorage.setItem('rituale_waitlist', wl ? '1' : '0'); } catch (x) {}
+    // Solo un flag, mai l'email: la pagina di ringraziamento lo legge una volta e lo cancella.
+    try {
+      if (wl) sessionStorage.setItem('rituale_mail_conferma', '1');
+      else sessionStorage.removeItem('rituale_mail_conferma');
+    } catch (x) {}
     location.href = THANKS_URL;
   });
 })();

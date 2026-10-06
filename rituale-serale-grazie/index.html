@@ -129,6 +129,7 @@
       <h1 class="font-headline-md text-2xl text-on-background mb-3">Grazie</h1>
       <p class="font-body-md text-body-md text-on-surface-variant">Grazie, abbiamo registrato le tue risposte. Ci aiutano a capire se questo rituale può servire davvero. Ti faremo sapere al più presto.</p>
       <p id="waitlistNote" class="font-body-md text-body-md text-on-surface-variant mt-4" hidden>Sei in lista d'attesa: ti scriveremo qui, all'indirizzo che ci hai lasciato, quando ci saranno novità.</p>
+      <p id="mailConferma" class="font-body-md text-body-md text-on-surface-variant mt-4" hidden>Ti abbiamo scritto una mail di conferma. Se non la vedi entro qualche minuto, guarda anche in Promozioni o nello spam.</p>
     </div>
   </section>
 </main>
@@ -146,6 +147,13 @@
 <script>
   // Il flag lo scrive il sondaggio in sessionStorage: nessuna email né dati in URL.
   try { if (sessionStorage.getItem('rituale_waitlist') === '1') document.getElementById('waitlistNote').hidden = false; } catch (e) {}
+  // Frase sulla mail di conferma: solo se il sondaggio ha lasciato il flag; lo leggo una volta e lo cancello.
+  try {
+    if (sessionStorage.getItem('rituale_mail_conferma') === '1') {
+      document.getElementById('mailConferma').hidden = false;
+      sessionStorage.removeItem('rituale_mail_conferma');
+    }
+  } catch (e) {}
 </script>
 </body>
 </html>
