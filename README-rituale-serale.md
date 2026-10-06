@@ -5,7 +5,6 @@ File: `rituale-serale/index.html`, `rituale-serale-grazie/index.html`.
 ## Da fare prima della pubblicazione (cerca `TODO` nei file)
 - Indirizzo per la revoca del consenso: `info@cristianlecca.it`, nel testo di consenso e nella privacy (sezione 12). Se cambia l'indirizzo o il testo, cambia anche `CONSENT_TEXT_VERSION` (oggi `v1`, mai usata in produzione).
 - Privacy: la sezione `#rituale-serale` (n. 12) è in `/privacy/`. Va riletta quando è definito l'indirizzo di revoca e se cambiano i tempi di conservazione (oggi 24 mesi, come il quiz).
-- Embed audio di prova: sostituisci il riquadro `#audioSlot`.
 - Header `X-Robots-Tag: noindex` sul server (vedi sotto).
 
 ## Header X-Robots-Tag
@@ -25,6 +24,9 @@ NON aggiungerle a `robots.txt` né a `sitemap.xml`.
 `WEBHOOK_URL` punta al webhook di produzione di n8n (`https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/rituale-serale`). Per le prove in locale si usa il Test URL di n8n, che ha `/webhook-test/` al posto di `/webhook/` (funziona solo mentre il workflow è in ascolto nell'editor): cambia temporaneamente la costante e non committare il valore di prova. Dopo un invio riuscito la pagina rimanda alla pagina di ringraziamento per 6 ore (cooldown): per riprovare cancella la chiave `rituale_submitted_at` da localStorage.
 Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
+
+## Frase sulla mail di conferma
+Se l'utente ha lasciato l'email nella lista d'attesa, il sondaggio (dopo la risposta 200 del webhook e prima del redirect) imposta in `sessionStorage` solo il flag `rituale_mail_conferma = '1'` (mai l'email); senza lista d'attesa lo rimuove. `/rituale-serale-grazie/` lo legge una volta, mostra la frase "Ti abbiamo scritto una mail di conferma…" e cancella il flag. La mail la invia n8n, non la pagina.
 
 ## Contatore visite
 All'apertura di `/rituale-serale/` parte una sola richiesta POST (`keepalive`) a `…/webhook/rituale-serale-visita` con solo `{ "source": utm_source, "campaign": utm_campaign }` (stringhe dall'URL, vuote se assenti). Niente referrer, user agent o dati del form, nessun cookie o storage, errori ignorati in silenzio; non parte su `localhost` e `127.0.0.1`. Il workflow n8n deve validare i valori ricevuti e accettare il dominio del sito (CORS).
