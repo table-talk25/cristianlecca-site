@@ -26,7 +26,7 @@ Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
 
 ## Testo della pagina di ringraziamento
-`/rituale-serale-grazie/` mostra a tutti lo stesso testo (nessuna parte condizionale, nessuno script, nessuno storage): ringraziamento, "se hai lasciato la tua mail ti scrivo…" con l'invito a guardare la posta indesiderata, e "se non l'hai lasciata va benissimo così". La mail di conferma la invia n8n, non la pagina. Il sondaggio imposta ancora in `sessionStorage` i flag `rituale_waitlist` e `rituale_mail_conferma`, ma la pagina di ringraziamento non li legge più.
+`/rituale-serale-grazie/` mostra a tutti lo stesso testo (nessuna parte condizionale, nessuno script, nessuno storage): ringraziamento, "se hai lasciato la tua mail ti scrivo…" con l'invito a guardare la posta indesiderata, e "se non l'hai lasciata va benissimo così". La mail di conferma la invia n8n, non la pagina. Il sondaggio non scrive più nessun dato in `sessionStorage`; resta solo la chiave `rituale_submitted_at` in `localStorage` per il blocco di 6 ore dopo un invio riuscito.
 
 ## Contatore visite
 All'apertura di `/rituale-serale/` parte una sola richiesta POST (`keepalive`) a `…/webhook/rituale-serale-visita` con solo `{ "source": utm_source, "campaign": utm_campaign }` (stringhe dall'URL, vuote se assenti). Niente referrer, user agent o dati del form, nessun cookie o storage, errori ignorati in silenzio; non parte su `localhost` e `127.0.0.1`. Il workflow n8n deve validare i valori ricevuti e accettare il dominio del sito (CORS).
