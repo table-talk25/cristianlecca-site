@@ -25,8 +25,8 @@ NON aggiungerle a `robots.txt` né a `sitemap.xml`.
 Nessun Google Analytics né Meta Pixel su queste due pagine, di proposito.
 Il campo trappola e il tempo minimo di compilazione (8 s) bloccano invii troppo rapidi.
 
-## Frase sulla mail di conferma
-Se l'utente ha lasciato l'email nella lista d'attesa, il sondaggio (dopo la risposta 200 del webhook e prima del redirect) imposta in `sessionStorage` solo il flag `rituale_mail_conferma = '1'` (mai l'email); senza lista d'attesa lo rimuove. `/rituale-serale-grazie/` lo legge una volta, mostra la frase "Ti abbiamo scritto una mail di conferma…" e cancella il flag. La mail la invia n8n, non la pagina.
+## Testo della pagina di ringraziamento
+`/rituale-serale-grazie/` mostra a tutti lo stesso testo (nessuna parte condizionale, nessuno script, nessuno storage): ringraziamento, "se hai lasciato la tua mail ti scrivo…" con l'invito a guardare la posta indesiderata, e "se non l'hai lasciata va benissimo così". La mail di conferma la invia n8n, non la pagina. Il sondaggio non scrive più nessun dato in `sessionStorage`; resta solo la chiave `rituale_submitted_at` in `localStorage` per il blocco di 6 ore dopo un invio riuscito.
 
 ## Contatore visite
 All'apertura di `/rituale-serale/` parte una sola richiesta POST (`keepalive`) a `…/webhook/rituale-serale-visita` con solo `{ "source": utm_source, "campaign": utm_campaign }` (stringhe dall'URL, vuote se assenti). Niente referrer, user agent o dati del form, nessun cookie o storage, errori ignorati in silenzio; non parte su `localhost` e `127.0.0.1`. Il workflow n8n deve validare i valori ricevuti e accettare il dominio del sito (CORS).

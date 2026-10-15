@@ -130,10 +130,10 @@
       <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/15 mb-4">
         <span class="material-symbols-outlined text-primary" style="font-size:2rem;">check_circle</span>
       </span>
-      <h1 class="font-headline-md text-2xl text-on-background mb-3">Grazie</h1>
-      <p class="font-body-md text-body-md text-on-surface-variant">Grazie, abbiamo registrato le tue risposte. Ci aiutano a capire se questo rituale può servire davvero. Ti faremo sapere al più presto.</p>
-      <p id="waitlistNote" class="font-body-md text-body-md text-on-surface-variant mt-4" hidden>Sei in lista d'attesa: ti scriveremo qui, all'indirizzo che ci hai lasciato, quando ci saranno novità.</p>
-      <p id="mailConferma" class="font-body-md text-body-md text-on-surface-variant mt-4" hidden>Ti abbiamo scritto una mail di conferma. Se non la vedi entro qualche minuto, guarda anche in Promozioni o nello spam.</p>
+      <h1 class="font-headline-md text-2xl text-on-background mb-3">Grazie.</h1>
+      <p class="font-body-md text-body-md text-on-surface-variant">Le tue risposte sono arrivate, e mi aiutano a costruire il Rituale Serale partendo da chi lo userà.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-4">Se hai lasciato la tua mail, ti scrivo quando sarà pronto. Controlla anche la posta indesiderata: tra poco dovrebbe arrivarti una conferma.</p>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-4">Se non l’hai lasciata, va benissimo così: le tue risposte contano comunque.</p>
     </div>
   </section>
 </main>
@@ -148,16 +148,5 @@
   </div>
 </footer>
 
-<script>
-  // Il flag lo scrive il sondaggio in sessionStorage: nessuna email né dati in URL.
-  try { if (sessionStorage.getItem('rituale_waitlist') === '1') document.getElementById('waitlistNote').hidden = false; } catch (e) {}
-  // Frase sulla mail di conferma: solo se il sondaggio ha lasciato il flag; lo leggo una volta e lo cancello.
-  try {
-    if (sessionStorage.getItem('rituale_mail_conferma') === '1') {
-      document.getElementById('mailConferma').hidden = false;
-      sessionStorage.removeItem('rituale_mail_conferma');
-    }
-  } catch (e) {}
-</script>
 </body>
 </html>
