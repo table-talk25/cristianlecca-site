@@ -273,6 +273,14 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       </div>
     </section>
 
+    <!-- ALTRI BONUS: riempita da JS con data.altre_opzioni; resta nascosta se non ce ne sono -->
+    <section id="bonus-altre" class="px-gutter pb-section-v-mobile md:pb-8" hidden>
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="font-body-md text-body-md text-on-surface-variant mb-5">Ti riconosci anche in uno di questi altri due stati?</p>
+        <div id="bonus-altre-list" class="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3"></div>
+      </div>
+    </section>
+
   <!-- CHIUSURA + CTA -->
   <section class="px-gutter py-section-v-mobile md:py-section-v-desktop">
     <div class="max-w-2xl mx-auto text-center">
@@ -427,6 +435,31 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     return frame;
   }
 
+  // Pulsanti per gli altri bonus a pagamento (data.altre_opzioni, 0-2 elementi).
+  // Un elemento senza checkout_url https o senza titolo viene saltato; se non ne
+  // resta nessuno la sezione rimane nascosta. Qualsiasi errore qui non tocca il resto.
+  function renderAltreOpzioni(opzioni) {
+    try {
+      if (!Array.isArray(opzioni)) return;
+      const list = document.getElementById('bonus-altre-list');
+      opzioni.slice(0, 2).forEach(function (o) {
+        if (!o || typeof o !== 'object') return;
+        const url = fileAudioUrl(o.checkout_url); // stessa regola degli audio: solo https
+        const titolo = String(o.titolo || '').trim() || ETICHETTE[o.stato] || '';
+        if (!url || !titolo) return;
+        const prezzo = String(o.prezzo || '').trim();
+        const a = document.createElement('a');
+        a.href = url;
+        a.className = 'inline-block text-center border border-outline-variant text-on-surface font-label-md text-label-md px-6 py-3 rounded-full hover:border-primary/60 hover:text-primary active:scale-95 transition-all';
+        a.textContent = 'Sblocca «' + titolo + '»' + (prezzo ? ' — ' + prezzo : '');
+        list.appendChild(a);
+      });
+      document.getElementById('bonus-altre').hidden = !list.children.length;
+    } catch (err) {
+      // Campo opzionale: in caso di dati inattesi la sezione resta nascosta.
+    }
+  }
+
   function render(data, media) {
     const stato = ETICHETTE[data.stato] ? data.stato : '';
     const titolo = String(data.titolo || '').trim() || ETICHETTE[stato] || 'Il tuo bonus';
@@ -437,6 +470,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
 
     document.getElementById('bonus-player').appendChild(
       media.file ? customPlayer(media.file) : soundcloudFrame(media.soundcloud, titolo));
+    renderAltreOpzioni(data.altre_opzioni);
     show('bonus-content');
 
     if (typeof fbq === 'function') {
