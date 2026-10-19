@@ -371,6 +371,18 @@ document.addEventListener('DOMContentLoaded', function () {
     return '';
   }
 
+  // ?src=... nell'URL (es. /centro/?src=newsletter) sostituisce la source fissa
+  // del form. Ammessi solo a-z, 0-9 e _, max 40 caratteri; altrimenti stringa
+  // vuota e resta il valore di #lead_source. Letto al momento dell'invio, non salvato.
+  function getSourceFromUrl() {
+    try {
+      var src = new URLSearchParams(window.location.search).get('src') || '';
+      return /^[a-z0-9_]{1,40}$/.test(src) ? src : '';
+    } catch (err) {
+      return '';
+    }
+  }
+
   function newEventId() {
     try {
       if (window.crypto && typeof window.crypto.randomUUID === 'function') {
@@ -411,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
         first_name: document.getElementById('lead_name').value.trim(),
         email: document.getElementById('lead_email').value.trim().toLowerCase(),
         whatsapp: document.getElementById('lead_whatsapp').value.trim(),
-        source: document.getElementById('lead_source').value,
+        source: getSourceFromUrl() || document.getElementById('lead_source').value,
         website: document.getElementById('lead_website').value,
         consent_privacy: consentPrivacy.checked,
         consent_marketing: false,
