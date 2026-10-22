@@ -325,6 +325,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking-acquisti.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -498,6 +499,9 @@ document.addEventListener('DOMContentLoaded', function () {
         gtag('event', 'centro_bivio_click', { stato: a.dataset.stato, tipo: paid ? 'a_pagamento' : 'gratuito_o_non_noto' });
       }
       if (!paid) return;
+      // n8n (centro-bivio-risposta) deve girare ref a Stripe come client_reference_id.
+      const ref = window.CLAcquisti ? CLAcquisti.clientReference() : '';
+      if (ref && a.href.indexOf('&ref=') === -1) a.href = a.href + '&ref=' + ref;
       const item = { item_id: 'centro-bonus-' + a.dataset.stato, item_name: 'Bonus Torna al Centro', price: 4.90, quantity: 1 };
       if (typeof gtag === 'function') {
         gtag('event', 'begin_checkout', { currency: 'EUR', value: 4.90, items: [item] });

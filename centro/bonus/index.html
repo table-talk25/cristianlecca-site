@@ -258,6 +258,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking-acquisti.js"></script>
 <script>
 (function () {
   const ENDPOINT = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/centro-bonus-audio';
@@ -384,6 +385,8 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   // Pulsanti per gli altri bonus a pagamento (data.altre_opzioni, 0-2 elementi).
   // Un elemento senza checkout_url https o senza titolo viene saltato; se non ne
   // resta nessuno la sezione rimane nascosta. Qualsiasi errore qui non tocca il resto.
+  if (window.CLAcquisti) CLAcquisti.collegaLinkStripe();
+
   function renderAltreOpzioni(opzioni) {
     try {
       if (!Array.isArray(opzioni)) return;

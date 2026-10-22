@@ -463,6 +463,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking-acquisti.js"></script>
 <script>
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
@@ -490,6 +491,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   });
   // GA4 ecommerce: vista del prodotto e avvio del checkout. L'acquisto (purchase)
   // NON parte da qui: va registrato solo dopo la conferma del pagamento da Stripe.
+  if (window.CLAcquisti) CLAcquisti.collegaLinkStripe();
   const RESET_ITEM = { item_id: 'reset-notturno', item_name: 'Reset Notturno', price: 37, quantity: 1 };
   if (typeof gtag === 'function') {
     gtag('event', 'view_item', { currency: 'EUR', value: 37, items: [RESET_ITEM] });

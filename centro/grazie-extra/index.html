@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<script>
+  // Prima di GA4 e Pixel: Stripe aggiunge ?session_id=cs_... (pagina di ritorno con
+  // {CHECKOUT_SESSION_ID}). Lo togliamo dall'URL dei loro hit e lo teniamo solo per
+  // la verifica del pagamento (vedi /assets/tracking-acquisti.js).
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      window.clStripeSessionId = (params.get('session_id') || '').trim();
+      if (params.has('session_id')) {
+        params.delete('session_id');
+        var qs = params.toString();
+        history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+      }
+    } catch (err) {}
+  })();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
 <script>
@@ -106,5 +122,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     </div>
   </div>
 </footer>
+<script src="/assets/tracking-acquisti.js"></script>
+<script>if (window.CLAcquisti) CLAcquisti.confermaAcquisto();</script>
 </body>
 </html>
