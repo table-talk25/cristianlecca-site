@@ -1,0 +1,16 @@
+{
+  "name": "cristianlecca-site-tailwind",
+  "private": true,
+  "description": "Compila il CSS di Tailwind usato dal sito (prima veniva generato nel browser dal CDN).",
+  "scripts": {
+    "build": "npm run build:base && npm run build:funnel && npm run build:svolta",
+    "build:base": "tailwindcss -c config-base.js -i input.css -o ../assets/css/tw-base.css --minify",
+    "build:funnel": "tailwindcss -c config-funnel.js -i input.css -o ../assets/css/tw-funnel.css --minify",
+    "build:svolta": "tailwindcss -c config-svolta.js -i input.css -o ../assets/css/tw-svolta.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "0.1.1",
+    "@tailwindcss/forms": "0.5.10",
+    "tailwindcss": "3.4.17"
+  }
+}
