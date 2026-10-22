@@ -28,49 +28,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "background": "#101416", "on-background": "#F5F7FA", "surface": "#101416",
-          "on-surface": "#F5F7FA", "primary": "#49C7A5", "on-primary": "#101416",
-          "primary-container": "#49C7A5", "on-primary-container": "#101416",
-          "primary-fixed-dim": "#60dbb8", "secondary": "#3A63FF", "on-secondary": "#FFFFFF",
-          "on-secondary-container": "#c1cbff", "secondary-container": "#0543e3",
-          "tertiary": "#C9A45C", "on-tertiary": "#101416", "on-tertiary-container": "#5b4100",
-          "outline": "#86948e", "outline-variant": "#3d4944", "surface-container": "#1d2022",
-          "surface-container-low": "#191c1e", "surface-container-high": "#272a2d",
-          "surface-container-highest": "#323538", "surface-container-lowest": "#0b0f11",
-          "surface-dim": "#101416", "surface-variant": "#323538", "on-surface-variant": "#bccac3"
-        },
-        "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
-        "spacing": {
-          "section-v-desktop": "104px", "stack-sm": "8px", "container-max": "1280px",
-          "stack-lg": "32px", "stack-md": "16px", "section-v-mobile": "64px", "gutter": "24px"
-        },
-        "fontFamily": {
-          "label-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"],
-          "headline-md": ["Manrope"], "body-lg": ["Inter"], "display-lg": ["Manrope"],
-          "display-lg-mobile": ["Manrope"]
-        },
-        "fontSize": {
-          "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
-          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-          "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "600"}],
-          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
-          "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
-          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
-        }
-      }
-    }
-  }
-</script>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; }
   .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
@@ -126,6 +85,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<link rel="stylesheet" href="/assets/css/tw-base.css"/>
 </head>
 <body class="font-body-md text-body-md">
 
