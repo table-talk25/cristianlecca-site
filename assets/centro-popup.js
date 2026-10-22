@@ -14,8 +14,8 @@
   function markSeen() {
     try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
   }
-  function track(name) {
-    try { if (typeof gtag === 'function') gtag('event', name); } catch (e) {}
+  function track(name, params) {
+    try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
   }
   function readCookie(name) {
     try {
@@ -256,9 +256,11 @@
         .then(function (data) {
           if (data && data.success) {
             if (typeof fbq === 'function') {
-              fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: payload.email + '-centro-lead' });
+              // eventID = event_id del payload (UUID): niente email in chiaro verso Meta.
+              fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: payload.event_id });
             }
             track('centro_popup_lead');
+            track('generate_lead', { lead_source: 'centro_popup', funnel: 'torna_al_centro' });
             try { sessionStorage.setItem('centro_lead_email', payload.email); } catch (err) {}
             window.location.href = '/centro/ascolta/';
           } else {

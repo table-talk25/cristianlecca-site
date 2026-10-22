@@ -398,6 +398,21 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         a.href = url;
         a.className = 'inline-block text-center border border-outline-variant text-on-surface font-label-md text-label-md px-6 py-3 rounded-full hover:border-primary/60 hover:text-primary active:scale-95 transition-all';
         a.textContent = 'Sblocca «' + titolo + '»' + (prezzo ? ' — ' + prezzo : '');
+        // Avvio checkout (non acquisto): l'importo e' quello mostrato, se leggibile.
+        const value = parseFloat(prezzo.replace(/[^0-9,.]/g, '').replace(',', '.'));
+        a.addEventListener('click', function () {
+          const item = { item_id: 'centro-bonus-' + (o.stato || 'altro'), item_name: 'Bonus Torna al Centro', quantity: 1 };
+          const ecommerce = { currency: 'EUR', items: [item] };
+          if (isFinite(value)) { ecommerce.value = value; item.price = value; }
+          try {
+            if (typeof gtag === 'function') gtag('event', 'begin_checkout', ecommerce);
+            if (typeof fbq === 'function') {
+              const meta = { content_name: 'Bonus Torna al Centro', content_ids: [item.item_id], content_type: 'product', currency: 'EUR' };
+              if (isFinite(value)) meta.value = value;
+              fbq('track', 'InitiateCheckout', meta);
+            }
+          } catch (err) {}
+        });
         list.appendChild(a);
       });
       document.getElementById('bonus-altre').hidden = !list.children.length;

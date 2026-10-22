@@ -390,9 +390,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (data.success) {
           if (typeof fbq === 'function') {
+            // eventID = event_id del payload (UUID casuale): niente email in chiaro verso
+            // Meta, e lo stesso ID che n8n può usare per un'eventuale Conversions API.
             fbq('track', 'Lead', {
               content_name: 'Torna al Centro'
-            }, { eventID: payload.email + '-centro-lead' });
+            }, { eventID: payload.event_id });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { lead_source: 'centro_page', funnel: 'torna_al_centro' });
           }
           // Come il quiz (che passa l'email alla pagina profilo via
           // sessionStorage e la raggiunge), qui si passa l'email alla

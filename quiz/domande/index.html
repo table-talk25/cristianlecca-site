@@ -540,6 +540,9 @@ document.addEventListener('DOMContentLoaded', function () {
               content_category: payload.profile_result
             }, { eventID: eventId });
           }
+          if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', { lead_source: 'quiz', funnel: 'quiz_coraggio' });
+          }
           const urlMap = {
             A: '/il-perfezionista-bloccato',
             B: '/il-guardiano-del-consenso',

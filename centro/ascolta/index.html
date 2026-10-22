@@ -486,6 +486,28 @@ document.addEventListener('DOMContentLoaded', function () {
       .catch(function () { finish(null); });
   }
 
+  // Clic sul bivio. Se il visitatore ha gia' ricevuto il bonus gratuito (receivedStato
+  // noto), gli altri stati portano a Stripe: e' un avvio di checkout. Se lo stato non
+  // e' noto non si puo' sapere se il clic porta al bonus gratuito o al pagamento,
+  // quindi si registra solo la scelta (nessun InitiateCheckout).
+  links.forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (!a.getAttribute('href')) return;
+      const paid = !!receivedStato && a.dataset.stato !== receivedStato;
+      if (typeof gtag === 'function') {
+        gtag('event', 'centro_bivio_click', { stato: a.dataset.stato, tipo: paid ? 'a_pagamento' : 'gratuito_o_non_noto' });
+      }
+      if (!paid) return;
+      const item = { item_id: 'centro-bonus-' + a.dataset.stato, item_name: 'Bonus Torna al Centro', price: 4.90, quantity: 1 };
+      if (typeof gtag === 'function') {
+        gtag('event', 'begin_checkout', { currency: 'EUR', value: 4.90, items: [item] });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', { content_name: 'Bonus Torna al Centro', content_ids: [item.item_id], content_type: 'product', value: 4.90, currency: 'EUR' });
+      }
+    });
+  });
+
   function wireBivio(email) {
     links.forEach(function (a) {
       a.dataset.href = WEBHOOK_BASE + '?email=' + encodeURIComponent(email) + '&stato=' + a.dataset.stato;

@@ -488,6 +488,12 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       }
     });
   });
+  // GA4 ecommerce: vista del prodotto e avvio del checkout. L'acquisto (purchase)
+  // NON parte da qui: va registrato solo dopo la conferma del pagamento da Stripe.
+  const RESET_ITEM = { item_id: 'reset-notturno', item_name: 'Reset Notturno', price: 37, quantity: 1 };
+  if (typeof gtag === 'function') {
+    gtag('event', 'view_item', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
+  }
   document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(link => {
     link.addEventListener('click', () => {
       if (typeof fbq === 'function') {
@@ -497,6 +503,9 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
           value: 37,
           currency: 'EUR'
         });
+      }
+      if (typeof gtag === 'function') {
+        gtag('event', 'begin_checkout', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
       }
     });
   });
