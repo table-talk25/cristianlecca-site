@@ -516,7 +516,11 @@ fbq('track', 'PageView');
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, consent_marketing: true, source: 'profile_page' })
-      }).then(function () {
+      }).then(function (res) {
+        // Lead solo se n8n ha risposto 2xx (l'interfaccia resta quella di prima).
+        if (res && res.ok && window.CLTracking) {
+          CLTracking.track('generate_lead', { method: 'profilo', profile: window.clProfilo || '' });
+        }
         confirmAll();
       }).catch(function () {
         eachButton(function (b) {
@@ -581,5 +585,26 @@ fbq('track', 'PageView');
   }
 </script>
 
+<script src="/assets/tracking.js"></script>
+<script>
+  // Eventi della pagina profilo (nessun dato personale): cta_click verso Reset Notturno
+  // e Sessione di Svolta. generate_lead (method "profilo") parte da sendConsent.
+  (function () {
+    var PROFILI = {
+      'il-perfezionista-bloccato': 'perfezionista',
+      'il-guardiano-del-consenso': 'guardiano',
+      'il-critico-instancabile': 'critico',
+      'l-esploratore-esitante': 'esploratore'
+    };
+    window.clProfilo = PROFILI[location.pathname.split('/').filter(Boolean)[0] || ''] || '';
+    if (!window.CLTracking) return;
+    document.querySelectorAll('main a[href$="reset-notturno/"], main a[href$="sessione-di-svolta/"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var destination = /reset-notturno\/$/.test(a.getAttribute('href')) ? 'reset_notturno' : 'sessione_di_svolta';
+        CLTracking.track('cta_click', { destination: destination, profile: window.clProfilo, transport_type: 'beacon' });
+      });
+    });
+  })();
+</script>
 </body>
 </html>

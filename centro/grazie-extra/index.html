@@ -123,6 +123,6 @@ fbq('track', 'PageView');
   </div>
 </footer>
 <script src="/assets/tracking.js"></script>
-<script>if (window.CLTracking) CLTracking.inviaContestoAcquisto();</script>
+<script>if (window.CLTracking && window.CLConsent && CLConsent.marketing()) CLTracking.inviaContestoAcquisto();</script>
 </body>
 </html>
