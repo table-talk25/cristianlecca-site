@@ -30,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined {
@@ -377,7 +376,7 @@ fbq('track', 'PageView');
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
-      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
@@ -544,7 +543,11 @@ document.addEventListener('DOMContentLoaded', function () {
         fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
         fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
-        event_id: eventId
+        event_id: eventId,
+        // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
+        consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
+        consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
+        consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
 
       // L'email serve alla pagina profilo per raccogliere il consenso marketing.

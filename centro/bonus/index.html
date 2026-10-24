@@ -42,8 +42,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined {
@@ -252,7 +251,7 @@ fbq('track', 'PageView');
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
-      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
@@ -378,7 +377,9 @@ fbq('track', 'PageView');
     frame.setAttribute('frameborder', 'no');
     frame.setAttribute('allow', 'autoplay; encrypted-media');
     frame.style.cssText = 'border:0; border-radius:14px; display:block;';
-    frame.src = src;
+    // Contenuto esterno: si carica solo con il consenso (vedi /assets/consent.js).
+    frame.setAttribute('data-cl-embed', 'SoundCloud');
+    frame.setAttribute('data-cl-src', src);
     return frame;
   }
 
@@ -428,8 +429,12 @@ fbq('track', 'PageView');
     testo.textContent = TESTI[stato] || '';
     testo.hidden = !TESTI[stato];
 
-    document.getElementById('bonus-player').appendChild(
-      media.file ? customPlayer(media.file) : soundcloudFrame(media.soundcloud, titolo));
+    const playerEl = media.file ? customPlayer(media.file) : soundcloudFrame(media.soundcloud, titolo);
+    document.getElementById('bonus-player').appendChild(playerEl);
+    if (!media.file) {
+      if (window.CLConsent) CLConsent.esterno(playerEl);
+      else playerEl.src = playerEl.getAttribute('data-cl-src');
+    }
     renderAltreOpzioni(data.altre_opzioni);
     show('bonus-content');
 

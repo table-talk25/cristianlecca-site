@@ -23,3 +23,17 @@ npm run build    # rigenera i tre file in assets/css/
 Poi committa anche i file in `assets/css/`. Coolify non esegue nessuna build: pubblica i file così come sono nel repo.
 
 Una pagina nuova va aggiunta all'elenco `content` della config del suo gruppo (il blog, /centro/ e /quiz/ sono già coperti con `**`), e nell'`<head>` deve avere il `<link>` al file del gruppo, prima di `</head>`.
+
+## Font
+
+I font sono ospitati sul sito in `assets/fonts/` (`fonts.css` + file woff2), così nessuna pagina chiede nulla a Google Fonts.
+
+- **Inter e Manrope**: file di [@fontsource](https://fontsource.org) (licenza OFL), sottoinsiemi latin e latin-ext.
+- **Material Symbols Outlined**: il font completo pesa circa 4 MB, quindi `material-symbols-outlined.woff2` contiene solo le icone usate dal sito (circa 90 KB). **Se si usa un'icona nuova**, va rigenerato:
+
+```bash
+cd tailwind
+npm install
+pip install fonttools brotli
+python3 font-icone.py
+```

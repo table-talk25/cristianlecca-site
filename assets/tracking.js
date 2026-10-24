@@ -8,11 +8,10 @@
  *   Mai dati personali nei parametri.
  *
  * CLTracking.collegaLinkStripe()
- *   Al clic su un link buy.stripe.com aggiunge client_reference_id = client_id GA4
- *   con "_" al posto del punto (1234567890_1234567890). Il client_id viene chiesto
- *   a gtag al caricamento; se al clic non e' ancora pronto lo si aspetta al massimo
- *   300 ms, poi il link si apre comunque (senza il parametro). Il resto dell'URL
- *   non viene toccato.
+ *   Al clic su un link buy.stripe.com aggiunge sempre client_reference_id nel formato
+ *   <id>_s<0|1>m<0|1> (es. 1234567890_1234567890_s1m1 oppure nocid_s0m0). Con il
+ *   consenso statistico il client_id si aspetta al massimo 300 ms, poi il link si
+ *   apre comunque con "nocid". Il resto dell'URL non viene toccato.
  *
  * CLTracking.inviaContestoAcquisto()
  *   Pagina di grazie: manda a n8n solo ?session_id= e i cookie del Pixel.
@@ -37,6 +36,15 @@
     } catch (e) {}
   }
 
+  // Aggiunge ai payload verso n8n lo stato del consenso cookie:
+  // consent_statistics, consent_marketing_cookie (booleani), consent_timestamp (ISO o null).
+  function conConsenso(obj) {
+    var c = window.CLConsent && CLConsent.payload ? CLConsent.payload()
+      : { consent_statistics: false, consent_marketing_cookie: false, consent_timestamp: null };
+    for (var k in c) obj[k] = c[k];
+    return obj;
+  }
+
   function readCookie(name) {
     try {
       var parts = ('; ' + document.cookie).split('; ' + name + '=');
@@ -44,25 +52,41 @@
     } catch (e) { return ''; }
   }
 
-  // --- client_id GA4 per client_reference_id di Stripe ---
-  var clientRef = '';
+  // --- client_reference_id per Stripe: <id>_s<0|1>m<0|1> ---
+  // <id> = client_id GA4 con "_" al posto del punto (solo con consenso statistico),
+  // altrimenti "nocid". s/m = consenso statistico/marketing (0 se non ancora scelto).
+  // Esempi: 1234567890_1234567890_s1m1, nocid_s0m0. Sempre presente sui link Stripe.
+  var gaCid = '';
   var waiting = [];
   function setClientId(cid) {
-    if (clientRef || !/^\d+\.\d+$/.test(String(cid || ''))) return;
-    clientRef = String(cid).replace('.', '_');
+    if (gaCid || !/^\d+\.\d+$/.test(String(cid || ''))) return;
+    gaCid = String(cid).replace('.', '_');
     waiting.splice(0).forEach(function (cb) { cb(); });
   }
   try {
     if (typeof gtag === 'function') gtag('get', GA_ID, 'client_id', setClientId);
   } catch (e) {}
 
-  function clientReference() { return clientRef; }
+  function consensi() {
+    var C = window.CLConsent;
+    return { s: !!(C && C.statistics()), m: !!(C && C.marketing()) };
+  }
+
+  function clientReference() {
+    var c = consensi();
+    var id = c.s && gaCid ? gaCid : 'nocid';
+    return id + '_s' + (c.s ? 1 : 0) + 'm' + (c.m ? 1 : 0);
+  }
 
   function conRiferimento(href) {
     try {
       var u = new URL(href, location.href);
-      if (u.hostname !== 'buy.stripe.com' || !clientRef || u.searchParams.has('client_reference_id')) return href;
-      return href + (href.indexOf('?') === -1 ? '?' : '&') + 'client_reference_id=' + clientRef;
+      if (u.hostname !== 'buy.stripe.com') return href;
+      var ref = clientReference();
+      if (/[?&]client_reference_id=/.test(href)) return href.replace(/([?&]client_reference_id=)[^&#]*/, '$1' + ref);
+      var hash = href.indexOf('#');
+      var base = hash === -1 ? href : href.slice(0, hash), tail = hash === -1 ? '' : href.slice(hash);
+      return base + (base.indexOf('?') === -1 ? '?' : '&') + 'client_reference_id=' + ref + tail;
     } catch (e) { return href; }
   }
 
@@ -75,7 +99,9 @@
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href*="buy.stripe.com"]') : null;
       if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (clientRef) { a.href = conRiferimento(a.href); return; } // pronto: navigazione normale
+      // Senza consenso statistico (o con il client_id gia' pronto) non c'e' nulla da
+      // aspettare: si aggiorna il link e la navigazione resta quella normale.
+      if (!consensi().s || gaCid) { a.href = conRiferimento(a.href); return; }
       e.preventDefault();
       var done = false;
       var go = function () { if (done) return; done = true; apri(a, conRiferimento(a.href)); };
@@ -98,7 +124,7 @@
       fetch(CONTESTO_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ session_id: sid, fbp: readCookie('_fbp'), fbc: readCookie('_fbc'), page: location.origin + location.pathname }),
+        body: JSON.stringify(conConsenso({ session_id: sid, fbp: readCookie('_fbp'), fbc: readCookie('_fbc'), page: location.origin + location.pathname })),
         keepalive: true
       }).catch(function () {});
     } catch (e) {}
@@ -108,6 +134,7 @@
     track: track,
     collegaLinkStripe: collegaLinkStripe,
     clientReference: clientReference,
+    conConsenso: conConsenso,
     inviaContestoAcquisto: inviaContestoAcquisto
   };
 })();

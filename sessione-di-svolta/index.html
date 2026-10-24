@@ -30,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
@@ -309,7 +308,7 @@ fbq('track', 'PageView');
         <span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary shrink-0" style="font-size:18px">event_available</span>Disponibilità limitata ogni settimana</span>
       </div>
       <div class="bg-surface-container-highest rounded-2xl min-h-[640px] border border-outline-variant/30 relative overflow-hidden">
-        <div id="cal-booking-placeholder" style="width:100%; min-height:640px;"></div>
+        <div id="cal-booking-placeholder" style="width:100%; min-height:640px;" data-cl-embed="Cal.eu" data-cl-load="clCaricaCalendario" data-cl-label="Carica il calendario"></div>
       </div>
     </div>
   </div>
@@ -440,7 +439,7 @@ fbq('track', 'PageView');
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
-        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci cookie</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a></li>
       </ul>
     </div>
   </div>
@@ -473,8 +472,13 @@ fbq('track', 'PageView');
   });
 </script>
 
-<!-- Cal.com embed script -->
+<!-- Cal.com embed script: si carica solo con il consenso ai contenuti esterni o con
+     "Carica il calendario" (vedi data-cl-embed su #cal-booking-placeholder e /assets/consent.js) -->
 <script type="text/javascript">
+  window.clCaricaCalendario = function () {
+    if (window.clCalendarioCaricato) return;
+    window.clCalendarioCaricato = true;
+
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
     Cal("init", "sessione-di-svolta", { origin: "https://cal.eu" });
     Cal.ns["sessione-di-svolta"]("inline", {
@@ -504,7 +508,9 @@ fbq('track', 'PageView');
       hideEventTypeDetails: false,
       layout: "month_view"
     });
-  </script>
+    try { document.dispatchEvent(new CustomEvent('cl:calendario')); } catch (e) {}
+  };
+</script>
 
   <script>
   async function handleForm(e) {
@@ -566,10 +572,15 @@ fbq('track', 'PageView');
       ultimoInvio = Date.now();
       CLTracking.track('booking_complete', { booking_type: 'sessione_di_svolta', items: [ITEM] });
     }
-    if (window.Cal && Cal.ns && Cal.ns['sessione-di-svolta']) {
+    // Il calendario si carica solo dopo il consenso: i listener si registrano quando e' pronto.
+    function ascoltaCal() {
+      if (!(window.Cal && Cal.ns && Cal.ns['sessione-di-svolta']) || ascoltaCal.fatto) return;
+      ascoltaCal.fatto = true;
       Cal.ns['sessione-di-svolta']('on', { action: 'bookingSuccessfulV2', callback: bookingComplete });
       Cal.ns['sessione-di-svolta']('on', { action: 'bookingSuccessful', callback: bookingComplete });
     }
+    document.addEventListener('cl:calendario', ascoltaCal);
+    ascoltaCal();
     document.querySelectorAll('a[href="#booking"]').forEach(function (a) {
       a.addEventListener('click', function () {
         CLTracking.track('begin_checkout', { currency: 'EUR', value: 70, items: [ITEM], transport_type: 'beacon' },

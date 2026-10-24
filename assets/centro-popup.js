@@ -247,7 +247,11 @@
         fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
         fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
-        event_id: newEventId()
+        event_id: newEventId(),
+        // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
+        consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
+        consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
+        consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
 
       fetch(LEAD_ENDPOINT, {
