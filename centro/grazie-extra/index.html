@@ -4,7 +4,7 @@
 <script>
   // Prima di GA4 e Pixel: Stripe aggiunge ?session_id=cs_... (pagina di ritorno con
   // {CHECKOUT_SESSION_ID}). Lo togliamo dall'URL dei loro hit e lo teniamo solo per
-  // la verifica del pagamento (vedi /assets/tracking-acquisti.js).
+  // il contesto inviato a n8n (vedi /assets/tracking.js).
   (function () {
     try {
       var params = new URLSearchParams(window.location.search);
@@ -23,7 +23,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -122,7 +122,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     </div>
   </div>
 </footer>
-<script src="/assets/tracking-acquisti.js"></script>
-<script>if (window.CLAcquisti) CLAcquisti.confermaAcquisto();</script>
+<script src="/assets/tracking.js"></script>
+<script>if (window.CLTracking) CLTracking.inviaContestoAcquisto();</script>
 </body>
 </html>

@@ -14,7 +14,9 @@
   function markSeen() {
     try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
   }
+  // Stessa funzione comune di /assets/tracking.js quando la pagina la carica.
   function track(name, params) {
+    if (window.CLTracking) return window.CLTracking.track(name, params);
     try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
   }
   function readCookie(name) {
@@ -260,7 +262,7 @@
               fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: payload.event_id });
             }
             track('centro_popup_lead');
-            track('generate_lead', { lead_source: 'centro_popup', funnel: 'torna_al_centro' });
+            track('generate_lead', { method: 'centro_popup' });
             try { sessionStorage.setItem('centro_lead_email', payload.email); } catch (err) {}
             window.location.href = '/centro/ascolta/';
           } else {

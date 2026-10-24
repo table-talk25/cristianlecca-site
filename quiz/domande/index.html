@@ -7,7 +7,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -383,6 +383,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.quiz-slide');
@@ -393,6 +394,24 @@ document.addEventListener('DOMContentLoaded', function () {
   let current = 0;
   let calculatedWinner = 'A';
   const answers = {};
+
+  // GA4 + Meta: eventi del quiz (nessun dato personale).
+  const QUIZ = 'quiz_del_coraggio';
+  const PROFILI = { A: 'perfezionista', B: 'guardiano', C: 'critico', D: 'esploratore' };
+  const MID_STEP = Math.ceil(TOTAL / 2); // 7 domande -> domanda 4
+  const T = window.CLTracking;
+  let progressSent = false;
+  let completeSent = false;
+  // quiz_start: al primo ingresso nella prima domanda, una volta per sessione
+  // (un ricaricamento della pagina non lo reinvia).
+  try {
+    if (T && !sessionStorage.getItem('cl_quiz_start')) {
+      sessionStorage.setItem('cl_quiz_start', '1');
+      T.track('quiz_start', { quiz_name: QUIZ });
+    }
+  } catch (err) {
+    if (T) T.track('quiz_start', { quiz_name: QUIZ });
+  }
 
   function updateProgress(step) {
     const pct = Math.round((step / TOTAL) * 100);
@@ -422,6 +441,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (current < TOTAL) {
           slides[current].classList.add('active');
+          if (T && !progressSent && current + 1 === MID_STEP) {
+            progressSent = true;
+            T.track('quiz_progress', { quiz_name: QUIZ, step: MID_STEP });
+          }
           document.getElementById('quizCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           calculateResult();
@@ -446,6 +469,11 @@ document.addEventListener('DOMContentLoaded', function () {
     calculatedWinner = winners.length > 0 ? winners[Math.floor(Math.random() * winners.length)] : 'A';
     document.getElementById('lead_profile').value = calculatedWinner;
     document.getElementById('lead_answers').value = JSON.stringify(answers);
+    if (T && !completeSent) {
+      completeSent = true;
+      T.track('quiz_complete', { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] },
+        { custom: 'QuizComplete', params: { profile: PROFILI[calculatedWinner] } });
+    }
   }
 
   function showLeadForm() {
@@ -540,9 +568,7 @@ document.addEventListener('DOMContentLoaded', function () {
               content_category: payload.profile_result
             }, { eventID: eventId });
           }
-          if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', { lead_source: 'quiz', funnel: 'quiz_coraggio' });
-          }
+          if (T) T.track('generate_lead', { method: 'quiz', profile: PROFILI[calculatedWinner] });
           const urlMap = {
             A: '/il-perfezionista-bloccato',
             B: '/il-guardiano-del-consenso',

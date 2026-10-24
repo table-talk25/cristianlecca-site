@@ -27,7 +27,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -258,7 +258,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
-<script src="/assets/tracking-acquisti.js"></script>
+<script src="/assets/tracking.js"></script>
 <script>
 (function () {
   const ENDPOINT = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/centro-bonus-audio';
@@ -385,7 +385,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   // Pulsanti per gli altri bonus a pagamento (data.altre_opzioni, 0-2 elementi).
   // Un elemento senza checkout_url https o senza titolo viene saltato; se non ne
   // resta nessuno la sezione rimane nascosta. Qualsiasi errore qui non tocca il resto.
-  if (window.CLAcquisti) CLAcquisti.collegaLinkStripe();
+  if (window.CLTracking) CLTracking.collegaLinkStripe();
 
   function renderAltreOpzioni(opzioni) {
     try {
@@ -404,17 +404,13 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         // Avvio checkout (non acquisto): l'importo e' quello mostrato, se leggibile.
         const value = parseFloat(prezzo.replace(/[^0-9,.]/g, '').replace(',', '.'));
         a.addEventListener('click', function () {
-          const item = { item_id: 'centro-bonus-' + (o.stato || 'altro'), item_name: 'Bonus Torna al Centro', quantity: 1 };
-          const ecommerce = { currency: 'EUR', items: [item] };
-          if (isFinite(value)) { ecommerce.value = value; item.price = value; }
-          try {
-            if (typeof gtag === 'function') gtag('event', 'begin_checkout', ecommerce);
-            if (typeof fbq === 'function') {
-              const meta = { content_name: 'Bonus Torna al Centro', content_ids: [item.item_id], content_type: 'product', currency: 'EUR' };
-              if (isFinite(value)) meta.value = value;
-              fbq('track', 'InitiateCheckout', meta);
-            }
-          } catch (err) {}
+          if (!window.CLTracking) return;
+          const id = 'centro_bonus_' + String(o.stato || 'altro').replace(/-/g, '_');
+          const item = { item_id: id, item_name: 'Bonus Torna al Centro', quantity: 1 };
+          const ecommerce = { currency: 'EUR', items: [item], transport_type: 'beacon' };
+          const meta = { content_name: 'Bonus Torna al Centro', content_ids: [id], content_type: 'product', currency: 'EUR' };
+          if (isFinite(value)) { ecommerce.value = value; item.price = value; meta.value = value; }
+          CLTracking.track('begin_checkout', ecommerce, { event: 'InitiateCheckout', params: meta });
         });
         list.appendChild(a);
       });

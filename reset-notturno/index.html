@@ -7,7 +7,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -463,7 +463,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
-<script src="/assets/tracking-acquisti.js"></script>
+<script src="/assets/tracking.js"></script>
 <script>
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
@@ -489,26 +489,20 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       }
     });
   });
-  // GA4 ecommerce: vista del prodotto e avvio del checkout. L'acquisto (purchase)
-  // NON parte da qui: va registrato solo dopo la conferma del pagamento da Stripe.
-  if (window.CLAcquisti) CLAcquisti.collegaLinkStripe();
-  const RESET_ITEM = { item_id: 'reset-notturno', item_name: 'Reset Notturno', price: 37, quantity: 1 };
-  if (typeof gtag === 'function') {
-    gtag('event', 'view_item', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
+  // GA4 ecommerce + Meta. Il Purchase NON parte dal sito: lo invia n8n dopo la
+  // conferma del pagamento da Stripe. ViewContent Meta e' gia' nell'<head>.
+  const RESET_ITEM = { item_id: 'reset_notturno', item_name: 'Reset Notturno', price: 37, quantity: 1 };
+  if (window.CLTracking) {
+    CLTracking.track('view_item', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
+    CLTracking.collegaLinkStripe();
   }
   document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(link => {
     link.addEventListener('click', () => {
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: 'Reset Notturno',
-          content_type: 'product',
-          value: 37,
-          currency: 'EUR'
-        });
-      }
-      if (typeof gtag === 'function') {
-        gtag('event', 'begin_checkout', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
-      }
+      if (!window.CLTracking) return;
+      CLTracking.track('begin_checkout', { currency: 'EUR', value: 37, items: [RESET_ITEM], transport_type: 'beacon' }, {
+        event: 'InitiateCheckout',
+        params: { content_name: 'Reset Notturno', content_ids: ['reset_notturno'], content_type: 'product', value: 37, currency: 'EUR' }
+      });
     });
   });
   const observer = new IntersectionObserver((entries) => {
