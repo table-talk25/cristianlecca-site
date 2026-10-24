@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -139,9 +141,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
 </head>
@@ -276,6 +275,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
@@ -375,8 +375,9 @@ document.addEventListener('DOMContentLoaded', function () {
         consent_privacy: consentPrivacy.checked,
         consent_marketing: false,
         submitted_at: new Date().toISOString(),
-        fbp: readCookie('_fbp'),
-        fbc: getFbc(),
+        // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
+        fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
+        fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
         event_id: eventId
       };

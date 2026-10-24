@@ -243,8 +243,9 @@
         consent_privacy: consent.checked,
         consent_marketing: false,
         submitted_at: new Date().toISOString(),
-        fbp: readCookie('_fbp'),
-        fbc: getFbc(),
+        // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
+        fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
+        fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
         event_id: newEventId()
       };

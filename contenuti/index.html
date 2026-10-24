@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -161,9 +163,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
 </head>
@@ -483,6 +482,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci cookie</a></li>
       </ul>
     </div>
   </div>
