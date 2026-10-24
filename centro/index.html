@@ -7,7 +7,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -281,6 +281,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -390,10 +391,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (data.success) {
           if (typeof fbq === 'function') {
+            // eventID = event_id del payload (UUID casuale): niente email in chiaro verso
+            // Meta, e lo stesso ID che n8n può usare per un'eventuale Conversions API.
             fbq('track', 'Lead', {
               content_name: 'Torna al Centro'
-            }, { eventID: payload.email + '-centro-lead' });
+            }, { eventID: payload.event_id });
           }
+          if (window.CLTracking) CLTracking.track('generate_lead', { method: 'centro_pagina' });
           // Come il quiz (che passa l'email alla pagina profilo via
           // sessionStorage e la raggiunge), qui si passa l'email alla
           // pagina 2 e si reindirizza: l'audio e il bivio vivono lì.
