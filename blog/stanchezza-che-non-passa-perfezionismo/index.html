@@ -128,6 +128,8 @@
   .articolo-eyebrow { margin: 0 0 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #49C7A5; }
   .articolo-hero { margin: 0 0 40px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
   .articolo-figura { margin: 2.2em 0; aspect-ratio: 3 / 2; border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  /* Foto con testo già stampato: niente overlay, sotto l'intestazione */
+  .articolo-hero-sotto { margin: 32px 0 40px; }
   .articolo-hero img, .articolo-figura img { display: block; width: 100%; height: 100%; object-fit: cover; }
   /* Box finale: stesso linguaggio del box podcast di /contenuti/ (.mental-module) */
   .articolo-cta { margin-top: 56px; padding: 32px; border-radius: 24px; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: #bccac3; }
@@ -265,7 +267,9 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <h1 class="articolo-titolo">Stanco anche quando ti fermi? Forse il problema non è quanto fai</h1>
       <p class="articolo-meta"><time datetime="2026-10-03">3 ottobre 2026</time> &middot; 4 min di lettura</p>
     </header>
-    <figure class="blog-hero"><img src="/assets/blog/hero-articolo-stanchezza.jpg" alt="Cristian Lecca nel suo studio, con la scritta: La stanchezza che il sonno non risolve." fetchpriority="high" style="width:100%;height:auto"><figcaption class="blog-hero-overlay"><span class="blog-hero-brand">IPNOSI APPLICATA</span><span class="blog-hero-title" aria-hidden="true">Stanco anche quando ti fermi? Forse il problema non è quanto fai</span></figcaption></figure>
+    <figure class="articolo-hero articolo-hero-sotto">
+      <img src="/assets/blog/hero-articolo-stanchezza.jpg" alt="Cristian Lecca nel suo studio, con la scritta: La stanchezza che il sonno non risolve." width="1920" height="1080" fetchpriority="high">
+    </figure>
 
     <div class="articolo-body">
 <p>C'è una stanchezza che non si comporta come le altre. Dormi, stacchi, ti fermi, e lei resta. Anzi, quando ti fermi arriva anche il senso di colpa.</p>
