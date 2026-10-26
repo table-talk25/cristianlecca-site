@@ -127,9 +127,51 @@
   .articolo-faq summary::after { content: '+'; flex-shrink: 0; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; color: #49C7A5; transition: transform 0.2s ease; }
   .articolo-faq details[open] summary::after { transform: rotate(45deg); }
   .articolo-faq details p { margin: 0 0 20px; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; color: #d4ddd9; }
-  .articolo-quiz { margin-top: 24px; font-family: 'Inter', sans-serif; font-size: 16px; color: #bccac3; }
-  .articolo-quiz a { color: #49C7A5; font-weight: 600; text-decoration: none; }
-  .articolo-quiz a:hover { text-decoration: underline; }
+  /* Hero con titolo sovrapposto (markup inserito dal workflow in HERO_HTML) */
+  .blog-hero { position: relative; margin: 32px 0 40px; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .blog-hero img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .blog-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 32px 36px; color: #fff; background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 82%, rgba(0, 0, 0, 0.8) 100%); }
+  .blog-hero-brand { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A45C; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+  .blog-hero-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; max-width: 92%; font-family: 'Manrope', sans-serif; font-size: 40px; line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
+  @media (max-width: 640px) {
+    .blog-hero { border-radius: 20px; }
+    .blog-hero-overlay { padding: 16px 18px; gap: 10px; }
+    .blog-hero-brand { font-size: 10px; letter-spacing: 0.18em; }
+    .blog-hero-title { max-width: 100%; font-size: 24px; line-height: 1.2; }
+  }
+  /* Con la hero il titolo visibile è quello sulla foto: l'h1 resta per Google e screen reader */
+  body:has(figure.blog-hero) .articolo-header h1 { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+  /* Immagini nel testo: più piccole della hero, centrate, senza overlay */
+  .articolo-body figure { margin: 2.2em auto; max-width: min(100%, 560px); border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-body figure img { display: block; width: 100%; height: auto; }
+  .articolo-cta ul, .articolo-cta ol { padding-left: 1.4em; }
+  .articolo-cta ul { list-style: disc; }
+  .articolo-cta ol { list-style: decimal; }
+  .articolo-cta li + li { margin-top: 0.5em; }
+  .articolo-cta li::marker { color: #49C7A5; }
+  /* Link all'episodio (markup inserito dal workflow al posto di VIDEO_LINKS) */
+  .articolo-cta .episode-links { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(61, 73, 68, 0.6); }
+  .episode-links p { margin: 0; }
+  .articolo-cta .episode-links strong { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
+  .episode-links p + p { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 0; }
+  .articolo-cta .episode-links p a { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 9999px; background: #49C7A5; color: #101416; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.2; letter-spacing: 0.05em; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(73, 199, 165, 0.2); transition: filter 0.2s ease; }
+  .articolo-cta .episode-links p a:hover { filter: brightness(1.1); }
+  @media (max-width: 480px) { .articolo-cta .episode-links p a { flex: 1 1 100%; } }
+  /* Il prossimo passo */
+  .articolo-prossimo .articolo-btn { margin-top: 12px; padding: 18px 34px; font-size: 16px; }
+  @media (max-width: 480px) { .articolo-prossimo .articolo-btn { display: flex; justify-content: center; } }
+  /* Condividi articolo */
+  .articolo-share { margin-top: 48px; padding-top: 28px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; }
+  .articolo-share-label { margin: 0 0 14px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
+  .articolo-share-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9999px; border: 1px solid #3d4944; background: transparent; color: #d4ddd9; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1; text-decoration: none; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease; }
+  .share-btn:hover, .share-btn:focus-visible { border-color: #49C7A5; color: #49C7A5; }
+  .share-btn .material-symbols-outlined { font-size: 18px; }
+  .share-btn.share-main { background: #49C7A5; border-color: #49C7A5; color: #101416; font-weight: 600; }
+  .share-btn.share-main:hover, .share-btn.share-main:focus-visible { color: #101416; filter: brightness(1.1); }
+  .share-btn[hidden] { display: none; }
+  .articolo-share-ok { margin: 12px 0 0; min-height: 1.2em; font-size: 14px; color: #49C7A5; }
+
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -196,21 +238,79 @@ fbq('track', 'PageView');
       </ol>
     </nav>
 
-    <header>
+    <header class="articolo-header">
       <p class="articolo-eyebrow">Il Blog</p>
       <h1 class="articolo-titolo">{{TITLE}}</h1>
       <p class="articolo-meta"><time datetime="{{DATE_ISO}}">{{DATE_HUMAN}}</time> &middot; {{READING_TIME}}</p>
     </header>
-
+{{HERO_HTML}}
     <div class="articolo-body">
 {{CONTENT_HTML}}
     </div>
 
-    <aside class="articolo-cta">
+    <aside class="articolo-cta articolo-episodio">
+      <p class="articolo-eyebrow">Cosa c'è dentro l'episodio</p>
 {{CTA_HTML}}
+<!--VIDEO_LINKS-->
+    </aside>
+{{FAQ_HTML}}
+    <aside class="articolo-cta articolo-prossimo">
+      <p class="articolo-eyebrow">Il prossimo passo</p>
+      <p>Vuoi capire quale schema ti sta frenando?</p>
+      <a class="articolo-btn" href="/quiz/"><span class="material-symbols-outlined" aria-hidden="true" style="font-size:20px;">explore</span>Fai il Quiz del Coraggio</a>
     </aside>
 
-    <p class="articolo-quiz">Vuoi capire quale schema ti sta frenando? <a href="/quiz/">Fai il Quiz del Coraggio &rarr;</a></p>
+    <section class="articolo-share" aria-label="Condividi questo articolo">
+      <p class="articolo-share-label">Ti è stato utile? Condividilo</p>
+      <div class="articolo-share-btns">
+        <button type="button" class="share-btn share-main" id="share-native" hidden><span class="material-symbols-outlined" aria-hidden="true">share</span>Condividi</button>
+        <a class="share-btn" data-net="whatsapp" href="https://wa.me/?text={{CANONICAL_URL}}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="share-btn" data-net="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{CANONICAL_URL}}" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a class="share-btn" data-net="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{CANONICAL_URL}}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="share-btn" data-net="x" href="https://twitter.com/intent/tweet?url={{CANONICAL_URL}}" target="_blank" rel="noopener noreferrer">X</a>
+        <a class="share-btn" data-net="email" href="mailto:?body={{CANONICAL_URL}}">Email</a>
+        <button type="button" class="share-btn" id="share-copy"><span class="material-symbols-outlined" aria-hidden="true">link</span>Copia link</button>
+      </div>
+      <p class="articolo-share-ok" id="share-ok" role="status" aria-live="polite"></p>
+    </section>
+    <script>
+    (function () {
+      var box = document.querySelector('.articolo-share');
+      if (!box) return;
+      var url = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
+      var title = (document.querySelector('h1') || {}).textContent || document.title;
+      title = title.trim();
+      var u = encodeURIComponent(url), t = encodeURIComponent(title), tu = encodeURIComponent(title + ' ' + url);
+      var map = {
+        whatsapp: 'https://wa.me/?text=' + tu,
+        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + u,
+        linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + u,
+        x: 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u,
+        email: 'mailto:?subject=' + t + '&body=' + encodeURIComponent(title + '\n' + url)
+      };
+      var ok = document.getElementById('share-ok');
+      function msg(s) { if (ok) { ok.textContent = s; setTimeout(function () { ok.textContent = ''; }, 2500); } }
+      function track(m) { try { if (window.gtag) gtag('event', 'share', { method: m, content_type: 'article', item_id: url }); } catch (e) {} }
+      Array.prototype.forEach.call(box.querySelectorAll('a[data-net]'), function (a) {
+        var n = a.getAttribute('data-net');
+        if (map[n]) a.href = map[n];
+        a.addEventListener('click', function () { track(n); });
+      });
+      var nat = document.getElementById('share-native');
+      if (nat && navigator.share) {
+        nat.hidden = false;
+        nat.addEventListener('click', function () {
+          navigator.share({ title: title, url: url }).then(function () { track('native'); }).catch(function () {});
+        });
+      }
+      var cp = document.getElementById('share-copy');
+      if (cp) cp.addEventListener('click', function () {
+        function done() { msg('Link copiato'); track('copy'); }
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { msg('Copia non riuscita'); }); }
+        else { var i = document.createElement('input'); i.value = url; document.body.appendChild(i); i.select(); try { document.execCommand('copy'); done(); } catch (e) { msg('Copia non riuscita'); } document.body.removeChild(i); }
+      });
+    })();
+    </script>
   </article>
 </main>
 
