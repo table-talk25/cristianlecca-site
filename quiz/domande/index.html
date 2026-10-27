@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -28,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined {
@@ -206,9 +207,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
 </head>
@@ -378,11 +376,13 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
 </footer>
 
+<script src="/assets/tracking.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const slides = document.querySelectorAll('.quiz-slide');
@@ -393,6 +393,24 @@ document.addEventListener('DOMContentLoaded', function () {
   let current = 0;
   let calculatedWinner = 'A';
   const answers = {};
+
+  // GA4 + Meta: eventi del quiz (nessun dato personale).
+  const QUIZ = 'quiz_del_coraggio';
+  const PROFILI = { A: 'perfezionista', B: 'guardiano', C: 'critico', D: 'esploratore' };
+  const MID_STEP = Math.ceil(TOTAL / 2); // 7 domande -> domanda 4
+  const T = window.CLTracking;
+  let progressSent = false;
+  let completeSent = false;
+  // quiz_start: al primo ingresso nella prima domanda, una volta per sessione
+  // (un ricaricamento della pagina non lo reinvia).
+  try {
+    if (T && !sessionStorage.getItem('cl_quiz_start')) {
+      sessionStorage.setItem('cl_quiz_start', '1');
+      T.track('quiz_start', { quiz_name: QUIZ });
+    }
+  } catch (err) {
+    if (T) T.track('quiz_start', { quiz_name: QUIZ });
+  }
 
   function updateProgress(step) {
     const pct = Math.round((step / TOTAL) * 100);
@@ -422,6 +440,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (current < TOTAL) {
           slides[current].classList.add('active');
+          if (T && !progressSent && current + 1 === MID_STEP) {
+            progressSent = true;
+            T.track('quiz_progress', { quiz_name: QUIZ, step: MID_STEP });
+          }
           document.getElementById('quizCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
           calculateResult();
@@ -446,6 +468,11 @@ document.addEventListener('DOMContentLoaded', function () {
     calculatedWinner = winners.length > 0 ? winners[Math.floor(Math.random() * winners.length)] : 'A';
     document.getElementById('lead_profile').value = calculatedWinner;
     document.getElementById('lead_answers').value = JSON.stringify(answers);
+    if (T && !completeSent) {
+      completeSent = true;
+      T.track('quiz_complete', { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] },
+        { custom: 'QuizComplete', params: { profile: PROFILI[calculatedWinner] } });
+    }
   }
 
   function showLeadForm() {
@@ -512,10 +539,15 @@ document.addEventListener('DOMContentLoaded', function () {
         consent_privacy: document.getElementById('consent_privacy').checked,
         consent_marketing: false,
         submitted_at: new Date().toISOString(),
-        fbp: readCookie('_fbp'),
-        fbc: getFbc(),
+        // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
+        fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
+        fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
-        event_id: eventId
+        event_id: eventId,
+        // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
+        consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
+        consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
+        consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
 
       // L'email serve alla pagina profilo per raccogliere il consenso marketing.
@@ -540,6 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
               content_category: payload.profile_result
             }, { eventID: eventId });
           }
+          if (T) T.track('generate_lead', { method: 'quiz', profile: PROFILI[calculatedWinner] });
           const urlMap = {
             A: '/il-perfezionista-bloccato',
             B: '/il-guardiano-del-consenso',

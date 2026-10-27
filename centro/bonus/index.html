@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <script>
   // Prima di GA4 e Pixel: il token ?t= da' accesso all'audio e non deve finire nell'URL dei loro hit.
   // Resta in sessionStorage cosi' un ricaricamento della pagina continua a funzionare.
@@ -22,12 +24,12 @@
   })();
 </script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -40,8 +42,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .material-symbols-outlined {
@@ -144,9 +145,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
 </head>
@@ -253,11 +251,13 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     <div class="flex gap-6 font-label-md text-label-md">
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a>
       <a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Torna al sito</a>
     </div>
   </div>
 </footer>
 
+<script src="/assets/tracking.js"></script>
 <script>
 (function () {
   const ENDPOINT = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/centro-bonus-audio';
@@ -377,13 +377,17 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     frame.setAttribute('frameborder', 'no');
     frame.setAttribute('allow', 'autoplay; encrypted-media');
     frame.style.cssText = 'border:0; border-radius:14px; display:block;';
-    frame.src = src;
+    // Contenuto esterno: si carica solo con il consenso (vedi /assets/consent.js).
+    frame.setAttribute('data-cl-embed', 'SoundCloud');
+    frame.setAttribute('data-cl-src', src);
     return frame;
   }
 
   // Pulsanti per gli altri bonus a pagamento (data.altre_opzioni, 0-2 elementi).
   // Un elemento senza checkout_url https o senza titolo viene saltato; se non ne
   // resta nessuno la sezione rimane nascosta. Qualsiasi errore qui non tocca il resto.
+  if (window.CLTracking) CLTracking.collegaLinkStripe();
+
   function renderAltreOpzioni(opzioni) {
     try {
       if (!Array.isArray(opzioni)) return;
@@ -398,6 +402,17 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         a.href = url;
         a.className = 'inline-block text-center border border-outline-variant text-on-surface font-label-md text-label-md px-6 py-3 rounded-full hover:border-primary/60 hover:text-primary active:scale-95 transition-all';
         a.textContent = 'Sblocca «' + titolo + '»' + (prezzo ? ' — ' + prezzo : '');
+        // Avvio checkout (non acquisto): l'importo e' quello mostrato, se leggibile.
+        const value = parseFloat(prezzo.replace(/[^0-9,.]/g, '').replace(',', '.'));
+        a.addEventListener('click', function () {
+          if (!window.CLTracking) return;
+          const id = 'centro_bonus_' + String(o.stato || 'altro').replace(/-/g, '_');
+          const item = { item_id: id, item_name: 'Bonus Torna al Centro', quantity: 1 };
+          const ecommerce = { currency: 'EUR', items: [item], transport_type: 'beacon' };
+          const meta = { content_name: 'Bonus Torna al Centro', content_ids: [id], content_type: 'product', currency: 'EUR' };
+          if (isFinite(value)) { ecommerce.value = value; item.price = value; meta.value = value; }
+          CLTracking.track('begin_checkout', ecommerce, { event: 'InitiateCheckout', params: meta });
+        });
         list.appendChild(a);
       });
       document.getElementById('bonus-altre').hidden = !list.children.length;
@@ -414,8 +429,12 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     testo.textContent = TESTI[stato] || '';
     testo.hidden = !TESTI[stato];
 
-    document.getElementById('bonus-player').appendChild(
-      media.file ? customPlayer(media.file) : soundcloudFrame(media.soundcloud, titolo));
+    const playerEl = media.file ? customPlayer(media.file) : soundcloudFrame(media.soundcloud, titolo);
+    document.getElementById('bonus-player').appendChild(playerEl);
+    if (!media.file) {
+      if (window.CLConsent) CLConsent.esterno(playerEl);
+      else playerEl.src = playerEl.getAttribute('data-cl-src');
+    }
     renderAltreOpzioni(data.altre_opzioni);
     show('bonus-content');
 

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -28,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
@@ -58,9 +59,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-svolta.css"/>
 </head>
@@ -310,7 +308,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         <span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary shrink-0" style="font-size:18px">event_available</span>Disponibilità limitata ogni settimana</span>
       </div>
       <div class="bg-surface-container-highest rounded-2xl min-h-[640px] border border-outline-variant/30 relative overflow-hidden">
-        <div id="cal-booking-placeholder" style="width:100%; min-height:640px;"></div>
+        <div id="cal-booking-placeholder" style="width:100%; min-height:640px;" data-cl-embed="Cal.eu" data-cl-load="clCaricaCalendario" data-cl-label="Carica il calendario"></div>
       </div>
     </div>
   </div>
@@ -441,6 +439,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a></li>
       </ul>
     </div>
   </div>
@@ -473,8 +472,13 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   });
 </script>
 
-<!-- Cal.com embed script -->
+<!-- Cal.com embed script: si carica solo con il consenso ai contenuti esterni o con
+     "Carica il calendario" (vedi data-cl-embed su #cal-booking-placeholder e /assets/consent.js) -->
 <script type="text/javascript">
+  window.clCaricaCalendario = function () {
+    if (window.clCalendarioCaricato) return;
+    window.clCalendarioCaricato = true;
+
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
     Cal("init", "sessione-di-svolta", { origin: "https://cal.eu" });
     Cal.ns["sessione-di-svolta"]("inline", {
@@ -504,7 +508,9 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       hideEventTypeDetails: false,
       layout: "month_view"
     });
-  </script>
+    try { document.dispatchEvent(new CustomEvent('cl:calendario')); } catch (e) {}
+  };
+</script>
 
   <script>
   async function handleForm(e) {
@@ -526,6 +532,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error('request failed');
+      if (window.CLTracking) CLTracking.track('generate_lead', { method: 'svolta_contatto' });
       feedback.textContent = 'Messaggio inviato! Ti risponderò entro 24 ore.';
       feedback.classList.remove('hidden', 'bg-error/10', 'border-error/20', 'text-error');
       feedback.classList.add('bg-primary/10', 'border-primary/20', 'text-primary');
@@ -539,6 +546,48 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       setTimeout(() => feedback.classList.add('hidden'), 6000);
     }
   }
+</script>
+<script src="/assets/tracking.js"></script>
+<script>
+  // GA4 ecommerce + Meta per la Sessione di Svolta. La prenotazione avviene nel
+  // calendario Cal.eu incorporato in #booking: l'avvio del checkout e' il clic sui
+  // pulsanti "Prenota" che portano al calendario.
+  (function () {
+    if (!window.CLTracking) return;
+    var ITEM = { item_id: 'sessione_di_svolta', item_name: 'Sessione di Svolta', price: 70, quantity: 1 };
+    var META = { content_name: 'Sessione di Svolta', content_ids: ['sessione_di_svolta'], content_type: 'product', value: 70, currency: 'EUR' };
+    CLTracking.track('view_item', { currency: 'EUR', value: 70, items: [ITEM] }, { event: 'ViewContent', params: META });
+    // Prenotazione completata nel calendario Cal.eu incorporato. L'embed attuale emette
+    // bookingSuccessfulV2; bookingSuccessful (versione precedente) resta come riserva.
+    // Una sola volta per prenotazione; nessun dato della prenotazione negli eventi.
+    // Nessun purchase dal sito: lo invia n8n.
+    // Le due versioni dell'evento possono arrivare entrambe per la stessa prenotazione:
+    // stesso uid, oppure a meno di 10 secondi l'una dall'altra = una sola prenotazione.
+    var uidInviati = {}, ultimoInvio = 0;
+    function bookingComplete(e) {
+      var d = (e && e.detail && e.detail.data) || {};
+      var uid = String(d.uid || (d.booking && d.booking.uid) || '');
+      if ((uid && uidInviati[uid]) || Date.now() - ultimoInvio < 10000) return;
+      if (uid) uidInviati[uid] = true;
+      ultimoInvio = Date.now();
+      CLTracking.track('booking_complete', { booking_type: 'sessione_di_svolta', items: [ITEM] });
+    }
+    // Il calendario si carica solo dopo il consenso: i listener si registrano quando e' pronto.
+    function ascoltaCal() {
+      if (!(window.Cal && Cal.ns && Cal.ns['sessione-di-svolta']) || ascoltaCal.fatto) return;
+      ascoltaCal.fatto = true;
+      Cal.ns['sessione-di-svolta']('on', { action: 'bookingSuccessfulV2', callback: bookingComplete });
+      Cal.ns['sessione-di-svolta']('on', { action: 'bookingSuccessful', callback: bookingComplete });
+    }
+    document.addEventListener('cl:calendario', ascoltaCal);
+    ascoltaCal();
+    document.querySelectorAll('a[href="#booking"]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        CLTracking.track('begin_checkout', { currency: 'EUR', value: 70, items: [ITEM], transport_type: 'beacon' },
+          { event: 'InitiateCheckout', params: META });
+      });
+    });
+  })();
 </script>
 </body>
 </html>

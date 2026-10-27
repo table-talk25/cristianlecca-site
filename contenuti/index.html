@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -28,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body {
     background-color: #101416;
@@ -161,9 +162,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
 </head>
@@ -249,8 +247,8 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         </p>
         <!-- EMBED SPOTIFY — aggiornato dinamicamente con l'ultimo episodio via JS -->
         <div class="spotify-embed mb-10">
-          <iframe id="spotify-iframe"
-            src="https://open.spotify.com/embed/show/3sVLJasBELbvl1SAcAoOle?utm_source=generator&theme=0"
+          <iframe id="spotify-iframe" data-cl-embed="Spotify"
+            data-cl-src="https://open.spotify.com/embed/show/3sVLJasBELbvl1SAcAoOle?utm_source=generator&theme=0"
             width="100%" height="152"
             frameborder="0"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -333,8 +331,8 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
     </div>
     <div class="reveal">
       <div class="yt-embed-wrapper">
-        <iframe id="yt-iframe"
-          src="https://www.youtube.com/embed/videoseries?list=UUBzeXGC4z9nOvYIGUMoX9bQ&rel=0&modestbranding=1"
+        <iframe id="yt-iframe" data-cl-embed="YouTube"
+          data-cl-src="https://www.youtube-nocookie.com/embed/videoseries?list=UUBzeXGC4z9nOvYIGUMoX9bQ&rel=0&modestbranding=1"
           title="Ultimo video di Cristian Lecca"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
@@ -483,6 +481,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a></li>
       </ul>
     </div>
   </div>
@@ -519,10 +518,19 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ── Aggiornamento dinamico: Spotify + YouTube via rss2json ── */
+  /* ── Aggiornamento dinamico: Spotify + YouTube via rss2json ──
+     Parte solo quando il relativo contenuto esterno e' stato caricato (consenso
+     "contenuti esterni" o "Mostra contenuto"): prima nessuna richiesta a terzi. */
   const RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  const spotifyIframe = document.getElementById('spotify-iframe');
+  const ytIframe = document.getElementById('yt-iframe');
+  // Cambia l'indirizzo del player (attivo: subito; non attivo: per quando verra' caricato).
+  function setEmbedSrc(iframe, url) {
+    iframe.setAttribute('data-cl-src', url);
+    if (iframe.getAttribute('data-cl-attivo') === '1') iframe.src = url;
+  }
 
-  (async function loadLatestSpotifyEpisode() {
+  async function loadLatestSpotifyEpisode() {
     const ANCHOR_RSS = 'https://anchor.fm/s/7001e01c/podcast/rss';
     try {
       const res  = await fetch(RSS2JSON + encodeURIComponent(ANCHOR_RSS));
@@ -538,15 +546,14 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         const epMatch = spotifyUrl.match(/episode\/([A-Za-z0-9]+)/);
         if (epMatch) {
           const epId = epMatch[1];
-          document.getElementById('spotify-iframe').src =
-            'https://open.spotify.com/embed/episode/' + epId + '?utm_source=generator&theme=0';
+          setEmbedSrc(spotifyIframe, 'https://open.spotify.com/embed/episode/' + epId + '?utm_source=generator&theme=0');
           document.getElementById('btn-spotify').href = spotifyUrl;
         }
       }
     } catch (e) {}
-  })();
+  }
 
-  (async function loadLatestYouTubeVideo() {
+  async function loadLatestYouTubeVideo() {
     const CHANNEL_ID = 'UCBzeXGC4z9nOvYIGUMoX9bQ';
     const RSS_YT = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
     try {
@@ -558,12 +565,16 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
         ? latest.guid.replace('yt:video:', '')
         : (latest.link.match(/v=([^&]+)/) || [])[1];
       if (!videoId) return;
-      document.getElementById('yt-iframe').src =
-        'https://www.youtube.com/embed/' + videoId + '?rel=0&modestbranding=1';
+      setEmbedSrc(ytIframe, 'https://www.youtube-nocookie.com/embed/' + videoId + '?rel=0&modestbranding=1');
       document.getElementById('btn-youtube').href =
         'https://www.youtube.com/watch?v=' + videoId;
     } catch (e) {}
-  })();
+  }
+
+  if (window.CLConsent) {
+    CLConsent.quandoAttivo(spotifyIframe, loadLatestSpotifyEpisode);
+    CLConsent.quandoAttivo(ytIframe, loadLatestYouTubeVideo);
+  }
 </script>
 </body>
 </html>

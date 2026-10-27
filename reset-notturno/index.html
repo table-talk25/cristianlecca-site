@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html class="dark" lang="it">
 <head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7HN92MQPKY"></script>
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-7HN92MQPKY');
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
 </script>
 
 <meta charset="utf-8"/>
@@ -28,8 +30,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <meta name="theme-color" content="#101416"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
 <style>
   body { background-color: #101416; color: #F5F7FA; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
   .glass-card { background: rgba(29,32,34,0.4); backdrop-filter: blur(12px); border: 1px solid rgba(245,247,250,0.1); transition: all 0.3s ease-in-out; }
@@ -61,9 +62,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1960582901451670');
 fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Meta Pixel Code -->
 <script>
   fbq('track', 'ViewContent', {
@@ -455,6 +453,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a></li>
       </ul>
     </div>
   </div>
@@ -463,6 +462,7 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
   </div>
 </footer>
 
+<script src="/assets/tracking.js"></script>
 <script>
   const btn = document.getElementById('hamburger-btn');
   const menu = document.getElementById('mobile-menu');
@@ -488,16 +488,20 @@ src="https://www.facebook.com/tr?id=1960582901451670&ev=PageView&noscript=1"
       }
     });
   });
+  // GA4 ecommerce + Meta. Il Purchase NON parte dal sito: lo invia n8n dopo la
+  // conferma del pagamento da Stripe. ViewContent Meta e' gia' nell'<head>.
+  const RESET_ITEM = { item_id: 'reset_notturno', item_name: 'Reset Notturno', price: 37, quantity: 1 };
+  if (window.CLTracking) {
+    CLTracking.track('view_item', { currency: 'EUR', value: 37, items: [RESET_ITEM] });
+    CLTracking.collegaLinkStripe();
+  }
   document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(link => {
     link.addEventListener('click', () => {
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: 'Reset Notturno',
-          content_type: 'product',
-          value: 37,
-          currency: 'EUR'
-        });
-      }
+      if (!window.CLTracking) return;
+      CLTracking.track('begin_checkout', { currency: 'EUR', value: 37, items: [RESET_ITEM], transport_type: 'beacon' }, {
+        event: 'InitiateCheckout',
+        params: { content_name: 'Reset Notturno', content_ids: ['reset_notturno'], content_type: 'product', value: 37, currency: 'EUR' }
+      });
     });
   });
   const observer = new IntersectionObserver((entries) => {
