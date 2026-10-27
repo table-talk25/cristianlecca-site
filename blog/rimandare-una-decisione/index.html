@@ -548,6 +548,8 @@ osserva accadere: dire che si farà qualcosa, e poi farla davvero.</p>
       var nat = document.getElementById('share-native');
       if (nat && navigator.share) {
         nat.hidden = false;
+        var fb = box.querySelector('a[data-net="facebook"]');
+        if (fb) fb.hidden = true;
         nat.addEventListener('click', function () {
           navigator.share({ title: title, url: url }).then(function () { track('native'); }).catch(function () {});
         });
