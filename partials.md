@@ -231,16 +231,10 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
 <!-- FOOTER GLOBALE -->
 <footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
-    <!-- Colonna 1: Brand -->
     <div class="space-y-4">
-      <div class="flex items-center gap-2">
-        <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/>
-      </div>
-      <p class="font-body-md text-body-md text-on-surface-variant">
-        Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.
-      </p>
+      <a href="/"><img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/></a>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
     </div>
-    <!-- Colonna 2: Navigazione -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
       <ul class="space-y-3 font-body-md text-body-md">
@@ -248,18 +242,18 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/blog/">Blog</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
       </ul>
     </div>
-    <!-- Colonna 3: Percorso -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
       <ul class="space-y-3 font-body-md text-body-md">
         <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
         <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/centro/">Torna al Centro</a></li>
       </ul>
     </div>
-    <!-- Colonna 4: Legale -->
     <div>
       <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
       <ul class="space-y-3 font-body-md text-body-md">
@@ -268,9 +262,9 @@ Usare su: Home, Metodo, Chi sono, Contenuti, Sessione di Svolta, Reset Notturno.
       </ul>
     </div>
   </div>
-  <!-- Riga finale -->
-  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center text-on-surface-variant font-label-md text-label-md">
-    &copy; 2026 Cristian Lecca &mdash; IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center space-y-2">
+    <p class="text-on-surface-variant font-label-md text-label-md">&copy; 2026 Cristian Lecca &mdash; IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018</p>
+    <p class="text-on-surface-variant/50 font-label-md text-xs uppercase tracking-tight leading-relaxed max-w-3xl mx-auto">Disclaimer: Le informazioni contenute in questo sito non costituiscono consulenza medica, psicologica o psichiatrica e non sostituiscono il parere di specialisti abilitati.</p>
   </div>
 </footer>
 ```
