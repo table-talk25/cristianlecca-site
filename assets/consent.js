@@ -43,12 +43,43 @@
   // definito e non scarica fbevents.js; le chiamate (init, PageView, ...) restano in coda.
   if (!window.fbq) {
     var n = window.fbq = function () {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      var a = conDatiUtente(arguments);
+      n.callMethod ? n.callMethod.apply(n, a) : n.queue.push(a);
     };
     if (!window._fbq) window._fbq = n;
     n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
   }
   window.fbq('consent', 'revoke');
+
+  // event_id comune a Pixel e server (gateway / n8n): Meta deduplica gli eventi con
+  // lo stesso nome ed event_id. Usato da tracking.js e dallo snippet del PageView.
+  window.clEventId = function () {
+    try {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    } catch (e) {}
+    return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2, 12);
+  };
+
+  // Associazione avanzata: dopo l'invio di un form tracking.js salva in sessionStorage
+  // (META_UD_KEY) solo lo SHA-256 dell'email normalizzata. Con il consenso marketing
+  // viene aggiunto a fbq('init') come em ed external_id: Meta lo legge solo nell'init,
+  // quindi vale dalle pagine successive all'invio. Mai l'email in chiaro.
+  var META_UD_KEY = 'cl_meta_ud';
+  function datiUtenteMeta() {
+    if (!(state && state.marketing === true)) return null;
+    try {
+      var h = sessionStorage.getItem(META_UD_KEY) || '';
+      return /^[a-f0-9]{64}$/.test(h) ? { em: h, external_id: h } : null;
+    } catch (e) { return null; }
+  }
+  function conDatiUtente(a) {
+    if (!a || a[0] !== 'init' || a[2]) return a;
+    var ud = datiUtenteMeta();
+    if (!ud) return a;
+    a = Array.prototype.slice.call(a);
+    a[2] = ud;
+    return a;
+  }
 
   var gaLoaded = false, fbLoaded = false;
   var pendingUpdate = null; // update del consenso inserito in coda prima che gtag.js sia caricato
@@ -124,6 +155,8 @@
             return !(x && x[0] === 'consent' && x[1] === 'revoke');
           });
           q.queue.unshift(args('consent', 'grant'));
+          // init gia' in coda senza dati utente: si aggiungono ora che c'e' il consenso.
+          q.queue = q.queue.map(conDatiUtente);
         }
         fbLoaded = true;
         loadScript(FB_SRC);
