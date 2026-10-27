@@ -205,7 +205,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1960582901451670');
-fbq('track', 'PageView');
+fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefined });
 </script>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (T && !completeSent) {
       completeSent = true;
       T.track('quiz_complete', { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] },
-        { custom: 'QuizComplete', params: { profile: PROFILI[calculatedWinner] } });
+        { custom: 'QuizComplete', params: { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] } });
     }
   }
 
@@ -528,6 +528,9 @@ document.addEventListener('DOMContentLoaded', function () {
       responseMsg.className = '';
 
       const eventId = newEventId();
+      // SHA-256 dell'email normalizzata: per la CAPI in n8n (em ed external_id) e,
+      // con il consenso marketing, per l'associazione avanzata del Pixel nelle pagine dopo.
+      const emailHash = T && T.hashEmail ? await T.hashEmail(document.getElementById('lead_email').value) : '';
 
       const payload = {
         first_name: document.getElementById('lead_name').value.trim(),
@@ -544,6 +547,8 @@ document.addEventListener('DOMContentLoaded', function () {
         fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
         event_id: eventId,
+        em_sha256: emailHash,
+        external_id: emailHash,
         // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
         consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
@@ -566,6 +571,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = await res.json();
 
         if (data.success) {
+          if (T && T.ricordaUtenteMeta) T.ricordaUtenteMeta(emailHash);
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', {
               content_name: 'Quiz del Coraggio',
