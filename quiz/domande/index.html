@@ -492,18 +492,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function getFbc() {
-    var fromCookie = readCookie('_fbc');
-    if (fromCookie) return fromCookie;
-    try {
-      var fbclid = new URLSearchParams(window.location.search).get('fbclid');
-      if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
-    } catch (err) {
-      return '';
-    }
-    return '';
-  }
-
   function newEventId() {
     try {
       if (window.crypto && typeof window.crypto.randomUUID === 'function') {
@@ -542,9 +530,6 @@ document.addEventListener('DOMContentLoaded', function () {
         consent_privacy: document.getElementById('consent_privacy').checked,
         consent_marketing: false,
         submitted_at: new Date().toISOString(),
-        // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
-        fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
-        fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
         event_id: eventId,
         em_sha256: emailHash,
@@ -554,6 +539,14 @@ document.addEventListener('DOMContentLoaded', function () {
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
         consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
+      // Dati per la Conversions API di Meta, solo con il consenso marketing: nel body
+      // della richiesta, mai in URL o query string (event_source_url senza query).
+      if (window.CLConsent && CLConsent.marketing()) {
+        payload.fbp = readCookie('_fbp');
+        payload.fbc = readCookie('_fbc');
+        payload.client_user_agent = navigator.userAgent;
+        payload.event_source_url = location.origin + location.pathname;
+      }
 
       // L'email serve alla pagina profilo per raccogliere il consenso marketing.
       try {
