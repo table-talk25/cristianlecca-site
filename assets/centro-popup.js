@@ -1,11 +1,10 @@
 /* Pop-up "Torna al Centro": compare dopo 2 secondi, una sola volta per sessione.
-   Il pulsante apre il form dentro il pop-up; l'invio usa lo stesso webhook e lo
-   stesso flusso di /centro/ (Lead su Pixel, email in sessionStorage, poi
-   /centro/ascolta/). Incluso in home e /quiz/. */
+   Il pulsante apre il form dentro il pop-up; l'invio usa lo stesso codice di /centro/
+   (assets/centro-lead.js: webhook centro-lead, timeout di 8 secondi), poi Lead su Pixel,
+   email in sessionStorage e /centro/ascolta/. Incluso in home e /quiz/. */
 (function () {
   var KEY = 'centro_popup_visto';
   var DELAY = 2000;
-  var LEAD_ENDPOINT = 'https://n8n-ki7p4haqsdhr1meg2k45zosi.92.4.222.169.sslip.io/webhook/centro-lead';
   var CTA_LABEL = "Ricevi l'audio gratis";
 
   function seen() {
@@ -234,6 +233,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Invio in corso…';
 
+      var eventId = newEventId();
       var payload = {
         first_name: name,
         email: email,
@@ -246,11 +246,11 @@
         // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
         fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
         fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
-        client_ua: navigator.userAgent,
-        event_id: newEventId(),
+        event_id: eventId,
         // SHA-256 dell'email normalizzata (per la CAPI in n8n): aggiunti qui sotto.
         em_sha256: '',
         external_id: '',
+        event_source_url: window.location.href,
         // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
         consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
@@ -262,32 +262,29 @@
         .then(function (h) {
           payload.em_sha256 = h;
           payload.external_id = h;
-          return fetch(LEAD_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
+          // Lead del Pixel subito, senza aspettare n8n: stesso eventID del payload,
+          // cosi' Meta deduplica con la Conversions API. Non blocca la navigazione.
+          if (T && T.ricordaUtenteMeta) T.ricordaUtenteMeta(h);
+          if (typeof fbq === 'function') {
+            try { fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: eventId }); } catch (err) {}
+          }
+          return window.CLCentroLead ? CLCentroLead.invia(payload) : { esito: 'errore' };
         })
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-          if (data && data.success) {
-            if (T && T.ricordaUtenteMeta) T.ricordaUtenteMeta(payload.em_sha256);
-            if (typeof fbq === 'function') {
-              // eventID = event_id del payload (UUID): niente email in chiaro verso Meta.
-              fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: payload.event_id });
-            }
+        .then(function (r) {
+          if (r.esito === 'ok' || r.esito === 'timeout') {
+            // 'timeout': dopo 8 secondi si prosegue; la richiesta (keepalive) arriva comunque.
             track('centro_popup_lead');
             track('generate_lead', { method: 'centro_popup' });
             try { sessionStorage.setItem('centro_lead_email', payload.email); } catch (err) {}
             window.location.href = '/centro/ascolta/';
-          } else {
+          } else if (r.esito === 'rifiutato') {
             resetSubmit();
-            showError((data && data.message) || 'Qualcosa non ha funzionato. Riprova.');
+            showError(r.messaggio || 'Qualcosa non ha funzionato. Riprova.');
+          } else {
+            // Errore di rete: i dati inseriti restano nel form, si puo' riprovare.
+            resetSubmit();
+            showError('Non siamo riusciti a inviare i dati: controlla la connessione e riprova.');
           }
-        })
-        .catch(function () {
-          resetSubmit();
-          showError('Errore di connessione. Riprova tra poco.');
         });
     });
 
