@@ -248,20 +248,30 @@
         fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
         client_ua: navigator.userAgent,
         event_id: newEventId(),
+        // SHA-256 dell'email normalizzata (per la CAPI in n8n): aggiunti qui sotto.
+        em_sha256: '',
+        external_id: '',
         // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
         consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
         consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
 
-      fetch(LEAD_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
+      var T = window.CLTracking;
+      (T && T.hashEmail ? T.hashEmail(email) : Promise.resolve(''))
+        .then(function (h) {
+          payload.em_sha256 = h;
+          payload.external_id = h;
+          return fetch(LEAD_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        })
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (data && data.success) {
+            if (T && T.ricordaUtenteMeta) T.ricordaUtenteMeta(payload.em_sha256);
             if (typeof fbq === 'function') {
               // eventID = event_id del payload (UUID): niente email in chiaro verso Meta.
               fbq('track', 'Lead', { content_name: 'Torna al Centro' }, { eventID: payload.event_id });

@@ -144,7 +144,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1960582901451670');
-fbq('track', 'PageView');
+fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefined });
 </script>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-base.css"/>
@@ -431,6 +431,7 @@ fbq('track', 'PageView');
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+<script src="/assets/tracking.js" defer></script>
 <script src="/assets/centro-popup.js" defer></script>
 </body>
 </html>

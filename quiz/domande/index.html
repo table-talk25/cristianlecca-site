@@ -205,7 +205,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1960582901451670');
-fbq('track', 'PageView');
+fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefined });
 </script>
 <!-- End Meta Pixel Code -->
 <link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (T && !completeSent) {
       completeSent = true;
       T.track('quiz_complete', { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] },
-        { custom: 'QuizComplete', params: { profile: PROFILI[calculatedWinner] } });
+        { custom: 'QuizComplete', params: { quiz_name: QUIZ, profile: PROFILI[calculatedWinner] } });
     }
   }
 
@@ -490,18 +490,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (err) {
       return '';
     }
-  }
-
-  function getFbc() {
-    var fromCookie = readCookie('_fbc');
-    if (fromCookie) return fromCookie;
-    try {
-      var fbclid = new URLSearchParams(window.location.search).get('fbclid');
-      if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
-    } catch (err) {
-      return '';
-    }
-    return '';
   }
 
   function newEventId() {
@@ -528,6 +516,9 @@ document.addEventListener('DOMContentLoaded', function () {
       responseMsg.className = '';
 
       const eventId = newEventId();
+      // SHA-256 dell'email normalizzata: per la CAPI in n8n (em ed external_id) e,
+      // con il consenso marketing, per l'associazione avanzata del Pixel nelle pagine dopo.
+      const emailHash = T && T.hashEmail ? await T.hashEmail(document.getElementById('lead_email').value) : '';
 
       const payload = {
         first_name: document.getElementById('lead_name').value.trim(),
@@ -539,16 +530,22 @@ document.addEventListener('DOMContentLoaded', function () {
         consent_privacy: document.getElementById('consent_privacy').checked,
         consent_marketing: false,
         submitted_at: new Date().toISOString(),
-        // _fbp/_fbc (identificativi Meta) solo con il consenso marketing.
-        fbp: window.CLConsent && CLConsent.marketing() ? readCookie('_fbp') : '',
-        fbc: window.CLConsent && CLConsent.marketing() ? getFbc() : '',
-        client_ua: navigator.userAgent,
         event_id: eventId,
+        em_sha256: emailHash,
+        external_id: emailHash,
         // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
         consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
         consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
+      // Dati per la Conversions API di Meta, solo con il consenso marketing: nel body
+      // della richiesta, mai in URL o query string (event_source_url senza query).
+      if (window.CLConsent && CLConsent.marketing()) {
+        payload.fbp = readCookie('_fbp');
+        payload.fbc = readCookie('_fbc');
+        payload.client_user_agent = navigator.userAgent;
+        payload.event_source_url = location.origin + location.pathname;
+      }
 
       // L'email serve alla pagina profilo per raccogliere il consenso marketing.
       try {
@@ -566,6 +563,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = await res.json();
 
         if (data.success) {
+          if (T && T.ricordaUtenteMeta) T.ricordaUtenteMeta(emailHash);
           if (typeof fbq === 'function') {
             fbq('track', 'Lead', {
               content_name: 'Quiz del Coraggio',

@@ -60,7 +60,7 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1960582901451670');
-fbq('track', 'PageView');
+fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefined });
 </script>
 <!-- End Meta Pixel Code -->
 <script>
@@ -69,7 +69,7 @@ fbq('track', 'PageView');
     content_type: 'product',
     value: 37,
     currency: 'EUR'
-  });
+  }, { eventID: window.clEventId ? clEventId() : undefined });
 </script>
 <link rel="stylesheet" href="/assets/css/tw-base.css"/>
 </head>

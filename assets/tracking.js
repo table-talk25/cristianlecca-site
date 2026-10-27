@@ -4,8 +4,18 @@
  *   Invia l'evento a GA4 con gtag('event', ...), lo stesso pattern degli eventi
  *   centro_popup_*. Se `meta` e' indicato invia anche l'evento al Pixel:
  *   { event: 'ViewContent' } per un evento standard, { custom: 'QuizComplete' }
- *   per uno personalizzato, con { params, eventID } opzionali.
+ *   per uno personalizzato, con { params, eventID } opzionali. Ogni evento Meta
+ *   ha sempre un eventID (se non indicato se ne genera uno), che track restituisce:
+ *   lo stesso ID va usato per l'evento lato server, cosi' Meta deduplica.
  *   Mai dati personali nei parametri.
+ *
+ * CLTracking.hashEmail(email) -> Promise<string>
+ *   SHA-256 (hex) dell'email normalizzata: minuscolo, senza spazi. '' se non calcolabile.
+ *
+ * CLTracking.ricordaUtenteMeta(hash)
+ *   Dopo l'invio di un form e solo con il consenso marketing: salva l'hash in
+ *   sessionStorage. consent.js lo passa a fbq('init') come em ed external_id e lo
+ *   cancella se il consenso marketing viene revocato.
  *
  * CLTracking.collegaLinkStripe()
  *   Al clic su un link buy.stripe.com aggiunge sempre client_reference_id nel formato
@@ -23,17 +33,42 @@
   var SESSION_RE = /^cs_(test|live)_[A-Za-z0-9]{10,240}$/;
   var CID_WAIT_MS = 300;
 
+  function newEventId() {
+    if (typeof window.clEventId === 'function') return window.clEventId();
+    return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2, 12);
+  }
+
   function track(name, params, meta) {
     try {
       if (typeof gtag === 'function') gtag('event', name, params || {});
     } catch (e) {}
-    if (!meta) return;
+    if (!meta) return '';
+    var eventID = meta.eventID || newEventId();
     try {
-      if (typeof fbq !== 'function') return;
-      var extra = meta.eventID ? { eventID: meta.eventID } : undefined;
+      if (typeof fbq !== 'function') return eventID;
+      var extra = { eventID: eventID };
       if (meta.event) fbq('track', meta.event, meta.params || {}, extra);
       else if (meta.custom) fbq('trackCustom', meta.custom, meta.params || {}, extra);
     } catch (e) {}
+    return eventID;
+  }
+
+  // --- Associazione avanzata Meta (stessa chiave letta da consent.js) ---
+  var META_UD_KEY = 'cl_meta_ud';
+  function hashEmail(email) {
+    try {
+      var norm = String(email || '').replace(/\s+/g, '').toLowerCase();
+      if (!norm || !(window.crypto && crypto.subtle && window.TextEncoder)) return Promise.resolve('');
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm)).then(function (buf) {
+        return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      }, function () { return ''; });
+    } catch (e) { return Promise.resolve(''); }
+  }
+  // Solo con il consenso marketing: senza, l'hash non viene nemmeno salvato nel browser.
+  function ricordaUtenteMeta(hash) {
+    if (!/^[a-f0-9]{64}$/.test(hash || '')) return;
+    if (!(window.CLConsent && CLConsent.marketing())) return;
+    try { sessionStorage.setItem(META_UD_KEY, hash); } catch (e) {}
   }
 
   // Aggiunge ai payload verso n8n lo stato del consenso cookie:
@@ -132,6 +167,9 @@
 
   window.CLTracking = {
     track: track,
+    newEventId: newEventId,
+    hashEmail: hashEmail,
+    ricordaUtenteMeta: ricordaUtenteMeta,
     collegaLinkStripe: collegaLinkStripe,
     clientReference: clientReference,
     conConsenso: conConsenso,
