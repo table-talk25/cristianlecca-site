@@ -13,8 +13,9 @@
  *   SHA-256 (hex) dell'email normalizzata: minuscolo, senza spazi. '' se non calcolabile.
  *
  * CLTracking.ricordaUtenteMeta(hash)
- *   Dopo l'invio di un form: salva solo l'hash in sessionStorage. consent.js lo passa
- *   a fbq('init') come em ed external_id solo con il consenso marketing.
+ *   Dopo l'invio di un form e solo con il consenso marketing: salva l'hash in
+ *   sessionStorage. consent.js lo passa a fbq('init') come em ed external_id e lo
+ *   cancella se il consenso marketing viene revocato.
  *
  * CLTracking.collegaLinkStripe()
  *   Al clic su un link buy.stripe.com aggiunge sempre client_reference_id nel formato
@@ -63,8 +64,10 @@
       }, function () { return ''; });
     } catch (e) { return Promise.resolve(''); }
   }
+  // Solo con il consenso marketing: senza, l'hash non viene nemmeno salvato nel browser.
   function ricordaUtenteMeta(hash) {
     if (!/^[a-f0-9]{64}$/.test(hash || '')) return;
+    if (!(window.CLConsent && CLConsent.marketing())) return;
     try { sessionStorage.setItem(META_UD_KEY, hash); } catch (e) {}
   }
 

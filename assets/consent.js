@@ -60,8 +60,9 @@
     return 'ev-' + Date.now() + '-' + Math.random().toString(36).slice(2, 12);
   };
 
-  // Associazione avanzata: dopo l'invio di un form tracking.js salva in sessionStorage
-  // (META_UD_KEY) solo lo SHA-256 dell'email normalizzata. Con il consenso marketing
+  // Associazione avanzata: dopo l'invio di un form, e solo con il consenso marketing,
+  // tracking.js salva in sessionStorage (META_UD_KEY) lo SHA-256 dell'email normalizzata
+  // (cancellato se il consenso viene revocato). Con il consenso marketing
   // viene aggiunto a fbq('init') come em ed external_id: Meta lo legge solo nell'init,
   // quindi vale dalle pagine successive all'invio. Mai l'email in chiaro.
   var META_UD_KEY = 'cl_meta_ud';
@@ -166,6 +167,7 @@
     } else {
       if (fbLoaded) q('consent', 'revoke');
       deleteCookies(function (name) { return name === '_fbp' || name === '_fbc'; });
+      try { sessionStorage.removeItem(META_UD_KEY); } catch (e) {}
     }
 
     if (c.esterni) attivaTuttiEsterni(); else bloccaEsterniAttivi();
