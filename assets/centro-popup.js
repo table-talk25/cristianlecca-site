@@ -250,12 +250,13 @@
         // SHA-256 dell'email normalizzata (per la CAPI in n8n): aggiunti qui sotto.
         em_sha256: '',
         external_id: '',
-        event_source_url: window.location.href,
         // Stato del consenso cookie (consent_marketing qui sopra resta il consenso alle email).
         consent_statistics: !!(window.CLConsent && CLConsent.statistics()),
         consent_marketing_cookie: !!(window.CLConsent && CLConsent.marketing()),
         consent_timestamp: window.CLConsent ? CLConsent.timestamp() : null
       };
+      // Come nel quiz: event_source_url solo con il consenso marketing e senza query string.
+      if (window.CLConsent && CLConsent.marketing()) payload.event_source_url = location.origin + location.pathname;
 
       var T = window.CLTracking;
       (T && T.hashEmail ? T.hashEmail(email) : Promise.resolve(''))
