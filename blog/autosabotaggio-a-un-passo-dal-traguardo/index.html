@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="dark" lang="it">
+<head>
+<!-- Consenso cookie: deve restare il primo script (Consent Mode v2 + Pixel in attesa del consenso) -->
+<script src="/assets/consent.js"></script>
+<!-- Google tag (gtag.js) -->
+<!-- gtag.js viene caricato da /assets/consent.js solo dopo il consenso ai cookie statistici -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7HN92MQPKY', { linker: { domains: ['ipnosiapplicata.it', 'cal.eu'] } });
+</script>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autosabotaggio all'ultimo passo: perché accade</title>
+<meta name="description" content="Perché il blocco arriva proprio quando manca pochissimo al traguardo? Un'analisi di ciò che si nasconde dietro procrastinazione e perfezionismo finale."/>
+<link rel="canonical" href="https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/"/>
+  <meta property="og:title" content="Autosabotaggio all'ultimo passo: perché accade"/>
+  <meta property="og:description" content="Perché il blocco arriva proprio quando manca pochissimo al traguardo? Un'analisi di ciò che si nasconde dietro procrastinazione e perfezionismo finale."/>
+  <meta property="og:image" content="https://cristianlecca.it/assets/hero.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Autosabotaggio all'ultimo passo: perché accade"/>
+  <meta name="twitter:description" content="Perché il blocco arriva proprio quando manca pochissimo al traguardo? Un'analisi di ciò che si nasconde dietro procrastinazione e perfezionismo finale."/>
+  <meta name="twitter:image" content="https://cristianlecca.it/assets/hero.jpg"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Perché ci si blocca proprio all'ultimo passo, non prima","description":"Perché il blocco arriva proprio quando manca pochissimo al traguardo? Un'analisi di ciò che si nasconde dietro procrastinazione e perfezionismo finale.","datePublished":"2026-10-30","dateModified":"2026-10-30","mainEntityOfPage":"https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/","inLanguage":"it","author":{"@type":"Person","name":"Cristian Lecca","url":"https://cristianlecca.it"},"publisher":{"@type":"Person","name":"Cristian Lecca"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"L'autosabotaggio all'ultimo passo è la stessa cosa della procrastinazione?","acceptedAnswer":{"@type":"Answer","text":"Sono fenomeni collegati ma non identici. La procrastinazione può manifestarsi in qualsiasi fase di un compito, mentre l'ansia da completamento descrive un picco di evitamento specifico che compare solo quando la fine è ormai vicina, spesso dopo che gran parte del lavoro è già stata portata a termine."}},{"@type":"Question","name":"Perché proprio quando manca pochissimo e non all'inizio del progetto?","acceptedAnswer":{"@type":"Answer","text":"Perché più ci si avvicina alla fine, più cresce la probabilità concreta di essere valutati. La paura legata al giudizio tende ad aumentare più rapidamente della spinta motivazionale, fino a superarla proprio nell'ultimo tratto."}},{"@type":"Question","name":"È un problema che riguarda solo i perfezionisti?","acceptedAnswer":{"@type":"Answer","text":"Il perfezionismo è una delle strade attraverso cui il blocco si manifesta, ma il meccanismo di fondo - la paura del giudizio e del cambiamento di identità legato al completamento - può riguardare anche chi non si definirebbe perfezionista."}},{"@type":"Question","name":"Basta rendersi conto del meccanismo per sbloccarsi?","acceptedAnswer":{"@type":"Answer","text":"Capire perché succede aiuta a non colpevolizzarsi, ma raramente è sufficiente da solo. Il passaggio che sembra fare davvero la differenza è agire mentre la paura è ancora presente, invece di aspettare che diminuisca prima di muoversi."}},{"@type":"Question","name":"Quanto è diffuso realmente questo fenomeno?","acceptedAnswer":{"@type":"Answer","text":"Non esistono dati statistici solidi sulla sua diffusione, soprattutto in Italia: le osservazioni disponibili arrivano da testimonianze qualitative, non da ricerche su larga scala, quindi è bene non generalizzare troppo rigidamente."}}]}]}</script>
+<link rel="icon" href="/favicon.ico" sizes="48x48"/>
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+<link rel="manifest" href="/site.webmanifest"/>
+<meta name="theme-color" content="#101416"/>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
+<style>
+  body {
+    background-color: #101416;
+    color: #F5F7FA;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .glass-card {
+    background: rgba(29, 32, 34, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 247, 250, 0.1);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #49C7A5, #3A63FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .nav-logo { height: 36px; width: auto; filter: brightness(2) drop-shadow(0 0 8px rgba(73,199,165,0.25)); transition: filter 300ms ease; display: block; }
+  .nav-logo:hover { filter: brightness(2.4) drop-shadow(0 0 10px rgba(73,199,165,0.40)); }
+  #mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: #101416;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 24px 24px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: #F5F7FA;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  #mobile-menu a:last-child {
+    border-bottom: none;
+    margin-top: 12px;
+    background: #49C7A5;
+    color: #101416;
+    text-align: center;
+    border-radius: 12px;
+    padding: 14px 0;
+  }
+  #mobile-menu a:hover { color: #49C7A5; }
+  #mobile-menu a:last-child:hover { color: #101416; }
+  .articolo { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
+  .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0 0 32px; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; color: #86948e; }
+  .breadcrumb li + li::before { content: '›'; margin-right: 8px; color: #3d4944; }
+  .breadcrumb a { color: #bccac3; text-decoration: none; }
+  .breadcrumb a:hover { color: #49C7A5; }
+  .breadcrumb [aria-current] { color: #bccac3; }
+  .articolo-titolo { font-family: 'Manrope', sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; color: #F5F7FA; margin: 0; }
+  .articolo-meta { margin: 16px 0 0; font-family: 'Inter', sans-serif; font-size: 14px; color: #86948e; }
+  .articolo-body { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.8; color: #d4ddd9; }
+  .articolo-body > * + * { margin-top: 1.25em; }
+  .articolo-body h2 { font-family: 'Manrope', sans-serif; font-size: 26px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin-top: 2.2em; }
+  .articolo-body h3 { font-family: 'Manrope', sans-serif; font-size: 21px; line-height: 1.35; font-weight: 700; color: #F5F7FA; margin-top: 1.8em; }
+  .articolo-body ul, .articolo-body ol { padding-left: 1.4em; }
+  .articolo-body ul { list-style: disc; }
+  .articolo-body ol { list-style: decimal; }
+  .articolo-body li + li { margin-top: 0.5em; }
+  .articolo-body li::marker { color: #49C7A5; }
+  .articolo-body blockquote { border-left: 3px solid #49C7A5; padding: 4px 0 4px 20px; font-style: italic; color: #bccac3; }
+  .articolo-body strong { color: #F5F7FA; font-weight: 600; }
+  .articolo-body em { font-style: italic; }
+  .articolo-body a:not([class]), .articolo-cta a:not([class]) { color: #49C7A5; text-decoration: underline; text-underline-offset: 3px; }
+  .articolo-eyebrow { margin: 0 0 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #49C7A5; }
+  .articolo-hero { margin: 0 0 40px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-figura { margin: 2.2em 0; aspect-ratio: 3 / 2; border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-hero img, .articolo-figura img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  /* Box finale: stesso linguaggio del box podcast di /contenuti/ (.mental-module) */
+  .articolo-cta { margin-top: 56px; padding: 32px; border-radius: 24px; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: #bccac3; }
+  .articolo-cta > * + * { margin-top: 1em; }
+  .articolo-cta h2, .articolo-cta h3 { font-family: 'Manrope', sans-serif; font-size: 22px; line-height: 1.3; font-weight: 700; color: #F5F7FA; }
+  .articolo-cta strong { color: #F5F7FA; font-weight: 600; }
+  .articolo-cta a:not([class]) { font-weight: 600; }
+  .articolo-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 14px 28px; border-radius: 9999px; background: #49C7A5; color: #101416; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(73, 199, 165, 0.2); transition: filter 0.2s ease; }
+  .articolo-btn:hover { filter: brightness(1.1); }
+  .articolo-faq { margin-top: 56px; }
+  .articolo-faq h2 { font-family: 'Manrope', sans-serif; font-size: 26px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin: 0 0 20px; }
+  .articolo-faq details { border-top: 1px solid rgba(61, 73, 68, 0.6); }
+  .articolo-faq details:last-of-type { border-bottom: 1px solid rgba(61, 73, 68, 0.6); }
+  .articolo-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: #F5F7FA; }
+  .articolo-faq summary::-webkit-details-marker { display: none; }
+  .articolo-faq summary::after { content: '+'; flex-shrink: 0; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; color: #49C7A5; transition: transform 0.2s ease; }
+  .articolo-faq details[open] summary::after { transform: rotate(45deg); }
+  .articolo-faq details p { margin: 0 0 20px; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; color: #d4ddd9; }
+  /* Hero con titolo sovrapposto (markup inserito dal workflow in HERO_HTML) */
+  .blog-hero { position: relative; margin: 32px 0 40px; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .blog-hero img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .blog-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 32px 36px; color: #fff; background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 82%, rgba(0, 0, 0, 0.8) 100%); }
+  .blog-hero-brand { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A45C; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
+  .blog-hero-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; max-width: 92%; font-family: 'Manrope', sans-serif; font-size: 40px; line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
+  @media (max-width: 640px) {
+    .blog-hero { border-radius: 20px; }
+    .blog-hero-overlay { padding: 16px 18px; gap: 10px; }
+    .blog-hero-brand { font-size: 10px; letter-spacing: 0.18em; }
+    .blog-hero-title { max-width: 100%; font-size: 24px; line-height: 1.2; }
+  }
+  /* Con la hero il titolo visibile è quello sulla foto: l'h1 resta per Google e screen reader */
+  body:has(figure.blog-hero) .articolo-header h1 { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+  /* Immagini nel testo: più piccole della hero, centrate, senza overlay */
+  .articolo-body figure { margin: 2.2em auto; max-width: min(100%, 560px); border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-body figure img { display: block; width: 100%; height: auto; }
+  .articolo-cta ul, .articolo-cta ol { padding-left: 1.4em; }
+  .articolo-cta ul { list-style: disc; }
+  .articolo-cta ol { list-style: decimal; }
+  .articolo-cta li + li { margin-top: 0.5em; }
+  .articolo-cta li::marker { color: #49C7A5; }
+  /* Link all'episodio (markup inserito dal workflow al posto di VIDEO_LINKS) */
+  .articolo-cta .episode-links { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(61, 73, 68, 0.6); }
+  .episode-links p { margin: 0; }
+  .articolo-cta .episode-links strong { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
+  .episode-links p + p { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 0; }
+  .articolo-cta .episode-links p a { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 9999px; background: #49C7A5; color: #101416; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.2; letter-spacing: 0.05em; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(73, 199, 165, 0.2); transition: filter 0.2s ease; }
+  .articolo-cta .episode-links p a:hover { filter: brightness(1.1); }
+  @media (max-width: 480px) { .articolo-cta .episode-links p a { flex: 1 1 100%; } }
+  /* Il prossimo passo */
+  .articolo-prossimo .articolo-btn { margin-top: 12px; padding: 18px 34px; font-size: 16px; }
+  @media (max-width: 480px) { .articolo-prossimo .articolo-btn { display: flex; justify-content: center; } }
+  /* Condividi articolo */
+  .articolo-share { margin-top: 48px; padding-top: 28px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; }
+  .articolo-share-label { margin: 0 0 14px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
+  .articolo-share-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9999px; border: 1px solid #3d4944; background: transparent; color: #d4ddd9; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1; text-decoration: none; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease; }
+  .share-btn:hover, .share-btn:focus-visible { border-color: #49C7A5; color: #49C7A5; }
+  .share-btn .material-symbols-outlined { font-size: 18px; }
+  .share-btn.share-main { background: #49C7A5; border-color: #49C7A5; color: #101416; font-weight: 600; }
+  .share-btn.share-main:hover, .share-btn.share-main:focus-visible { color: #101416; filter: brightness(1.1); }
+  .share-btn[hidden] { display: none; }
+  .articolo-share-ok { margin: 12px 0 0; min-height: 1.2em; font-size: 14px; color: #49C7A5; }
+
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1960582901451670');
+fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefined });
+</script>
+<!-- End Meta Pixel Code -->
+<link rel="stylesheet" href="/assets/css/tw-funnel.css"/>
+</head>
+<body class="font-body-md text-body-md">
+
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-sm">
+  <div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="flex items-center" href="/">
+      <img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-8 md:h-9 w-auto nav-logo" loading="lazy"/>
+    </a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/">Home</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/metodo/">Metodo</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/contenuti/">Contenuti</a>
+      <a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="/blog/">Blog</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/chi-sono/">Chi sono</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="/sessione-di-svolta/">Sessione di Svolta</a>
+      <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="https://ipnosiapplicata.it/login/" target="_blank" rel="noopener">
+        <span class="material-symbols-outlined" style="font-size:1rem;">account_circle</span>
+        Area riservata
+      </a>
+      <a class="bg-primary hover:bg-primary/90 text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 duration-300" href="/quiz/">Fai il Quiz del Coraggio</a>
+    </div>
+    <button id="hamburger-btn" class="md:hidden text-on-background p-2" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
+    </button>
+  </div>
+  <div id="mobile-menu" role="navigation" aria-label="Menu mobile">
+    <a href="/">Home</a>
+    <a href="/metodo/">Metodo</a>
+    <a href="/contenuti/">Contenuti</a>
+    <a href="/blog/">Blog</a>
+    <a href="/chi-sono/">Chi sono</a>
+    <a href="/sessione-di-svolta/">Sessione di Svolta</a>
+    <a class="flex items-center gap-2" href="https://ipnosiapplicata.it/login/" target="_blank" rel="noopener">
+      <span class="material-symbols-outlined" style="font-size:1rem;">account_circle</span>
+      Area riservata
+    </a>
+    <a href="/quiz/">Fai il Quiz del Coraggio</a>
+  </div>
+</nav>
+
+<main class="mt-20">
+  <article class="articolo">
+    <nav aria-label="Breadcrumb">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li aria-current="page">Perché ci si blocca proprio all'ultimo passo, non prima</li>
+      </ol>
+    </nav>
+
+    <header class="articolo-header">
+      <p class="articolo-eyebrow">Il Blog</p>
+      <h1 class="articolo-titolo">Perché ci si blocca proprio all'ultimo passo, non prima</h1>
+      <p class="articolo-meta"><time datetime="2026-10-30">30 ottobre 2026</time> &middot; 5 min di lettura</p>
+    </header>
+
+    <div class="articolo-body">
+<blockquote><p><strong>In breve:</strong> Il blocco che arriva proprio a un passo dalla fine di un progetto non nasce da pigrizia o mancanza di disciplina, ma da una difesa inconscia contro l'esposizione al giudizio. Finché un lavoro è incompiuto resta potenzialmente perfetto e al riparo da ogni valutazione; consegnarlo lo rende reale, giudicabile, e costringe a un cambiamento di identità che la mente percepisce come una minaccia. Capire il meccanismo aiuta, ma non basta: serve agire mentre la paura è ancora presente, non aspettare che sparisca.</p></blockquote>
+
+<p>C'è un momento molto preciso in cui succede. Non all'inizio, quando tutto è ancora da costruire e un po' di esitazione è comprensibile. Succede quando manca pochissimo: l'ultima pagina, l'ultima revisione, il pulsante invia. Proprio lì, dove ci si aspetterebbe la spinta più forte, qualcosa si inceppa.</p>
+
+<p>Chi lo vive tende a leggerlo come un difetto personale: sono disorganizzato, sono pigro, non ho abbastanza disciplina. Ma se fosse davvero pigrizia, difficilmente si sarebbe arrivati così vicini alla fine. Il blocco all'ultimo metro è un fenomeno diverso, con una logica propria, e merita di essere guardato per quello che è prima di essere giudicato.</p>
+
+<h2>Perché il blocco arriva proprio quando manca pochissimo</h2>
+<p>La psicologia comportamentale ha osservato da tempo che la motivazione tende ad aumentare man mano che ci si avvicina a un obiettivo: lo sforzo si intensifica, il passo accelera, la concentrazione si fa più acuta. È un effetto studiato fin dagli anni Trenta e poi confermato in contesti diversi, dal comportamento animale alle abitudini di acquisto delle persone. Dovrebbe essere la fase più semplice, quella in cui tutto spinge in avanti.</p>
+<p>Il problema è che insieme alla spinta cresce anche un'altra forza, opposta: quella del timore legato a cosa succederà una volta finito. E qui entra in gioco un'intuizione più vecchia ancora, quella del conflitto tra avvicinamento ed evitamento: quando un obiettivo porta con sé sia una ricompensa sia qualcosa da temere, le due spinte non crescono alla stessa velocità. Quella dell'evitamento accelera più ripidamente. A un certo punto, molto vicino al traguardo, la supera. Ed è lì che ci si ferma.</p>
+
+<h2>Finché non è finito, resta al riparo</h2>
+<p>C'è una ragione precisa per cui proprio l'ultimo passo fa più paura dei precedenti. Finché un lavoro è in corso, resta un processo privato: può ancora diventare qualunque cosa, anche la versione migliore immaginabile di sé stesso. Nessuno lo sta ancora guardando. Nel momento in cui viene consegnato, pubblicato, inviato, smette di essere potenziale e diventa un risultato: finito, concreto, esposto al giudizio di chi lo riceverà.</p>
+<p>Questo passaggio - da processo protetto a risultato giudicabile - è probabilmente il cuore del fenomeno. Non si teme tanto il compito in sé, quanto ciò che la sua conclusione rende visibile. La frase "non è ancora pronto", spesso, non riguarda il lavoro. Riguarda chi lo ha fatto.</p>
+
+<h2>Quando finire significa cambiare identità</h2>
+<p>C'è un altro livello, meno evidente ma altrettanto concreto. Portare a termine qualcosa di significativo spesso obbliga a diventare qualcun altro: lo studente che chiude la tesi smette di essere studente e deve affrontare l'identità più incerta del professionista in cerca di lavoro; chi conclude un percorso lungo deve lasciare andare il ruolo rassicurante di chi è "ancora dentro" il processo. Anche quando il cambiamento è desiderato, la mente tende a trattarlo come una rottura dell'equilibrio conosciuto, e quindi come un rischio.</p>
+<p>Su questo si innesta un meccanismo osservato nella ricerca motivazionale: quando il valore personale viene percepito come strettamente legato alla performance, avvicinarsi al momento della valutazione diventa minaccioso. Per proteggersi, la mente può costruire inconsciamente un ostacolo - un rallentamento, una scusa, un dettaglio da rivedere ancora - così che, in caso di esito deludente, la colpa ricada sull'ostacolo e non sulla propria capacità. È una strategia che ha un costo reale (il progetto resta fermo), ma che a livello inconscio sembra più sicura del rischio di scoprire di non essere all'altezza.</p>
+
+<h2>Cosa succede nel corpo mentre la mente trova scuse</h2>
+<p>Prima ancora che arrivi un pensiero razionale, spesso arriva una sensazione fisica: una tensione al petto, lo stomaco che si chiude, un rallentamento quasi meccanico dei gesti. Non è un dettaglio da ignorare. Il corpo tende ad anticipare il rischio prima che la mente lo metta a fuoco, ed è plausibile che questi segnali siano collegati alle risposte automatiche con cui il sistema nervoso reagisce a una minaccia percepita, anche quando la minaccia è solo sociale o simbolica, non fisica.</p>
+<p>Questo spiega perché, in quei momenti, "ragionarci su" raramente funziona. Dirsi "è solo un'email, inviala" non scioglie granché, perché il blocco non nasce da un ragionamento mancante: nasce da un allarme che si è già attivato.</p>
+
+<h2>Capire il meccanismo non basta: cosa resta da fare</h2>
+<p>Sapere perché ci si blocca è un primo passo utile, ma da solo non sblocca niente. Resta un passaggio pratico, più difficile da spiegare che da vivere: quello di muoversi mentre la paura è ancora lì, invece di aspettare che si plachi da sola. Aspettare di "sentirsi pronti" è spesso un modo elegante per restare fermi, perché quella sensazione di sicurezza, in realtà, arriva quasi sempre dopo il gesto, non prima.</p>
+<p>È proprio questo il punto su cui nel video podcast entro più a fondo: cosa significa concretamente agire con la paura ancora addosso, senza aspettare che sparisca, e cosa cambia nel momento esatto in cui si decide di farlo comunque.</p>
+
+<h2>Un modo diverso di guardare al momento del blocco</h2>
+<p>Nell'episodio propongo anche una pratica molto breve, pensata per essere usata esattamente nell'istante del blocco - davanti al file non ancora inviato, al cursore fermo sulla stessa frase. Non è un metodo per far sparire la paura, ma un modo per attraversarla senza restarne paralizzati. Ha senso seguirla guidati, nel momento in cui viene proposta nel video, più che descriverla qui fuori contesto.</p>
+<p>Vale la pena arrivarci con una domanda aperta più che con una soluzione già pronta in tasca: quale paura specifica si nasconde, per te, dietro l'ultimo passo che non riesci a fare?</p>
+    </div>
+
+    <aside class="articolo-cta articolo-episodio">
+      <p class="articolo-eyebrow">Cosa c'è dentro l'episodio</p>
+<p>Nell'episodio "Autosabotaggio esattamente a un passo dal traguardo" entro nel punto esatto in cui scatta il blocco, con un esempio concreto e una pratica guidata da fare proprio nel momento in cui ti manca un solo passo per finire. Se ti riconosci in quella sensazione di stare fermo a un metro dal traguardo, vale la pena guardarlo fino in fondo.</p>
+<div class="episode-links"><p><strong>Guarda e ascolta l'episodio</strong></p><p><a href="https://www.youtube.com/watch?v=CMM9n2hz-hk" rel="noopener">Guarda su YouTube</a> · <a href="https://open.spotify.com/episode/0f6dW2MP37npOGvWT63RO4?si=MrG2MMN1TaW_7h54ghIaBg" rel="noopener">Ascolta su Spotify</a></p></div>
+    </aside>
+<section class="articolo-faq" aria-labelledby="faq-titolo">
+<h2 id="faq-titolo">Domande frequenti</h2>
+<details>
+<summary>L'autosabotaggio all'ultimo passo è la stessa cosa della procrastinazione?</summary>
+<p>Sono fenomeni collegati ma non identici. La procrastinazione può manifestarsi in qualsiasi fase di un compito, mentre l'ansia da completamento descrive un picco di evitamento specifico che compare solo quando la fine è ormai vicina, spesso dopo che gran parte del lavoro è già stata portata a termine.</p>
+</details>
+<details>
+<summary>Perché proprio quando manca pochissimo e non all'inizio del progetto?</summary>
+<p>Perché più ci si avvicina alla fine, più cresce la probabilità concreta di essere valutati. La paura legata al giudizio tende ad aumentare più rapidamente della spinta motivazionale, fino a superarla proprio nell'ultimo tratto.</p>
+</details>
+<details>
+<summary>È un problema che riguarda solo i perfezionisti?</summary>
+<p>Il perfezionismo è una delle strade attraverso cui il blocco si manifesta, ma il meccanismo di fondo - la paura del giudizio e del cambiamento di identità legato al completamento - può riguardare anche chi non si definirebbe perfezionista.</p>
+</details>
+<details>
+<summary>Basta rendersi conto del meccanismo per sbloccarsi?</summary>
+<p>Capire perché succede aiuta a non colpevolizzarsi, ma raramente è sufficiente da solo. Il passaggio che sembra fare davvero la differenza è agire mentre la paura è ancora presente, invece di aspettare che diminuisca prima di muoversi.</p>
+</details>
+<details>
+<summary>Quanto è diffuso realmente questo fenomeno?</summary>
+<p>Non esistono dati statistici solidi sulla sua diffusione, soprattutto in Italia: le osservazioni disponibili arrivano da testimonianze qualitative, non da ricerche su larga scala, quindi è bene non generalizzare troppo rigidamente.</p>
+</details>
+</section>
+    <aside class="articolo-cta articolo-prossimo">
+      <p class="articolo-eyebrow">Il prossimo passo</p>
+      <p>Vuoi capire quale schema ti sta frenando?</p>
+      <a class="articolo-btn" href="/quiz/"><span class="material-symbols-outlined" aria-hidden="true" style="font-size:20px;">explore</span>Fai il Quiz del Coraggio</a>
+    </aside>
+
+    <section class="articolo-share" aria-label="Condividi questo articolo">
+      <p class="articolo-share-label">Ti è stato utile? Condividilo</p>
+      <div class="articolo-share-btns">
+        <button type="button" class="share-btn share-main" id="share-native" hidden><span class="material-symbols-outlined" aria-hidden="true">share</span>Condividi</button>
+        <a class="share-btn" data-net="whatsapp" href="https://wa.me/?text=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="share-btn" data-net="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a class="share-btn" data-net="linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="share-btn" data-net="x" href="https://twitter.com/intent/tweet?url=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/" target="_blank" rel="noopener noreferrer">X</a>
+        <a class="share-btn" data-net="email" href="mailto:?body=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/">Email</a>
+        <button type="button" class="share-btn" id="share-copy"><span class="material-symbols-outlined" aria-hidden="true">link</span>Copia link</button>
+      </div>
+      <p class="articolo-share-ok" id="share-ok" role="status" aria-live="polite"></p>
+    </section>
+    <script>
+    (function () {
+      var box = document.querySelector('.articolo-share');
+      if (!box) return;
+      var url = (document.querySelector('link[rel="canonical"]') || {}).href || location.href;
+      var title = (document.querySelector('h1') || {}).textContent || document.title;
+      title = title.trim();
+      var u = encodeURIComponent(url), t = encodeURIComponent(title), tu = encodeURIComponent(title + ' ' + url);
+      var map = {
+        whatsapp: 'https://wa.me/?text=' + tu,
+        facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + u,
+        linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + u,
+        x: 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u,
+        email: 'mailto:?subject=' + t + '&body=' + encodeURIComponent(title + '\n' + url)
+      };
+      var ok = document.getElementById('share-ok');
+      function msg(s) { if (ok) { ok.textContent = s; setTimeout(function () { ok.textContent = ''; }, 2500); } }
+      function track(m) { try { if (window.gtag) gtag('event', 'share', { method: m, content_type: 'article', item_id: url }); } catch (e) {} }
+      Array.prototype.forEach.call(box.querySelectorAll('a[data-net]'), function (a) {
+        var n = a.getAttribute('data-net');
+        if (map[n]) a.href = map[n];
+        a.addEventListener('click', function () { track(n); });
+      });
+      var nat = document.getElementById('share-native');
+      if (nat && navigator.share) {
+        nat.hidden = false;
+        var fb = box.querySelector('a[data-net="facebook"]');
+        if (fb) fb.hidden = true;
+        nat.addEventListener('click', function () {
+          navigator.share({ title: title, url: url }).then(function () { track('native'); }).catch(function () {});
+        });
+      }
+      var cp = document.getElementById('share-copy');
+      if (cp) cp.addEventListener('click', function () {
+        function done() { msg('Link copiato'); track('copy'); }
+        if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { msg('Copia non riuscita'); }); }
+        else { var i = document.createElement('input'); i.value = url; document.body.appendChild(i); i.select(); try { document.execCommand('copy'); done(); } catch (e) { msg('Copia non riuscita'); } document.body.removeChild(i); }
+      });
+    })();
+    </script>
+  </article>
+</main>
+
+<footer class="bg-surface-container-lowest w-full py-section-v-desktop px-gutter border-t border-outline-variant/30">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg max-w-container-max mx-auto">
+    <div class="space-y-4">
+      <a href="/"><img src="/assets/Logo Lungo.png" alt="Cristian Lecca" class="h-7 w-auto nav-logo" loading="lazy"/></a>
+      <p class="font-body-md text-body-md text-on-surface-variant">Hypno Mental Coach specializzato nel Metodo IpnosiApplicata per trasformazione mentale, performance e consapevolezza.</p>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Navigazione</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/">Home</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/metodo/">Metodo</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/chi-sono/">Chi sono</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/contenuti/">Contenuti</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/blog/">Blog</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/sessione-di-svolta/">Sessione di Svolta</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Percorso</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-primary font-semibold hover:text-primary/80 transition-colors" href="/quiz/">Quiz del Coraggio</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/reset-notturno/">Reset Notturno</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/centro/">Torna al Centro</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-label-md text-label-md text-on-surface mb-6 uppercase tracking-wider">Legale</h4>
+      <ul class="space-y-3 font-body-md text-body-md">
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/privacy/">Privacy Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="/cookie/">Cookie Policy</a></li>
+        <li><a class="text-on-surface-variant hover:text-primary transition-colors" href="#gestisci-cookie" role="button" data-cl-consent-open>Gestisci le preferenze cookie</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/30 text-center space-y-2">
+    <p class="text-on-surface-variant font-label-md text-label-md">&copy; 2026 Cristian Lecca &mdash; IpnosiApplicata. Tutti i diritti riservati. P.IVA IT12632010018</p>
+    <p class="text-on-surface-variant/50 font-label-md text-xs uppercase tracking-tight leading-relaxed max-w-3xl mx-auto">Disclaimer: Le informazioni contenute in questo sito non costituiscono consulenza medica, psicologica o psichiatrica e non sostituiscono il parere di specialisti abilitati.</p>
+  </div>
+</footer>
+
+<script>
+  /* ── Menu mobile ── */
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('hamburger-icon');
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    icon.textContent = open ? 'close' : 'menu';
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+  });
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = 'menu';
+    });
+  });
+</script>
+</body>
+</html>
