@@ -317,11 +317,9 @@
 
   var HTML = '' +
     '<h2 class="clc-title" id="clc-title">Cookie e privacy</h2>' +
-    '<p class="clc-text" id="clc-desc">Usiamo cookie tecnici necessari al funzionamento del sito. Solo con il tuo consenso ' +
-    'usiamo anche cookie statistici (Google Analytics) e di marketing (Meta Pixel), per capire come viene usato il sito e ' +
-    'misurare le campagne, e mostriamo contenuti esterni (video, podcast, calendario). Puoi cambiare scelta quando vuoi ' +
-    'da “Gestisci le preferenze cookie” in fondo alla pagina. ' +
-    '<a href="' + POLICY_URL + '">Cookie Policy</a></p>' +
+    '<p class="clc-text" id="clc-desc">Usiamo cookie tecnici per far funzionare il sito. Solo con il tuo consenso ' +
+    'usiamo cookie statistici e di marketing, e mostriamo contenuti esterni come video e podcast. ' +
+    '<a href="https://cristianlecca.it/cookie/">Cookie Policy</a></p>' +
     '<div class="clc-actions">' +
       '<button type="button" class="clc-btn" data-clc="accept">Accetta tutto</button>' +
       '<button type="button" class="clc-btn" data-clc="reject">Rifiuta tutto</button>' +
