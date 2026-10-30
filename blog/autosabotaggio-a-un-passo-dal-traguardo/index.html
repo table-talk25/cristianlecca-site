@@ -85,7 +85,7 @@
   }
   #mobile-menu a:hover { color: #49C7A5; }
   #mobile-menu a:last-child:hover { color: #101416; }
-  .articolo { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
+  .articolo { max-width: 728px; margin: 0 auto; padding: 40px 24px 48px; }
   .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; list-style: none; margin: 0 0 32px; padding: 0; font-family: 'Inter', sans-serif; font-size: 14px; color: #86948e; }
   .breadcrumb li + li::before { content: '›'; margin-right: 8px; color: #3d4944; }
   .breadcrumb a { color: #bccac3; text-decoration: none; }
@@ -93,9 +93,10 @@
   .breadcrumb [aria-current] { color: #bccac3; }
   .articolo-titolo { font-family: 'Manrope', sans-serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; color: #F5F7FA; margin: 0; }
   .articolo-meta { margin: 16px 0 0; font-family: 'Inter', sans-serif; font-size: 14px; color: #86948e; }
-  .articolo-body { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.8; color: #d4ddd9; }
+  .articolo-body { margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.65; color: #d4ddd9; }
   .articolo-body > * + * { margin-top: 1.25em; }
-  .articolo-body h2 { font-family: 'Manrope', sans-serif; font-size: 26px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin-top: 2.2em; }
+  .articolo-body h2 { font-family: 'Manrope', sans-serif; font-size: 24px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin-top: 40px; margin-bottom: 0; }
+  .articolo-body h2 + * { margin-top: 12px; }
   .articolo-body h3 { font-family: 'Manrope', sans-serif; font-size: 21px; line-height: 1.35; font-weight: 700; color: #F5F7FA; margin-top: 1.8em; }
   .articolo-body ul, .articolo-body ol { padding-left: 1.4em; }
   .articolo-body ul { list-style: disc; }
@@ -107,34 +108,35 @@
   .articolo-body em { font-style: italic; }
   .articolo-body a:not([class]), .articolo-cta a:not([class]) { color: #49C7A5; text-decoration: underline; text-underline-offset: 3px; }
   .articolo-eyebrow { margin: 0 0 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #49C7A5; }
-  .articolo-hero { margin: 0 0 40px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-hero { margin: 0 0 40px; max-height: 420px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
   .articolo-figura { margin: 2.2em 0; aspect-ratio: 3 / 2; border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
   .articolo-hero img, .articolo-figura img { display: block; width: 100%; height: 100%; object-fit: cover; }
   /* Box finale: stesso linguaggio del box podcast di /contenuti/ (.mental-module) */
-  .articolo-cta { margin-top: 56px; padding: 32px; border-radius: 24px; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: #bccac3; }
+  .articolo-cta { margin-top: 40px; padding: 28px; border-radius: 24px; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.7; color: #bccac3; }
   .articolo-cta > * + * { margin-top: 1em; }
   .articolo-cta h2, .articolo-cta h3 { font-family: 'Manrope', sans-serif; font-size: 22px; line-height: 1.3; font-weight: 700; color: #F5F7FA; }
   .articolo-cta strong { color: #F5F7FA; font-weight: 600; }
   .articolo-cta a:not([class]) { font-weight: 600; }
   .articolo-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding: 14px 28px; border-radius: 9999px; background: #49C7A5; color: #101416; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(73, 199, 165, 0.2); transition: filter 0.2s ease; }
   .articolo-btn:hover { filter: brightness(1.1); }
-  .articolo-faq { margin-top: 56px; }
-  .articolo-faq h2 { font-family: 'Manrope', sans-serif; font-size: 26px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin: 0 0 20px; }
+  .articolo-faq { margin-top: 40px; }
+  .articolo-faq h2 { font-family: 'Manrope', sans-serif; font-size: 24px; line-height: 1.3; font-weight: 700; color: #F5F7FA; margin: 0 0 12px; }
   .articolo-faq details { border-top: 1px solid rgba(61, 73, 68, 0.6); }
   .articolo-faq details:last-of-type { border-bottom: 1px solid rgba(61, 73, 68, 0.6); }
-  .articolo-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: #F5F7FA; }
+  .articolo-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; cursor: pointer; list-style: none; font-family: 'Manrope', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.4; color: #F5F7FA; }
   .articolo-faq summary::-webkit-details-marker { display: none; }
   .articolo-faq summary::after { content: '+'; flex-shrink: 0; font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; color: #49C7A5; transition: transform 0.2s ease; }
   .articolo-faq details[open] summary::after { transform: rotate(45deg); }
-  .articolo-faq details p { margin: 0 0 20px; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; color: #d4ddd9; }
+  .articolo-faq details p { margin: 0 0 16px; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.65; color: #d4ddd9; }
   /* Hero con titolo sovrapposto (markup inserito dal workflow in HERO_HTML) */
-  .blog-hero { position: relative; margin: 32px 0 40px; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
-  .blog-hero img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .blog-hero { position: relative; margin: 28px 0 32px; border-radius: 24px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .blog-hero img { display: block; width: 100%; height: auto; max-height: 420px; aspect-ratio: 16 / 9; object-fit: cover; object-position: center; }
   .blog-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 32px 36px; color: #fff; background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 82%, rgba(0, 0, 0, 0.8) 100%); }
   .blog-hero-brand { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: 0.22em; text-transform: uppercase; color: #C9A45C; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); }
   .blog-hero-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; max-width: 92%; font-family: 'Manrope', sans-serif; font-size: 40px; line-height: 1.15; font-weight: 800; letter-spacing: -0.01em; color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55); }
   @media (max-width: 640px) {
     .blog-hero { border-radius: 20px; }
+    .blog-hero img, .articolo-hero { max-height: 260px; }
     .blog-hero-overlay { padding: 16px 18px; gap: 10px; }
     .blog-hero-brand { font-size: 10px; letter-spacing: 0.18em; }
     .blog-hero-title { max-width: 100%; font-size: 24px; line-height: 1.2; }
@@ -142,8 +144,9 @@
   /* Con la hero il titolo visibile è quello sulla foto: l'h1 resta per Google e screen reader */
   body:has(figure.blog-hero) .articolo-header h1 { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
   /* Immagini nel testo: più piccole della hero, centrate, senza overlay */
-  .articolo-body figure { margin: 2.2em auto; max-width: min(100%, 560px); border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
+  .articolo-body figure { margin: 28px auto; max-width: min(100%, 480px); border-radius: 20px; overflow: hidden; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); }
   .articolo-body figure img { display: block; width: 100%; height: auto; }
+  .articolo-body figcaption { padding: 8px 14px 10px; font-size: 13px; line-height: 1.5; color: #86948e; }
   .articolo-cta ul, .articolo-cta ol { padding-left: 1.4em; }
   .articolo-cta ul { list-style: disc; }
   .articolo-cta ol { list-style: decimal; }
@@ -157,20 +160,35 @@
   .articolo-cta .episode-links p a { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 9999px; background: #49C7A5; color: #101416; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.2; letter-spacing: 0.05em; text-decoration: none; box-shadow: 0 10px 25px -5px rgba(73, 199, 165, 0.2); transition: filter 0.2s ease; }
   .articolo-cta .episode-links p a:hover { filter: brightness(1.1); }
   @media (max-width: 480px) { .articolo-cta .episode-links p a { flex: 1 1 100%; } }
+  /* Riquadro finale unico: episodio, poi il prossimo passo */
+  .articolo-finale .articolo-episodio > * + *, .articolo-finale .articolo-prossimo > * + * { margin-top: 1em; }
+  .articolo-finale .articolo-prossimo { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(61, 73, 68, 0.6); }
   /* Il prossimo passo */
   .articolo-prossimo .articolo-btn { margin-top: 12px; padding: 18px 34px; font-size: 16px; }
   @media (max-width: 480px) { .articolo-prossimo .articolo-btn { display: flex; justify-content: center; } }
   /* Condividi articolo */
-  .articolo-share { margin-top: 48px; padding-top: 28px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; }
-  .articolo-share-label { margin: 0 0 14px; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
-  .articolo-share-btns { display: flex; flex-wrap: wrap; gap: 10px; }
-  .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9999px; border: 1px solid #3d4944; background: transparent; color: #d4ddd9; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; line-height: 1; text-decoration: none; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease; }
+  .articolo-share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(61, 73, 68, 0.5); font-family: 'Inter', sans-serif; }
+  .articolo-share-label { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #86948e; }
+  .articolo-share-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .share-btn { display: inline-flex; align-items: center; gap: 6px; box-sizing: border-box; height: 40px; padding: 0 16px; border-radius: 9999px; border: 1px solid #3d4944; background: transparent; color: #d4ddd9; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; line-height: 1; text-decoration: none; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease; }
   .share-btn:hover, .share-btn:focus-visible { border-color: #49C7A5; color: #49C7A5; }
   .share-btn .material-symbols-outlined { font-size: 18px; }
   .share-btn.share-main { background: #49C7A5; border-color: #49C7A5; color: #101416; font-weight: 600; }
   .share-btn.share-main:hover, .share-btn.share-main:focus-visible { color: #101416; filter: brightness(1.1); }
   .share-btn[hidden] { display: none; }
-  .articolo-share-ok { margin: 12px 0 0; min-height: 1.2em; font-size: 14px; color: #49C7A5; }
+  .articolo-share-ok { flex-basis: 100%; margin: 0; font-size: 14px; color: #49C7A5; }
+  .articolo-share-ok:empty { margin-top: -10px; }
+  /* Altri articoli (da /blog/posts.json): una colonna su mobile, tre su desktop */
+  .altri-articoli { margin-top: 40px; font-family: 'Inter', sans-serif; }
+  .altri-articoli[hidden] { display: none; }
+  .altri-titolo { margin: 0 0 16px; font-family: 'Manrope', sans-serif; font-size: 22px; line-height: 1.3; font-weight: 700; color: #F5F7FA; }
+  .altri-lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .altro-art { display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 18px; border: 1px solid #3d4944; background: linear-gradient(135deg, #0b0f11 0%, #191c1e 100%); color: #bccac3; text-decoration: none; transition: border-color 0.2s ease; }
+  .altro-art:hover, .altro-art:focus-visible { border-color: #49C7A5; }
+  .altro-art-titolo { margin: 0; font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.35; font-weight: 700; color: #F5F7FA; }
+  .altro-art-estratto { margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; font-size: 14px; line-height: 1.5; }
+  .altro-art-link { margin-top: auto; font-size: 13px; font-weight: 600; color: #49C7A5; }
+  @media (max-width: 640px) { .altri-lista { grid-template-columns: 1fr; } }
 
 </style>
 <!-- Meta Pixel Code -->
@@ -250,38 +268,33 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
 
 <p>Chi lo vive tende a leggerlo come un difetto personale: sono disorganizzato, sono pigro, non ho abbastanza disciplina. Ma se fosse davvero pigrizia, difficilmente si sarebbe arrivati così vicini alla fine. Il blocco all'ultimo metro è un fenomeno diverso, con una logica propria, e merita di essere guardato per quello che è prima di essere giudicato.</p>
 
-<h2>Perché il blocco arriva proprio quando manca pochissimo</h2>
+<h2 id="perche-il-blocco-arriva-proprio-quando-manca-pochissimo">Perché il blocco arriva proprio quando manca pochissimo</h2>
 <p>La psicologia comportamentale ha osservato da tempo che la motivazione tende ad aumentare man mano che ci si avvicina a un obiettivo: lo sforzo si intensifica, il passo accelera, la concentrazione si fa più acuta. È un effetto studiato fin dagli anni Trenta e poi confermato in contesti diversi, dal comportamento animale alle abitudini di acquisto delle persone. Dovrebbe essere la fase più semplice, quella in cui tutto spinge in avanti.</p>
 <figure><img src="/assets/blog/autosabotaggio-a-un-passo-dal-traguardo-2.jpg" alt="Un sentiero in montagna verso il traguardo" loading="lazy" style="width:100%;height:auto"></figure>
 <p>Il problema è che insieme alla spinta cresce anche un'altra forza, opposta: quella del timore legato a cosa succederà una volta finito. E qui entra in gioco un'intuizione più vecchia ancora, quella del conflitto tra avvicinamento ed evitamento: quando un obiettivo porta con sé sia una ricompensa sia qualcosa da temere, le due spinte non crescono alla stessa velocità. Quella dell'evitamento accelera più ripidamente. A un certo punto, molto vicino al traguardo, la supera. Ed è lì che ci si ferma.</p>
 
-<h2>Finché non è finito, resta al riparo</h2>
+<h2 id="finche-non-e-finito-resta-al-riparo">Finché non è finito, resta al riparo</h2>
 <p>C'è una ragione precisa per cui proprio l'ultimo passo fa più paura dei precedenti. Finché un lavoro è in corso, resta un processo privato: può ancora diventare qualunque cosa, anche la versione migliore immaginabile di sé stesso. Nessuno lo sta ancora guardando. Nel momento in cui viene consegnato, pubblicato, inviato, smette di essere potenziale e diventa un risultato: finito, concreto, esposto al giudizio di chi lo riceverà.</p>
 <p>Questo passaggio - da processo protetto a risultato giudicabile - è probabilmente il cuore del fenomeno. Non si teme tanto il compito in sé, quanto ciò che la sua conclusione rende visibile. La frase "non è ancora pronto", spesso, non riguarda il lavoro. Riguarda chi lo ha fatto.</p>
 
-<h2>Quando finire significa cambiare identità</h2>
+<h2 id="quando-finire-significa-cambiare-identita">Quando finire significa cambiare identità</h2>
 <p>C'è un altro livello, meno evidente ma altrettanto concreto. Portare a termine qualcosa di significativo spesso obbliga a diventare qualcun altro: lo studente che chiude la tesi smette di essere studente e deve affrontare l'identità più incerta del professionista in cerca di lavoro; chi conclude un percorso lungo deve lasciare andare il ruolo rassicurante di chi è "ancora dentro" il processo. Anche quando il cambiamento è desiderato, la mente tende a trattarlo come una rottura dell'equilibrio conosciuto, e quindi come un rischio.</p>
 <figure><img src="/assets/blog/autosabotaggio-a-un-passo-dal-traguardo-3.jpg" alt="Cristian in ufficio, di spalle" loading="lazy" style="width:100%;height:auto"></figure>
 <p>Su questo si innesta un meccanismo osservato nella ricerca motivazionale: quando il valore personale viene percepito come strettamente legato alla performance, avvicinarsi al momento della valutazione diventa minaccioso. Per proteggersi, la mente può costruire inconsciamente un ostacolo - un rallentamento, una scusa, un dettaglio da rivedere ancora - così che, in caso di esito deludente, la colpa ricada sull'ostacolo e non sulla propria capacità. È una strategia che ha un costo reale (il progetto resta fermo), ma che a livello inconscio sembra più sicura del rischio di scoprire di non essere all'altezza.</p>
 
-<h2>Cosa succede nel corpo mentre la mente trova scuse</h2>
+<h2 id="cosa-succede-nel-corpo-mentre-la-mente-trova-scuse">Cosa succede nel corpo mentre la mente trova scuse</h2>
 <p>Prima ancora che arrivi un pensiero razionale, spesso arriva una sensazione fisica: una tensione al petto, lo stomaco che si chiude, un rallentamento quasi meccanico dei gesti. Non è un dettaglio da ignorare. Il corpo tende ad anticipare il rischio prima che la mente lo metta a fuoco, ed è plausibile che questi segnali siano collegati alle risposte automatiche con cui il sistema nervoso reagisce a una minaccia percepita, anche quando la minaccia è solo sociale o simbolica, non fisica.</p>
 <p>Questo spiega perché, in quei momenti, "ragionarci su" raramente funziona. Dirsi "è solo un'email, inviala" non scioglie granché, perché il blocco non nasce da un ragionamento mancante: nasce da un allarme che si è già attivato.</p>
 
-<h2>Capire il meccanismo non basta: cosa resta da fare</h2>
+<h2 id="capire-il-meccanismo-non-basta-cosa-resta-da-fare">Capire il meccanismo non basta: cosa resta da fare</h2>
 <p>Sapere perché ci si blocca è un primo passo utile, ma da solo non sblocca niente. Resta un passaggio pratico, più difficile da spiegare che da vivere: quello di muoversi mentre la paura è ancora lì, invece di aspettare che si plachi da sola. Aspettare di "sentirsi pronti" è spesso un modo elegante per restare fermi, perché quella sensazione di sicurezza, in realtà, arriva quasi sempre dopo il gesto, non prima.</p>
 <p>È proprio questo il punto su cui nel video podcast entro più a fondo: cosa significa concretamente agire con la paura ancora addosso, senza aspettare che sparisca, e cosa cambia nel momento esatto in cui si decide di farlo comunque.</p>
 
-<h2>Un modo diverso di guardare al momento del blocco</h2>
+<h2 id="un-modo-diverso-di-guardare-al-momento-del-blocco">Un modo diverso di guardare al momento del blocco</h2>
 <p>Nell'episodio propongo anche una pratica molto breve, pensata per essere usata esattamente nell'istante del blocco - davanti al file non ancora inviato, al cursore fermo sulla stessa frase. Non è un metodo per far sparire la paura, ma un modo per attraversarla senza restarne paralizzati. Ha senso seguirla guidati, nel momento in cui viene proposta nel video, più che descriverla qui fuori contesto.</p>
 <p>Vale la pena arrivarci con una domanda aperta più che con una soluzione già pronta in tasca: quale paura specifica si nasconde, per te, dietro l'ultimo passo che non riesci a fare?</p>
     </div>
 
-    <aside class="articolo-cta articolo-episodio">
-      <p class="articolo-eyebrow">Cosa c'è dentro l'episodio</p>
-<p>Nell'episodio "Autosabotaggio esattamente a un passo dal traguardo" entro nel punto esatto in cui scatta il blocco, con un esempio concreto e una pratica guidata da fare proprio nel momento in cui ti manca un solo passo per finire. Se ti riconosci in quella sensazione di stare fermo a un metro dal traguardo, vale la pena guardarlo fino in fondo.</p>
-<div class="episode-links"><p><strong>Guarda e ascolta l'episodio</strong></p><p><a href="https://www.youtube.com/watch?v=CMM9n2hz-hk" rel="noopener">Guarda su YouTube</a> · <a href="https://open.spotify.com/episode/0f6dW2MP37npOGvWT63RO4?si=MrG2MMN1TaW_7h54ghIaBg" rel="noopener">Ascolta su Spotify</a></p></div>
-    </aside>
 <section class="articolo-faq" aria-labelledby="faq-titolo">
 <h2 id="faq-titolo">Domande frequenti</h2>
 <details>
@@ -305,14 +318,21 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
 <p>Non esistono dati statistici solidi sulla sua diffusione, soprattutto in Italia: le osservazioni disponibili arrivano da testimonianze qualitative, non da ricerche su larga scala, quindi è bene non generalizzare troppo rigidamente.</p>
 </details>
 </section>
-    <aside class="articolo-cta articolo-prossimo">
+    <aside class="articolo-cta articolo-finale">
+      <div class="articolo-episodio">
+      <p class="articolo-eyebrow">Cosa c'è dentro l'episodio</p>
+<p>Nell'episodio "Autosabotaggio esattamente a un passo dal traguardo" entro nel punto esatto in cui scatta il blocco, con un esempio concreto e una pratica guidata da fare proprio nel momento in cui ti manca un solo passo per finire. Se ti riconosci in quella sensazione di stare fermo a un metro dal traguardo, vale la pena guardarlo fino in fondo.</p>
+<div class="episode-links"><p><strong>Guarda e ascolta l'episodio</strong></p><p><a href="https://www.youtube.com/watch?v=CMM9n2hz-hk" rel="noopener">Guarda su YouTube</a> · <a href="https://open.spotify.com/episode/0f6dW2MP37npOGvWT63RO4?si=MrG2MMN1TaW_7h54ghIaBg" rel="noopener">Ascolta su Spotify</a></p></div>
+      </div>
+      <div class="articolo-prossimo">
       <p class="articolo-eyebrow">Il prossimo passo</p>
       <p>Vuoi capire quale schema ti sta frenando?</p>
       <a class="articolo-btn" href="/quiz/"><span class="material-symbols-outlined" aria-hidden="true" style="font-size:20px;">explore</span>Fai il Quiz del Coraggio</a>
+      </div>
     </aside>
 
     <section class="articolo-share" aria-label="Condividi questo articolo">
-      <p class="articolo-share-label">Ti è stato utile? Condividilo</p>
+      <p class="articolo-share-label">Condividi</p>
       <div class="articolo-share-btns">
         <button type="button" class="share-btn share-main" id="share-native" hidden><span class="material-symbols-outlined" aria-hidden="true">share</span>Condividi</button>
         <a class="share-btn" data-net="whatsapp" href="https://wa.me/?text=https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/" target="_blank" rel="noopener noreferrer">WhatsApp</a>
@@ -362,6 +382,57 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
         if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { msg('Copia non riuscita'); }); }
         else { var i = document.createElement('input'); i.value = url; document.body.appendChild(i); i.select(); try { document.execCommand('copy'); done(); } catch (e) { msg('Copia non riuscita'); } document.body.removeChild(i); }
       });
+    })();
+    </script>
+    <section class="altri-articoli" aria-labelledby="altri-titolo" hidden>
+      <h2 class="altri-titolo" id="altri-titolo">Altri articoli</h2>
+      <div class="altri-lista"></div>
+    </section>
+    <script>
+    (function () {
+      // Fino a 3 altri articoli da /blog/posts.json (escluso quello corrente).
+      // Se il file non si carica o non ci sono altri articoli, la sezione resta nascosta.
+      var box = document.querySelector('.altri-articoli');
+      if (!box || !window.fetch || !window.JSON) return;
+      function percorso(u) {
+        try { return new URL(u, location.href).pathname.replace(/index\.html$/, '').replace(/\/?$/, '/'); } catch (e) { return ''; }
+      }
+      var qui = percorso((document.querySelector('link[rel="canonical"]') || {}).href || location.href);
+      var corrente = percorso(location.href);
+      fetch('/blog/posts.json', { cache: 'no-cache' })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (posts) {
+          if (!Array.isArray(posts)) return;
+          var altri = posts.filter(function (p) {
+            if (!p || typeof p.url !== 'string' || typeof p.title !== 'string') return false;
+            var u = percorso(p.url);
+            return u.indexOf('/blog/') === 0 && u !== qui && u !== corrente;
+          }).slice(0, 3);
+          if (!altri.length) return;
+          var lista = box.querySelector('.altri-lista');
+          altri.forEach(function (p) {
+            var a = document.createElement('a');
+            a.className = 'altro-art';
+            a.href = percorso(p.url);
+            var t = document.createElement('h3');
+            t.className = 'altro-art-titolo';
+            t.textContent = p.title;
+            a.appendChild(t);
+            if (typeof p.excerpt === 'string' && p.excerpt) {
+              var e = document.createElement('p');
+              e.className = 'altro-art-estratto';
+              e.textContent = p.excerpt;
+              a.appendChild(e);
+            }
+            var l = document.createElement('span');
+            l.className = 'altro-art-link';
+            l.textContent = 'Leggi l\'articolo \u2192';
+            a.appendChild(l);
+            lista.appendChild(a);
+          });
+          box.hidden = false;
+        })
+        .catch(function () {});
     })();
     </script>
   </article>
