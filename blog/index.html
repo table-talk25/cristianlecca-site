@@ -154,7 +154,13 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
 
 <section class="px-gutter pb-section-v-mobile md:pb-section-v-desktop">
   <div class="max-w-3xl mx-auto">
-    <div id="posts-list" class="flex flex-col gap-6"></div>
+    <!-- Elenco statico (leggibile anche senza JavaScript, per motori di ricerca e assistenti AI):
+         lo script qui sotto lo riallinea a /blog/posts.json, che resta la fonte aggiornata. -->
+    <div id="posts-list" class="flex flex-col gap-6">
+      <a class="post-card" href="/blog/autosabotaggio-a-un-passo-dal-traguardo/"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-10-30">30 ottobre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Perché ci si blocca proprio all&#x27;ultimo passo, non prima</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">Perché ci si blocca esattamente quando manca pochissimo? Non è pigrizia: è una difesa contro il giudizio e il cambiamento di identità.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></a>
+      <a class="post-card" href="/blog/stanchezza-che-non-passa-perfezionismo/"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-10-03">3 ottobre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Stanco anche quando ti fermi? Forse il problema non è quanto fai</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">C&#x27;è una stanchezza che il riposo non risolve. Ricerche su perfezionismo e paura di sbagliare suggeriscono una distinzione che cambia il modo di guardarla.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></a>
+      <a class="post-card" href="/blog/rimandare-una-decisione/"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-09-25">25 settembre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Rimandare una decisione: quando il problema non è scegliere</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">Rimandare può sembrare prudenza. Ma quando diventa evitamento, può indebolire la fiducia nella propria capacità di agire. Da dove ripartire.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></a>
+    </div>
     <div id="posts-empty" class="glass-card rounded-[24px] p-10 text-center" hidden>
       <span class="material-symbols-outlined text-primary" style="font-size:2rem;">edit_note</span>
       <p class="font-headline-md text-xl text-on-background mt-3">Presto i primi articoli</p>
@@ -250,6 +256,7 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
 
   function renderPosts(posts) {
     const list = document.getElementById('posts-list');
+    list.textContent = '';
     posts.forEach(post => {
       const card = el('a', 'post-card');
       card.href = post.url || ('/blog/' + post.slug + '/');
@@ -271,7 +278,8 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
     .catch(() => [])
     .then(posts => {
       if (posts.length) renderPosts(posts);
-      else document.getElementById('posts-empty').hidden = false;
+      // posts.json non disponibile: resta l'elenco statico; il messaggio vuoto solo se non c'e' nulla.
+      else if (!document.querySelector('#posts-list .post-card')) document.getElementById('posts-empty').hidden = false;
     });
 </script>
 </body>
