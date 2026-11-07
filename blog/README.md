@@ -27,3 +27,27 @@ Opzionali, per la miniatura nell'elenco `/blog/`:
 - Per gli articoli nuovi la miniatura e' la prima immagine interna (`articolo-<slug>-2.jpg`), **mai la hero**:
   la hero e' sempre la stessa foto di Cristian in studio.
 - Il template `blog/_template/articolo.html` non cambia: i due campi riguardano solo l'elenco.
+
+## Ricerca nell'elenco (`/blog/`)
+
+C'e' una lente in alto a destra dell'elenco: al tocco si apre un campo che filtra le card mentre si scrive,
+cercando nel titolo e nell'estratto (senza distinguere maiuscole e accenti). Funziona solo con JavaScript; senza,
+la lente non compare e l'elenco resta com'e'. Il testo cercato non viene inviato a nessuno (nessun evento, nessuna richiesta).
+Le card restano nel codice della pagina, quindi i motori di ricerca le leggono normalmente.
+
+## Idee per quando gli articoli saranno piu' di 10 (da riprendere verso meta' dicembre 2026)
+
+Decise insieme a Ele il 7 novembre 2026: con 4 articoli la ricerca basta; il resto ha senso dopo una decina di articoli.
+
+1. **Filtro per argomento.** Una riga di etichette sopra le card («Stanchezza», «Decisioni», «Alimentazione»...)
+   che filtra l'elenco. Serve un campo opzionale `tags` in `posts.json` (lista di stringhe), che il workflow n8n
+   dovra' compilare. Senza `tags` la voce compare solo in «Tutti».
+2. **Indice laterale per mese o anno** (archivio). Non servono campi nuovi, la `date` c'e' gia'.
+   Su desktop in una colonna stretta a lato dell'elenco, su telefono come menu a tendina sopra le card.
+   Da valutare insieme alla griglia a due colonne, che oggi occupa tutta la larghezza.
+3. **«Carica altri articoli»** (o paginazione) quando l'elenco diventa lungo, mostrando per esempio i primi 8-10.
+4. **Pagine per argomento** (`/blog/argomento/<tag>/`), solo se gli argomenti diventano abbastanza grandi: sono utili
+   per la SEO, ma richiedono pagine statiche generate dal workflow.
+
+Attenzione quando si aggiungono filtri: l'elenco completo deve restare nel codice statico della pagina (o in
+`blog/sitemap-blog.xml` e `llms.txt`), perche' i motori di ricerca e gli assistenti AI non usano i filtri.
