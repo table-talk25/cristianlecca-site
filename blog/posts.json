@@ -13,20 +13,26 @@
     "title": "Perché ci si blocca proprio all'ultimo passo, non prima",
     "excerpt": "Perché ci si blocca esattamente quando manca pochissimo? Non è pigrizia: è una difesa contro il giudizio e il cambiamento di identità.",
     "date": "2026-10-30",
-    "url": "/blog/autosabotaggio-a-un-passo-dal-traguardo/"
+    "url": "/blog/autosabotaggio-a-un-passo-dal-traguardo/",
+    "image": "/assets/blog/autosabotaggio-a-un-passo-dal-traguardo-2.jpg",
+    "imageAlt": "Un sentiero in montagna verso il traguardo"
   },
   {
     "slug": "stanchezza-che-non-passa-perfezionismo",
     "title": "Stanco anche quando ti fermi? Forse il problema non è quanto fai",
     "excerpt": "C'è una stanchezza che il riposo non risolve. Ricerche su perfezionismo e paura di sbagliare suggeriscono una distinzione che cambia il modo di guardarla.",
     "date": "2026-10-03",
-    "url": "/blog/stanchezza-che-non-passa-perfezionismo/"
+    "url": "/blog/stanchezza-che-non-passa-perfezionismo/",
+    "image": "/assets/blog/articolo-stanchezza-2.jpg",
+    "imageAlt": "Scrivania con lampada accesa di notte e la scritta: Non sei stanco solo perché fai troppo."
   },
   {
     "slug": "rimandare-una-decisione",
     "title": "Rimandare una decisione: quando il problema non è scegliere",
     "excerpt": "Rimandare può sembrare prudenza. Ma quando diventa evitamento, può indebolire la fiducia nella propria capacità di agire. Da dove ripartire.",
     "date": "2026-09-25",
-    "url": "/blog/rimandare-una-decisione/"
+    "url": "/blog/rimandare-una-decisione/",
+    "image": "/assets/blog/articolo-rimandare-decisione-2.jpg",
+    "imageAlt": "Ritratto di Cristian Lecca"
   }
 ]
