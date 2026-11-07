@@ -18,10 +18,11 @@ Questo file riassume chi è Cristian Lecca, cosa offre e dove trovare le pagine 
 - [Il Metodo IpnosiApplicata](https://cristianlecca.it/metodo/): come funziona il metodo e su quali discipline si basa.
 - [Chi sono](https://cristianlecca.it/chi-sono/): la storia e il percorso di Cristian Lecca.
 - [Contenuti e podcast](https://cristianlecca.it/contenuti/): podcast, video e canali social.
-- [Blog](https://cristianlecca.it/blog/): articoli nati dagli episodi del podcast.
+- [IpnoBlog](https://cristianlecca.it/blog/): gli articoli di Cristian Lecca, nati dagli episodi del podcast.
 
 ## Articoli del blog
 
+- [Fame nervosa la sera: perché corri al frigo senza avere fame](https://cristianlecca.it/blog/fame-da-rientro-mangiare-senza-fame/)
 - [Perché ci si blocca proprio all'ultimo passo, non prima](https://cristianlecca.it/blog/autosabotaggio-a-un-passo-dal-traguardo/)
 - [Stanco anche quando ti fermi? Forse il problema non è quanto fai](https://cristianlecca.it/blog/stanchezza-che-non-passa-perfezionismo/)
 - [Rimandare una decisione: quando il problema non è scegliere](https://cristianlecca.it/blog/rimandare-una-decisione/)

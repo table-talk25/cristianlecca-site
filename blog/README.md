@@ -3,6 +3,15 @@
 `blog/posts.json` e' l'elenco degli articoli (piu' recente per primo). Lo legge la pagina `blog/index.html`
 e anche gli "Altri articoli" in fondo a ogni articolo. Lo scrive il workflow n8n alla pubblicazione.
 
+## Cosa va aggiornato a ogni nuovo articolo
+
+`posts.json` e `blog/sitemap-blog.xml` li scrive il workflow. Questi altri punti, per ora, si aggiornano a mano
+(o con il workflow, se lo si estende), perche' devono essere leggibili anche senza JavaScript:
+- la card statica in testa all'elenco di `blog/index.html` (stesso markup delle altre);
+- la voce in `llms.txt`, sezione «Articoli del blog»;
+- la `lastmod` di `/blog/` in `sitemap.xml`;
+- l'elenco nei dati strutturati di `blog/index.html` (`#blog-jsonld`): con JavaScript si riallinea da solo a `posts.json`.
+
 ## Campi
 
 Obbligatori (quelli che scrive n8n oggi):
