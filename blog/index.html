@@ -92,6 +92,20 @@
   .post-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
   .post-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
   .post-body > span:last-child { align-self: flex-start; margin-top: auto; padding-top: 20px; }
+  .post-card[hidden] { display: none; }
+  /* Ricerca nell'elenco: lente piccola in alto a destra, il campo si apre al tocco. Solo con JavaScript. */
+  .posts-tools { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
+  .posts-tools[hidden], .posts-search[hidden], #posts-clear[hidden], #posts-noresults[hidden] { display: none; }
+  .posts-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: rgba(29, 32, 34, 0.4); border: 1px solid rgba(245, 247, 250, 0.1); color: #bccac3; cursor: pointer; transition: border-color 300ms ease, color 300ms ease; }
+  .posts-toggle:hover, .posts-toggle[aria-expanded="true"] { border-color: rgba(73, 199, 165, 0.4); color: #49C7A5; }
+  .posts-toggle:focus-visible, #posts-q:focus-visible, #posts-clear:focus-visible { outline: 2px solid #49C7A5; outline-offset: 2px; }
+  .posts-search { position: relative; flex: 1 1 auto; max-width: 380px; }
+  #posts-q { width: 100%; height: 40px; padding: 0 40px 0 16px; border-radius: 9999px; background: rgba(29, 32, 34, 0.6); border: 1px solid rgba(245, 247, 250, 0.15); color: #F5F7FA; font: inherit; font-size: 15px; -webkit-appearance: none; appearance: none; }
+  #posts-q::placeholder { color: #86948e; }
+  #posts-q::-webkit-search-cancel-button { display: none; }
+  #posts-clear { position: absolute; right: 4px; top: 4px; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 9999px; background: transparent; color: #86948e; cursor: pointer; }
+  #posts-clear:hover { color: #F5F7FA; }
+  .vh { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   /* Da tablet in su le card stanno affiancate, due per riga; sul telefono una sotto l'altra. */
   @media (min-width: 640px) {
     #posts-container { max-width: 1040px; }
@@ -165,12 +179,28 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
 
 <section class="px-gutter pb-section-v-mobile md:pb-section-v-desktop">
   <div id="posts-container" class="max-w-3xl mx-auto">
+    <!-- Ricerca: nascosta finche' non parte lo script (senza JavaScript l'elenco resta com'e'). -->
+    <div id="posts-tools" class="posts-tools" hidden>
+      <form id="posts-search" class="posts-search" role="search" autocomplete="off" hidden>
+        <label for="posts-q" class="vh">Cerca negli articoli</label>
+        <input id="posts-q" type="search" placeholder="Cerca negli articoli…" enterkeyhint="search" maxlength="80"/>
+        <button type="button" id="posts-clear" aria-label="Cancella la ricerca" hidden><span class="material-symbols-outlined" style="font-size:20px;" aria-hidden="true">close</span></button>
+      </form>
+      <button type="button" id="posts-toggle" class="posts-toggle" aria-expanded="false" aria-controls="posts-search" aria-label="Cerca negli articoli"><span class="material-symbols-outlined" style="font-size:22px;" aria-hidden="true">search</span></button>
+    </div>
+    <p id="posts-status" class="vh" role="status" aria-live="polite"></p>
     <!-- Elenco statico (leggibile anche senza JavaScript, per motori di ricerca e assistenti AI):
          lo script qui sotto lo riallinea a /blog/posts.json, che resta la fonte aggiornata. -->
     <div id="posts-list" class="flex flex-col gap-6">
       <a class="post-card has-thumb" href="/blog/autosabotaggio-a-un-passo-dal-traguardo/"><div class="post-thumb"><img src="/assets/blog/autosabotaggio-a-un-passo-dal-traguardo-2.jpg" alt="Un sentiero in montagna verso il traguardo" width="480" height="270" loading="lazy" decoding="async"></div><div class="post-body"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-10-30">30 ottobre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Perché ci si blocca proprio all&#x27;ultimo passo, non prima</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">Perché ci si blocca esattamente quando manca pochissimo? Non è pigrizia: è una difesa contro il giudizio e il cambiamento di identità.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></div></a>
       <a class="post-card has-thumb" href="/blog/stanchezza-che-non-passa-perfezionismo/"><div class="post-thumb"><img src="/assets/blog/articolo-stanchezza-2.jpg" alt="Scrivania con lampada accesa di notte e la scritta: Non sei stanco solo perché fai troppo." width="480" height="270" loading="lazy" decoding="async"></div><div class="post-body"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-10-03">3 ottobre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Stanco anche quando ti fermi? Forse il problema non è quanto fai</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">C&#x27;è una stanchezza che il riposo non risolve. Ricerche su perfezionismo e paura di sbagliare suggeriscono una distinzione che cambia il modo di guardarla.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></div></a>
       <a class="post-card has-thumb" href="/blog/rimandare-una-decisione/"><div class="post-thumb"><img src="/assets/blog/articolo-rimandare-decisione-2.jpg" alt="Ritratto di Cristian Lecca" width="480" height="270" loading="lazy" decoding="async"></div><div class="post-body"><time class="font-label-md text-label-md text-on-surface-variant" datetime="2026-09-25">25 settembre 2026</time><h2 class="font-headline-md text-2xl text-on-background mt-2">Rimandare una decisione: quando il problema non è scegliere</h2><p class="font-body-md text-body-md text-on-surface-variant mt-3">Rimandare può sembrare prudenza. Ma quando diventa evitamento, può indebolire la fiducia nella propria capacità di agire. Da dove ripartire.</p><span class="inline-block font-label-md text-label-md text-primary mt-5">Leggi l'articolo →</span></div></a>
+    </div>
+    <div id="posts-noresults" class="glass-card rounded-[24px] p-10 text-center" hidden>
+      <span class="material-symbols-outlined text-primary" style="font-size:2rem;" aria-hidden="true">search</span>
+      <p class="font-headline-md text-xl text-on-background mt-3">Nessun articolo trovato</p>
+      <p class="font-body-md text-body-md text-on-surface-variant mt-2" id="posts-noresults-q"></p>
+      <button type="button" id="posts-reset" class="font-label-md text-label-md text-primary underline mt-4" style="background:none;border:0;cursor:pointer;">Mostra tutti gli articoli</button>
     </div>
     <div id="posts-empty" class="glass-card rounded-[24px] p-10 text-center" hidden>
       <span class="material-symbols-outlined text-primary" style="font-size:2rem;">edit_note</span>
@@ -311,12 +341,66 @@ fbq('track', 'PageView', {}, { eventID: window.clEventId ? clEventId() : undefin
     });
   }
 
+  // Ricerca: filtra le card gia' presenti (titolo + estratto), senza accenti e senza distinguere maiuscole.
+  // Non invia nulla a nessuno: niente eventi, niente richieste di rete.
+  const tools = document.getElementById('posts-tools');
+  const form = document.getElementById('posts-search');
+  const campo = document.getElementById('posts-q');
+  const apri = document.getElementById('posts-toggle');
+  const cancella = document.getElementById('posts-clear');
+  const nessuno = document.getElementById('posts-noresults');
+  const stato = document.getElementById('posts-status');
+
+  function norm(t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+  function applicaRicerca() {
+    const grezzo = campo.value.trim();
+    const parole = norm(grezzo).split(/\s+/).filter(Boolean);
+    const cards = document.querySelectorAll('#posts-list .post-card');
+    let visibili = 0;
+    cards.forEach(card => {
+      const h = card.querySelector('h2'), p = card.querySelector('p');
+      const testo = norm((h ? h.textContent : '') + ' ' + (p ? p.textContent : ''));
+      const ok = parole.every(w => testo.includes(w));
+      card.hidden = !ok;
+      if (ok) visibili++;
+    });
+    cancella.hidden = !campo.value;
+    nessuno.hidden = !(parole.length && cards.length && visibili === 0);
+    document.getElementById('posts-noresults-q').textContent = grezzo ? 'Nessun risultato per «' + grezzo + '».' : '';
+    stato.textContent = !parole.length ? '' : visibili === 0 ? 'Nessun articolo trovato' : visibili === 1 ? '1 articolo trovato' : visibili + ' articoli trovati';
+  }
+
+  function chiudiRicerca() {
+    campo.value = '';
+    applicaRicerca();
+    form.hidden = true;
+    apri.setAttribute('aria-expanded', 'false');
+    apri.focus();
+  }
+
+  apri.addEventListener('click', () => {
+    if (form.hidden) {
+      form.hidden = false;
+      apri.setAttribute('aria-expanded', 'true');
+      campo.focus();
+    } else {
+      chiudiRicerca();
+    }
+  });
+  campo.addEventListener('input', applicaRicerca);
+  campo.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); chiudiRicerca(); } });
+  form.addEventListener('submit', e => { e.preventDefault(); campo.blur(); });
+  cancella.addEventListener('click', () => { campo.value = ''; applicaRicerca(); campo.focus(); });
+  document.getElementById('posts-reset').addEventListener('click', () => { campo.value = ''; applicaRicerca(); campo.focus(); });
+  tools.hidden = false;
+
   fetch('/blog/posts.json', { cache: 'no-cache' })
     .then(res => res.ok ? res.json() : [])
     .then(posts => Array.isArray(posts) ? posts.filter(p => p && p.title) : [])
     .catch(() => [])
     .then(posts => {
-      if (posts.length) renderPosts(posts);
+      if (posts.length) { renderPosts(posts); applicaRicerca(); }
       // posts.json non disponibile: resta l'elenco statico; il messaggio vuoto solo se non c'e' nulla.
       else if (!document.querySelector('#posts-list .post-card')) document.getElementById('posts-empty').hidden = false;
     });
